@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二维码生成器 - Multi Tools</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { text-align: center; padding: 40px 20px; color: white; }
+        header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        header p { font-size: 1.2rem; opacity: 0.9; }
+        .back-btn { display: inline-block; margin-bottom: 20px; padding: 10px 20px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 25px; }
+        .back-btn:hover { background: rgba(255,255,255,0.3); }
+        .tool-card { background: white; border-radius: 20px; padding: 40px; margin: 20px 0; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        textarea { width: 100%; padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem; resize: vertical; min-height: 120px; }
+        textarea:focus { outline: none; border-color: #667eea; }
+        .btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 15px 40px; font-size: 1.1rem; border-radius: 30px; cursor: pointer; transition: transform 0.2s; margin: 10px; }
+        .btn:hover { transform: scale(1.05); }
+        #qrcode { margin-top: 30px; text-align: center; }
+        #qrcode img { border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        footer { text-align: center; padding: 40px 20px; color: white; opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-btn">← 返回首页</a>
+        <header>
+            <h1>📱 二维码生成器</h1>
+            <p>快速生成二维码，支持文本、URL、联系人等</p>
+        </header>
+        
+        <div class="tool-card">
+            <textarea id="inputText" placeholder="输入文本、URL或联系人信息..."></textarea>
+            
+            <div style="margin-top: 20px; text-align: center;">
+                <button class="btn" id="generateBtn">生成二维码</button>
+                <button class="btn" id="downloadBtn" style="display: none;">下载二维码</button>
+            </div>
+            
+            <div id="qrcode"></div>
+        </div>
+        
+        <footer>
+            <p>© 2026 Multi Tools | 免费在线工具集</p>
+        </footer>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script>
+        const inputText = document.getElementById('inputText');
+        const generateBtn = document.getElementById('generateBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const qrcodeDiv = document.getElementById('qrcode');
+        
+        generateBtn.addEventListener('click', () => {
+            const text = inputText.value.trim();
+            if (!text) {
+                alert('请输入内容');
+                return;
+            }
+            
+            qrcodeDiv.innerHTML = '<p>生成中...</p>';
+            
+            setTimeout(() => {
+                QRCode.toDataURL(text, { 
+                    width: 300,
+                    margin: 2,
+                    color: {
+                        dark: '#667eea',
+                        light: '#ffffff'
+                    }
+                }, (err, url) => {
+                    if (err) {
+                        qrcodeDiv.innerHTML = '<p style="color: red;">生成失败</p>';
+                        return;
+                    }
+                    
+                    qrcodeDiv.innerHTML = `<img src="${url}" alt="QR Code">`;
+                    downloadBtn.style.display = 'inline-block';
+                    downloadBtn.onclick = () => {
+                        const link = document.createElement('a');
+                        link.download = 'qrcode.png';
+                        link.href = url;
+                        link.click();
+                    };
+                });
+            }, 500);
+        });
+        
+        inputText.addEventListener('input', () => {
+            if (inputText.value.trim()) {
+                generateBtn.click();
+            }
+        });
+    </script>
+</body>
+</html>

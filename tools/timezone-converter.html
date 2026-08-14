@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时区转换器 - Multi Tools</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { text-align: center; padding: 40px 20px; color: white; }
+        header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        header p { font-size: 1.2rem; opacity: 0.9; }
+        .back-btn { display: inline-block; margin-bottom: 20px; padding: 10px 20px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 25px; }
+        .back-btn:hover { background: rgba(255,255,255,0.3); }
+        .tool-card { background: white; border-radius: 20px; padding: 40px; margin: 20px 0; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .timezone-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
+        .timezone-card { background: #f8f9fa; padding: 25px; border-radius: 15px; text-align: center; }
+        .timezone-card h3 { color: #333; margin-bottom: 15px; font-size: 1.1rem; }
+        .timezone-time { font-size: 2rem; font-weight: bold; color: #667eea; margin: 15px 0; }
+        .timezone-date { color: #666; font-size: 0.9rem; }
+        select { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem; margin-top: 10px; }
+        select:focus { outline: none; border-color: #667eea; }
+        footer { text-align: center; padding: 40px 20px; color: white; opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-btn">← 返回首页</a>
+        <header>
+            <h1>🕐 时区转换器</h1>
+            <p>全球时区转换，支持时间对比和日程安排</p>
+        </header>
+        
+        <div class="tool-card">
+            <div class="timezone-grid" id="timezoneGrid">
+                <!-- 时区卡片会在这里动态生成 -->
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2026 Multi Tools | 免费在线工具集</p>
+        </footer>
+    </div>
+    
+    <script>
+        const timezones = [
+            { name: '北京时间', value: 'Asia/Shanghai', offset: '+08:00' },
+            { name: '东京时间', value: 'Asia/Tokyo', offset: '+09:00' },
+            { name: '首尔时间', value: 'Asia/Seoul', offset: '+09:00' },
+            { name: '纽约时间', value: 'America/New_York', offset: '-05:00' },
+            { name: '洛杉矶时间', value: 'America/Los_Angeles', offset: '-08:00' },
+            { name: '伦敦时间', value: 'Europe/London', offset: '+00:00' },
+            { name: '巴黎时间', value: 'Europe/Paris', offset: '+01:00' },
+            { name: '悉尼时间', value: 'Australia/Sydney', offset: '+11:00' },
+            { name: '迪拜时间', value: 'Asia/Dubai', offset: '+04:00' },
+            { name: '新加坡时间', value: 'Asia/Singapore', offset: '+08:00' }
+        ];
+        
+        function updateTime() {
+            const grid = document.getElementById('timezoneGrid');
+            grid.innerHTML = '';
+            
+            const now = new Date();
+            
+            timezones.forEach(tz => {
+                const timeStr = now.toLocaleTimeString('zh-CN', {
+                    timeZone: tz.value,
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false
+                });
+                
+                const dateStr = now.toLocaleDateString('zh-CN', {
+                    timeZone: tz.value,
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                
+                const card = document.createElement('div');
+                card.className = 'timezone-card';
+                card.innerHTML = `
+                    <h3>${tz.name}</h3>
+                    <div class="timezone-time">${timeStr}</div>
+                    <div class="timezone-date">${dateStr}</div>
+                    <div style="color: #999; font-size: 0.85rem; margin-top: 10px;">${tz.offset}</div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+        
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>

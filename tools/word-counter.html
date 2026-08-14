@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字数统计器 - Multi Tools</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { text-align: center; padding: 40px 20px; color: white; }
+        header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        header p { font-size: 1.2rem; opacity: 0.9; }
+        .back-btn { display: inline-block; margin-bottom: 20px; padding: 10px 20px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 25px; }
+        .back-btn:hover { background: rgba(255,255,255,0.3); }
+        .tool-card { background: white; border-radius: 20px; padding: 40px; margin: 20px 0; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        textarea { width: 100%; height: 300px; padding: 20px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem; resize: vertical; line-height: 1.8; }
+        textarea:focus { outline: none; border-color: #667eea; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; margin-top: 30px; }
+        .stat-item { background: #f8f9fa; padding: 20px; border-radius: 15px; text-align: center; }
+        .stat-value { font-size: 2.5rem; font-weight: bold; color: #667eea; }
+        .stat-label { color: #666; font-size: 0.9rem; margin-top: 5px; }
+        .btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 15px 40px; font-size: 1.1rem; border-radius: 30px; cursor: pointer; transition: transform 0.2s; margin: 10px; }
+        .btn:hover { transform: scale(1.05); }
+        footer { text-align: center; padding: 40px 20px; color: white; opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-btn">← 返回首页</a>
+        <header>
+            <h1>📝 字数统计器</h1>
+            <p>实时统计文字数量、字符数、段落数</p>
+        </header>
+        
+        <div class="tool-card">
+            <textarea id="textInput" placeholder="在这里输入或粘贴文本..."></textarea>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value" id="charCount">0</div>
+                    <div class="stat-label">字符数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="wordCount">0</div>
+                    <div class="stat-label">词数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="lineCount">0</div>
+                    <div class="stat-label">行数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="paraCount">0</div>
+                    <div class="stat-label">段落数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="ChineseCount">0</div>
+                    <div class="stat-label">中文字</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="readTime">0</div>
+                    <div class="stat-label">分钟阅读</div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn" id="clearBtn">清空</button>
+                <button class="btn" id="copyBtn">复制</button>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2026 Multi Tools | 免费在线工具集</p>
+        </footer>
+    </div>
+    
+    <script>
+        const textInput = document.getElementById('textInput');
+        const charCount = document.getElementById('charCount');
+        const wordCount = document.getElementById('wordCount');
+        const lineCount = document.getElementById('lineCount');
+        const paraCount = document.getElementById('paraCount');
+        const ChineseCount = document.getElementById('ChineseCount');
+        const readTime = document.getElementById('readTime');
+        const clearBtn = document.getElementById('clearBtn');
+        const copyBtn = document.getElementById('copyBtn');
+        
+        textInput.addEventListener('input', () => {
+            const text = textInput.value;
+            
+            charCount.textContent = text.length;
+            wordCount.textContent = text.trim() ? text.trim().split(/\s+/).length : 0;
+            lineCount.textContent = text ? text.split(/\n/).length : 0;
+            paraCount.textContent = text.trim() ? text.trim().split(/\n\s*\n/).length : 0;
+            ChineseCount.textContent = (text.match(/[\u4e00-\u9fa5]/g) || []).length;
+            readTime.textContent = Math.ceil(text.length / 500);
+        });
+        
+        clearBtn.addEventListener('click', () => {
+            textInput.value = '';
+            textInput.dispatchEvent(new Event('input'));
+        });
+        
+        copyBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(textInput.value).then(() => {
+                const original = copyBtn.textContent;
+                copyBtn.textContent = '✓ 已复制';
+                setTimeout(() => copyBtn.textContent = original, 2000);
+            });
+        });
+    </script>
+</body>
+</html>

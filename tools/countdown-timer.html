@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>倒计时器 - Multi Tools</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        header { text-align: center; padding: 40px 20px; color: white; }
+        header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        header p { font-size: 1.2rem; opacity: 0.9; }
+        .back-btn { display: inline-block; margin-bottom: 20px; padding: 10px 20px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 25px; }
+        .back-btn:hover { background: rgba(255,255,255,0.3); }
+        .tool-card { background: white; border-radius: 20px; padding: 40px; margin: 20px 0; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .timer-display { font-size: 5rem; font-weight: bold; color: #667eea; text-align: center; margin: 30px 0; font-family: 'Courier New', monospace; }
+        .timer-display.running { color: #4caf50; }
+        .timer-display.paused { color: #ff9800; }
+        .timer-display.finished { color: #f44336; animation: blink 1s infinite; }
+        @keyframes blink { 50% { opacity: 0.5; } }
+        .controls { display: flex; justify-content: center; gap: 15px; margin: 30px 0; }
+        .btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 15px 40px; font-size: 1.1rem; border-radius: 30px; cursor: pointer; transition: transform 0.2s; }
+        .btn:hover { transform: scale(1.05); }
+        .btn-stop { background: linear-gradient(135deg, #f44336 0%, #e91e63 100%); }
+        .btn-reset { background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%); }
+        .presets { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 20px 0; }
+        .preset-btn { background: #f0f0f0; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; transition: all 0.2s; }
+        .preset-btn:hover { background: #667eea; color: white; }
+        .custom-input { display: flex; justify-content: center; gap: 10px; margin: 20px 0; }
+        .custom-input input { width: 80px; padding: 12px; border: 2px solid #ddd; border-radius: 10px; text-align: center; font-size: 1.1rem; }
+        .custom-input input:focus { outline: none; border-color: #667eea; }
+        .custom-input label { display: flex; align-items: center; color: #666; }
+        footer { text-align: center; padding: 40px 20px; color: white; opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-btn">← 返回首页</a>
+        <header>
+            <h1>⏱️ 倒计时器</h1>
+            <p>设置倒计时提醒，支持多种定时场景</p>
+        </header>
+        
+        <div class="tool-card">
+            <div class="timer-display" id="timerDisplay">00:00:00</div>
+            
+            <div class="presets">
+                <button class="preset-btn" onclick="setTimer(60)">1分钟</button>
+                <button class="preset-btn" onclick="setTimer(300)">5分钟</button>
+                <button class="preset-btn" onclick="setTimer(600)">10分钟</button>
+                <button class="preset-btn" onclick="setTimer(900)">15分钟</button>
+                <button class="preset-btn" onclick="setTimer(1800)">30分钟</button>
+                <button class="preset-btn" onclick="setTimer(3600)">1小时</button>
+            </div>
+            
+            <div class="custom-input">
+                <input type="number" id="hoursInput" min="0" max="23" value="0" placeholder="时">
+                <label>时</label>
+                <input type="number" id="minutesInput" min="0" max="59" value="5" placeholder="分">
+                <label>分</label>
+                <input type="number" id="secondsInput" min="0" max="59" value="0" placeholder="秒">
+                <label>秒</label>
+                <button class="preset-btn" onclick="setCustomTimer()">设置</button>
+            </div>
+            
+            <div class="controls">
+                <button class="btn" id="startBtn" onclick="startTimer()">开始</button>
+                <button class="btn btn-stop" id="stopBtn" onclick="stopTimer()" style="display: none;">暂停</button>
+                <button class="btn btn-reset" id="resetBtn" onclick="resetTimer()">重置</button>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2026 Multi Tools | 免费在线工具集</p>
+        </footer>
+    </div>
+    
+    <script>
+        let timerInterval = null;
+        let totalSeconds = 0;
+        let remainingSeconds = 0;
+        let isRunning = false;
+        
+        const timerDisplay = document.getElementById('timerDisplay');
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        
+        function setTimer(seconds) {
+            totalSeconds = seconds;
+            remainingSeconds = seconds;
+            updateDisplay();
+        }
+        
+        function setCustomTimer() {
+            const hours = parseInt(document.getElementById('hoursInput').value) || 0;
+            const minutes = parseInt(document.getElementById('minutesInput').value) || 0;
+            const seconds = parseInt(document.getElementById('secondsInput').value) || 0;
+            
+            totalSeconds = hours * 3600 + minutes * 60 + seconds;
+            remainingSeconds = totalSeconds;
+            updateDisplay();
+        }
+        
+        function startTimer() {
+            if (remainingSeconds <= 0) return;
+            
+            isRunning = true;
+            timerDisplay.className = 'timer-display running';
+            startBtn.style.display = 'none';
+            stopBtn.style.display = 'inline-block';
+            
+            timerInterval = setInterval(() => {
+                remainingSeconds--;
+                updateDisplay();
+                
+                if (remainingSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    timerDisplay.className = 'timer-display finished';
+                    stopBtn.style.display = 'none';
+                    startBtn.style.display = 'inline-block';
+                    alert('⏰ 时间到！');
+                }
+            }, 1000);
+        }
+        
+        function stopTimer() {
+            clearInterval(timerInterval);
+            isRunning = false;
+            timerDisplay.className = 'timer-display paused';
+            startBtn.style.display = 'inline-block';
+            stopBtn.style.display = 'none';
+        }
+        
+        function resetTimer() {
+            clearInterval(timerInterval);
+            isRunning = false;
+            remainingSeconds = totalSeconds;
+            timerDisplay.className = 'timer-display';
+            startBtn.style.display = 'inline-block';
+            stopBtn.style.display = 'none';
+            updateDisplay();
+        }
+        
+        function updateDisplay() {
+            const hours = Math.floor(remainingSeconds / 3600);
+            const minutes = Math.floor((remainingSeconds % 3600) / 60);
+            const seconds = remainingSeconds % 60;
+            
+            timerDisplay.textContent = 
+                `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+        
+        // 初始化
+        setTimer(300);
+    </script>
+</body>
+</html>

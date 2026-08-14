@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF转换工具 - Multi Tools</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { text-align: center; padding: 40px 20px; color: white; }
+        header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        header p { font-size: 1.2rem; opacity: 0.9; }
+        .back-btn { display: inline-block; margin-bottom: 20px; padding: 10px 20px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 25px; }
+        .back-btn:hover { background: rgba(255,255,255,0.3); }
+        .tool-card { background: white; border-radius: 20px; padding: 40px; margin: 20px 0; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .upload-area { border: 3px dashed #667eea; border-radius: 15px; padding: 60px 20px; text-align: center; cursor: pointer; transition: all 0.3s; background: #f8f9fa; }
+        .upload-area:hover { border-color: #764ba2; background: #f0f0f0; }
+        .upload-icon { font-size: 4rem; margin-bottom: 20px; }
+        .upload-text { font-size: 1.2rem; color: #666; }
+        #fileInput { display: none; }
+        .btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 15px 40px; font-size: 1.1rem; border-radius: 30px; cursor: pointer; transition: transform 0.2s; margin: 10px; }
+        .btn:hover { transform: scale(1.05); }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        footer { text-align: center; padding: 40px 20px; color: white; opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-btn">← 返回首页</a>
+        <header>
+            <h1>📄 PDF转换工具</h1>
+            <p>在线转换PDF格式，支持多种文件格式互转</p>
+        </header>
+        
+        <div class="tool-card">
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">📁</div>
+                <div class="upload-text">点击上传PDF文件或拖拽到此处</div>
+                <input type="file" id="fileInput" accept=".pdf,.doc,.docx,.txt,.html,.png,.jpg,.jpeg">
+            </div>
+            
+            <div style="margin-top: 30px; text-align: center;">
+                <label style="display: block; margin-bottom: 10px; font-weight: bold; color: #333;">转换为格式：</label>
+                <select id="formatSelect" style="padding: 12px 20px; border-radius: 10px; border: 2px solid #667eea; font-size: 1rem; margin: 10px;">
+                    <option value="pdf">PDF</option>
+                    <option value="docx">Word (DOCX)</option>
+                    <option value="txt">纯文本 (TXT)</option>
+                    <option value="html">HTML</option>
+                    <option value="png">PNG图片</option>
+                    <option value="jpg">JPG图片</option>
+                </select>
+                <br>
+                <button class="btn" id="convertBtn">开始转换</button>
+            </div>
+            
+            <div id="result" style="margin-top: 30px; text-align: center; display: none;">
+                <h3 style="color: #2e7d32; margin-bottom: 15px;">✅ 转换完成！</h3>
+                <a id="downloadLink" class="btn" download>下载文件</a>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2026 Multi Tools | 免费在线工具集</p>
+        </footer>
+    </div>
+    
+    <script>
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const convertBtn = document.getElementById('convertBtn');
+        const result = document.getElementById('result');
+        let currentFile = null;
+        
+        uploadArea.addEventListener('click', () => fileInput.click());
+        
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files[0]) {
+                currentFile = e.target.files[0];
+                uploadArea.style.borderColor = '#4caf50';
+                uploadArea.style.background = '#e8f5e9';
+            }
+        });
+        
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#764ba2';
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            const file = e.dataTransfer.files[0];
+            if (file) {
+                currentFile = file;
+                fileInput.files = e.dataTransfer.files;
+                uploadArea.style.borderColor = '#4caf50';
+                uploadArea.style.background = '#e8f5e9';
+            }
+        });
+        
+        convertBtn.addEventListener('click', () => {
+            if (!currentFile) {
+                alert('请先上传文件');
+                return;
+            }
+            
+            convertBtn.disabled = true;
+            convertBtn.textContent = '转换中...';
+            
+            // 模拟转换（实际项目需要后端服务）
+            setTimeout(() => {
+                const format = document.getElementById('formatSelect').value;
+                const fileName = currentFile.name.replace(/\.[^/.]+$/, '') + '_converted.' + format;
+                
+                // 创建下载链接
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(currentFile);
+                link.download = fileName;
+                link.click();
+                
+                result.style.display = 'block';
+                convertBtn.disabled = false;
+                convertBtn.textContent = '开始转换';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
