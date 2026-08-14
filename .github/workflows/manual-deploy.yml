@@ -1,9 +1,12 @@
-name: Deploy to Cloudflare Pages
+name: Manual Deploy to Cloudflare Pages
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
+    inputs:
+      project_name:
+        description: 'Cloudflare Pages项目名'
+        required: true
+        default: 'practical-tools'
 
 jobs:
   deploy:
@@ -13,7 +16,7 @@ jobs:
       
       - name: Deploy to Cloudflare Pages
         run: |
-          npx wrangler pages deploy . --project-name=practical-tools --commit-dirty=true
+          npx wrangler pages deploy . --project-name=${{ github.event.inputs.project_name }} --commit-dirty=true
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
