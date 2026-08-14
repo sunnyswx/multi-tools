@@ -12,12 +12,9 @@ jobs:
       - uses: actions/checkout@v3
       
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CF_API_TOKEN }}
-          accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          projectName: multi-tools
-          directory: .
+        run: |
+          # 使用wrangler直接部署
+          npx wrangler pages deploy . --project-name=multi-tools --commit-dirty=true
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
