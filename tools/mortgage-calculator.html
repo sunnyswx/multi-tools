@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>房贷计算器 - Multi Tools</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        header { text-align: center; padding: 20px; color: white; }
+        header h1 { font-size: 2rem; margin-bottom: 10px; }
+        .back-btn { display: inline-block; margin-bottom: 15px; padding: 8px 20px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 20px; font-size: 0.9rem; }
+        .back-btn:hover { background: rgba(255,255,255,0.3); }
+        .tool-card { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+        .input-group { margin: 20px 0; }
+        .input-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #333; }
+        .input-group input, .input-group select { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem; }
+        .input-group input:focus, .input-group select:focus { outline: none; border-color: #667eea; }
+        .btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 15px 40px; font-size: 1.1rem; border-radius: 30px; cursor: pointer; transition: transform 0.2s; margin: 20px auto; display: block; }
+        .btn:hover { transform: scale(1.05); }
+        .result { background: #f8f9fa; padding: 25px; border-radius: 15px; margin-top: 20px; }
+        .result h3 { color: #667eea; margin-bottom: 15px; }
+        .result-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .result-item { text-align: center; }
+        .result-value { font-size: 2rem; font-weight: bold; color: #667eea; }
+        .result-label { color: #666; font-size: 0.9rem; margin-top: 5px; }
+        .chart-container { margin-top: 30px; height: 300px; background: #f8f9fa; border-radius: 10px; display: flex; align-items: flex-end; justify-content: space-around; padding: 20px; }
+        .chart-bar { width: 60px; background: linear-gradient(180deg, #667eea 0%, #764ba2 100%); border-radius: 5px 5px 0 0; transition: height 0.3s; }
+        .chart-label { text-align: center; margin-top: 10px; font-size: 12px; color: #666; }
+        footer { text-align: center; padding: 40px 20px; color: white; opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-btn">← 返回首页</a>
+        <header>
+            <h1>🏠 房贷计算器</h1>
+            <p>计算每月还款额和总利息</p>
+        </header>
+        
+        <div class="tool-card">
+            <div class="input-group">
+                <label>贷款金额（万元）</label>
+                <input type="number" id="loanAmount" value="100" min="1" max="10000">
+            </div>
+            
+            <div class="input-group">
+                <label>贷款年限（年）</label>
+                <select id="loanYears">
+                    <option value="10">10年</option>
+                    <option value="15">15年</option>
+                    <option value="20" selected>20年</option>
+                    <option value="25">25年</option>
+                    <option value="30">30年</option>
+                </select>
+            </div>
+            
+            <div class="input-group">
+                <label>年利率（%）</label>
+                <input type="number" id="interestRate" value="4.9" min="0.1" max="20" step="0.1">
+            </div>
+            
+            <div class="input-group">
+                <label>还款方式</label>
+                <select id="repaymentMethod">
+                    <option value="equal_principal">等额本金</option>
+                    <option value="equal_payment" selected>等额本息</option>
+                </select>
+            </div>
+            
+            <button class="btn" onclick="calculate()">开始计算</button>
+            
+            <div class="result" id="result" style="display: none;">
+                <h3>计算结果</h3>
+                <div class="result-grid">
+                    <div class="result-item">
+                        <div class="result-value" id="monthlyPayment">0</div>
+                        <div class="result-label">月供（元）</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-value" id="totalInterest">0</div>
+                        <div class="result-label">总利息（元）</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-value" id="totalPayment">0</div>
+                        <div class="result-label">总还款（元）</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-value" id="interestRatio">0%</div>
+                        <div class="result-label">利息占比</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2026 Multi Tools | 免费在线工具集</p>
+        </footer>
+    </div>
+    
+    <script>
+        function calculate() {
+            const amount = parseFloat(document.getElementById('loanAmount').value) * 10000;
+            const years = parseInt(document.getElementById('loanYears').value);
+            const rate = parseFloat(document.getElementById('interestRate').value) / 100;
+            const method = document.getElementById('repaymentMethod').value;
+            
+            const months = years * 12;
+            const monthlyRate = rate / 12;
+            
+            let monthlyPayment, totalInterest, totalPayment;
+            
+            if (method === 'equal_payment') {
+                // 等额本息
+                monthlyPayment = amount * monthlyRate * Math.pow(1 + monthlyRate, months) / (Math.pow(1 + monthlyRate, months) - 1);
+                totalPayment = monthlyPayment * months;
+                totalInterest = totalPayment - amount;
+            } else {
+                // 等额本金
+                const principalPerMonth = amount / months;
+                monthlyPayment = principalPerMonth + amount * monthlyRate;
+                totalInterest = (months + 1) * amount * monthlyRate / 2;
+                totalPayment = amount + totalInterest;
+            }
+            
+            document.getElementById('monthlyPayment').textContent = formatNumber(monthlyPayment);
+            document.getElementById('totalInterest').textContent = formatNumber(totalInterest);
+            document.getElementById('totalPayment').textContent = formatNumber(totalPayment);
+            document.getElementById('interestRatio').textContent = ((totalInterest / totalPayment) * 100).toFixed(1) + '%';
+            
+            document.getElementById('result').style.display = 'block';
+        }
+        
+        function formatNumber(num) {
+            return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        }
+        
+        // 页面加载时自动计算
+        calculate();
+    </script>
+</body>
+</html>

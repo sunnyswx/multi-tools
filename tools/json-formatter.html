@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON格式化器 - Multi Tools</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        header { text-align: center; padding: 20px; color: white; }
+        header h1 { font-size: 2rem; margin-bottom: 10px; }
+        .back-btn { display: inline-block; margin-bottom: 15px; padding: 8px 20px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 20px; font-size: 0.9rem; }
+        .back-btn:hover { background: rgba(255,255,255,0.3); }
+        .editor-container { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.3); display: grid; grid-template-columns: 1fr 1fr; height: calc(100vh - 150px); }
+        .editor-pane, .preview-pane { padding: 20px; overflow-y: auto; }
+        .editor-pane { border-right: 2px solid #eee; }
+        .editor-pane textarea { width: 100%; height: 100%; border: none; resize: none; font-family: 'Courier New', monospace; font-size: 14px; line-height: 1.6; outline: none; background: #f8f9fa; padding: 15px; border-radius: 8px; }
+        .editor-pane textarea:focus { outline: 2px solid #667eea; }
+        .preview-pane pre { background: #f8f9fa; padding: 15px; border-radius: 8px; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 14px; line-height: 1.6; }
+        .preview-pane .error { color: #f44336; padding: 20px; text-align: center; }
+        .toolbar { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
+        .btn { padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; transition: all 0.2s; }
+        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .btn-primary:hover { transform: scale(1.05); }
+        .btn-secondary { background: #f0f0f0; color: #333; }
+        .btn-secondary:hover { background: #e0e0e0; }
+        .info { display: flex; gap: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px; margin-bottom: 15px; font-size: 14px; color: #666; }
+        .info span { font-weight: bold; color: #667eea; }
+        @media (max-width: 768px) { .editor-container { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; } .editor-pane { border-right: none; border-bottom: 2px solid #eee; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-btn">← 返回首页</a>
+        <header>
+            <h1>🔧 JSON格式化器</h1>
+            <p>在线格式化、验证、压缩JSON数据</p>
+        </header>
+        
+        <div class="toolbar">
+            <button class="btn btn-primary" onclick="formatJSON()">格式化</button>
+            <button class="btn btn-primary" onclick="minifyJSON()">压缩</button>
+            <button class="btn btn-secondary" onclick="validateJSON()">验证</button>
+            <button class="btn btn-secondary" onclick="copyJSON()">复制</button>
+            <button class="btn btn-secondary" onclick="clearAll()">清空</button>
+            <button class="btn btn-secondary" onclick="loadExample()">示例</button>
+        </div>
+        
+        <div class="editor-container">
+            <div class="editor-pane">
+                <textarea id="input" placeholder='粘贴JSON数据...{"name": "Multi Tools", "version": "1.0"}'></textarea>
+            </div>
+            <div class="preview-pane">
+                <div class="info" id="info" style="display: none;">
+                    <div>字符数: <span id="charCount">0</span></div>
+                    <div>行数: <span id="lineCount">0</span></div>
+                    <div>键数量: <span id="keyCount">0</span></div>
+                </div>
+                <pre id="output"></pre>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const input = document.getElementById('input');
+        const output = document.getElementById('output');
+        const info = document.getElementById('info');
+        
+        let currentJSON = null;
+        
+        function formatJSON() {
+            try {
+                const json = JSON.parse(input.value);
+                currentJSON = json;
+                output.textContent = JSON.stringify(json, null, 2);
+                updateInfo(json);
+                output.style.color = '#333';
+            } catch (e) {
+                output.textContent = '❌ JSON格式错误: ' + e.message;
+                output.style.color = '#f44336';
+                info.style.display = 'none';
+            }
+        }
+        
+        function minifyJSON() {
+            try {
+                const json = JSON.parse(input.value);
+                currentJSON = json;
+                output.textContent = JSON.stringify(json);
+                updateInfo(json);
+                output.style.color = '#333';
+            } catch (e) {
+                output.textContent = '❌ JSON格式错误: ' + e.message;
+                output.style.color = '#f44336';
+                info.style.display = 'none';
+            }
+        }
+        
+        function validateJSON() {
+            try {
+                JSON.parse(input.value);
+                output.textContent = '✅ JSON格式正确';
+                output.style.color = '#4caf50';
+                info.style.display = 'none';
+            } catch (e) {
+                output.textContent = '❌ JSON格式错误: ' + e.message;
+                output.style.color = '#f44336';
+                info.style.display = 'none';
+            }
+        }
+        
+        function copyJSON() {
+            const text = output.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = event.target;
+                const original = btn.textContent;
+                btn.textContent = '✓ 已复制';
+                setTimeout(() => btn.textContent = original, 2000);
+            });
+        }
+        
+        function clearAll() {
+            input.value = '';
+            output.textContent = '';
+            currentJSON = null;
+            info.style.display = 'none';
+        }
+        
+        function loadExample() {
+            input.value = JSON.stringify({
+                "name": "Multi Tools",
+                "version": "1.0.0",
+                "description": "多功能在线工具集",
+                "features": ["图片压缩", "PDF转换", "二维码生成"],
+                "contact": {
+                    "email": "contact@multitools.com",
+                    "website": "https://multitools.example.com"
+                },
+                "stats": {
+                    "users": 10000,
+                    "tools": 10,
+                    "rating": 4.8
+                }
+            }, null, 2);
+            formatJSON();
+        }
+        
+        function updateInfo(json) {
+            const jsonStr = JSON.stringify(json);
+            document.getElementById('charCount').textContent = jsonStr.length;
+            document.getElementById('lineCount').textContent = jsonStr.split('\n').length;
+            document.getElementById('keyCount').textContent = countKeys(json);
+            info.style.display = 'flex';
+        }
+        
+        function countKeys(obj) {
+            let count = 0;
+            if (typeof obj !== 'object' || obj === null) return 0;
+            
+            for (let key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    count++;
+                    if (typeof obj[key] === 'object' && obj[key] !== null) {
+                        count += countKeys(obj[key]);
+                    }
+                }
+            }
+            return count;
+        }
+        
+        // 实时更新
+        input.addEventListener('input', () => {
+            if (input.value.trim()) {
+                try {
+                    currentJSON = JSON.parse(input.value);
+                    output.textContent = JSON.stringify(currentJSON, null, 2);
+                    updateInfo(currentJSON);
+                    output.style.color = '#333';
+                } catch (e) {
+                    output.textContent = '⚠️ 等待有效JSON...';
+                    output.style.color = '#ff9800';
+                }
+            } else {
+                output.textContent = '';
+                info.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
