@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL编解码器 - Multi Tools</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        header { text-align: center; padding: 20px; color: white; }
+        header h1 { font-size: 2rem; margin-bottom: 10px; }
+        .back-btn { display: inline-block; margin-bottom: 15px; padding: 8px 20px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 20px; font-size: 0.9rem; }
+        .back-btn:hover { background: rgba(255,255,255,0.3); }
+        .tool-card { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+        .input-group { margin: 20px 0; }
+        .input-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #333; }
+        textarea { width: 100%; height: 150px; padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-family: monospace; font-size: 14px; resize: vertical; }
+        textarea:focus { outline: none; border-color: #667eea; }
+        .btn-group { display: flex; gap: 15px; margin: 20px 0; flex-wrap: wrap; }
+        .btn { padding: 12px 30px; border: none; border-radius: 25px; cursor: pointer; font-size: 1rem; transition: transform 0.2s; }
+        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .btn-primary:hover { transform: scale(1.05); }
+        .btn-secondary { background: #f0f0f0; color: #333; }
+        .btn-secondary:hover { background: #e0e0e0; }
+        .result { background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px; word-break: break-all; font-family: monospace; }
+        footer { text-align: center; padding: 40px 20px; color: white; opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-btn">← 返回首页</a>
+        <header>
+            <h1>🔗 URL编解码器</h1>
+            <p>在线URL编码和解码工具</p>
+        </header>
+        
+        <div class="tool-card">
+            <div class="input-group">
+                <label>输入文本</label>
+                <textarea id="input" placeholder="输入URL或文本..."></textarea>
+            </div>
+            
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="encode()">编码</button>
+                <button class="btn btn-primary" onclick="decode()">解码</button>
+                <button class="btn btn-secondary" onclick="swap()">互换</button>
+                <button class="btn btn-secondary" onclick="clearAll()">清空</button>
+                <button class="btn btn-secondary" onclick="copyResult()">复制结果</button>
+            </div>
+            
+            <div class="input-group">
+                <label>结果</label>
+                <div class="result" id="output">等待输入...</div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2026 Multi Tools | 免费在线工具集</p>
+        </footer>
+    </div>
+    
+    <script>
+        function encode() {
+            const input = document.getElementById('input').value;
+            if (!input) {
+                alert('请输入文本');
+                return;
+            }
+            try {
+                const encoded = encodeURIComponent(input);
+                document.getElementById('output').textContent = encoded;
+            } catch (e) {
+                document.getElementById('output').textContent = '❌ 编码错误: ' + e.message;
+            }
+        }
+        
+        function decode() {
+            const input = document.getElementById('input').value;
+            if (!input) {
+                alert('请输入URL编码文本');
+                return;
+            }
+            try {
+                const decoded = decodeURIComponent(input);
+                document.getElementById('output').textContent = decoded;
+            } catch (e) {
+                document.getElementById('output').textContent = '❌ 解码错误: ' + e.message;
+            }
+        }
+        
+        function swap() {
+            const output = document.getElementById('output').textContent;
+            if (output && output !== '等待输入...') {
+                document.getElementById('input').value = output;
+                document.getElementById('output').textContent = '等待输入...';
+            }
+        }
+        
+        function clearAll() {
+            document.getElementById('input').value = '';
+            document.getElementById('output').textContent = '等待输入...';
+        }
+        
+        function copyResult() {
+            const result = document.getElementById('output').textContent;
+            if (result && result !== '等待输入...') {
+                navigator.clipboard.writeText(result).then(() => {
+                    const btn = event.target;
+                    const original = btn.textContent;
+                    btn.textContent = '✓ 已复制';
+                    setTimeout(() => btn.textContent = original, 2000);
+                });
+            }
+        }
+        
+        document.getElementById('input').addEventListener('input', () => {
+            encode();
+        });
+    </script>
+</body>
+</html>

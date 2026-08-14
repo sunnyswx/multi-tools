@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lorem Ipsum生成器 - Multi Tools</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        header { text-align: center; padding: 20px; color: white; }
+        header h1 { font-size: 2rem; margin-bottom: 10px; }
+        .back-btn { display: inline-block; margin-bottom: 15px; padding: 8px 20px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 20px; font-size: 0.9rem; }
+        .back-btn:hover { background: rgba(255,255,255,0.3); }
+        .tool-card { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+        .controls { display: flex; gap: 15px; margin: 20px 0; flex-wrap: wrap; align-items: center; }
+        .control-group { display: flex; align-items: center; gap: 10px; }
+        select, input { padding: 10px 15px; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem; }
+        select:focus, input:focus { outline: none; border-color: #667eea; }
+        .btn { padding: 12px 30px; border: none; border-radius: 25px; cursor: pointer; font-size: 1rem; transition: transform 0.2s; }
+        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .btn-primary:hover { transform: scale(1.05); }
+        .btn-secondary { background: #f0f0f0; color: #333; }
+        .btn-secondary:hover { background: #e0e0e0; }
+        .output { margin-top: 20px; padding: 20px; background: #f8f9fa; border-radius: 10px; line-height: 1.8; color: #333; white-space: pre-wrap; }
+        footer { text-align: center; padding: 40px 20px; color: white; opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-btn">← 返回首页</a>
+        <header>
+            <h1>📄 Lorem Ipsum生成器</h1>
+            <p>生成随机占位文本，用于设计原型和演示</p>
+        </header>
+        
+        <div class="tool-card">
+            <div class="controls">
+                <div class="control-group">
+                    <label>类型：</label>
+                    <select id="type">
+                        <option value="paragraphs">段落</option>
+                        <option value="sentences">句子</option>
+                        <option value="words">单词</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label>数量：</label>
+                    <input type="number" id="count" value="3" min="1" max="50">
+                </div>
+                
+                <button class="btn btn-primary" onclick="generate()">生成</button>
+                <button class="btn btn-secondary" onclick="copyText()">复制</button>
+                <button class="btn btn-secondary" onclick="clearText()">清空</button>
+            </div>
+            
+            <div class="output" id="output">点击"生成"按钮开始...</div>
+        </div>
+        
+        <footer>
+            <p>© 2026 Multi Tools | 免费在线工具集</p>
+        </footer>
+    </div>
+    
+    <script>
+        const loremWords = 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum'.split(' ');
+        
+        function randomWord() {
+            return loremWords[Math.floor(Math.random() * loremWords.length)];
+        }
+        
+        function randomSentence() {
+            const length = Math.floor(Math.random() * 15) + 5;
+            let sentence = '';
+            for (let i = 0; i < length; i++) {
+                sentence += randomWord() + ' ';
+            }
+            return sentence.trim() + '.';
+        }
+        
+        function randomParagraph() {
+            const sentences = Math.floor(Math.random() * 5) + 3;
+            let paragraph = '';
+            for (let i = 0; i < sentences; i++) {
+                paragraph += randomSentence() + ' ';
+            }
+            return paragraph.trim();
+        }
+        
+        function generate() {
+            const type = document.getElementById('type').value;
+            const count = parseInt(document.getElementById('count').value) || 3;
+            let output = '';
+            
+            if (type === 'paragraphs') {
+                const paragraphs = [];
+                for (let i = 0; i < count; i++) {
+                    paragraphs.push(randomParagraph());
+                }
+                output = paragraphs.join('\n\n');
+            } else if (type === 'sentences') {
+                const sentences = [];
+                for (let i = 0; i < count; i++) {
+                    sentences.push(randomSentence());
+                }
+                output = sentences.join(' ');
+            } else if (type === 'words') {
+                const words = [];
+                for (let i = 0; i < count; i++) {
+                    words.push(randomWord());
+                }
+                output = words.join(' ');
+            }
+            
+            document.getElementById('output').textContent = output;
+        }
+        
+        function copyText() {
+            const text = document.getElementById('output').textContent;
+            if (text && text !== '点击"生成"按钮开始...') {
+                navigator.clipboard.writeText(text).then(() => {
+                    const btn = event.target;
+                    const original = btn.textContent;
+                    btn.textContent = '✓ 已复制';
+                    setTimeout(() => btn.textContent = original, 2000);
+                });
+            }
+        }
+        
+        function clearText() {
+            document.getElementById('output').textContent = '点击"生成"按钮开始...';
+        }
+        
+        // 页面加载时自动生成
+        generate();
+    </script>
+</body>
+</html>

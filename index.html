@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multi Tools - 多功能在线工具集</title>
-    <meta name="description" content="免费在线工具集，包含Markdown编辑器、JSON格式化器、图片格式转换、房贷计算器等14个实用工具">
+    <meta name="description" content="免费在线工具集，包含Markdown编辑器、JSON格式化器、图片格式转换、房贷计算器等18个实用工具">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
@@ -17,13 +17,13 @@
         .lang-switcher { position: fixed; top: 20px; right: 20px; z-index: 1000; }
         .lang-switcher select { padding: 10px 15px; border-radius: 25px; border: none; background: white; color: #333; font-size: 14px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
         
-        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; padding: 40px 20px; }
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; padding: 40px 20px; }
         
-        .tool-card { background: white; border-radius: 20px; padding: 30px; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.2); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; text-decoration: none; color: inherit; display: block; }
-        .tool-card:hover { transform: translateY(-10px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
-        .tool-icon { font-size: 4rem; margin-bottom: 20px; }
-        .tool-name { font-size: 1.4rem; font-weight: bold; color: #333; margin-bottom: 10px; }
-        .tool-desc { font-size: 0.95rem; color: #666; line-height: 1.6; }
+        .tool-card { background: white; border-radius: 15px; padding: 25px; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.2); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; text-decoration: none; color: inherit; display: block; }
+        .tool-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .tool-icon { font-size: 3.5rem; margin-bottom: 15px; }
+        .tool-name { font-size: 1.3rem; font-weight: bold; color: #333; margin-bottom: 8px; }
+        .tool-desc { font-size: 0.9rem; color: #666; line-height: 1.5; }
         
         footer { text-align: center; padding: 40px 20px; color: white; opacity: 0.8; }
     </style>
@@ -73,58 +73,82 @@
                 <div class="tool-desc" data-i18n="mortgageCalculatorDesc">计算每月还款额和总利息</div>
             </a>
             
-            <a href="/tools/pdf-converter" class="tool-card">
+            <a href="/tools/base64" class="tool-card">
+                <div class="tool-icon">🔤</div>
+                <div class="tool-name" data-i18n="base64">Base64编解码</div>
+                <div class="tool-desc" data-i18n="base64Desc">在线Base64编码和解码工具</div>
+            </a>
+            
+            <a href="/tools/hash-generator" class="tool-card">
+                <div class="tool-icon">🔐</div>
+                <div class="tool-name" data-i18n="hashGenerator">Hash生成器</div>
+                <div class="tool-desc" data-i18n="hashGeneratorDesc">MD5、SHA-1、SHA-256、SHA-512生成</div>
+            </a>
+            
+            <a href="/tools/uuid-generator" class="tool-card">
+                <div class="tool-icon">🔑</div>
+                <div class="tool-name" data-i18n="uuidGenerator">UUID生成器</div>
+                <div class="tool-desc" data-i18n="uuidGeneratorDesc">生成随机UUID v4</div>
+            </a>
+            
+            <a href="/tools/lorem-ipsum" class="tool-card">
                 <div class="tool-icon">📄</div>
+                <div class="tool-name" data-i18n="loremIpsum">Lorem Ipsum生成</div>
+                <div class="tool-desc" data-i18n="loremIpsumDesc">生成随机占位文本</div>
+            </a>
+            
+            <a href="/tools/url-encoder" class="tool-card">
+                <div class="tool-icon">🔗</div>
+                <div class="tool-name" data-i18n="urlEncoder">URL编解码器</div>
+                <div class="tool-desc" data-i18n="urlEncoderDesc">在线URL编码和解码工具</div>
+            </a>
+            
+            <a href="/tools/regex-tester" class="tool-card">
+                <div class="tool-icon">🔍</div>
+                <div class="tool-name" data-i18n="regexTester">正则表达式测试</div>
+                <div class="tool-desc" data-i18n="regexTesterDesc">在线测试正则表达式</div>
+            </a>
+            
+            <a href="/tools/cron-generator" class="tool-card">
+                <div class="tool-icon">⏰</div>
+                <div class="tool-name" data-i18n="cronGenerator">Cron表达式生成</div>
+                <div class="tool-desc" data-i18n="cronGeneratorDesc">轻松创建Cron定时任务</div>
+            </a>
+            
+            <a href="/tools/pdf-converter" class="tool-card">
+                <div class="tool-icon">📑</div>
                 <div class="tool-name" data-i18n="pdfConverter">PDF转换工具</div>
-                <div class="tool-desc" data-i18n="pdfConverterDesc">在线转换PDF格式，支持多种文件格式互转</div>
+                <div class="tool-desc" data-i18n="pdfConverterDesc">在线转换PDF格式</div>
             </a>
             
             <a href="/tools/qr-generator" class="tool-card">
                 <div class="tool-icon">📱</div>
                 <div class="tool-name" data-i18n="qrGenerator">二维码生成器</div>
-                <div class="tool-desc" data-i18n="qrGeneratorDesc">快速生成二维码，支持文本、URL、联系人等</div>
+                <div class="tool-desc" data-i18n="qrGeneratorDesc">快速生成二维码</div>
             </a>
             
             <a href="/tools/password-generator" class="tool-card">
-                <div class="tool-icon">🔐</div>
+                <div class="tool-icon">🔒</div>
                 <div class="tool-name" data-i18n="passwordGenerator">密码生成器</div>
-                <div class="tool-desc" data-i18n="passwordGeneratorDesc">生成高强度安全密码，支持自定义长度和字符</div>
+                <div class="tool-desc" data-i18n="passwordGeneratorDesc">生成高强度安全密码</div>
             </a>
             
             <a href="/tools/color-picker" class="tool-card">
                 <div class="tool-icon">🎨</div>
                 <div class="tool-name" data-i18n="colorPicker">颜色选择器</div>
-                <div class="tool-desc" data-i18n="colorPickerDesc">在线颜色选择，支持HEX、RGB、HSL格式</div>
+                <div class="tool-desc" data-i18n="colorPickerDesc">在线颜色选择</div>
             </a>
             
             <a href="/tools/word-counter" class="tool-card">
-                <div class="tool-icon">📝</div>
+                <div class="tool-icon">📊</div>
                 <div class="tool-name" data-i18n="wordCounter">字数统计器</div>
-                <div class="tool-desc" data-i18n="wordCounterDesc">实时统计文字数量、字符数、段落数</div>
-            </a>
-            
-            <a href="/tools/timezone-converter" class="tool-card">
-                <div class="tool-icon">🕐</div>
-                <div class="tool-name" data-i18n="timezoneConverter">时区转换器</div>
-                <div class="tool-desc" data-i18n="timezoneConverterDesc">全球时区转换，支持时间对比和日程安排</div>
-            </a>
-            
-            <a href="/tools/countdown-timer" class="tool-card">
-                <div class="tool-icon">⏱️</div>
-                <div class="tool-name" data-i18n="countdownTimer">倒计时器</div>
-                <div class="tool-desc" data-i18n="countdownTimerDesc">设置倒计时提醒，支持多种定时场景</div>
-            </a>
-            
-            <a href="/tools/unit-converter" class="tool-card">
-                <div class="tool-icon">📏</div>
-                <div class="tool-name" data-i18n="unitConverter">单位转换器</div>
-                <div class="tool-desc" data-i18n="unitConverterDesc">长度、重量、温度、面积等单位快速转换</div>
+                <div class="tool-desc" data-i18n="wordCounterDesc">实时统计文字数量</div>
             </a>
             
             <a href="/tools/online-calculator" class="tool-card">
                 <div class="tool-icon">🧮</div>
                 <div class="tool-name" data-i18n="calculator">在线计算器</div>
-                <div class="tool-desc" data-i18n="calculatorDesc">基础计算器和科学计算器，支持多种运算</div>
+                <div class="tool-desc" data-i18n="calculatorDesc">基础计算器和科学计算器</div>
             </a>
         </div>
         
@@ -148,24 +172,32 @@
                 imageConverterDesc: "JPG、PNG、WebP格式互转",
                 mortgageCalculator: "房贷计算器",
                 mortgageCalculatorDesc: "计算每月还款额和总利息",
+                base64: "Base64编解码",
+                base64Desc: "在线Base64编码和解码工具",
+                hashGenerator: "Hash生成器",
+                hashGeneratorDesc: "MD5、SHA-1、SHA-256、SHA-512生成",
+                uuidGenerator: "UUID生成器",
+                uuidGeneratorDesc: "生成随机UUID v4",
+                loremIpsum: "Lorem Ipsum生成",
+                loremIpsumDesc: "生成随机占位文本",
+                urlEncoder: "URL编解码器",
+                urlEncoderDesc: "在线URL编码和解码工具",
+                regexTester: "正则表达式测试",
+                regexTesterDesc: "在线测试正则表达式",
+                cronGenerator: "Cron表达式生成",
+                cronGeneratorDesc: "轻松创建Cron定时任务",
                 pdfConverter: "PDF转换工具",
-                pdfConverterDesc: "在线转换PDF格式，支持多种文件格式互转",
+                pdfConverterDesc: "在线转换PDF格式",
                 qrGenerator: "二维码生成器",
-                qrGeneratorDesc: "快速生成二维码，支持文本、URL、联系人等",
+                qrGeneratorDesc: "快速生成二维码",
                 passwordGenerator: "密码生成器",
-                passwordGeneratorDesc: "生成高强度安全密码，支持自定义长度和字符",
+                passwordGeneratorDesc: "生成高强度安全密码",
                 colorPicker: "颜色选择器",
-                colorPickerDesc: "在线颜色选择，支持HEX、RGB、HSL格式",
+                colorPickerDesc: "在线颜色选择",
                 wordCounter: "字数统计器",
-                wordCounterDesc: "实时统计文字数量、字符数、段落数",
-                timezoneConverter: "时区转换器",
-                timezoneConverterDesc: "全球时区转换，支持时间对比和日程安排",
-                countdownTimer: "倒计时器",
-                countdownTimerDesc: "设置倒计时提醒，支持多种定时场景",
-                unitConverter: "单位转换器",
-                unitConverterDesc: "长度、重量、温度、面积等单位快速转换",
+                wordCounterDesc: "实时统计文字数量",
                 calculator: "在线计算器",
-                calculatorDesc: "基础计算器和科学计算器，支持多种运算",
+                calculatorDesc: "基础计算器和科学计算器",
                 footer: "免费在线工具集"
             },
             en: {
@@ -181,24 +213,32 @@
                 imageConverterDesc: "Convert between JPG, PNG, WebP formats",
                 mortgageCalculator: "Mortgage Calculator",
                 mortgageCalculatorDesc: "Calculate monthly payment and total interest",
+                base64: "Base64 Encoder/Decoder",
+                base64Desc: "Online Base64 encoding and decoding tool",
+                hashGenerator: "Hash Generator",
+                hashGeneratorDesc: "MD5, SHA-1, SHA-256, SHA-512 generator",
+                uuidGenerator: "UUID Generator",
+                uuidGeneratorDesc: "Generate random UUID v4",
+                loremIpsum: "Lorem Ipsum Generator",
+                loremIpsumDesc: "Generate random placeholder text",
+                urlEncoder: "URL Encoder/Decoder",
+                urlEncoderDesc: "Online URL encoding and decoding tool",
+                regexTester: "Regex Tester",
+                regexTesterDesc: "Test regular expressions online",
+                cronGenerator: "Cron Generator",
+                cronGeneratorDesc: "Easily create Cron schedules",
                 pdfConverter: "PDF Converter",
-                pdfConverterDesc: "Online PDF format conversion, supports multiple formats",
+                pdfConverterDesc: "Online PDF format conversion",
                 qrGenerator: "QR Code Generator",
-                qrGeneratorDesc: "Quick QR code generation, supports text, URL, contacts",
+                qrGeneratorDesc: "Quick QR code generation",
                 passwordGenerator: "Password Generator",
-                passwordGeneratorDesc: "Generate strong secure passwords, customizable length and characters",
+                passwordGeneratorDesc: "Generate strong secure passwords",
                 colorPicker: "Color Picker",
-                colorPickerDesc: "Online color selection, supports HEX, RGB, HSL formats",
+                colorPickerDesc: "Online color selection",
                 wordCounter: "Word Counter",
-                wordCounterDesc: "Real-time text, character, and paragraph counting",
-                timezoneConverter: "Timezone Converter",
-                timezoneConverterDesc: "Global timezone conversion, time comparison and scheduling",
-                countdownTimer: "Countdown Timer",
-                countdownTimerDesc: "Set countdown reminders, supports various timing scenarios",
-                unitConverter: "Unit Converter",
-                unitConverterDesc: "Quick conversion for length, weight, temperature, area units",
+                wordCounterDesc: "Real-time text counting",
                 calculator: "Online Calculator",
-                calculatorDesc: "Basic and scientific calculator, supports multiple operations",
+                calculatorDesc: "Basic and scientific calculator",
                 footer: "Free Online Tools"
             }
         };

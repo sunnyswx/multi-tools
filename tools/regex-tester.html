@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正则表达式测试器 - Multi Tools</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { text-align: center; padding: 20px; color: white; }
+        header h1 { font-size: 2rem; margin-bottom: 10px; }
+        .back-btn { display: inline-block; margin-bottom: 15px; padding: 8px 20px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 20px; font-size: 0.9rem; }
+        .back-btn:hover { background: rgba(255,255,255,0.3); }
+        .tool-card { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+        .regex-input { display: flex; gap: 15px; margin: 20px 0; align-items: center; }
+        .regex-input input { flex: 1; padding: 12px 15px; border: 2px solid #ddd; border-radius: 8px; font-family: monospace; font-size: 16px; }
+        .regex-input input:focus { outline: none; border-color: #667eea; }
+        .flags { display: flex; gap: 10px; }
+        .flag { padding: 8px 12px; background: #f0f0f0; border-radius: 5px; cursor: pointer; font-family: monospace; }
+        .flag.active { background: #667eea; color: white; }
+        textarea { width: 100%; height: 200px; padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-family: monospace; font-size: 14px; resize: vertical; margin: 20px 0; }
+        textarea:focus { outline: none; border-color: #667eea; }
+        .results { background: #f8f9fa; padding: 20px; border-radius: 10px; }
+        .match { background: #fff3cd; padding: 5px 10px; border-radius: 5px; margin: 5px 0; font-family: monospace; }
+        .no-match { color: #888; text-align: center; padding: 20px; }
+        footer { text-align: center; padding: 40px 20px; color: white; opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-btn">← 返回首页</a>
+        <header>
+            <h1>🔍 正则表达式测试器</h1>
+            <p>在线测试正则表达式，实时显示匹配结果</p>
+        </header>
+        
+        <div class="tool-card">
+            <div class="regex-input">
+                <input type="text" id="regex" placeholder="输入正则表达式..." value="^\w+@[\w\.-]+\.[a-z]{2,}$">
+                <div class="flags">
+                    <span class="flag active" data-flag="g" onclick="toggleFlag(this)">g</span>
+                    <span class="flag" data-flag="i" onclick="toggleFlag(this)">i</span>
+                    <span class="flag" data-flag="m" onclick="toggleFlag(this)">m</span>
+                </div>
+            </div>
+            
+            <textarea id="testString" placeholder="输入测试文本...">Contact us at support@example.com or sales@company.org</textarea>
+            
+            <div class="results" id="results">
+                <div class="no-match">等待匹配...</div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2026 Multi Tools | 免费在线工具集</p>
+        </footer>
+    </div>
+    
+    <script>
+        const regexInput = document.getElementById('regex');
+        const testString = document.getElementById('testString');
+        const results = document.getElementById('results');
+        
+        function testRegex() {
+            try {
+                const flags = Array.from(document.querySelectorAll('.flag.active')).map(f => f.dataset.flag).join('');
+                const pattern = new RegExp(regexInput.value, flags);
+                
+                if (!regexInput.value) {
+                    results.innerHTML = '<div class="no-match">输入正则表达式</div>';
+                    return;
+                }
+                
+                const matches = testString.value.match(pattern);
+                
+                if (!matches) {
+                    results.innerHTML = '<div class="no-match">无匹配</div>';
+                    return;
+                }
+                
+                let html = `<div style="margin-bottom: 10px; color: #667eea; font-weight: bold;">找到 ${matches.length} 个匹配：</div>`;
+                matches.forEach((match, index) => {
+                    html += `<div class="match">${index + 1}. ${match}</div>`;
+                });
+                
+                results.innerHTML = html;
+            } catch (e) {
+                results.innerHTML = `<div style="color: #f44336;">❌ 正则表达式错误: ${e.message}</div>`;
+            }
+        }
+        
+        function toggleFlag(element) {
+            element.classList.toggle('active');
+            testRegex();
+        }
+        
+        regexInput.addEventListener('input', testRegex);
+        testString.addEventListener('input', testRegex);
+        
+        // 初始化
+        testRegex();
+    </script>
+</body>
+</html>
