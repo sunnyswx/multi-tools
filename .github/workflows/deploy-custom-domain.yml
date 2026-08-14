@@ -1,0 +1,33 @@
+name: Deploy to Cloudflare Pages with Custom Domain
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Deploy to Cloudflare Pages
+        run: |
+          # 部署到Cloudflare Pages
+          npx wrangler pages deploy . --project-name=sunnyswx-tools --commit-dirty=true
+          
+          # 等待部署完成
+          sleep 30
+          
+          # 绑定自定义域名
+          echo "绑定域名 zh8888.dpdns.org..."
+          curl -s -X POST "https://api.cloudflare.com/client/v4/accounts/${{ secrets.CF_ACCOUNT_ID }}/pages/projects/sunnyswx-tools/domains" \
+            -H "Authorization: Bearer ${{ secrets.CF_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{"zone_id":"YOUR_ZONE_ID"}'
+          
+          echo "✅ 部署完成！"
+          echo "🌐 网站地址：https://zh8888.dpdns.org"
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
