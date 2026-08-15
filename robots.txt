@@ -1,0 +1,5 @@
+# User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://sunnyswx-tools.pages.dev/sitemap.xml
