@@ -25,7 +25,17 @@
         .btn-secondary:hover { background: #e0e0e0; }
         .result { background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px; word-break: break-all; font-family: monospace; }
         footer { text-align: center; padding: 40px 20px; color: white; opacity: 0.8; }
-    </style>
+    
+        // 工具使用追踪
+        function trackToolUsage(toolName, action) {
+            gtag('event', 'tool_usage', {
+                'tool_name': toolName,
+                'action': action,
+                'event_category': 'Tool',
+                'event_label': toolName + '_' + action
+            });
+        }
+</style>
 <meta name="description" content="免费在线Base64编解码工具，支持文本和图片的Base64编码和解码。快速转换，本地处理保护隐私。">
 <meta name="keywords" content="base64编解码,base64在线,编码解码,在线工具">
 
@@ -50,13 +60,41 @@
 </head>
 <body>
     <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7B5H09J4KB"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7B5H09J4KB">
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('base64', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('base64', 'click');
+            });
+        });
+</script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-7B5H09J4KB');
-    </script>
+    
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('base64', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('base64', 'click');
+            });
+        });
+</script>
 
     <div class="container">
         <a href="/" class="back-btn">← 返回首页</a>
@@ -148,6 +186,20 @@
         document.getElementById('input').addEventListener('input', () => {
             encode();
         });
-    </script>
+    
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('base64', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('base64', 'click');
+            });
+        });
+</script>
 </body>
 </html>

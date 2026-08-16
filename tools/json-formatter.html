@@ -51,7 +51,17 @@
         .info { display: flex; gap: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px; margin-bottom: 15px; font-size: 14px; color: #666; }
         .info span { font-weight: bold; color: #667eea; }
         @media (max-width: 768px) { .editor-container { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; } .editor-pane { border-right: none; border-bottom: 2px solid #eee; } }
-    </style>
+    
+        // 工具使用追踪
+        function trackToolUsage(toolName, action) {
+            gtag('event', 'tool_usage', {
+                'tool_name': toolName,
+                'action': action,
+                'event_category': 'Tool',
+                'event_label': toolName + '_' + action
+            });
+        }
+</style>
 </head>
 <body>
     <div class="container">
@@ -211,6 +221,20 @@
                 info.style.display = 'none';
             }
         });
-    </script>
+    
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('json-formatter', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('json-formatter', 'click');
+            });
+        });
+</script>
 </body>
 </html>
