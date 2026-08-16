@@ -1,9 +1,18 @@
 @echo off
-REM 每日自动部署新工具
+REM 每日自动部署新工具（带WARP检测）
 REM 用法: 配置为Windows定时任务
 
 echo 🚀 开始每日自动部署...
 echo 时间: %date% %time%
+echo.
+
+REM 0. 检测WARP状态
+echo 📝 步骤0: 检测WARP状态...
+call scripts\check-warp.bat
+if %ERRORLEVEL% neq 0 (
+    echo ❌ WARP检测失败，停止部署
+    exit /b 1
+)
 echo.
 
 REM 1. 进入项目目录

@@ -6,6 +6,15 @@ echo "🚀 开始每日自动部署..."
 echo "时间: $(date)"
 echo ""
 
+# 0. 检测WARP状态
+echo "📝 步骤0: 检测WARP状态..."
+./scripts/check-warp.sh
+if [ $? -ne 0 ]; then
+    echo "❌ WARP检测失败，停止部署"
+    exit 1
+fi
+echo ""
+
 # 1. 进入项目目录
 cd ~/Documents/functional-website/multi-tools
 echo "✅ 进入项目目录"
