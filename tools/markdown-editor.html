@@ -56,9 +56,28 @@
         .toolbar button { padding: 6px 12px; border: 1px solid #ddd; background: white; border-radius: 5px; cursor: pointer; font-size: 12px; }
         .toolbar button:hover { background: #667eea; color: white; border-color: #667eea; }
         @media (max-width: 768px) { .editor-container { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; } .editor-pane { border-right: none; border-bottom: 2px solid #eee; } }
+        
+        // 工具使用追踪
+        function trackToolUsage(toolName, action) {
+            gtag('event', 'tool_usage', {
+                'tool_name': toolName,
+                'action': action,
+                'event_category': 'Tool',
+                'event_label': toolName + '_' + action
+            });
+        }
     </style>
 </head>
 <body>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7B5H09J4KB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7B5H09J4KB');
+    </script>
+    
     <div class="container">
         <a href="/" class="back-btn">← 返回首页</a>
         <header>
