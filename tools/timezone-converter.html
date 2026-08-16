@@ -22,7 +22,17 @@
         select { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem; margin-top: 10px; }
         select:focus { outline: none; border-color: #667eea; }
         footer { text-align: center; padding: 40px 20px; color: white; opacity: 0.8; }
-    </style>
+    
+        // 工具使用追踪
+        function trackToolUsage(toolName, action) {
+            gtag('event', 'tool_usage', {
+                'tool_name': toolName,
+                'action': action,
+                'event_category': 'Tool',
+                'event_label': toolName + '_' + action
+            });
+        }
+</style>
 <meta name="description" content="免费在线时区转换器，支持全球主要城市时区对比。快速计算时差，适用于国际商务和旅行。">
 <meta name="keywords" content="时区转换,time zone,时差计算,世界时钟,时间转换">
 

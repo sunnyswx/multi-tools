@@ -23,7 +23,17 @@
         .input-group input:focus, .input-group select:focus { outline: none; border-color: #667eea; }
         .result { background: #e8f5e9; padding: 15px; border-radius: 10px; margin-top: 15px; font-size: 1.2rem; color: #2e7d32; font-weight: bold; }
         footer { text-align: center; padding: 40px 20px; color: white; opacity: 0.8; }
-    </style>
+    
+        // 工具使用追踪
+        function trackToolUsage(toolName, action) {
+            gtag('event', 'tool_usage', {
+                'tool_name': toolName,
+                'action': action,
+                'event_category': 'Tool',
+                'event_label': toolName + '_' + action
+            });
+        }
+</style>
 <meta name="description" content="免费在线单位转换器，支持长度、重量、温度、面积、体积等多种单位快速转换。">
 <meta name="keywords" content="单位转换,converter,长度转换,重量转换,温度转换">
 

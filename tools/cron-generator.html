@@ -34,7 +34,17 @@
         .example-cron { font-family: monospace; color: #667eea; font-weight: bold; }
         .example-desc { color: #666; margin-top: 5px; }
         footer { text-align: center; padding: 40px 20px; color: white; opacity: 0.8; }
-    </style>
+    
+        // 工具使用追踪
+        function trackToolUsage(toolName, action) {
+            gtag('event', 'tool_usage', {
+                'tool_name': toolName,
+                'action': action,
+                'event_category': 'Tool',
+                'event_label': toolName + '_' + action
+            });
+        }
+</style>
 <meta name="description" content="免费在线Cron表达式生成器，支持可视化创建定时任务。适用于服务器定时任务配置。">
 <meta name="keywords" content="cron表达式,cron生成器,定时任务,cron在线,cron语法">
 

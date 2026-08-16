@@ -26,7 +26,17 @@
         .copy-btn { background: #667eea; color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer; font-size: 12px; }
         .copy-btn:hover { background: #764ba2; }
         footer { text-align: center; padding: 40px 20px; color: white; opacity: 0.8; }
-    </style>
+    
+        // 工具使用追踪
+        function trackToolUsage(toolName, action) {
+            gtag('event', 'tool_usage', {
+                'tool_name': toolName,
+                'action': action,
+                'event_category': 'Tool',
+                'event_label': toolName + '_' + action
+            });
+        }
+</style>
 <meta name="description" content="免费在线UUID生成器，支持生成UUID v4随机标识符。适用于数据库、API开发等多种场景。">
 <meta name="keywords" content="uuid生成,uuid在线,随机UUID,唯一标识符,UUID v4">
 

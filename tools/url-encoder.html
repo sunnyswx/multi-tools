@@ -25,7 +25,17 @@
         .btn-secondary:hover { background: #e0e0e0; }
         .result { background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px; word-break: break-all; font-family: monospace; }
         footer { text-align: center; padding: 40px 20px; color: white; opacity: 0.8; }
-    </style>
+    
+        // 工具使用追踪
+        function trackToolUsage(toolName, action) {
+            gtag('event', 'tool_usage', {
+                'tool_name': toolName,
+                'action': action,
+                'event_category': 'Tool',
+                'event_label': toolName + '_' + action
+            });
+        }
+</style>
 <meta name="description" content="免费在线URL编解码器，支持URL编码和解码。适用于网页开发、API调试等多种场景。">
 <meta name="keywords" content="url编解码,url编码,url解码,在线工具,百分号编码">
 

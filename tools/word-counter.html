@@ -23,7 +23,17 @@
         .btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 15px 40px; font-size: 1.1rem; border-radius: 30px; cursor: pointer; transition: transform 0.2s; margin: 10px; }
         .btn:hover { transform: scale(1.05); }
         footer { text-align: center; padding: 40px 20px; color: white; opacity: 0.8; }
-    </style>
+    
+        // 工具使用追踪
+        function trackToolUsage(toolName, action) {
+            gtag('event', 'tool_usage', {
+                'tool_name': toolName,
+                'action': action,
+                'event_category': 'Tool',
+                'event_label': toolName + '_' + action
+            });
+        }
+</style>
 <meta name="description" content="免费在线字数统计器，实时统计文字数量、字符数、段落数、行数。适用于论文写作和内容创作。">
 <meta name="keywords" content="字数统计,word counter,字符统计,在线统计,论文统计">
 
@@ -48,13 +58,23 @@
 </head>
 <body>
     <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7B5H09J4KB"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7B5H09J4KB">
+        // 追踪按钮点击
+        document.querySelector('button').addEventListener('click', () => {
+            trackToolUsage('word-counter', 'click');
+        });
+</script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-7B5H09J4KB');
-    </script>
+    
+        // 追踪按钮点击
+        document.querySelector('button').addEventListener('click', () => {
+            trackToolUsage('word-counter', 'click');
+        });
+</script>
 
     <div class="container">
         <a href="/" class="back-btn">← 返回首页</a>
@@ -138,6 +158,11 @@
                 setTimeout(() => copyBtn.textContent = original, 2000);
             });
         });
-    </script>
+    
+        // 追踪按钮点击
+        document.querySelector('button').addEventListener('click', () => {
+            trackToolUsage('word-counter', 'click');
+        });
+</script>
 </body>
 </html>

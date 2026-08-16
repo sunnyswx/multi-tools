@@ -24,7 +24,17 @@
         .copy-btn { background: #667eea; color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer; font-size: 12px; }
         .copy-btn:hover { background: #764ba2; }
         footer { text-align: center; padding: 40px 20px; color: white; opacity: 0.8; }
-    </style>
+    
+        // 工具使用追踪
+        function trackToolUsage(toolName, action) {
+            gtag('event', 'tool_usage', {
+                'tool_name': toolName,
+                'action': action,
+                'event_category': 'Tool',
+                'event_label': toolName + '_' + action
+            });
+        }
+</style>
 <meta name="description" content="免费在线Hash生成器，支持MD5、SHA-1、SHA-256、SHA-512等多种哈希算法。快速生成哈希值。">
 <meta name="keywords" content="hash生成,md5,sha256,sha1,在线哈希,加密">
 

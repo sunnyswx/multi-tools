@@ -27,7 +27,17 @@
         .format-label { font-weight: bold; color: #333; }
         .format-value { font-family: 'Courier New', monospace; color: #667eea; font-size: 1.1rem; }
         footer { text-align: center; padding: 40px 20px; color: white; opacity: 0.8; }
-    </style>
+    
+        // 工具使用追踪
+        function trackToolUsage(toolName, action) {
+            gtag('event', 'tool_usage', {
+                'tool_name': toolName,
+                'action': action,
+                'event_category': 'Tool',
+                'event_label': toolName + '_' + action
+            });
+        }
+</style>
 <meta name="description" content="免费在线颜色选择器，支持HEX、RGB、HSL格式。一键复制颜色代码，适用于网页设计和开发。">
 <meta name="keywords" content="颜色选择器,color picker,HEX,RGB,HSL,在线取色">
 

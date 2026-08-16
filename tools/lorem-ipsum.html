@@ -24,7 +24,17 @@
         .btn-secondary:hover { background: #e0e0e0; }
         .output { margin-top: 20px; padding: 20px; background: #f8f9fa; border-radius: 10px; line-height: 1.8; color: #333; white-space: pre-wrap; }
         footer { text-align: center; padding: 40px 20px; color: white; opacity: 0.8; }
-    </style>
+    
+        // 工具使用追踪
+        function trackToolUsage(toolName, action) {
+            gtag('event', 'tool_usage', {
+                'tool_name': toolName,
+                'action': action,
+                'event_category': 'Tool',
+                'event_label': toolName + '_' + action
+            });
+        }
+</style>
 <meta name="description" content="免费在线Lorem Ipsum生成器，生成随机占位文本。适用于网页设计、印刷排版等场景。">
 <meta name="keywords" content="lorem ipsum,占位文本,虚拟文本,设计用文,随机文本">
 

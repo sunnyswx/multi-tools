@@ -28,7 +28,17 @@
         .btn-clear { background: #f44336; color: white; }
         .btn-zero { grid-column: span 2; }
         footer { text-align: center; padding: 40px 20px; color: white; opacity: 0.8; }
-    </style>
+    
+        // 工具使用追踪
+        function trackToolUsage(toolName, action) {
+            gtag('event', 'tool_usage', {
+                'tool_name': toolName,
+                'action': action,
+                'event_category': 'Tool',
+                'event_label': toolName + '_' + action
+            });
+        }
+</style>
 <meta name="description" content="免费在线计算器，支持基础计算和科学计算。功能强大，界面简洁，适用于日常计算需求。">
 <meta name="keywords" content="计算器,calculator,在线计算,科学计算,数学计算">
 

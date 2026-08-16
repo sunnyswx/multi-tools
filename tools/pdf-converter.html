@@ -23,7 +23,17 @@
         .btn:hover { transform: scale(1.05); }
         .btn:disabled { opacity: 0.5; cursor: not-allowed; }
         footer { text-align: center; padding: 40px 20px; color: white; opacity: 0.8; }
-    </style>
+    
+        // 工具使用追踪
+        function trackToolUsage(toolName, action) {
+            gtag('event', 'tool_usage', {
+                'tool_name': toolName,
+                'action': action,
+                'event_category': 'Tool',
+                'event_label': toolName + '_' + action
+            });
+        }
+</style>
 <meta name="description" content="免费在线PDF转换工具，支持PDF转Word、PDF转图片、PDF合并拆分。快速转换，保持原文件格式。">
 <meta name="keywords" content="pdf转换,pdf在线,pdf转word,pdf转图片,在线转换">
 
@@ -48,13 +58,23 @@
 </head>
 <body>
     <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7B5H09J4KB"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7B5H09J4KB">
+        // 追踪按钮点击
+        document.querySelector('button').addEventListener('click', () => {
+            trackToolUsage('pdf-converter', 'click');
+        });
+</script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-7B5H09J4KB');
-    </script>
+    
+        // 追踪按钮点击
+        document.querySelector('button').addEventListener('click', () => {
+            trackToolUsage('pdf-converter', 'click');
+        });
+</script>
 
     <div class="container">
         <a href="/" class="back-btn">← 返回首页</a>
@@ -153,6 +173,11 @@
                 convertBtn.textContent = '开始转换';
             }, 2000);
         });
-    </script>
+    
+        // 追踪按钮点击
+        document.querySelector('button').addEventListener('click', () => {
+            trackToolUsage('pdf-converter', 'click');
+        });
+</script>
 </body>
 </html>

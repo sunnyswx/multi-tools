@@ -53,7 +53,17 @@
         .file-info { background: #f8f9fa; padding: 15px; border-radius: 10px; margin: 15px 0; }
         .file-info span { font-weight: bold; color: #667eea; }
         @media (max-width: 768px) { .preview-container { grid-template-columns: 1fr; } }
-    </style>
+    
+        // 工具使用追踪
+        function trackToolUsage(toolName, action) {
+            gtag('event', 'tool_usage', {
+                'tool_name': toolName,
+                'action': action,
+                'event_category': 'Tool',
+                'event_label': toolName + '_' + action
+            });
+        }
+</style>
 </head>
 <body>
     <div class="container">
@@ -196,6 +206,11 @@
             };
             img.src = originalDataURL;
         });
-    </script>
+    
+        // 追踪按钮点击
+        document.querySelector('button').addEventListener('click', () => {
+            trackToolUsage('image-converter', 'click');
+        });
+</script>
 </body>
 </html>

@@ -25,7 +25,17 @@
         .match { background: #fff3cd; padding: 5px 10px; border-radius: 5px; margin: 5px 0; font-family: monospace; }
         .no-match { color: #888; text-align: center; padding: 20px; }
         footer { text-align: center; padding: 40px 20px; color: white; opacity: 0.8; }
-    </style>
+    
+        // 工具使用追踪
+        function trackToolUsage(toolName, action) {
+            gtag('event', 'tool_usage', {
+                'tool_name': toolName,
+                'action': action,
+                'event_category': 'Tool',
+                'event_label': toolName + '_' + action
+            });
+        }
+</style>
 <meta name="description" content="免费在线正则表达式测试器，实时匹配和验证。支持多种正则语法，适用于开发调试。">
 <meta name="keywords" content="正则表达式,regex,正则测试,在线正则, pattern匹配">
 
