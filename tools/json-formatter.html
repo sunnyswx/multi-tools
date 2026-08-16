@@ -93,6 +93,7 @@
         let currentJSON = null;
         
         function formatJSON() {
+            trackToolUsage('json-formatter', 'format');
             try {
                 const json = JSON.parse(input.value);
                 currentJSON = json;
@@ -107,6 +108,7 @@
         }
         
         function minifyJSON() {
+            trackToolUsage('json-formatter', 'minify');
             try {
                 const json = JSON.parse(input.value);
                 currentJSON = json;
@@ -121,6 +123,7 @@
         }
         
         function validateJSON() {
+            trackToolUsage('json-formatter', 'validate');
             try {
                 JSON.parse(input.value);
                 output.textContent = '✅ JSON格式正确';
