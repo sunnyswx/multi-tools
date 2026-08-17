@@ -60,6 +60,16 @@ if exist "tools\%RANDOM_TOOL%.html" (
 )
 echo.
 
+REM 5.5 更新index.html添加工具卡片（如果新工具已存在）
+echo 📝 步骤5.5: 更新index.html...
+if exist "tools\%RANDOM_TOOL%.html" (
+    powershell -Command "(Get-Content 'index.html') -replace '</div>\s*</div>', '<!-- %RANDOM_TOOL% -->`r`n        <a href=\"/tools/%RANDOM_TOOL%.html\" class=\"tool-card\">`r`n            <div class=\"tool-icon\">🎲</div>`r`n            <div class=\"tool-name\">%RANDOM_TOOL_NAME%</div>`r`n            <div class=\"tool-desc\">自动部署新工具</div>`r`n        </a>`r`n    </div>' | Set-Content 'index.html'"
+    echo ✅ index.html已更新
+) else (
+    echo ⚠️ 工具文件未创建，跳过index.html更新
+)
+echo.
+
 REM 6. 提交代码
 echo 📝 步骤4: 提交代码...
 git add -A

@@ -57,6 +57,37 @@ else
 fi
 echo ""
 
+# 5.5 更新index.html添加工具卡片（如果新工具已存在）
+echo "📝 步骤5.5: 更新index.html..."
+if [ -f "tools/$RANDOM_TOOL.html" ]; then
+    # 使用Python更新index.html（跨平台兼容）
+    python3 -c "
+import re
+with open('index.html', 'r', encoding='utf-8') as f:
+    content = f.read()
+# 检查是否已包含该工具
+if '$RANDOM_TOOL.html' not in content:
+    # 在最后一个</a>前添加工具卡片
+    tool_card = f'''
+        <!-- {os.environ.get('RANDOM_TOOL', 'new-tool')} -->
+        <a href=\"/tools/{os.environ.get('RANDOM_TOOL', 'new-tool')}.html\" class=\"tool-card\">
+            <div class=\"tool-icon\">🎲</div>
+            <div class=\"tool-name\">{os.environ.get('RANDOM_TOOL_NAME', 'New Tool')}</div>
+            <div class=\"tool-desc\">自动部署新工具</div>
+        </a>
+    </div>'''
+    content = content.replace('</div>\n    </div>', tool_card)
+    with open('index.html', 'w', encoding='utf-8') as f:
+        f.write(content)
+    print('✅ index.html已更新')
+else:
+    print('⚠️ 工具已存在于index.html，跳过更新')
+" 2>/dev/null || echo "⚠️ index.html更新失败，请手动检查"
+else
+    echo "⚠️ 工具文件未创建，跳过index.html更新"
+fi
+echo ""
+
 # 6. 提交代码
 echo "📝 步骤4: 提交代码..."
 git add -A
