@@ -235,6 +235,13 @@
                 trackToolUsage('json-formatter', 'click');
             });
         });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('json-formatter', 'click');
+            });
+        });
 </script>
 </body>
 </html>
