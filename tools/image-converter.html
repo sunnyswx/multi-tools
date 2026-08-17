@@ -232,6 +232,13 @@
                 trackToolUsage('image-converter', 'click');
             });
         });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('image-converter', 'click');
+            });
+        });
 </script>
 </body>
 </html>

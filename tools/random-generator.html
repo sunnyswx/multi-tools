@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机工具生成器 - 免费在线随机工具 | Multi Tools</title>
+    <meta name="description" content="免费在线随机工具生成器，支持随机数生成、随机选择、随机密码等功能。快速生成各种随机结果。">
+    <meta name="keywords" content="随机工具,随机数,随机选择,随机密码,在线生成">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        header { text-align: center; padding: 20px; color: white; }
+        header h1 { font-size: 2rem; margin-bottom: 10px; }
+        .back-btn { display: inline-block; margin-bottom: 15px; padding: 8px 20px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 20px; font-size: 0.9rem; }
+        .back-btn:hover { background: rgba(255,255,255,0.3); }
+        .tool-card { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+        .result { background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px; word-break: break-all; }
+        .result h3 { color: #667eea; margin-bottom: 15px; }
+        .result-value { font-size: 1.5rem; font-weight: bold; color: #333; margin: 15px 0; }
+        .btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 12px 30px; font-size: 1rem; border-radius: 25px; cursor: pointer; transition: transform 0.2s; margin: 5px; }
+        .btn:hover { transform: scale(1.05); }
+        .btn:active { transform: scale(0.95); }
+        .options { margin: 20px 0; }
+        .options label { display: block; margin: 10px 0; color: #666; }
+        .options input[type="number"] { width: 100px; padding: 8px; border: 1px solid #ddd; border-radius: 5px; }
+        footer { text-align: center; padding: 40px 20px; color: white; opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-btn">← 返回首页</a>
+        <header>
+            <h1>🎲 随机工具生成器</h1>
+            <p>免费在线随机数、随机选择、随机密码生成工具</p>
+        </header>
+        
+        <div class="tool-card">
+            <h3>🎯 随机数生成</h3>
+            <div class="options">
+                <label>最小值: <input type="number" id="minNum" value="1"></label>
+                <label>最大值: <input type="number" id="maxNum" value="100"></label>
+                <label>生成数量: <input type="number" id="count" value="1"></label>
+            </div>
+            <button class="btn" onclick="generateRandom()">生成随机数</button>
+            <div class="result" id="randomResult" style="display: none;">
+                <h3>生成结果</h3>
+                <div class="result-value" id="randomValue"></div>
+            </div>
+        </div>
+        
+        <div class="tool-card" style="margin-top: 20px;">
+            <h3>📝 随机选择</h3>
+            <div class="options">
+                <label>输入选项（每行一个）:</label>
+                <textarea id="optionsText" rows="4" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" placeholder="选项1&#10;选项2&#10;选项3"></textarea>
+            </div>
+            <button class="btn" onclick="randomChoice()">随机选择</button>
+            <div class="result" id="choiceResult" style="display: none;">
+                <h3>选择结果</h3>
+                <div class="result-value" id="choiceValue"></div>
+            </div>
+        </div>
+        
+        <div class="tool-card" style="margin-top: 20px;">
+            <h3>🔐 随机密码生成</h3>
+            <div class="options">
+                <label>密码长度: <input type="number" id="pwdLength" value="12" min="4" max="32"></label>
+                <label><input type="checkbox" id="includeUpper" checked> 包含大写字母</label>
+                <label><input type="checkbox" id="includeLower" checked> 包含小写字母</label>
+                <label><input type="checkbox" id="includeNumbers" checked> 包含数字</label>
+                <label><input type="checkbox" id="includeSymbols"> 包含特殊字符</label>
+            </div>
+            <button class="btn" onclick="generatePassword()">生成密码</button>
+            <div class="result" id="passwordResult" style="display: none;">
+                <h3>生成密码</h3>
+                <div class="result-value" id="passwordValue"></div>
+                <button class="btn" onclick="copyPassword()">复制密码</button>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2026 Multi Tools | 随机工具生成器</p>
+        </footer>
+    </div>
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7B5H09J4KB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7B5H09J4KB');
+    </script>
+    
+    <script>
+        // 工具使用追踪
+        function trackToolUsage(toolName, action) {
+            gtag('event', 'tool_usage', {
+                'tool_name': toolName,
+                'action': action,
+                'event_category': 'Tool',
+                'event_label': toolName + '_' + action
+            });
+        }
+        
+        // 随机数生成
+        function generateRandom() {
+            trackToolUsage('random-generator', 'generate_random');
+            
+            const min = parseInt(document.getElementById('minNum').value);
+            const max = parseInt(document.getElementById('maxNum').value);
+            const count = parseInt(document.getElementById('count').value);
+            
+            if (min >= max) {
+                alert('最小值必须小于最大值');
+                return;
+            }
+            
+            const results = [];
+            for (let i = 0; i < count; i++) {
+                results.push(Math.floor(Math.random() * (max - min + 1)) + min);
+            }
+            
+            document.getElementById('randomValue').textContent = results.join(', ');
+            document.getElementById('randomResult').style.display = 'block';
+        }
+        
+        // 随机选择
+        function randomChoice() {
+            trackToolUsage('random-generator', 'random_choice');
+            
+            const text = document.getElementById('optionsText').value.trim();
+            if (!text) {
+                alert('请输入选项');
+                return;
+            }
+            
+            const options = text.split('\n').filter(opt => opt.trim());
+            if (options.length === 0) {
+                alert('请输入至少一个选项');
+                return;
+            }
+            
+            const randomIndex = Math.floor(Math.random() * options.length);
+            document.getElementById('choiceValue').textContent = options[randomIndex];
+            document.getElementById('choiceResult').style.display = 'block';
+        }
+        
+        // 随机密码生成
+        function generatePassword() {
+            trackToolUsage('random-generator', 'generate_password');
+            
+            const length = parseInt(document.getElementById('pwdLength').value);
+            const includeUpper = document.getElementById('includeUpper').checked;
+            const includeLower = document.getElementById('includeLower').checked;
+            const includeNumbers = document.getElementById('includeNumbers').checked;
+            const includeSymbols = document.getElementById('includeSymbols').checked;
+            
+            let chars = '';
+            if (includeUpper) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            if (includeLower) chars += 'abcdefghijklmnopqrstuvwxyz';
+            if (includeNumbers) chars += '0123456789';
+            if (includeSymbols) chars += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+            
+            if (chars === '') {
+                alert('请至少选择一种字符类型');
+                return;
+            }
+            
+            let password = '';
+            for (let i = 0; i < length; i++) {
+                password += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            
+            document.getElementById('passwordValue').textContent = password;
+            document.getElementById('passwordResult').style.display = 'block';
+        }
+        
+        // 复制密码
+        function copyPassword() {
+            trackToolUsage('random-generator', 'copy_password');
+            
+            const password = document.getElementById('passwordValue').textContent;
+            navigator.clipboard.writeText(password).then(() => {
+                alert('密码已复制到剪贴板！');
+            }).catch(() => {
+                alert('复制失败，请手动复制');
+            });
+        }
+    </script>
+</body>
+</html>

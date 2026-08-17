@@ -84,6 +84,13 @@
                 trackToolUsage('pdf-converter', 'click');
             });
         });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('pdf-converter', 'click');
+            });
+        });
 </script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -94,6 +101,13 @@
         // 追踪按钮点击
         document.querySelector('button').addEventListener('click', () => {
             trackToolUsage('pdf-converter', 'click');
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('pdf-converter', 'click');
+            });
         });
 
         // 追踪工具使用
@@ -219,6 +233,13 @@
         // 追踪按钮点击
         document.querySelector('button').addEventListener('click', () => {
             trackToolUsage('pdf-converter', 'click');
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('pdf-converter', 'click');
+            });
         });
 
         // 追踪工具使用
