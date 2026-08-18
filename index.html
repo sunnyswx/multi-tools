@@ -25,6 +25,20 @@
         header h1 { font-size: 3rem; margin-bottom: 15px; }
         header p { font-size: 1.3rem; opacity: 0.9; }
         
+        .wechat-notice {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: center;
+            color: white;
+        }
+        .wechat-notice p { margin: 5px 0; font-size: 14px; }
+        .wechat-notice .notice-icon { font-size: 24px; margin-bottom: 10px; }
+        
         .lang-switcher { position: fixed; top: 20px; right: 20px; z-index: 1000; }
         .lang-switcher select { padding: 10px 15px; border-radius: 25px; border: none; background: white; color: #333; font-size: 14px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
         
@@ -118,8 +132,12 @@
     
     <div class="container">
         <header>
-            <h1>🛠️ Multi Tools</h1>
+            <h1 data-i18n="siteTitle">🛠️ Multi Tools</h1>
             <p data-i18n="subtitle">免费在线工具集 - 本地处理，保护隐私</p>
+            <div class="wechat-notice" id="wechatNotice">
+                <div class="notice-icon">⚠️</div>
+                <p data-i18n="wechatNotice">如无法访问，请点击右上角选择"在浏览器打开"</p>
+            </div>
         </header>
         
         <div class="search-container">
@@ -361,6 +379,7 @@
             },
             en: {
                 subtitle: 'Free Online Tools - Local Processing, Privacy Protected',
+                wechatNotice: 'If you cannot access, please select "Open in Browser" from the top right corner',
                 searchPlaceholder: 'Search tools...',
                 footer: '© 2026 Multi Tools - Free Online Tools',
                 image_compressor: { name: 'Image Compressor', desc: 'Free online PNG, JPG, WebP image compression' },
