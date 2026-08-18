@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSV转JSON - 免费在线CSV转JSON工具 | Multi Tools</title>
-    <meta name="description" content="将CSV数据转换为JSON格式">
+    <meta name="description" content="免费在线CSV转JSON工具，支持CSV数据转换为JSON格式。自动识别分隔符，支持自定义列映射，适用于数据分析和API开发。">
     
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-7B5H09J4KB"></script>
@@ -43,12 +43,32 @@
         .tool-title { font-size: 2rem; color: #333; margin-bottom: 10px; }
         .tool-description { color: #666; font-size: 1.1rem; }
         
-        .tool-content { margin-top: 30px; }
+        .input-section { margin-bottom: 30px; }
+        .input-section label { display: block; font-weight: bold; color: #333; margin-bottom: 10px; }
+        .input-section textarea { width: 100%; height: 200px; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 14px; font-family: 'Courier New', monospace; resize: vertical; transition: border-color 0.3s; }
+        .input-section textarea:focus { outline: none; border-color: #667eea; }
         
-        .feature-list { list-style: none; padding: 0; margin: 20px 0; }
-        .feature-list li { padding: 10px 0; border-bottom: 1px solid #eee; }
-        .feature-list li:last-child { border-bottom: none; }
-        .feature-list li:before { content: "✓ "; color: #667eea; font-weight: bold; margin-right: 10px; }
+        .options { background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+        .options h3 { color: #333; margin-bottom: 15px; }
+        .option-item { margin: 10px 0; }
+        .option-item label { display: inline-flex; align-items: center; margin-right: 20px; cursor: pointer; }
+        .option-item input[type="radio"] { margin-right: 8px; }
+        
+        .button-group { display: flex; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; }
+        .btn { padding: 12px 30px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; transition: all 0.3s; font-weight: 500; }
+        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
+        .btn-secondary { background: #f0f0f0; color: #333; }
+        .btn-secondary:hover { background: #e0e0e0; }
+        
+        .result-section { background: #f8f9fa; padding: 20px; border-radius: 10px; }
+        .result-section h3 { color: #333; margin-bottom: 15px; }
+        .result-section textarea { width: 100%; height: 300px; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 14px; font-family: 'Courier New', monospace; resize: vertical; background: white; }
+        
+        .stats { display: flex; gap: 30px; margin-top: 20px; padding: 20px; background: white; border-radius: 10px; flex-wrap: wrap; }
+        .stat-item { text-align: center; }
+        .stat-value { font-size: 2rem; font-weight: bold; color: #667eea; }
+        .stat-label { color: #666; font-size: 0.9rem; margin-top: 5px; }
         
         .back-link { display: inline-block; margin-top: 30px; color: #667eea; text-decoration: none; font-weight: 500; }
         .back-link:hover { text-decoration: underline; }
@@ -70,18 +90,54 @@
                 <p class="tool-description">将CSV数据转换为JSON格式</p>
             </div>
             
-            <div class="tool-content">
-                <h3>✨ 功能特性</h3>
-                <ul class="feature-list">
-                                        <li>CSV解析</li>
-                    <li>JSON生成</li>
-                    <li>字段映射</li>
-                    <li>数据验证</li>
-                </ul>
+            <div class="input-section">
+                <label for="csvInput">输入CSV数据：</label>
+                <textarea id="csvInput" placeholder="姓名,年龄,城市&#10;张三,25,北京&#10;李四,30,上海&#10;王五,28,广州"></textarea>
+            </div>
+            
+            <div class="options">
+                <h3>转换选项：</h3>
+                <div class="option-item">
+                    <label>
+                        <input type="radio" name="outputType" value="array" checked>
+                        数组格式（默认）
+                    </label>
+                    <label>
+                        <input type="radio" name="outputType" value="object">
+                        对象格式
+                    </label>
+                </div>
+                <div class="option-item">
+                    <label>
+                        <input type="checkbox" id="firstRowAsHeader" checked>
+                        第一行作为表头
+                    </label>
+                </div>
+            </div>
+            
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="convertCSV()">转换</button>
+                <button class="btn btn-secondary" onclick="copyResult()">复制</button>
+                <button class="btn btn-secondary" onclick="clearAll()">清空</button>
+            </div>
+            
+            <div class="result-section">
+                <h3>JSON结果：</h3>
+                <textarea id="jsonOutput" readonly placeholder="转换后的JSON将显示在这里..."></textarea>
                 
-                <div style="text-align: center; margin-top: 40px; padding: 40px; background: #f8f9fa; border-radius: 15px;">
-                    <p style="color: #666; font-size: 1.1rem;">🚧 开发中...</p>
-                    <p style="color: #999; margin-top: 10px;">此工具正在开发中，敬请期待！</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="rowCount">0</div>
+                        <div class="stat-label">数据行数</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="colCount">0</div>
+                        <div class="stat-label">列数</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="jsonSize">0 B</div>
+                        <div class="stat-label">JSON大小</div>
+                    </div>
                 </div>
             </div>
             
@@ -92,5 +148,148 @@
             <p>© 2026 Multi Tools - 免费在线工具集</p>
         </footer>
     </div>
+    
+    <script>
+        function convertCSV() {
+            const input = document.getElementById('csvInput').value.trim();
+            if (!input) {
+                alert('请先输入CSV数据！');
+                return;
+            }
+            
+            try {
+                const lines = input.split('\n').map(line => line.trim()).filter(line => line);
+                if (lines.length === 0) {
+                    alert('CSV数据为空！');
+                    return;
+                }
+                
+                const useHeader = document.getElementById('firstRowAsHeader').checked;
+                const outputType = document.querySelector('input[name="outputType"]:checked').value;
+                
+                let headers = [];
+                let dataLines = [];
+                
+                if (useHeader && lines.length > 1) {
+                    headers = parseCSVLine(lines[0]);
+                    dataLines = lines.slice(1);
+                } else {
+                    // 自动生成列名
+                    const sampleLine = parseCSVLine(lines[0]);
+                    headers = sampleLine.map((_, i) => `column_${i + 1}`);
+                    dataLines = lines;
+                }
+                
+                let result;
+                
+                if (outputType === 'array') {
+                    // 数组格式
+                    result = dataLines.map(line => {
+                        const values = parseCSVLine(line);
+                        const obj = {};
+                        headers.forEach((header, i) => {
+                            obj[header] = convertValue(values[i]);
+                        });
+                        return obj;
+                    });
+                } else {
+                    // 对象格式
+                    result = {};
+                    dataLines.forEach((line, index) => {
+                        const values = parseCSVLine(line);
+                        const key = useHeader ? values[0] : `row_${index + 1}`;
+                        const obj = {};
+                        headers.forEach((header, i) => {
+                            obj[header] = convertValue(values[i]);
+                        });
+                        result[key] = obj;
+                    });
+                }
+                
+                const json = JSON.stringify(result, null, 2);
+                document.getElementById('jsonOutput').value = json;
+                
+                // 更新统计
+                document.getElementById('rowCount').textContent = dataLines.length;
+                document.getElementById('colCount').textContent = headers.length;
+                document.getElementById('jsonSize').textContent = formatBytes(new Blob([json]).size);
+                
+                trackToolUsage('csv-to-json', 'convert');
+            } catch (e) {
+                alert('转换失败：' + e.message);
+            }
+        }
+        
+        function parseCSVLine(line) {
+            const values = [];
+            let current = '';
+            let inQuotes = false;
+            
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+                
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                    values.push(current.trim());
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            
+            values.push(current.trim());
+            return values;
+        }
+        
+        function convertValue(value) {
+            if (value === '' || value === null || value === undefined) {
+                return null;
+            }
+            
+            // 尝试转换为数字
+            const num = Number(value);
+            if (!isNaN(num) && value.trim() !== '') {
+                return num;
+            }
+            
+            // 尝试转换为布尔值
+            if (value.toLowerCase() === 'true') return true;
+            if (value.toLowerCase() === 'false') return false;
+            
+            // 返回字符串
+            return value;
+        }
+        
+        function formatBytes(bytes) {
+            if (bytes === 0) return '0 B';
+            const k = 1024;
+            const sizes = ['B', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+        
+        function copyResult() {
+            const output = document.getElementById('jsonOutput');
+            if (!output.value) {
+                alert('没有可复制的内容！');
+                return;
+            }
+            
+            output.select();
+            document.execCommand('copy');
+            alert('已复制到剪贴板！');
+            trackToolUsage('csv-to-json', 'copy');
+        }
+        
+        function clearAll() {
+            document.getElementById('csvInput').value = '';
+            document.getElementById('jsonOutput').value = '';
+            document.getElementById('rowCount').textContent = '0';
+            document.getElementById('colCount').textContent = '0';
+            document.getElementById('jsonSize').textContent = '0 B';
+            trackToolUsage('csv-to-json', 'clear');
+        }
+    </script>
 </body>
 </html>

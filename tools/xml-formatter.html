@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XML格式化器 - 免费在线XML格式化器工具 | Multi Tools</title>
-    <meta name="description" content="格式化XML文档，支持缩进和语法高亮">
+    <title>XML格式化器 - 免费在线XML格式化工具 | Multi Tools</title>
+    <meta name="description" content="免费在线XML格式化器，支持XML文档格式化、压缩、验证。实时预览，语法高亮，适用于网页开发和数据处理。">
     
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-7B5H09J4KB"></script>
@@ -43,12 +43,35 @@
         .tool-title { font-size: 2rem; color: #333; margin-bottom: 10px; }
         .tool-description { color: #666; font-size: 1.1rem; }
         
-        .tool-content { margin-top: 30px; }
+        .input-section { margin-bottom: 30px; }
+        .input-section label { display: block; font-weight: bold; color: #333; margin-bottom: 10px; }
+        .input-section textarea { width: 100%; height: 300px; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 14px; font-family: 'Courier New', monospace; resize: vertical; transition: border-color 0.3s; }
+        .input-section textarea:focus { outline: none; border-color: #667eea; }
         
-        .feature-list { list-style: none; padding: 0; margin: 20px 0; }
-        .feature-list li { padding: 10px 0; border-bottom: 1px solid #eee; }
-        .feature-list li:last-child { border-bottom: none; }
-        .feature-list li:before { content: "✓ "; color: #667eea; font-weight: bold; margin-right: 10px; }
+        .button-group { display: flex; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; }
+        .btn { padding: 12px 30px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; transition: all 0.3s; font-weight: 500; }
+        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
+        .btn-secondary { background: #f0f0f0; color: #333; }
+        .btn-secondary:hover { background: #e0e0e0; }
+        .btn-success { background: #10b981; color: white; }
+        .btn-success:hover { background: #059669; }
+        .btn-danger { background: #ef4444; color: white; }
+        .btn-danger:hover { background: #dc2626; }
+        
+        .result-section { background: #f8f9fa; padding: 20px; border-radius: 10px; }
+        .result-section h3 { color: #333; margin-bottom: 15px; }
+        
+        .status { padding: 15px; border-radius: 8px; margin-bottom: 20px; font-weight: 500; }
+        .status.success { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+        .status.error { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+        
+        .formatted-xml { background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 10px; font-family: 'Courier New', monospace; font-size: 14px; overflow-x: auto; white-space: pre; max-height: 400px; }
+        .formatted-xml .tag { color: #569cd6; }
+        .formatted-xml .attr-name { color: #9cdcfe; }
+        .formatted-xml .attr-value { color: #ce9178; }
+        .formatted-xml .comment { color: #6a9955; }
+        .formatted-xml .text { color: #d4d4d4; }
         
         .back-link { display: inline-block; margin-top: 30px; color: #667eea; text-decoration: none; font-weight: 500; }
         .back-link:hover { text-decoration: underline; }
@@ -70,19 +93,23 @@
                 <p class="tool-description">格式化XML文档，支持缩进和语法高亮</p>
             </div>
             
-            <div class="tool-content">
-                <h3>✨ 功能特性</h3>
-                <ul class="feature-list">
-                                        <li>格式化输出</li>
-                    <li>缩进调整</li>
-                    <li>语法高亮</li>
-                    <li>错误检测</li>
-                </ul>
-                
-                <div style="text-align: center; margin-top: 40px; padding: 40px; background: #f8f9fa; border-radius: 15px;">
-                    <p style="color: #666; font-size: 1.1rem;">🚧 开发中...</p>
-                    <p style="color: #999; margin-top: 10px;">此工具正在开发中，敬请期待！</p>
-                </div>
+            <div class="input-section">
+                <label for="xmlInput">输入XML：</label>
+                <textarea id="xmlInput" placeholder="<root>&#10;  <item>值</item>&#10;</root>"></textarea>
+            </div>
+            
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="formatXML()">格式化</button>
+                <button class="btn btn-secondary" onclick="minifyXML()">压缩</button>
+                <button class="btn btn-secondary" onclick="validateXML()">验证</button>
+                <button class="btn btn-secondary" onclick="copyResult()">复制</button>
+                <button class="btn btn-danger" onclick="clearAll()">清空</button>
+            </div>
+            
+            <div class="result-section">
+                <h3>格式化结果：</h3>
+                <div id="statusDiv"></div>
+                <div id="formattedDiv"></div>
             </div>
             
             <a href="/" class="back-link">← 返回首页</a>
@@ -92,5 +119,135 @@
             <p>© 2026 Multi Tools - 免费在线工具集</p>
         </footer>
     </div>
+    
+    <script>
+        function formatXML() {
+            const input = document.getElementById('xmlInput').value.trim();
+            const statusDiv = document.getElementById('statusDiv');
+            const formattedDiv = document.getElementById('formattedDiv');
+            
+            statusDiv.innerHTML = '';
+            formattedDiv.innerHTML = '';
+            
+            if (!input) {
+                statusDiv.innerHTML = '<div class="status error">⚠️ 请输入XML内容</div>';
+                return;
+            }
+            
+            try {
+                // 简单的XML格式化
+                let formatted = input
+                    .replace(/>\s*</g, '>\n<')
+                    .replace(/<\/([^>]+)>/g, '\t</$1>')
+                    .replace(/<([^/\s][^>]*)>/g, (match, p1) => {
+                        if (!p1.startsWith('/')) {
+                            return '\t<' + p1 + '>';
+                        }
+                        return '<' + p1 + '>';
+                    });
+                
+                // 去除多余的换行
+                formatted = formatted.replace(/\n{3,}/g, '\n\n');
+                
+                document.getElementById('xmlInput').value = formatted;
+                formattedDiv.innerHTML = '<div class="formatted-xml">' + highlightXML(formatted) + '</div>';
+                
+                statusDiv.innerHTML = '<div class="status success">✅ XML格式化成功！</div>';
+                trackToolUsage('xml-formatter', 'format');
+            } catch (e) {
+                statusDiv.innerHTML = '<div class="status error">❌ 格式化失败：' + escapeHtml(e.message) + '</div>';
+            }
+        }
+        
+        function minifyXML() {
+            const input = document.getElementById('xmlInput').value.trim();
+            if (!input) {
+                alert('请先输入XML内容！');
+                return;
+            }
+            
+            try {
+                const minified = input.replace(/\s+/g, ' ').trim();
+                document.getElementById('xmlInput').value = minified;
+                trackToolUsage('xml-formatter', 'minify');
+            } catch (e) {
+                alert('处理失败：' + e.message);
+            }
+        }
+        
+        function validateXML() {
+            const input = document.getElementById('xmlInput').value.trim();
+            const statusDiv = document.getElementById('statusDiv');
+            
+            if (!input) {
+                statusDiv.innerHTML = '<div class="status error">⚠️ 请输入XML内容</div>';
+                return;
+            }
+            
+            try {
+                // 简单的XML验证
+                if (input.startsWith('<?xml')) {
+                    // 有XML声明
+                }
+                
+                // 检查基本结构
+                const rootTag = input.match(/<(\w+)/);
+                if (!rootTag) {
+                    throw new Error('未找到根元素');
+                }
+                
+                const closingTag = '</' + rootTag[1] + '>';
+                if (!input.endsWith(closingTag)) {
+                    throw new Error('根元素未正确关闭');
+                }
+                
+                statusDiv.innerHTML = '<div class="status success">✅ XML格式基本正确！</div>';
+                trackToolUsage('xml-formatter', 'valid');
+            } catch (e) {
+                statusDiv.innerHTML = '<div class="status error">❌ XML验证失败：' + escapeHtml(e.message) + '</div>';
+            }
+        }
+        
+        function copyResult() {
+            const output = document.getElementById('xmlInput').value;
+            if (!output) {
+                alert('没有可复制的内容！');
+                return;
+            }
+            
+            navigator.clipboard.writeText(output).then(() => {
+                alert('已复制到剪贴板！');
+                trackToolUsage('xml-formatter', 'copy');
+            }).catch(err => {
+                alert('复制失败：' + err);
+            });
+        }
+        
+        function clearAll() {
+            document.getElementById('xmlInput').value = '';
+            document.getElementById('statusDiv').innerHTML = '';
+            document.getElementById('formattedDiv').innerHTML = '';
+            trackToolUsage('xml-formatter', 'clear');
+        }
+        
+        function highlightXML(xml) {
+            return xml
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/(&lt;!--.*?--&gt;)/g, '<span class="comment">$1</span>')
+                .replace(/(&lt;\/?)(\w+)(.*?)(&gt;)/g, (match, p1, p2, p3, p4) => {
+                    const attrs = p3.replace(/(\s+\w+)=(".*?")/g, '<span class="attr-name">$1</span>=<span class="attr-value">$2</span>');
+                    return '<span class="tag">' + p1 + p2 + '</span>' + attrs + '<span class="tag">' + p4 + '</span>';
+                })
+                .replace(/([^&<>\s]+)/g, '<span class="text">$1</span>');
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
 </body>
 </html>

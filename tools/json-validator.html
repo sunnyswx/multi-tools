@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSON验证器 - 免费在线JSON验证器工具 | Multi Tools</title>
-    <meta name="description" content="验证JSON格式是否正确，显示错误位置">
+    <title>JSON验证器 - 免费在线JSON格式验证工具 | Multi Tools</title>
+    <meta name="description" content="免费在线JSON验证器，实时验证JSON格式是否正确，显示详细错误位置和原因。支持语法高亮和错误提示。">
     
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-7B5H09J4KB"></script>
@@ -43,12 +43,37 @@
         .tool-title { font-size: 2rem; color: #333; margin-bottom: 10px; }
         .tool-description { color: #666; font-size: 1.1rem; }
         
-        .tool-content { margin-top: 30px; }
+        .input-section { margin-bottom: 30px; }
+        .input-section label { display: block; font-weight: bold; color: #333; margin-bottom: 10px; }
+        .input-section textarea { width: 100%; height: 300px; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 14px; font-family: 'Courier New', monospace; resize: vertical; transition: border-color 0.3s; }
+        .input-section textarea:focus { outline: none; border-color: #667eea; }
         
-        .feature-list { list-style: none; padding: 0; margin: 20px 0; }
-        .feature-list li { padding: 10px 0; border-bottom: 1px solid #eee; }
-        .feature-list li:last-child { border-bottom: none; }
-        .feature-list li:before { content: "✓ "; color: #667eea; font-weight: bold; margin-right: 10px; }
+        .button-group { display: flex; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; }
+        .btn { padding: 12px 30px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; transition: all 0.3s; font-weight: 500; }
+        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
+        .btn-secondary { background: #f0f0f0; color: #333; }
+        .btn-secondary:hover { background: #e0e0e0; }
+        .btn-success { background: #10b981; color: white; }
+        .btn-success:hover { background: #059669; }
+        .btn-danger { background: #ef4444; color: white; }
+        .btn-danger:hover { background: #dc2626; }
+        
+        .result-section { background: #f8f9fa; padding: 20px; border-radius: 10px; }
+        .result-section h3 { color: #333; margin-bottom: 15px; }
+        
+        .status { padding: 15px; border-radius: 8px; margin-bottom: 20px; font-weight: 500; }
+        .status.success { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+        .status.error { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+        
+        .error-detail { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; font-family: 'Courier New', monospace; font-size: 13px; color: #333; white-space: pre-wrap; }
+        
+        .formatted-json { background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 10px; font-family: 'Courier New', monospace; font-size: 14px; overflow-x: auto; white-space: pre; max-height: 400px; }
+        .formatted-json .key { color: #9cdcfe; }
+        .formatted-json .string { color: #ce9178; }
+        .formatted-json .number { color: #b5cea8; }
+        .formatted-json .boolean { color: #569cd6; }
+        .formatted-json .null { color: #569cd6; }
         
         .back-link { display: inline-block; margin-top: 30px; color: #667eea; text-decoration: none; font-weight: 500; }
         .back-link:hover { text-decoration: underline; }
@@ -70,19 +95,24 @@
                 <p class="tool-description">验证JSON格式是否正确，显示错误位置</p>
             </div>
             
-            <div class="tool-content">
-                <h3>✨ 功能特性</h3>
-                <ul class="feature-list">
-                                        <li>格式验证</li>
-                    <li>错误定位</li>
-                    <li>语法高亮</li>
-                    <li>错误提示</li>
-                </ul>
-                
-                <div style="text-align: center; margin-top: 40px; padding: 40px; background: #f8f9fa; border-radius: 15px;">
-                    <p style="color: #666; font-size: 1.1rem;">🚧 开发中...</p>
-                    <p style="color: #999; margin-top: 10px;">此工具正在开发中，敬请期待！</p>
-                </div>
+            <div class="input-section">
+                <label for="jsonInput">输入JSON：</label>
+                <textarea id="jsonInput" placeholder='{"key": "value", "number": 123, "array": [1, 2, 3]}'></textarea>
+            </div>
+            
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="validateJSON()">验证JSON</button>
+                <button class="btn btn-success" onclick="formatJSON()">格式化</button>
+                <button class="btn btn-secondary" onclick="minifyJSON()">压缩</button>
+                <button class="btn btn-secondary" onclick="copyResult()">复制</button>
+                <button class="btn btn-danger" onclick="clearAll()">清空</button>
+            </div>
+            
+            <div class="result-section">
+                <h3>验证结果：</h3>
+                <div id="statusDiv"></div>
+                <div id="errorDiv"></div>
+                <div id="formattedDiv"></div>
             </div>
             
             <a href="/" class="back-link">← 返回首页</a>
@@ -92,5 +122,117 @@
             <p>© 2026 Multi Tools - 免费在线工具集</p>
         </footer>
     </div>
+    
+    <script>
+        function validateJSON() {
+            const input = document.getElementById('jsonInput').value.trim();
+            const statusDiv = document.getElementById('statusDiv');
+            const errorDiv = document.getElementById('errorDiv');
+            const formattedDiv = document.getElementById('formattedDiv');
+            
+            statusDiv.innerHTML = '';
+            errorDiv.innerHTML = '';
+            formattedDiv.innerHTML = '';
+            
+            if (!input) {
+                statusDiv.innerHTML = '<div class="status error">⚠️ 请输入JSON内容</div>';
+                return;
+            }
+            
+            try {
+                const parsed = JSON.parse(input);
+                statusDiv.innerHTML = '<div class="status success">✅ JSON格式正确！</div>';
+                
+                // 显示格式化后的JSON
+                const formatted = JSON.stringify(parsed, null, 2);
+                formattedDiv.innerHTML = '<div class="formatted-json">' + highlightJSON(formatted) + '</div>';
+                
+                trackToolUsage('json-validator', 'valid');
+            } catch (e) {
+                statusDiv.innerHTML = '<div class="status error">❌ JSON格式错误</div>';
+                errorDiv.innerHTML = '<div class="error-detail">' + escapeHtml(e.message) + '</div>';
+                trackToolUsage('json-validator', 'invalid');
+            }
+        }
+        
+        function formatJSON() {
+            const input = document.getElementById('jsonInput').value.trim();
+            if (!input) {
+                alert('请先输入JSON内容！');
+                return;
+            }
+            
+            try {
+                const parsed = JSON.parse(input);
+                const formatted = JSON.stringify(parsed, null, 2);
+                document.getElementById('jsonInput').value = formatted;
+                
+                const formattedDiv = document.getElementById('formattedDiv');
+                formattedDiv.innerHTML = '<div class="formatted-json">' + highlightJSON(formatted) + '</div>';
+                
+                trackToolUsage('json-validator', 'format');
+            } catch (e) {
+                alert('JSON格式错误，无法格式化：' + e.message);
+            }
+        }
+        
+        function minifyJSON() {
+            const input = document.getElementById('jsonInput').value.trim();
+            if (!input) {
+                alert('请先输入JSON内容！');
+                return;
+            }
+            
+            try {
+                const parsed = JSON.parse(input);
+                const minified = JSON.stringify(parsed);
+                document.getElementById('jsonInput').value = minified;
+                trackToolUsage('json-validator', 'minify');
+            } catch (e) {
+                alert('JSON格式错误，无法压缩：' + e.message);
+            }
+        }
+        
+        function copyResult() {
+            const output = document.getElementById('jsonInput').value;
+            if (!output) {
+                alert('没有可复制的内容！');
+                return;
+            }
+            
+            navigator.clipboard.writeText(output).then(() => {
+                alert('已复制到剪贴板！');
+                trackToolUsage('json-validator', 'copy');
+            }).catch(err => {
+                alert('复制失败：' + err);
+            });
+        }
+        
+        function clearAll() {
+            document.getElementById('jsonInput').value = '';
+            document.getElementById('statusDiv').innerHTML = '';
+            document.getElementById('errorDiv').innerHTML = '';
+            document.getElementById('formattedDiv').innerHTML = '';
+            trackToolUsage('json-validator', 'clear');
+        }
+        
+        function highlightJSON(json) {
+            return json
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"([^"]+)":/g, '<span class="key">"$1"</span>:')
+                .replace(/: "([^"]*)"/g, ': <span class="string">"$1"</span>')
+                .replace(/: (\d+\.?\d*)/g, ': <span class="number">$1</span>')
+                .replace(/: (true|false)/g, ': <span class="boolean">$1</span>')
+                .replace(/: (null)/g, ': <span class="null">$1</span>');
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
 </body>
 </html>
