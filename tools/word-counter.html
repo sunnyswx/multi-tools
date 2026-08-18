@@ -91,6 +91,13 @@
                 trackToolUsage('word-counter', 'click');
             });
         });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('word-counter', 'click');
+            });
+        });
 </script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -101,6 +108,13 @@
         // 追踪按钮点击
         document.querySelector('button').addEventListener('click', () => {
             trackToolUsage('word-counter', 'click');
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('word-counter', 'click');
+            });
         });
 
         // 追踪工具使用
@@ -218,6 +232,13 @@
         // 追踪按钮点击
         document.querySelector('button').addEventListener('click', () => {
             trackToolUsage('word-counter', 'click');
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('word-counter', 'click');
+            });
         });
 
         // 追踪工具使用
