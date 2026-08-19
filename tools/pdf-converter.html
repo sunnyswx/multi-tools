@@ -20,21 +20,6 @@
         header h1 { font-size: 2.5rem; margin-bottom: 10px; }
         .back-btn { display: inline-block; margin-bottom: 20px; padding: 10px 20px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 25px; }
         .tool-content { background: white; border-radius: 20px; padding: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
-        .input-group { margin-bottom: 20px; }
-        .input-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #333; }
-        textarea, input[type="text"], input[type="number"] { width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; }
-        textarea { height: 200px; resize: vertical; font-family: monospace; }
-        textarea:focus, input:focus { outline: none; border-color: #667eea; }
-        .btn-group { display: flex; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
-        .btn { padding: 12px 30px; border: none; border-radius: 25px; cursor: pointer; font-size: 16px; transition: all 0.3s; }
-        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
-        .btn-secondary { background: #f0f0f0; color: #333; }
-        .btn-secondary:hover { background: #e0e0e0; }
-        .result { background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px; word-break: break-all; display: none; }
-        .result.show { display: block; }
-        .error { background: #fee2e2; color: #991b1b; padding: 15px; border-radius: 10px; margin-top: 20px; display: none; }
-        .error.show { display: block; }
     </style>
 </head>
 <body>
@@ -45,58 +30,10 @@
             <p>PDF转换工具</p>
         </header>
         <main class="tool-content">
-            <div class="input-group">
-                <label>输入内容</label>
-                <textarea id="inputText" placeholder="请输入内容..."></textarea>
-            </div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="process()">处理</button>
-                <button class="btn btn-secondary" onclick="clearAll()">清空</button>
-                <button class="btn btn-secondary" onclick="copyResult()">复制结果</button>
-            </div>
-            <div id="result" class="result"></div>
-            <div id="error" class="error"></div>
+            <p>工具功能开发中...</p>
         </main>
     </div>
     <script>
-        function process() {
-            const input = document.getElementById('inputText').value;
-            if (!input) {
-                showError('请输入内容');
-                return;
-            }
-            // TODO: 实现具体功能
-            showResult('功能开发中...');
-        }
-        
-        function showResult(text) {
-            const resultDiv = document.getElementById('result');
-            resultDiv.textContent = text;
-            resultDiv.classList.add('show');
-            document.getElementById('error').classList.remove('show');
-        }
-        
-        function showError(text) {
-            const errorDiv = document.getElementById('error');
-            errorDiv.textContent = text;
-            errorDiv.classList.add('show');
-            document.getElementById('result').classList.remove('show');
-        }
-        
-        function clearAll() {
-            document.getElementById('inputText').value = '';
-            document.getElementById('result').classList.remove('show');
-            document.getElementById('result').textContent = '';
-            document.getElementById('error').classList.remove('show');
-            document.getElementById('error').textContent = '';
-        }
-        
-        function copyResult() {
-            const result = document.getElementById('result').textContent;
-            if (!result) { alert('没有结果可复制'); return; }
-            navigator.clipboard.writeText(result).then(() => alert('已复制到剪贴板'));
-        }
-        
         function trackToolUsage(name) {
             if (typeof gtag !== 'undefined') gtag('event', 'tool_usage', { event_category: 'tools', event_label: name });
         }

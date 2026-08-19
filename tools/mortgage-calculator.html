@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mortgage Calculator - 免费在线工具 | Multi Tools</title>
-    <meta name="description" content="房贷计算器">
+    <title>房贷计算器 - 免费在线工具 | Multi Tools</title>
+    <meta name="description" content="在线房贷计算器，计算月供和总利息">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -15,92 +15,116 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
-        .container { max-width: 1000px; margin: 0 auto; }
+        .container { max-width: 800px; margin: 0 auto; }
         header { text-align: center; padding: 40px 20px; color: white; }
         header h1 { font-size: 2.5rem; margin-bottom: 10px; }
         .back-btn { display: inline-block; margin-bottom: 20px; padding: 10px 20px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 25px; }
         .tool-content { background: white; border-radius: 20px; padding: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
         .input-group { margin-bottom: 20px; }
         .input-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #333; }
-        textarea, input[type="text"], input[type="number"] { width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; }
-        textarea { height: 200px; resize: vertical; font-family: monospace; }
-        textarea:focus, input:focus { outline: none; border-color: #667eea; }
-        .btn-group { display: flex; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
-        .btn { padding: 12px 30px; border: none; border-radius: 25px; cursor: pointer; font-size: 16px; transition: all 0.3s; }
+        .input-group input, .input-group select { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; }
+        .input-group input:focus, .input-group select:focus { outline: none; border-color: #667eea; }
+        .btn { padding: 12px 30px; border: none; border-radius: 25px; cursor: pointer; font-size: 16px; transition: all 0.3s; margin: 10px 5px; }
         .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
         .btn-secondary { background: #f0f0f0; color: #333; }
-        .btn-secondary:hover { background: #e0e0e0; }
-        .result { background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px; word-break: break-all; display: none; }
+        .result { margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #667eea; display: none; }
         .result.show { display: block; }
-        .error { background: #fee2e2; color: #991b1b; padding: 15px; border-radius: 10px; margin-top: 20px; display: none; }
-        .error.show { display: block; }
+        .result-item { margin: 10px 0; font-size: 1.1rem; }
+        .result-value { font-size: 1.5rem; color: #667eea; font-weight: bold; }
+        .chart { margin-top: 30px; height: 300px; position: relative; }
     </style>
 </head>
 <body>
     <div class="container">
         <a href="/" class="back-btn">← 返回首页</a>
         <header>
-            <h1>🔧 Mortgage Calculator</h1>
-            <p>房贷计算器</p>
+            <h1>🏠 房贷计算器</h1>
+            <p>计算月供和总利息</p>
         </header>
         <main class="tool-content">
             <div class="input-group">
-                <label>输入内容</label>
-                <textarea id="inputText" placeholder="请输入内容..."></textarea>
+                <label>贷款金额（万元）</label>
+                <input type="number" id="loanAmount" placeholder="例如：100" min="1" max="10000">
             </div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="process()">处理</button>
-                <button class="btn btn-secondary" onclick="clearAll()">清空</button>
-                <button class="btn btn-secondary" onclick="copyResult()">复制结果</button>
+            <div class="input-group">
+                <label>贷款年限（年）</label>
+                <input type="number" id="loanYears" placeholder="例如：30" min="1" max="50">
             </div>
-            <div id="result" class="result"></div>
-            <div id="error" class="error"></div>
+            <div class="input-group">
+                <label>年利率（%）</label>
+                <input type="number" id="annualRate" placeholder="例如：4.9" min="0.1" max="20" step="0.01">
+            </div>
+            <div class="input-group">
+                <label>还款方式</label>
+                <select id="repayMethod">
+                    <option value="equal_principal">等额本金</option>
+                    <option value="equal_installment">等额本息</option>
+                </select>
+            </div>
+            <button class="btn btn-primary" onclick="calculate()">计算</button>
+            <button class="btn btn-secondary" onclick="clearAll()">清空</button>
+            <div id="result" class="result">
+                <div class="result-item">
+                    月供：<span class="result-value" id="monthlyPayment">--</span>
+                </div>
+                <div class="result-item">
+                    总利息：<span class="result-value" id="totalInterest">--</span>
+                </div>
+                <div class="result-item">
+                    还款总额：<span class="result-value" id="totalPayment">--</span>
+                </div>
+            </div>
         </main>
     </div>
     <script>
-        function process() {
-            const input = document.getElementById('inputText').value;
-            if (!input) {
-                showError('请输入内容');
+        function calculate() {
+            const amount = parseFloat(document.getElementById('loanAmount').value) * 10000;
+            const years = parseFloat(document.getElementById('loanYears').value);
+            const rate = parseFloat(document.getElementById('annualRate').value) / 100;
+            const method = document.getElementById('repayMethod').value;
+            
+            if (!amount || !years || !rate) {
+                alert('请填写完整信息');
                 return;
             }
-            // TODO: 实现具体功能
-            showResult('功能开发中...');
-        }
-        
-        function showResult(text) {
-            const resultDiv = document.getElementById('result');
-            resultDiv.textContent = text;
-            resultDiv.classList.add('show');
-            document.getElementById('error').classList.remove('show');
-        }
-        
-        function showError(text) {
-            const errorDiv = document.getElementById('error');
-            errorDiv.textContent = text;
-            errorDiv.classList.add('show');
-            document.getElementById('result').classList.remove('show');
+            
+            const months = years * 12;
+            const monthlyRate = rate / 12;
+            let monthlyPayment, totalInterest, totalPayment;
+            
+            if (method === 'equal_principal') {
+                // 等额本金
+                const principalPerMonth = amount / months;
+                const firstMonthInterest = amount * monthlyRate;
+                monthlyPayment = principalPerMonth + firstMonthInterest;
+                totalInterest = (months + 1) * amount * monthlyRate / 2;
+                totalPayment = amount + totalInterest;
+            } else {
+                // 等额本息
+                monthlyPayment = amount * monthlyRate * Math.pow(1 + monthlyRate, months) / (Math.pow(1 + monthlyRate, months) - 1);
+                totalInterest = monthlyPayment * months - amount;
+                totalPayment = amount + totalInterest;
+            }
+            
+            document.getElementById('monthlyPayment').textContent = '¥' + monthlyPayment.toFixed(2) + '/月';
+            document.getElementById('totalInterest').textContent = '¥' + totalInterest.toFixed(2);
+            document.getElementById('totalPayment').textContent = '¥' + totalPayment.toFixed(2);
+            document.getElementById('result').classList.add('show');
+            trackToolUsage('mortgage-calculator');
         }
         
         function clearAll() {
-            document.getElementById('inputText').value = '';
+            document.getElementById('loanAmount').value = '';
+            document.getElementById('loanYears').value = '';
+            document.getElementById('annualRate').value = '';
             document.getElementById('result').classList.remove('show');
-            document.getElementById('result').textContent = '';
-            document.getElementById('error').classList.remove('show');
-            document.getElementById('error').textContent = '';
-        }
-        
-        function copyResult() {
-            const result = document.getElementById('result').textContent;
-            if (!result) { alert('没有结果可复制'); return; }
-            navigator.clipboard.writeText(result).then(() => alert('已复制到剪贴板'));
         }
         
         function trackToolUsage(name) {
             if (typeof gtag !== 'undefined') gtag('event', 'tool_usage', { event_category: 'tools', event_label: name });
         }
-        trackToolUsage('Mortgage Calculator');
+        trackToolUsage('mortgage-calculator');
     </script>
 </body>
 </html>
