@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{TITLE} - 免费在线工具 | Multi Tools</title>
-    <meta name="description" content="{DESCRIPTION}">
+    <title>Image Compressor - 免费在线工具 | Multi Tools</title>
+    <meta name="description" content="image compressor，在线工具">
     
     <!-- GA4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"><\/script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-L7GQFYBWB6');
-    <\/script>
+    </script>
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -66,71 +66,34 @@
             margin-bottom: 20px;
             font-size: 1.8rem;
         }
-        .tool-content p {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        .input-area, .output-area {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 14px;
-            transition: border-color 0.3s;
-        }
-        .input-area:focus, .output-area:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        .input-area {
-            min-height: 150px;
-            resize: vertical;
-        }
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 25px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin: 10px 5px;
-        }
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
-        }
-        .btn-secondary {
-            background: #f0f0f0;
-            color: #333;
-        }
-        .btn-secondary:hover {
-            background: #e0e0e0;
-            box-shadow: none;
-        }
-        .result {
-            margin-top: 20px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            border-left: 4px solid #667eea;
-        }
-        .result h3 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-        .result-value {
-            font-size: 1.5rem;
-            color: #667eea;
-            font-weight: bold;
-        }
+        /* 保留原有工具样式 */
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        header { text-align: center; padding: 20px; color: white; }
+        header h1 { font-size: 2rem; margin-bottom: 10px; }
+        .back-btn { display: inline-block; margin-bottom: 15px; padding: 8px 20px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 20px; font-size: 0.9rem; }
+        .back-btn:hover { background: rgba(255,255,255,0.3); }
+        .tool-card { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+        .upload-area { border: 3px dashed #667eea; border-radius: 15px; padding: 60px 20px; text-align: center; cursor: pointer; transition: all 0.3s; background: #f8f9fa; margin-bottom: 20px; }
+        .upload-area:hover { border-color: #764ba2; background: #f0f0f0; }
+        .upload-icon { font-size: 4rem; margin-bottom: 15px; }
+        .upload-text { font-size: 1.1rem; color: #666; }
+        #fileInput { display: none; }
+        .preview-container { margin-top: 20px; }
+        .preview-item { display: flex; align-items: center; gap: 15px; padding: 15px; background: #f8f9fa; border-radius: 10px; margin: 10px 0; }
+        .preview-item img { width: 100px; height: 100px; object-fit: cover; border-radius: 8px; }
+        .preview-info { flex: 1; }
+        .preview-info h4 { color: #333; margin-bottom: 5px; }
+        .preview-info p { color: #666; font-size: 0.9rem; }
+        .download-btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; text-decoration: none; display: inline-block; }
+        .download-btn:hover { transform: scale(1.05); }
+        footer { text-align: center; padding: 40px 20px; color: white; opacity: 0.8; }
+    
         @media (max-width: 768px) {
             header h1 { font-size: 2rem; }
             .tool-content { padding: 20px; }
-            .btn { padding: 10px 20px; font-size: 14px; }
         }
     </style>
 </head>
@@ -139,13 +102,112 @@
         <a href="/" class="back-btn">← 返回首页</a>
         
         <header>
-            <h1>🛠️ {TITLE}</h1>
-            <p>{DESCRIPTION}</p>
+            <h1>🛠️ Image Compressor</h1>
+            <p>免费在线image compressor工具</p>
         </header>
         
         <main class="tool-content">
-            <!-- 工具功能区域 -->
-            {CONTENT}
+            
+    <div class="container">
+        <a href="/" class="back-btn">← 返回首页</a>
+        <header>
+            <h1>🖼️ 图片压缩工具</h1>
+            <p>免费在线压缩PNG、JPG、WebP图片，本地处理保护隐私</p>
+        </header>
+        
+        <div class="tool-card">
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">📁</div>
+                <div class="upload-text">点击上传或拖拽图片到此处</div>
+                <input type="file" id="fileInput" accept="image/*" multiple>
+            </div>
+            
+            <div class="preview-container" id="previewContainer"></div>
+        </div>
+        
+        <footer>
+            <p>© 2026 Multi Tools | 免费在线图片压缩工具</p>
+        </footer>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.2/dist/browser-image-compression.js"></script>
+    <script>
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const previewContainer = document.getElementById('previewContainer');
+        
+        uploadArea.addEventListener('click', () => fileInput.click());
+        
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#764ba2';
+            uploadArea.style.background = '#f0f0f0';
+        });
+        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.style.borderColor = '#667eea';
+            uploadArea.style.background = '#f8f9fa';
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#667eea';
+            uploadArea.style.background = '#f8f9fa';
+            handleFiles(e.dataTransfer.files);
+        });
+        
+        fileInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files);
+        });
+        
+        async function handleFiles(files) {
+            previewContainer.innerHTML = '';
+            
+            for (const file of files) {
+                if (!file.type.startsWith('image/')) continue;
+                
+                const originalSize = file.size;
+                const originalUrl = URL.createObjectURL(file);
+                
+                try {
+                    const options = {
+                        maxSizeMB: 1,
+                        maxWidthOrHeight: 1920,
+                        useWebWorker: true
+                    };
+                    
+                    const compressedFile = await imageCompression(file, options);
+                    const compressedUrl = URL.createObjectURL(compressedFile);
+                    
+                    const previewItem = document.createElement('div');
+                    previewItem.className = 'preview-item';
+                    previewItem.innerHTML = `
+                        <img src="${originalUrl}" alt="预览">
+                        <div class="preview-info">
+                            <h4>${file.name}</h4>
+                            <p>原始: ${formatBytes(originalSize)} → 压缩: ${formatBytes(compressedFile.size)}</p>
+                            <p>压缩率: ${Math.round((1 - compressedFile.size / originalSize) * 100)}%</p>
+                        </div>
+                        <a href="${compressedUrl}" download="compressed_${file.name}" class="download-btn">下载</a>
+                    `;
+                    previewContainer.appendChild(previewItem);
+                    
+                    trackToolUsage('image-compressor', 'compress');
+                } catch (error) {
+                    console.error('压缩失败:', error);
+                }
+            }
+        }
+        
+        function formatBytes(bytes) {
+            if (bytes === 0) return '0 B';
+            const k = 1024;
+            const sizes = ['B', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+    </script>
+
         </main>
         
         <footer style="text-align: center; color: white; padding: 20px;">
@@ -167,6 +229,6 @@
         }
         
         trackToolUsage('image-compressor');
-    <\/script>
+    </script>
 </body>
 </html>
