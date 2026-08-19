@@ -2,4 +2,4 @@
 Allow: /
 
 # Sitemap
-Sitemap: https://sunnyswx-tools.pages.dev/sitemap.xml
+Sitemap: https://zh8888.dpdns.org/sitemap.xml
