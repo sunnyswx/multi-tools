@@ -46,7 +46,7 @@
 
 ### 网站状态
 ```
-✅ 网站地址: https://sunnyswx-tools.pages.dev
+✅ 网站地址: https://zh8888.dpdns.org
 ✅ 工具数量: 19个（18原有 + 1新增）
 ✅ 部署状态: 正常运行
 ✅ WARP状态: 已断开

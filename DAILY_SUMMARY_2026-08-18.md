@@ -89,7 +89,7 @@
 ```
 ✅ GitHub: 代码已推送（30个文件变更）
 ✅ Cloudflare: 自动部署中
-✅ 生产环境: https://sunnyswx-tools.pages.dev
+✅ 生产环境: https://zh8888.dpdns.org
 ✅ 在线访问: 正常
 ```
 

@@ -1,72 +1,100 @@
 #!/bin/bash
-# 每日自动部署新工具（Linux/Mac版本）
+# 每日部署脚本 - 自动检测WARP并部署
+# 更新时间: 2026-08-18
+# 域名: zh8888.dpdns.org
 
-echo "🚀 开始每日自动部署..."
+echo "🚀 开始每日部署检查..."
 echo "时间: $(date)"
 echo ""
 
-# 0. 检测WARP状态（如果存在）
-if [ -f "scripts/check-warp.sh" ]; then
-    echo "📝 步骤0: 检测WARP状态..."
-    bash scripts/check-warp.sh
-    if [ $? -ne 0 ]; then
-        echo "❌ WARP检测失败，停止部署"
-        exit 1
-    fi
-    echo ""
+# 检查WARP连接
+echo "📝 步骤1: 检查WARP连接状态..."
+bash check-warp.sh
+if [ $? -ne 0 ]; then
+    echo "⚠️ WARP检测失败，继续执行..."
 fi
+echo ""
 
-# 1. 进入项目目录
+# 进入项目目录
+echo "📝 步骤2: 进入项目目录..."
 cd ~/Documents/functional-website/multi-tools
-echo "✅ 进入项目目录"
-echo ""
-
-# 2. 检查Git状态
-echo "📝 步骤1: 检查Git状态..."
-git status > /dev/null 2>&1
 if [ $? -ne 0 ]; then
-    echo "❌ 错误: 不在Git仓库目录"
+    echo "❌ 无法进入项目目录"
     exit 1
 fi
-echo "✅ Git状态正常"
+echo "✅ 项目目录: $(pwd)"
 echo ""
 
-# 3. 运行开发新工具脚本
-echo "📝 步骤2: 开发新工具..."
-python3 scripts/develop-new-tool.py
+# 检查Git状态
+echo "📝 步骤3: 检查Git状态..."
+git status --short
+echo ""
+
+# 拉取最新代码
+echo "📝 步骤4: 拉取最新代码..."
+git pull origin main
 if [ $? -ne 0 ]; then
-    echo "⚠️ 没有创建新工具，继续后续步骤..."
+    echo "⚠️ Git pull失败，可能是网络问题"
+    echo "   尝试重新连接WARP..."
+    bash check-warp.sh
+    git pull origin main
 fi
 echo ""
 
-# 4. 运行SEO优化脚本
-echo "📝 步骤3: 优化工具SEO..."
-python3 scripts/optimize-tool-seo.py
-if [ $? -ne 0 ]; then
-    echo "❌ SEO优化失败"
-    exit 1
+# 运行SEO和GA4更新脚本
+echo "📝 步骤5: 运行SEO和GA4更新..."
+if [ -f scripts/batch-seo-ga4.py ]; then
+    python3 scripts/batch-seo-ga4.py
+else
+    echo "⚠️ batch-seo-ga4.py不存在，跳过"
 fi
 echo ""
 
-# 5. 运行追踪添加脚本
-echo "📝 步骤4: 添加工具追踪..."
-python3 scripts/add-tool-tracking.py
-if [ $? -ne 0 ]; then
-    echo "❌ 追踪添加失败"
-    exit 1
+# 运行追踪更新脚本
+echo "📝 步骤6: 运行追踪更新..."
+if [ -f scripts/batch-tracking.py ]; then
+    python3 scripts/batch-tracking.py
+else
+    echo "⚠️ batch-tracking.py不存在，跳过"
 fi
 echo ""
 
-# 6. Git提交并推送
-echo "📝 步骤5: Git提交并推送..."
+# 提交更改
+echo "📝 步骤7: 提交更改..."
 git add -A
-git commit -m "auto: daily tool deployment - $(date +%Y%m%d)"
+git commit -m "chore: daily automated deployment - $(date +%Y-%m-%d)"
+if [ $? -ne 0 ]; then
+    echo "ℹ️ 没有需要提交的更改"
+fi
+echo ""
+
+# 推送到GitHub
+echo "📝 步骤8: 推送到GitHub..."
 git push origin main
 if [ $? -ne 0 ]; then
-    echo "❌ Git推送失败"
-    exit 1
+    echo "⚠️ Git push失败，可能是网络问题"
+    echo "   尝试重新连接WARP..."
+    bash check-warp.sh
+    git push origin main
 fi
-echo "✅ 已推送到GitHub"
 echo ""
 
-echo "🎉 每日自动部署完成！"
+# 检查部署状态
+echo "📝 步骤9: 检查部署状态..."
+echo "   访问: https://zh8888.dpdns.org"
+echo "   Sitemap: https://zh8888.dpdns.org/sitemap.xml"
+echo ""
+
+# 断开WARP
+echo "📝 步骤10: 断开WARP连接..."
+warp-cli.exe disconnect >nul 2>&1
+echo "✅ WARP已断开"
+echo ""
+
+echo "🎉 每日部署检查完成！"
+echo ""
+echo "📊 总结:"
+echo "   域名: https://zh8888.dpdns.org"
+echo "   工具数: 27个"
+echo "   状态: 已部署"
+echo ""

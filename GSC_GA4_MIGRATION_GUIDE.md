@@ -1,7 +1,7 @@
 # GSC和GA4迁移指南
 
 **时间**: 2026-08-18 01:15  
-**旧域名**: sunnyswx-tools.pages.dev  
+**旧域名**: zh8888.dpdns.org  
 **新域名**: zh8888.dpdns.org
 
 ---
@@ -77,7 +77,7 @@
 5. 添加CNAME记录：
    - 类型: CNAME
    - 名称: @
-   - 内容: sunnyswx-tools.pages.dev
+   - 内容: zh8888.dpdns.org
    - 代理状态: Proxied（橙云）
 6. Pages会自动设置301重定向
 ```
@@ -143,7 +143,7 @@
 #### 更新Sitemap
 ```
 1. 打开 sitemap.xml
-2. 将所有URL从 sunnyswx-tools.pages.dev 改为 zh8888.dpdns.org
+2. 将所有URL从 zh8888.dpdns.org 改为 zh8888.dpdns.org
 3. 更新 lastmod 日期为今天
 4. 保存并推送到GitHub
 ```
@@ -154,7 +154,7 @@
 
 | 项目 | 旧域名 | 新域名 |
 |------|--------|--------|
-| **GSC属性** | https://sunnyswx-tools.pages.dev/ | https://zh8888.dpdns.org/ |
+| **GSC属性** | https://zh8888.dpdns.org/ | https://zh8888.dpdns.org/ |
 | **GA4 Property** | 现有Property | 新建Property |
 | **Sitemap** | pages.dev/sitemap.xml | zh8888.dpdns.org/sitemap.xml |
 | **robots.txt** | pages.dev/robots.txt | zh8888.dpdns.org/robots.txt |

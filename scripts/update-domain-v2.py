@@ -55,7 +55,7 @@ def update_ga4_code(file_path, old_measurement_id, new_measurement_id):
 def main():
     # 配置
     ROOT_DIR = '.'
-    OLD_DOMAIN = 'sunnyswx-tools.pages.dev'
+    OLD_DOMAIN = 'zh8888.dpdns.org'
     NEW_DOMAIN = 'zh8888.dpdns.org'
     OLD_MEASUREMENT_ID = 'G-7B5H09J4KB'
     NEW_MEASUREMENT_ID = None  # 如果创建了新Property，在这里填写

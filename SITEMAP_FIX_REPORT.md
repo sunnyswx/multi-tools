@@ -66,7 +66,7 @@
 ✅ 总URL数: 28个（1主页 + 27工具）
 ✅ 更新日期: 2026-08-18
 ✅ 格式正确: XML标准格式
-✅ 可访问: https://sunnyswx-tools.pages.dev/sitemap.xml
+✅ 可访问: https://zh8888.dpdns.org/sitemap.xml
 ```
 
 ### 工具覆盖
@@ -100,7 +100,7 @@
 
 ### 验证步骤
 ```
-1. 访问 https://sunnyswx-tools.pages.dev/sitemap.xml
+1. 访问 https://zh8888.dpdns.org/sitemap.xml
 2. 确认包含28个URL
 3. 在Google Search Console点击"重新提交"
 4. 等待Google重新抓取

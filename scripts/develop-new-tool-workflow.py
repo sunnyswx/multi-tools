@@ -293,7 +293,7 @@ def main():
     print(f"\n📊 统计：")
     print(f"   - 开发工具: {len(developed)} 个")
     print(f"   - 验证通过: {len(validated)} 个")
-    print(f"   - 网站: https://sunnyswx-tools.pages.dev")
+    print(f"   - 网站: https://zh8888.dpdns.org")
     print(f"\n🎉 新工具将自动部署到Cloudflare Pages")
 
 if __name__ == "__main__":

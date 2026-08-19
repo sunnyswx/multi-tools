@@ -90,7 +90,7 @@ def update_all_files(root_dir, old_domain, new_domain, new_measurement_id=None):
 if __name__ == '__main__':
     # 配置
     ROOT_DIR = '.'
-    OLD_DOMAIN = 'sunnyswx-tools.pages.dev'
+    OLD_DOMAIN = 'zh8888.dpdns.org'
     NEW_DOMAIN = 'zh8888.dpdns.org'
     NEW_MEASUREMENT_ID = None  # 如果有新的GA4 Measurement ID，在这里填写
     

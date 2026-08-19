@@ -10,7 +10,7 @@ import sys
 
 # 默认配置
 DEFAULT_GA4_ID = 'G-7B5H09J4KB'
-BASE_URL = 'https://sunnyswx-tools.pages.dev'
+BASE_URL = 'https://zh8888.dpdns.org'
 TOOLS_DIR = 'tools'
 
 # GA4代码模板

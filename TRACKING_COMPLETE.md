@@ -170,7 +170,7 @@ function trackToolUsage(toolName, action) {
 
 ### 1. 检查代码是否部署
 ```bash
-curl -s "https://sunnyswx-tools.pages.dev/tools/image-compressor.html" | grep -c "trackToolUsage"
+curl -s "https://zh8888.dpdns.org/tools/image-compressor.html" | grep -c "trackToolUsage"
 ```
 
 ### 2. 使用Google Tag Assistant

@@ -91,7 +91,7 @@
 
 ### 网站状态
 ```
-✅ 网站地址: https://sunnyswx-tools.pages.dev
+✅ 网站地址: https://zh8888.dpdns.org
 ✅ 部署状态: 正常运行
 ✅ GA4追踪: 已配置（G-7B5H09J4KB）
 ✅ Sitemap: 已提交
@@ -244,7 +244,7 @@ schtasks /run /tn "DailyToolDeploy"
    scripts\deploy-tool.bat my-new-tool
 
 3. 等待部署完成
-   https://sunnyswx-tools.pages.dev/tools/my-new-tool.html
+   https://zh8888.dpdns.org/tools/my-new-tool.html
 ```
 
 ### 配置定时任务

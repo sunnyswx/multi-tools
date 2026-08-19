@@ -91,7 +91,7 @@
 
 ### 1. 检查代码是否部署
 ```bash
-curl -s "https://sunnyswx-tools.pages.dev/" | grep "G-7B5H09J4KB"
+curl -s "https://zh8888.dpdns.org/" | grep "G-7B5H09J4KB"
 ```
 
 ### 2. 使用Google Tag Assistant

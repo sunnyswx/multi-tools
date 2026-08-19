@@ -41,7 +41,7 @@
 
 ### 5️⃣ 网站部署
 ```
-✅ 网站地址: https://sunnyswx-tools.pages.dev
+✅ 网站地址: https://zh8888.dpdns.org
 ✅ 工具数量: 15个工具卡片（正常显示）
 ✅ 部署状态: 正常运行
 ⏳ Cloudflare自动部署中（1-3分钟）

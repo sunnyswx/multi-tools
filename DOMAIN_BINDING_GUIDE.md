@@ -19,7 +19,7 @@
 ### 网站状态
 ```
 ✅ Pages项目: sunnyswx-tools
-✅ 默认域名: https://sunnyswx-tools.pages.dev
+✅ 默认域名: https://zh8888.dpdns.org
 ✅ 自定义域名: 待绑定
 ```
 
@@ -93,8 +93,8 @@ AAAA    zh8888.dpdns.org  2606:4700:3033::ac43:c077  Proxied (橙云)
 ### Pages要求的DNS记录
 ```
 类型    名称                  内容                              代理状态
-CNAME @或根域名       sunnyswx-tools.pages.dev    Proxied (推荐) 或 DNS only
-CNAME www             sunnyswx-tools.pages.dev    Proxied (推荐)
+CNAME @或根域名       zh8888.dpdns.org    Proxied (推荐) 或 DNS only
+CNAME www             zh8888.dpdns.org    Proxied (推荐)
 ```
 
 ---

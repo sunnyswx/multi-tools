@@ -74,7 +74,7 @@ b0af6b7 - feat: add random-generator to index.html (19 tools)
 
 ### 3.1 网站访问
 ```
-✅ 网站地址: https://sunnyswx-tools.pages.dev
+✅ 网站地址: https://zh8888.dpdns.org
 ✅ 访问状态: 正常
 ✅ 响应时间: <1秒
 ✅ HTTPS: 已启用

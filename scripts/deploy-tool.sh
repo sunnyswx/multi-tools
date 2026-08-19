@@ -45,13 +45,13 @@ git push origin main
 # 6. 验证部署
 echo ""
 echo "✅ 验证部署..."
-if curl -s "https://sunnyswx-tools.pages.dev/tools/$TOOL_NAME.html" | grep -q "G-7B5H09J4KB"; then
+if curl -s "https://zh8888.dpdns.org/tools/$TOOL_NAME.html" | grep -q "G-7B5H09J4KB"; then
     echo "✅ GA4代码已部署"
 else
     echo "⚠️ GA4代码可能还未部署，请稍后检查"
 fi
 
-if curl -s "https://sunnyswx-tools.pages.dev/tools/$TOOL_NAME.html" | grep -q "trackToolUsage"; then
+if curl -s "https://zh8888.dpdns.org/tools/$TOOL_NAME.html" | grep -q "trackToolUsage"; then
     echo "✅ 工具追踪代码已部署"
 else
     echo "⚠️ 工具追踪代码可能还未部署，请稍后检查"
@@ -63,7 +63,7 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 echo "✅ 部署完成！"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
-echo "🌐 网站地址: https://sunnyswx-tools.pages.dev/tools/$TOOL_NAME.html"
+echo "🌐 网站地址: https://zh8888.dpdns.org/tools/$TOOL_NAME.html"
 echo "📊 GitHub: https://github.com/sunnyswx/multi-tools"
 echo "📈 GA4: https://analytics.google.com/"
 echo ""

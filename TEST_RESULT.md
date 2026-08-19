@@ -30,7 +30,7 @@
 
 ### 4️⃣ 网站部署
 ```
-✅ 网站地址: https://sunnyswx-tools.pages.dev
+✅ 网站地址: https://zh8888.dpdns.org
 ✅ 工具数量: (待确认)
 ✅ 部署状态: 正常运行
 ```
@@ -78,10 +78,10 @@
    https://github.com/sunnyswx/multi-tools
 
 3. 检查网站部署
-   https://sunnyswx-tools.pages.dev
+   https://zh8888.dpdns.org
 
 4. 检查新工具页面
-   https://sunnyswx-tools.pages.dev/tools/[工具名].html
+   https://zh8888.dpdns.org/tools/[工具名].html
 ```
 
 ### 明日自动运行

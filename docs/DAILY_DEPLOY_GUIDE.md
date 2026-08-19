@@ -189,7 +189,7 @@ C:\Users\s\Documents\functional-website\multi-tools\scripts\daily-deploy.bat
    https://github.com/sunnyswx/multi-tools
 
 3. 检查网站部署
-   https://sunnyswx-tools.pages.dev
+   https://zh8888.dpdns.org
 ```
 
 ---

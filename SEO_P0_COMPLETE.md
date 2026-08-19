@@ -10,7 +10,7 @@
 ### 1. 图片压缩工具
 ```
 📄 文件: image-compressor.html
-🌐 地址: https://sunnyswx-tools.pages.dev/tools/image-compressor.html
+🌐 地址: https://zh8888.dpdns.org/tools/image-compressor.html
 ✅ Title: 图片压缩工具 - 免费在线压缩PNG、JPG、WebP图片 | Multi Tools
 ✅ Meta Description: 有（155字符）
 ✅ Meta Keywords: 有（8个关键词）
@@ -22,7 +22,7 @@
 ### 2. Markdown编辑器
 ```
 📄 文件: markdown-editor.html
-🌐 地址: https://sunnyswx-tools.pages.dev/tools/markdown-editor.html
+🌐 地址: https://zh8888.dpdns.org/tools/markdown-editor.html
 ✅ Title: Markdown编辑器 - 免费在线Markdown在线编辑器 | Multi Tools
 ✅ Meta Description: 有（148字符）
 ✅ Meta Keywords: 有（6个关键词）
@@ -34,7 +34,7 @@
 ### 3. JSON格式化器
 ```
 📄 文件: json-formatter.html
-🌐 地址: https://sunnyswx-tools.pages.dev/tools/json-formatter.html
+🌐 地址: https://zh8888.dpdns.org/tools/json-formatter.html
 ✅ Title: JSON格式化器 - 免费在线JSON格式化工具 | Multi Tools
 ✅ Meta Description: 有（142字符）
 ✅ Meta Keywords: 有（5个关键词）
@@ -46,7 +46,7 @@
 ### 4. 图片格式转换
 ```
 📄 文件: image-converter.html
-🌐 地址: https://sunnyswx-tools.pages.dev/tools/image-converter.html
+🌐 地址: https://zh8888.dpdns.org/tools/image-converter.html
 ✅ Title: 图片格式转换 - 免费在线JPG PNG WebP转换器 | Multi Tools
 ✅ Meta Description: 有（158字符）
 ✅ Meta Keywords: 有（6个关键词）
@@ -58,7 +58,7 @@
 ### 5. 房贷计算器
 ```
 📄 文件: mortgage-calculator.html
-🌐 地址: https://sunnyswx-tools.pages.dev/tools/mortgage-calculator.html
+🌐 地址: https://zh8888.dpdns.org/tools/mortgage-calculator.html
 ✅ Title: 房贷计算器 - 免费在线房贷计算器,计算每月还款额 | Multi Tools
 ✅ Meta Description: 有（165字符）
 ✅ Meta Keywords: 有（7个关键词）
@@ -113,7 +113,7 @@
 ✅ 代码已提交: 6b7c8d9
 ✅ 已推送到GitHub: main分支
 ✅ 自动部署中: 预计1-3分钟
-✅ 网站地址: https://sunnyswx-tools.pages.dev
+✅ 网站地址: https://zh8888.dpdns.org
 ```
 
 ---

@@ -28,5 +28,5 @@ echo.
 
 echo ✅ 新工具开发工作流完成！
 echo.
-echo 🌐 网站: https://sunnyswx-tools.pages.dev
+echo 🌐 网站: https://zh8888.dpdns.org
 echo 📊 GitHub: https://github.com/sunnyswx/multi-tools

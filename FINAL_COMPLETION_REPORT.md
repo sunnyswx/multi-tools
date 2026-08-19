@@ -9,7 +9,7 @@
 
 ### 1️⃣ 域名迁移
 ```
-✅ 旧域名: sunnyswx-tools.pages.dev
+✅ 旧域名: zh8888.dpdns.org
 ✅ 新域名: zh8888.dpdns.org
 ✅ 绑定状态: 活动
 ✅ SSL: 已启用

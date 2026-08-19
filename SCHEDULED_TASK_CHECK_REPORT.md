@@ -127,7 +127,7 @@ Get-WinEvent -FilterHashtable @{LogName='Microsoft-Windows-TaskScheduler/Operati
 
 ### 网站状态
 ```
-✅ 网站地址: https://sunnyswx-tools.pages.dev
+✅ 网站地址: https://zh8888.dpdns.org
 ✅ 工具显示: 19个（正确）
 ✅ 部署状态: 正常运行
 ```
@@ -154,7 +154,7 @@ schtasks /run /tn "DailyToolDeploy"
 git log --oneline -5
 
 4. 检查网站
-curl -s "https://sunnyswx-tools.pages.dev/" | grep -c "工具"
+curl -s "https://zh8888.dpdns.org/" | grep -c "工具"
 ```
 
 ### 长期优化
@@ -191,7 +191,7 @@ timeout /t 300 /nobreak  # 等待5分钟
 ### 步骤4：验证结果
 ```bash
 git log --oneline -5
-curl -s "https://sunnyswx-tools.pages.dev/" | grep -c "工具"
+curl -s "https://zh8888.dpdns.org/" | grep -c "工具"
 ```
 
 ---

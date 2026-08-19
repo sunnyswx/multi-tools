@@ -27,7 +27,7 @@
 4. git push origin main
 5. Cloudflare自动检测变化
 6. 自动构建（1-3分钟）
-7. 自动部署到 https://sunnyswx-tools.pages.dev
+7. 自动部署到 https://zh8888.dpdns.org
 ```
 
 ### 手动部署（备用）

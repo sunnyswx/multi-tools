@@ -54,7 +54,7 @@ CF_PROJECT="sunnyswx-tools"
 GITHUB_REPO="sunnyswx/multi-tools"
 
 # 网站基础URL
-BASE_URL="https://sunnyswx-tools.pages.dev"
+BASE_URL="https://zh8888.dpdns.org"
 ```
 
 ### 可选配置
@@ -160,10 +160,10 @@ git add -A && git commit -m "feat: optimize all tools" && git push
 
 ```bash
 # 检查GA4代码
-curl -s "https://sunnyswx-tools.pages.dev/tools/my-tool.html" | grep "G-7B5H09J4KB"
+curl -s "https://zh8888.dpdns.org/tools/my-tool.html" | grep "G-7B5H09J4KB"
 
 # 检查追踪代码
-curl -s "https://sunnyswx-tools.pages.dev/tools/my-tool.html" | grep "trackToolUsage"
+curl -s "https://zh8888.dpdns.org/tools/my-tool.html" | grep "trackToolUsage"
 
 # 查看Git提交历史
 git log --oneline -5

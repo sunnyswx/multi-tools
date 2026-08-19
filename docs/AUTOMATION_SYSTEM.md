@@ -79,7 +79,7 @@ schtasks /run /tn "DailyToolDeploy"
 set GA4_ID=G-7B5H09J4KB
 set CF_PROJECT=sunnyswx-tools
 set GITHUB_REPO=sunnyswx/multi-tools
-set BASE_URL=https://sunnyswx-tools.pages.dev
+set BASE_URL=https://zh8888.dpdns.org
 ```
 
 ### 可选配置

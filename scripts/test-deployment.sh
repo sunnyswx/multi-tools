@@ -56,13 +56,13 @@ git push origin main
 echo ""
 echo "📝 步骤6: 验证部署"
 sleep 5
-if curl -s "https://sunnyswx-tools.pages.dev/tools/$TOOL_NAME.html" | grep -q "G-7B5H09J4KB"; then
+if curl -s "https://zh8888.dpdns.org/tools/$TOOL_NAME.html" | grep -q "G-7B5H09J4KB"; then
     echo "✅ GA4代码已部署"
 else
     echo "⚠️ GA4代码可能还未部署，请稍后检查"
 fi
 
-if curl -s "https://sunnyswx-tools.pages.dev/tools/$TOOL_NAME.html" | grep -q "trackToolUsage"; then
+if curl -s "https://zh8888.dpdns.org/tools/$TOOL_NAME.html" | grep -q "trackToolUsage"; then
     echo "✅ 追踪代码已部署"
 else
     echo "⚠️ 追踪代码可能还未部署，请稍后检查"
@@ -74,7 +74,7 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 echo "✅ 部署流程测试完成！"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
-echo "🌐 测试工具地址: https://sunnyswx-tools.pages.dev/tools/$TOOL_NAME.html"
+echo "🌐 测试工具地址: https://zh8888.dpdns.org/tools/$TOOL_NAME.html"
 echo "📊 GitHub: https://github.com/sunnyswx/multi-tools"
 echo ""
 echo "💡 提示: Cloudflare自动部署需要1-3分钟"

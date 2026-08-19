@@ -9,7 +9,7 @@
 
 ### 现象
 ```
-用户在微信内打开 https://sunnyswx-tools.pages.dev
+用户在微信内打开 https://zh8888.dpdns.org
 显示警告：该网页所属平台可能存在被他人恶意利用...
 ```
 

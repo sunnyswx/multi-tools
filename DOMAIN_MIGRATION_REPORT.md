@@ -17,7 +17,7 @@
 
 ### 2️⃣ 网站验证
 ```
-✅ 旧域名可访问: https://sunnyswx-tools.pages.dev
+✅ 旧域名可访问: https://zh8888.dpdns.org
 ✅ 新域名已绑定: https://zh8888.dpdns.org
 ✅ 验证状态: 待部署后验证
 ```
@@ -29,7 +29,7 @@
 ### 3️⃣ 代码更新
 ```
 📝 正在更新sitemap.xml
-   - 域名替换: sunnyswx-tools.pages.dev → zh8888.dpdns.org
+   - 域名替换: zh8888.dpdns.org → zh8888.dpdns.org
    - 更新日期: 2026-08-18
 
 📝 正在更新所有HTML文件

@@ -34,7 +34,7 @@
 ### 步骤4：Cloudflare自动部署
 ```
 ✅ 部署状态: 成功
-✅ 网站地址: https://sunnyswx-tools.pages.dev/tools/random-generator.html
+✅ 网站地址: https://zh8888.dpdns.org/tools/random-generator.html
 ```
 
 ---
@@ -53,7 +53,7 @@
 
 ### 网站验证
 ```
-✅ 新工具页面可访问: https://sunnyswx-tools.pages.dev/tools/random-generator.html
+✅ 新工具页面可访问: https://zh8888.dpdns.org/tools/random-generator.html
 ✅ 工具显示: 正常
 ✅ 返回按钮: 正常
 ✅ 样式渲染: 正常

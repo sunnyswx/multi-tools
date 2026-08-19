@@ -82,8 +82,8 @@
 <meta property="og:title" content="Markdown编辑器 - 免费在线Markdown编辑器">
 <meta property="og:description" content="支持实时预览、GitHub Flavored Markdown语法的免费在线Markdown编辑器">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://sunnyswx-tools.pages.dev/tools/markdown-editor.html">
-<meta property="og:image" content="https://sunnyswx-tools.pages.dev/og-image.jpg">
+<meta property="og:url" content="https://zh8888.dpdns.org/tools/markdown-editor.html">
+<meta property="og:image" content="https://zh8888.dpdns.org/og-image.jpg">
 <meta property="og:site_name" content="Multi Tools">
 <meta property="og:locale" content="zh_CN">
 ```
@@ -105,7 +105,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Markdown编辑器 - 免费在线Markdown编辑器">
 <meta name="twitter:description" content="支持实时预览、GitHub Flavored Markdown语法的免费在线Markdown编辑器">
-<meta name="twitter:image" content="https://sunnyswx-tools.pages.dev/og-image.jpg">
+<meta name="twitter:image" content="https://zh8888.dpdns.org/og-image.jpg">
 ```
 
 **作用：**
@@ -119,7 +119,7 @@
 ### 5. Canonical URL（重要）
 
 ```html
-<link rel="canonical" href="https://sunnyswx-tools.pages.dev/tools/markdown-editor.html">
+<link rel="canonical" href="https://zh8888.dpdns.org/tools/markdown-editor.html">
 ```
 
 **作用：**
@@ -140,7 +140,7 @@
   "@type": "WebApplication",
   "name": "Markdown编辑器",
   "description": "免费在线Markdown编辑器，支持实时预览",
-  "url": "https://sunnyswx-tools.pages.dev/tools/markdown-editor.html",
+  "url": "https://zh8888.dpdns.org/tools/markdown-editor.html",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Any",
   "offers": {

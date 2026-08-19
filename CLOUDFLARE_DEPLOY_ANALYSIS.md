@@ -16,7 +16,7 @@
 
 ### 2️⃣ 网站访问测试
 ```
-⚠️ 网站地址: https://sunnyswx-tools.pages.dev
+⚠️ 网站地址: https://zh8888.dpdns.org
 ⚠️ 工具数量: 18个（未显示random-generator）
 ⚠️ Cloudflare状态: 可能还未同步
 ```
@@ -173,8 +173,8 @@ git diff HEAD~1 HEAD -- index.html
 
 ### 检查网站状态
 ```bash
-curl -s "https://sunnyswx-tools.pages.dev/" | grep -c "工具"
-curl -s "https://sunnyswx-tools.pages.dev/" | grep -o "random-generator"
+curl -s "https://zh8888.dpdns.org/" | grep -c "工具"
+curl -s "https://zh8888.dpdns.org/" | grep -o "random-generator"
 ```
 
 ---

@@ -56,7 +56,7 @@ echo.
 REM 5. 验证部署
 echo 📝 步骤5: 验证部署...
 timeout /t 5 /nobreak > nul
-curl -s "https://sunnyswx-tools.pages.dev/tools/%TOOL_NAME%.html" | findstr /i "G-7B5H09J4KB" >nul
+curl -s "https://zh8888.dpdns.org/tools/%TOOL_NAME%.html" | findstr /i "G-7B5H09J4KB" >nul
 if %ERRORLEVEL% equ 0 (
     echo ✅ GA4代码已部署
 ) else (
@@ -69,7 +69,7 @@ echo ━━━━━━━━━━━━━━━━━━━━━━━━━
 echo ✅ 部署完成！
 echo ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 echo.
-echo 🌐 工具地址: https://sunnyswx-tools.pages.dev/tools/%TOOL_NAME%.html
+echo 🌐 工具地址: https://zh8888.dpdns.org/tools/%TOOL_NAME%.html
 echo 📊 GitHub: https://github.com/sunnyswx/multi-tools
 echo 📈 GA4: https://analytics.google.com/
 echo.

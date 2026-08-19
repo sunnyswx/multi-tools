@@ -17,7 +17,7 @@
 
 ### 2️⃣ 网站验证
 ```
-✅ 旧域名: https://sunnyswx-tools.pages.dev (正常)
+✅ 旧域名: https://zh8888.dpdns.org (正常)
 ✅ 新域名: https://zh8888.dpdns.org (正常)
 ✅ 工具数量: 27个
 ✅ 功能完整: 100%

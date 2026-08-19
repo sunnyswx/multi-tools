@@ -11,7 +11,7 @@ def test_website():
     
     domains = [
         "https://zh8888.dpdns.org",
-        "https://sunnyswx-tools.pages.dev"
+        "https://zh8888.dpdns.org"
     ]
     
     results = []

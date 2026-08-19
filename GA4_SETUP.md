@@ -42,7 +42,7 @@
 
 2. 左侧菜单点击"实时"
 
-3. 打开你的网站：https://sunnyswx-tools.pages.dev/
+3. 打开你的网站：https://zh8888.dpdns.org/
 
 4. 刷新Google Analytics页面
 

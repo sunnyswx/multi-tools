@@ -56,7 +56,7 @@
 ✅ tools/test-tool.html
    - 测试工具页面
    - 验证GA4代码和追踪功能
-   - 已部署到：https://sunnyswx-tools.pages.dev/tools/test-tool.html
+   - 已部署到：https://zh8888.dpdns.org/tools/test-tool.html
 ```
 
 ---
@@ -107,7 +107,7 @@ scripts\deploy-tool.bat my-tool
 GA4测量ID: G-7B5H09J4KB
 Cloudflare项目: sunnyswx-tools
 GitHub仓库: sunnyswx/multi-tools
-网站地址: https://sunnyswx-tools.pages.dev
+网站地址: https://zh8888.dpdns.org
 ```
 
 ### 定时任务
@@ -165,7 +165,7 @@ Linux/Mac: crontab待配置
    git log --oneline -5
 
 3. 检查网站部署
-   https://sunnyswx-tools.pages.dev
+   https://zh8888.dpdns.org
 
 4. 检查GA4数据
    https://analytics.google.com/

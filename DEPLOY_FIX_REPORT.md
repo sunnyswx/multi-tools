@@ -84,10 +84,10 @@ GitHub提交: b0af6b7（较旧）
 git log --oneline -3
 
 # 检查网站工具数量
-curl -s "https://sunnyswx-tools.pages.dev/" | grep -c "工具"
+curl -s "https://zh8888.dpdns.org/" | grep -c "工具"
 
 # 检查random-generator是否部署
-curl -s "https://sunnyswx-tools.pages.dev/" | grep -o "random-generator"
+curl -s "https://zh8888.dpdns.org/" | grep -o "random-generator"
 ```
 
 ---
