@@ -3,71 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Converter - 免费在线工具 | Multi Tools</title>
-    <meta name="description" content="image converter，在线工具">
+    <title>图片格式转换 - 免费在线JPG PNG WebP转换器 | Multi Tools</title>
+    <meta name="description" content="免费在线图片格式转换工具，支持JPG、PNG、WebP格式互转。快速转换，保持原图质量，本地处理保护隐私。">
+    <meta name="keywords" content="图片格式转换,jpg转png,png转webp,webp转jpg,在线转换,图片转换工具">
+    <meta name="author" content="Multi Tools">
+    <meta name="robots" content="index, follow">
     
-    <!-- GA4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-L7GQFYBWB6');
-    </script>
+    <!-- Open Graph -->
+    <meta property="og:title" content="图片格式转换 - 免费在线JPG PNG WebP转换器">
+    <meta property="og:description" content="免费在线图片格式转换工具，支持多种格式互转">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zh8888.dpdns.org/tools/image-converter.html">
+    <meta property="og:image" content="https://zh8888.dpdns.org/og-image.jpg">
+    <meta property="og:site_name" content="Multi Tools">
+    <meta property="og:locale" content="zh_CN">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="图片格式转换 - 免费在线JPG PNG WebP转换器">
+    <meta name="twitter:description" content="免费在线图片格式转换工具，支持多种格式互转">
+    <meta name="twitter:image" content="https://zh8888.dpdns.org/og-image.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://zh8888.dpdns.org/tools/image-converter.html">
     
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            color: white;
-        }
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 10px 20px;
-            background: rgba(255,255,255,0.2);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: all 0.3s;
-        }
-        .back-btn:hover {
-            background: rgba(255,255,255,0.3);
-            transform: translateY(-2px);
-        }
-        .tool-content {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            margin-bottom: 30px;
-        }
-        .tool-content h2 {
-            color: #333;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-        }
-        /* 保留原有工具样式 */
-        
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
         .container { max-width: 1200px; margin: 0 auto; }
@@ -210,24 +170,31 @@
             margin-top: 15px;
             display: none;
         }
-    
-        @media (max-width: 768px) {
-            header h1 { font-size: 2rem; }
-            .tool-content { padding: 20px; }
-        }
     </style>
-</head>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6">
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('image-converter', 'click');
+            });
+        });
+</script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-L7GQFYBWB6');
+    
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('image-converter', 'click');
+            });
+        });
+</script>
+    </head>
 <body>
-    <div class="container">
-        <a href="/" class="back-btn">← 返回首页</a>
-        
-        <header>
-            <h1>🛠️ Image Converter</h1>
-            <p>免费在线image converter工具</p>
-        </header>
-        
-        <main class="tool-content">
-            
     <div class="container">
         <a href="/" class="back-btn">← 返回首页</a>
         <header>
@@ -377,28 +344,167 @@
             });
         });
 </script>
-
-        </main>
-        
-        <footer style="text-align: center; color: white; padding: 20px;">
-            <p>© 2026 Multi Tools - 免费在线工具集</p>
-        </footer>
+</body>
+</html></div>
+            
+            <div class="preview-container" id="previewContainer" style="display: none;">
+                <div class="preview-box">
+                    <h3>原始图片</h3>
+                    <img id="originalPreview" src="" alt="Original">
+                    <p id="originalSize"></p>
+                </div>
+                <div class="preview-box">
+                    <h3>转换后</h3>
+                    <img id="convertedPreview" src="" alt="Converted">
+                    <p id="convertedSize"></p>
+                </div>
+            </div>
+        </div>
     </div>
     
-    <!-- 工具追踪 -->
     <script>
-        function trackToolUsage(toolName) {
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'tool_usage', {
-                    'event_category': 'tools',
-                    'event_label': toolName,
-                    'value': 1
-                });
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const convertBtn = document.getElementById('convertBtn');
+        const downloadLink = document.getElementById('downloadLink');
+        const formatSelect = document.getElementById('formatSelect');
+        const fileInfo = document.getElementById('fileInfo');
+        const previewContainer = document.getElementById('previewContainer');
+        
+        let currentFile = null;
+        let originalDataURL = null;
+        
+        uploadArea.addEventListener('click', () => fileInput.click());
+        
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files[0]) {
+                currentFile = e.target.files[0];
+                readFile(currentFile);
             }
-            console.log('工具使用:', toolName);
+        });
+        
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#764ba2';
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            const file = e.dataTransfer.files[0];
+            if (file && file.type.startsWith('image/')) {
+                currentFile = file;
+                fileInput.files = e.dataTransfer.files;
+                readFile(file);
+            }
+        });
+        
+        function readFile(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                originalDataURL = e.target.result;
+                
+                document.getElementById('fileName').textContent = file.name;
+                document.getElementById('fileSize').textContent = formatSize(file.size);
+                document.getElementById('fileType').textContent = file.type;
+                fileInfo.style.display = 'block';
+                
+                document.getElementById('originalPreview').src = originalDataURL;
+                document.getElementById('originalSize').textContent = formatSize(file.size);
+                
+                convertBtn.disabled = false;
+                previewContainer.style.display = 'grid';
+            };
+            reader.readAsDataURL(file);
         }
         
-        trackToolUsage('image-converter');
-    </script>
+        function formatSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+        
+        convertBtn.addEventListener('click', () => {
+            if (!currentFile) return;
+            
+            convertBtn.disabled = true;
+            convertBtn.textContent = '转换中...';
+            
+            const img = new Image();
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0);
+                
+                const format = formatSelect.value;
+                const quality = format === 'image/jpeg' ? 0.9 : 1.0;
+                
+                canvas.toBlob((blob) => {
+                    const url = URL.createObjectURL(blob);
+                    document.getElementById('convertedPreview').src = url;
+                    document.getElementById('convertedSize').textContent = formatSize(blob.size);
+                    
+                    downloadLink.href = url;
+                    downloadLink.download = currentFile.name.replace(/\.[^/.]+$/, '') + '.' + format.split('/')[1];
+                    downloadLink.style.display = 'inline-block';
+                    
+                    convertBtn.disabled = false;
+                    convertBtn.textContent = '开始转换';
+                }, format, quality);
+            };
+            img.src = originalDataURL;
+        });
+    
+        // 追踪按钮点击
+        document.querySelector('button').addEventListener('click', () => {
+            trackToolUsage('image-converter', 'click');
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('image-converter', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('image-converter', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('image-converter', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('image-converter', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('image-converter', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('image-converter', 'click');
+            });
+        });
+</script>
 </body>
 </html>

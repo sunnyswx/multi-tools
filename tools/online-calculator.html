@@ -3,71 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Calculator - 免费在线工具 | Multi Tools</title>
-    <meta name="description" content="online calculator，在线工具">
-    
-    <!-- GA4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-L7GQFYBWB6');
-    </script>
-    
+    <title>在线计算器 - 免费在线在线计算器工具 | Multi Tools</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            color: white;
-        }
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 10px 20px;
-            background: rgba(255,255,255,0.2);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: all 0.3s;
-        }
-        .back-btn:hover {
-            background: rgba(255,255,255,0.3);
-            transform: translateY(-2px);
-        }
-        .tool-content {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            margin-bottom: 30px;
-        }
-        .tool-content h2 {
-            color: #333;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-        }
-        /* 保留原有工具样式 */
-        
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
         .container { max-width: 500px; margin: 0 auto; }
@@ -208,24 +145,30 @@
             margin-top: 15px;
             display: none;
         }
-    
-        @media (max-width: 768px) {
-            header h1 { font-size: 2rem; }
-            .tool-content { padding: 20px; }
-        }
     </style>
+<meta name="description" content="免费在线计算器，支持基础计算和科学计算。功能强大，界面简洁，适用于日常计算需求。">
+<meta name="keywords" content="计算器,calculator,在线计算,科学计算,数学计算">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="在线计算器 - 免费在线工具">
+    <meta property="og:description" content="免费在线计算器，支持基础计算和科学计算。功能强大，界面简洁，适用于日常计算需求。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zh8888.dpdns.org/tools/online-calculator.html">
+    <meta property="og:image" content="https://zh8888.dpdns.org/og-image.jpg">
+    <meta property="og:site_name" content="Multi Tools">
+    <meta property="og:locale" content="zh_CN">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="在线计算器 - 免费在线工具">
+    <meta name="twitter:description" content="免费在线计算器，支持基础计算和科学计算。功能强大，界面简洁，适用于日常计算需求。">
+    <meta name="twitter:image" content="https://zh8888.dpdns.org/og-image.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://zh8888.dpdns.org/tools/online-calculator.html">
+
 </head>
 <body>
-    <div class="container">
-        <a href="/" class="back-btn">← 返回首页</a>
-        
-        <header>
-            <h1>🛠️ Online Calculator</h1>
-            <p>免费在线online calculator工具</p>
-        </header>
-        
-        <main class="tool-content">
-            
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-7B5H09J4KB">
         // 追踪工具使用
@@ -473,28 +416,170 @@
             });
         });
 </script>
-
-        </main>
+</body>
+</html></div>
+                <div class="result" id="result">0</div>
+            </div>
+            
+            <div class="buttons">
+                <button class="btn btn-clear" onclick="clearAll()">C</button>
+                <button class="btn btn-function" onclick="deleteLast()">⌫</button>
+                <button class="btn btn-function" onclick="appendOperator('%')">%</button>
+                <button class="btn btn-operator" onclick="appendOperator('/')">÷</button>
+                
+                <button class="btn btn-number" onclick="appendNumber('7')">7</button>
+                <button class="btn btn-number" onclick="appendNumber('8')">8</button>
+                <button class="btn btn-number" onclick="appendNumber('9')">9</button>
+                <button class="btn btn-operator" onclick="appendOperator('*')">×</button>
+                
+                <button class="btn btn-number" onclick="appendNumber('4')">4</button>
+                <button class="btn btn-number" onclick="appendNumber('5')">5</button>
+                <button class="btn btn-number" onclick="appendNumber('6')">6</button>
+                <button class="btn btn-operator" onclick="appendOperator('-')">−</button>
+                
+                <button class="btn btn-number" onclick="appendNumber('1')">1</button>
+                <button class="btn btn-number" onclick="appendNumber('2')">2</button>
+                <button class="btn btn-number" onclick="appendNumber('3')">3</button>
+                <button class="btn btn-operator" onclick="appendOperator('+')">+</button>
+                
+                <button class="btn btn-number btn-zero" onclick="appendNumber('0')">0</button>
+                <button class="btn btn-number" onclick="appendNumber('.')">.</button>
+                <button class="btn btn-equal" onclick="calculate()">=</button>
+            </div>
+        </div>
         
-        <footer style="text-align: center; color: white; padding: 20px;">
-            <p>© 2026 Multi Tools - 免费在线工具集</p>
+        <footer>
+            <p>© 2026 Multi Tools | 免费在线工具集</p>
         </footer>
     </div>
     
-    <!-- 工具追踪 -->
     <script>
-        function trackToolUsage(toolName) {
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'tool_usage', {
-                    'event_category': 'tools',
-                    'event_label': toolName,
-                    'value': 1
-                });
+        let currentExpression = '';
+        let shouldResetDisplay = false;
+        
+        const expressionDisplay = document.getElementById('expression');
+        const resultDisplay = document.getElementById('result');
+        
+        function appendNumber(num) {
+            if (shouldResetDisplay) {
+                currentExpression = '';
+                shouldResetDisplay = false;
             }
-            console.log('工具使用:', toolName);
+            currentExpression += num;
+            updateDisplay();
         }
         
-        trackToolUsage('online-calculator');
-    </script>
+        function appendOperator(op) {
+            if (currentExpression === '' && op !== '-') return;
+            
+            const lastChar = currentExpression.slice(-1);
+            if ('+-*/%'.includes(lastChar)) {
+                currentExpression = currentExpression.slice(0, -1);
+            }
+            
+            currentExpression += op;
+            shouldResetDisplay = false;
+            updateDisplay();
+        }
+        
+        function clearAll() {
+            currentExpression = '';
+            resultDisplay.textContent = '0';
+            expressionDisplay.textContent = '';
+        }
+        
+        function deleteLast() {
+            currentExpression = currentExpression.slice(0, -1);
+            updateDisplay();
+        }
+        
+        function calculate() {
+            if (currentExpression === '') return;
+            
+            try {
+                // 安全计算
+                const sanitized = currentExpression.replace(/[^0-9+\-*/%.()]/g, '');
+                const result = Function('"use strict"; return (' + sanitized + ')')();
+                
+                resultDisplay.textContent = formatResult(result);
+                expressionDisplay.textContent = currentExpression + ' =';
+                currentExpression = result.toString();
+                shouldResetDisplay = true;
+            } catch (e) {
+                resultDisplay.textContent = 'Error';
+                currentExpression = '';
+            }
+        }
+        
+        function formatResult(num) {
+            if (Math.abs(num) > 999999999999) {
+                return num.toExponential(6);
+            }
+            if (Math.abs(num) < 0.000001 && num !== 0) {
+                return num.toExponential(6);
+            }
+            return parseFloat(num.toFixed(10)).toString();
+        }
+        
+        function updateDisplay() {
+            resultDisplay.textContent = currentExpression || '0';
+        }
+        
+        // 键盘支持
+        document.addEventListener('keydown', (e) => {
+            if (e.key >= '0' && e.key <= '9') appendNumber(e.key);
+            if (e.key === '.') appendNumber('.');
+            if (e.key === '+') appendOperator('+');
+            if (e.key === '-') appendOperator('-');
+            if (e.key === '*') appendOperator('*');
+            if (e.key === '/') appendOperator('/');
+            if (e.key === '%') appendOperator('%');
+            if (e.key === 'Enter' || e.key === '=') calculate();
+            if (e.key === 'Escape') clearAll();
+            if (e.key === 'Backspace') deleteLast();
+        });
+    
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('online-calculator', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('online-calculator', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('online-calculator', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('online-calculator', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('online-calculator', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('online-calculator', 'click');
+            });
+        });
+</script>
 </body>
 </html>

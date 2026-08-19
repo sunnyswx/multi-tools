@@ -3,71 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unit Converter - 免费在线工具 | Multi Tools</title>
-    <meta name="description" content="unit converter，在线工具">
-    
-    <!-- GA4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-L7GQFYBWB6');
-    </script>
-    
+    <title>单位转换器 - 免费在线单位转换器工具 | Multi Tools</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            color: white;
-        }
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 10px 20px;
-            background: rgba(255,255,255,0.2);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: all 0.3s;
-        }
-        .back-btn:hover {
-            background: rgba(255,255,255,0.3);
-            transform: translateY(-2px);
-        }
-        .tool-content {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            margin-bottom: 30px;
-        }
-        .tool-content h2 {
-            color: #333;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-        }
-        /* 保留原有工具样式 */
-        
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
         .container { max-width: 1000px; margin: 0 auto; }
@@ -203,24 +140,30 @@
             margin-top: 15px;
             display: none;
         }
-    
-        @media (max-width: 768px) {
-            header h1 { font-size: 2rem; }
-            .tool-content { padding: 20px; }
-        }
     </style>
+<meta name="description" content="免费在线单位转换器，支持长度、重量、温度、面积、体积等多种单位快速转换。">
+<meta name="keywords" content="单位转换,converter,长度转换,重量转换,温度转换">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="单位转换器 - 免费在线工具">
+    <meta property="og:description" content="免费在线单位转换器，支持长度、重量、温度、面积、体积等多种单位快速转换。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zh8888.dpdns.org/tools/unit-converter.html">
+    <meta property="og:image" content="https://zh8888.dpdns.org/og-image.jpg">
+    <meta property="og:site_name" content="Multi Tools">
+    <meta property="og:locale" content="zh_CN">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="单位转换器 - 免费在线工具">
+    <meta name="twitter:description" content="免费在线单位转换器，支持长度、重量、温度、面积、体积等多种单位快速转换。">
+    <meta name="twitter:image" content="https://zh8888.dpdns.org/og-image.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://zh8888.dpdns.org/tools/unit-converter.html">
+
 </head>
 <body>
-    <div class="container">
-        <a href="/" class="back-btn">← 返回首页</a>
-        
-        <header>
-            <h1>🛠️ Unit Converter</h1>
-            <p>免费在线unit converter工具</p>
-        </header>
-        
-        <main class="tool-content">
-            
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-7B5H09J4KB">
         // 追踪工具使用
@@ -404,28 +347,175 @@
             });
         });
 </script>
-
-        </main>
+</body>
+</html></div>
+                    <div class="input-group">
+                        <label>单位</label>
+                        <select id="lengthUnit" onchange="convertLength()">
+                            <option value="m">米 (m)</option>
+                            <option value="km">千米 (km)</option>
+                            <option value="cm">厘米 (cm)</option>
+                            <option value="mm">毫米 (mm)</option>
+                            <option value="mi">英里 (mi)</option>
+                            <option value="yd">码 (yd)</option>
+                            <option value="ft">英尺 (ft)</option>
+                            <option value="in">英寸 (in)</option>
+                        </select>
+                    </div>
+                    <div class="result" id="lengthResult">1 米 = 100 厘米</div>
+                </div>
+                
+                <!-- 重量转换 -->
+                <div class="converter-section">
+                    <h3>⚖️ 重量转换</h3>
+                    <div class="input-group">
+                        <label>数值</label>
+                        <input type="number" id="weightValue" value="1" oninput="convertWeight()">
+                    </div>
+                    <div class="input-group">
+                        <label>单位</label>
+                        <select id="weightUnit" onchange="convertWeight()">
+                            <option value="kg">千克 (kg)</option>
+                            <option value="g">克 (g)</option>
+                            <option value="mg">毫克 (mg)</option>
+                            <option value="lb">磅 (lb)</option>
+                            <option value="oz">盎司 (oz)</option>
+                            <option value="ton">吨 (ton)</option>
+                        </select>
+                    </div>
+                    <div class="result" id="weightResult">1 千克 = 1000 克</div>
+                </div>
+                
+                <!-- 温度转换 -->
+                <div class="converter-section">
+                    <h3>🌡️ 温度转换</h3>
+                    <div class="input-group">
+                        <label>数值</label>
+                        <input type="number" id="tempValue" value="100" oninput="convertTemp()">
+                    </div>
+                    <div class="input-group">
+                        <label>单位</label>
+                        <select id="tempUnit" onchange="convertTemp()">
+                            <option value="c">摄氏度 (°C)</option>
+                            <option value="f">华氏度 (°F)</option>
+                            <option value="k">开尔文 (K)</option>
+                        </select>
+                    </div>
+                    <div class="result" id="tempResult">100 °C = 212 °F</div>
+                </div>
+                
+                <!-- 面积转换 -->
+                <div class="converter-section">
+                    <h3>📐 面积转换</h3>
+                    <div class="input-group">
+                        <label>数值</label>
+                        <input type="number" id="areaValue" value="1" oninput="convertArea()">
+                    </div>
+                    <div class="input-group">
+                        <label>单位</label>
+                        <select id="areaUnit" onchange="convertArea()">
+                            <option value="m2">平方米 (m²)</option>
+                            <option value="km2">平方千米 (km²)</option>
+                            <option value="cm2">平方厘米 (cm²)</option>
+                            <option value="ha">公顷 (ha)</option>
+                            <option value="acre">英亩 (acre)</option>
+                            <option value="ft2">平方英尺 (ft²)</option>
+                        </select>
+                    </div>
+                    <div class="result" id="areaResult">1 平方米 = 10000 平方厘米</div>
+                </div>
+            </div>
+        </div>
         
-        <footer style="text-align: center; color: white; padding: 20px;">
-            <p>© 2026 Multi Tools - 免费在线工具集</p>
+        <footer>
+            <p>© 2026 Multi Tools | 免费在线工具集</p>
         </footer>
     </div>
     
-    <!-- 工具追踪 -->
     <script>
-        function trackToolUsage(toolName) {
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'tool_usage', {
-                    'event_category': 'tools',
-                    'event_label': toolName,
-                    'value': 1
-                });
-            }
-            console.log('工具使用:', toolName);
+        // 长度转换
+        function convertLength() {
+            const value = parseFloat(document.getElementById('lengthValue').value) || 0;
+            const unit = document.getElementById('lengthUnit').value;
+            
+            const toMeters = {
+                m: 1, km: 1000, cm: 0.01, mm: 0.001,
+                mi: 1609.34, yd: 0.9144, ft: 0.3048, in: 0.0254
+            };
+            
+            const meters = value * toMeters[unit];
+            const result = meters * 100; // 转换为厘米
+            
+            document.getElementById('lengthResult').textContent = `${value} ${unit} = ${result.toFixed(2)} 厘米`;
         }
         
-        trackToolUsage('unit-converter');
-    </script>
+        // 重量转换
+        function convertWeight() {
+            const value = parseFloat(document.getElementById('weightValue').value) || 0;
+            const unit = document.getElementById('weightUnit').value;
+            
+            const toGrams = {
+                kg: 1000, g: 1, mg: 0.001,
+                lb: 453.592, oz: 28.3495, ton: 1000000
+            };
+            
+            const grams = value * toGrams[unit];
+            document.getElementById('weightResult').textContent = `${value} ${unit} = ${grams.toFixed(2)} 克`;
+        }
+        
+        // 温度转换
+        function convertTemp() {
+            const value = parseFloat(document.getElementById('tempValue').value) || 0;
+            const unit = document.getElementById('tempUnit').value;
+            
+            let celsius, fahrenheit, kelvin;
+            
+            if (unit === 'c') {
+                celsius = value;
+                fahrenheit = value * 9/5 + 32;
+                kelvin = value + 273.15;
+            } else if (unit === 'f') {
+                celsius = (value - 32) * 5/9;
+                fahrenheit = value;
+                kelvin = celsius + 273.15;
+            } else {
+                celsius = value - 273.15;
+                fahrenheit = celsius * 9/5 + 32;
+                kelvin = value;
+            }
+            
+            document.getElementById('tempResult').textContent = 
+                `${value}°${unit.toUpperCase()} = ${celsius.toFixed(2)}°C = ${fahrenheit.toFixed(2)}°F = ${kelvin.toFixed(2)}K`;
+        }
+        
+        // 面积转换
+        function convertArea() {
+            const value = parseFloat(document.getElementById('areaValue').value) || 0;
+            const unit = document.getElementById('areaUnit').value;
+            
+            const toM2 = {
+                m2: 1, km2: 1000000, cm2: 0.0001,
+                ha: 10000, acre: 4046.86, ft2: 0.092903
+            };
+            
+            const m2 = value * toM2[unit];
+            const result = m2 * 10000; // 转换为平方厘米
+            
+            document.getElementById('areaResult').textContent = `${value} ${unit} = ${result.toFixed(2)} 平方厘米`;
+        }
+        
+        // 初始化
+        convertLength();
+        convertWeight();
+        convertTemp();
+        convertArea();
+    
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('unit-converter', 'click');
+            });
+        });
+</script>
 </body>
 </html>

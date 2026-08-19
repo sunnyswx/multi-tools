@@ -3,71 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Base64 - 免费在线工具 | Multi Tools</title>
-    <meta name="description" content="base64，在线工具">
-    
-    <!-- GA4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-L7GQFYBWB6');
-    </script>
-    
+    <title>Base64编解码 - 免费在线Base64编解码工具 | Multi Tools</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            color: white;
-        }
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 10px 20px;
-            background: rgba(255,255,255,0.2);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: all 0.3s;
-        }
-        .back-btn:hover {
-            background: rgba(255,255,255,0.3);
-            transform: translateY(-2px);
-        }
-        .tool-content {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            margin-bottom: 30px;
-        }
-        .tool-content h2 {
-            color: #333;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-        }
-        /* 保留原有工具样式 */
-        
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
         .container { max-width: 1200px; margin: 0 auto; }
@@ -205,24 +142,30 @@
             margin-top: 15px;
             display: none;
         }
-    
-        @media (max-width: 768px) {
-            header h1 { font-size: 2rem; }
-            .tool-content { padding: 20px; }
-        }
     </style>
+<meta name="description" content="免费在线Base64编解码工具，支持文本和图片的Base64编码和解码。快速转换，本地处理保护隐私。">
+<meta name="keywords" content="base64编解码,base64在线,编码解码,在线工具">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Base64编解码 - 免费在线工具">
+    <meta property="og:description" content="免费在线Base64编解码工具，支持文本和图片的Base64编码和解码。快速转换，本地处理保护隐私。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zh8888.dpdns.org/tools/base64.html">
+    <meta property="og:image" content="https://zh8888.dpdns.org/og-image.jpg">
+    <meta property="og:site_name" content="Multi Tools">
+    <meta property="og:locale" content="zh_CN">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Base64编解码 - 免费在线工具">
+    <meta name="twitter:description" content="免费在线Base64编解码工具，支持文本和图片的Base64编码和解码。快速转换，本地处理保护隐私。">
+    <meta name="twitter:image" content="https://zh8888.dpdns.org/og-image.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://zh8888.dpdns.org/tools/base64.html">
+
 </head>
 <body>
-    <div class="container">
-        <a href="/" class="back-btn">← 返回首页</a>
-        
-        <header>
-            <h1>🛠️ Base64</h1>
-            <p>免费在线base64工具</p>
-        </header>
-        
-        <main class="tool-content">
-            
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-7B5H09J4KB">
         // 追踪工具使用
@@ -472,28 +415,128 @@
             });
         });
 </script>
-
-        </main>
+</body>
+</html></div>
+            
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="encode()">编码</button>
+                <button class="btn btn-primary" onclick="decode()">解码</button>
+                <button class="btn btn-secondary" onclick="swap()">互换</button>
+                <button class="btn btn-secondary" onclick="clearAll()">清空</button>
+                <button class="btn btn-secondary" onclick="copyResult()">复制结果</button>
+            </div>
+            
+            <div class="input-group">
+                <label>结果</label>
+                <div class="result" id="output">等待输入...</div>
+            </div>
+        </div>
         
-        <footer style="text-align: center; color: white; padding: 20px;">
-            <p>© 2026 Multi Tools - 免费在线工具集</p>
+        <footer>
+            <p>© 2026 Multi Tools | 免费在线工具集</p>
         </footer>
     </div>
     
-    <!-- 工具追踪 -->
     <script>
-        function trackToolUsage(toolName) {
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'tool_usage', {
-                    'event_category': 'tools',
-                    'event_label': toolName,
-                    'value': 1
-                });
+        function encode() {
+            const input = document.getElementById('input').value;
+            if (!input) {
+                alert('请输入文本');
+                return;
             }
-            console.log('工具使用:', toolName);
+            try {
+                const encoded = btoa(unescape(encodeURIComponent(input)));
+                document.getElementById('output').textContent = encoded;
+            } catch (e) {
+                document.getElementById('output').textContent = '❌ 编码错误: ' + e.message;
+            }
         }
         
-        trackToolUsage('base64');
-    </script>
+        function decode() {
+            const input = document.getElementById('input').value;
+            if (!input) {
+                alert('请输入Base64文本');
+                return;
+            }
+            try {
+                const decoded = decodeURIComponent(escape(atob(input)));
+                document.getElementById('output').textContent = decoded;
+            } catch (e) {
+                document.getElementById('output').textContent = '❌ 解码错误: ' + e.message;
+            }
+        }
+        
+        function swap() {
+            const output = document.getElementById('output').textContent;
+            if (output && output !== '等待输入...') {
+                document.getElementById('input').value = output;
+                document.getElementById('output').textContent = '等待输入...';
+            }
+        }
+        
+        function clearAll() {
+            document.getElementById('input').value = '';
+            document.getElementById('output').textContent = '等待输入...';
+        }
+        
+        function copyResult() {
+            const result = document.getElementById('output').textContent;
+            if (result && result !== '等待输入...') {
+                navigator.clipboard.writeText(result).then(() => {
+                    const btn = event.target;
+                    const original = btn.textContent;
+                    btn.textContent = '✓ 已复制';
+                    setTimeout(() => btn.textContent = original, 2000);
+                });
+            }
+        }
+        
+        // 实时更新
+        document.getElementById('input').addEventListener('input', () => {
+            encode();
+        });
+    
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('base64', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('base64', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('base64', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('base64', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('base64', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('base64', 'click');
+            });
+        });
+</script>
 </body>
 </html>

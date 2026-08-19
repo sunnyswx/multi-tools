@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xml Formatter - 免费在线工具 | Multi Tools</title>
-    <meta name="description" content="xml formatter，在线工具">
+    <title>XML格式化器 - 免费在线XML格式化工具 | Multi Tools</title>
+    <meta name="description" content="免费在线XML格式化器，支持XML文档格式化、压缩、验证。实时预览，语法高亮，适用于网页开发和数据处理。">
     
-    <!-- GA4 -->
+    <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -15,59 +15,19 @@
       gtag('config', 'G-L7GQFYBWB6');
     </script>
     
+    <script>
+        function trackToolUsage(toolName, action) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'tool_usage', {
+                    'event_category': 'Tool',
+                    'event_label': toolName,
+                    'value': action
+                });
+            }
+        }
+    </script>
+    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            color: white;
-        }
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 10px 20px;
-            background: rgba(255,255,255,0.2);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: all 0.3s;
-        }
-        .back-btn:hover {
-            background: rgba(255,255,255,0.3);
-            transform: translateY(-2px);
-        }
-        .tool-content {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            margin-bottom: 30px;
-        }
-        .tool-content h2 {
-            color: #333;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-        }
-        /* 保留原有工具样式 */
-        
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
         .container { max-width: 1200px; margin: 0 auto; }
@@ -224,24 +184,9 @@
             margin-top: 15px;
             display: none;
         }
-    
-        @media (max-width: 768px) {
-            header h1 { font-size: 2rem; }
-            .tool-content { padding: 20px; }
-        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="/" class="back-btn">← 返回首页</a>
-        
-        <header>
-            <h1>🛠️ Xml Formatter</h1>
-            <p>免费在线xml formatter工具</p>
-        </header>
-        
-        <main class="tool-content">
-            
     <div class="container">
         <header>
             <h1>🛠️ Multi Tools</h1>
@@ -390,28 +335,142 @@
             }
         }
     </script>
-
-        </main>
+</body>
+</html></div>
         
-        <footer style="text-align: center; color: white; padding: 20px;">
+        <footer>
             <p>© 2026 Multi Tools - 免费在线工具集</p>
         </footer>
     </div>
     
-    <!-- 工具追踪 -->
     <script>
-        function trackToolUsage(toolName) {
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'tool_usage', {
-                    'event_category': 'tools',
-                    'event_label': toolName,
-                    'value': 1
-                });
+        function formatXML() {
+            const input = document.getElementById('xmlInput').value.trim();
+            const statusDiv = document.getElementById('statusDiv');
+            const formattedDiv = document.getElementById('formattedDiv');
+            
+            statusDiv.innerHTML = '';
+            formattedDiv.innerHTML = '';
+            
+            if (!input) {
+                statusDiv.innerHTML = '<div class="status error">⚠️ 请输入XML内容</div>';
+                return;
             }
-            console.log('工具使用:', toolName);
+            
+            try {
+                // 简单的XML格式化
+                let formatted = input
+                    .replace(/>\s*</g, '>\n<')
+                    .replace(/<\/([^>]+)>/g, '\t</$1>')
+                    .replace(/<([^/\s][^>]*)>/g, (match, p1) => {
+                        if (!p1.startsWith('/')) {
+                            return '\t<' + p1 + '>';
+                        }
+                        return '<' + p1 + '>';
+                    });
+                
+                // 去除多余的换行
+                formatted = formatted.replace(/\n{3,}/g, '\n\n');
+                
+                document.getElementById('xmlInput').value = formatted;
+                formattedDiv.innerHTML = '<div class="formatted-xml">' + highlightXML(formatted) + '</div>';
+                
+                statusDiv.innerHTML = '<div class="status success">✅ XML格式化成功！</div>';
+                trackToolUsage('xml-formatter', 'format');
+            } catch (e) {
+                statusDiv.innerHTML = '<div class="status error">❌ 格式化失败：' + escapeHtml(e.message) + '</div>';
+            }
         }
         
-        trackToolUsage('xml-formatter');
+        function minifyXML() {
+            const input = document.getElementById('xmlInput').value.trim();
+            if (!input) {
+                alert('请先输入XML内容！');
+                return;
+            }
+            
+            try {
+                const minified = input.replace(/\s+/g, ' ').trim();
+                document.getElementById('xmlInput').value = minified;
+                trackToolUsage('xml-formatter', 'minify');
+            } catch (e) {
+                alert('处理失败：' + e.message);
+            }
+        }
+        
+        function validateXML() {
+            const input = document.getElementById('xmlInput').value.trim();
+            const statusDiv = document.getElementById('statusDiv');
+            
+            if (!input) {
+                statusDiv.innerHTML = '<div class="status error">⚠️ 请输入XML内容</div>';
+                return;
+            }
+            
+            try {
+                // 简单的XML验证
+                if (input.startsWith('<?xml')) {
+                    // 有XML声明
+                }
+                
+                // 检查基本结构
+                const rootTag = input.match(/<(\w+)/);
+                if (!rootTag) {
+                    throw new Error('未找到根元素');
+                }
+                
+                const closingTag = '</' + rootTag[1] + '>';
+                if (!input.endsWith(closingTag)) {
+                    throw new Error('根元素未正确关闭');
+                }
+                
+                statusDiv.innerHTML = '<div class="status success">✅ XML格式基本正确！</div>';
+                trackToolUsage('xml-formatter', 'valid');
+            } catch (e) {
+                statusDiv.innerHTML = '<div class="status error">❌ XML验证失败：' + escapeHtml(e.message) + '</div>';
+            }
+        }
+        
+        function copyResult() {
+            const output = document.getElementById('xmlInput').value;
+            if (!output) {
+                alert('没有可复制的内容！');
+                return;
+            }
+            
+            navigator.clipboard.writeText(output).then(() => {
+                alert('已复制到剪贴板！');
+                trackToolUsage('xml-formatter', 'copy');
+            }).catch(err => {
+                alert('复制失败：' + err);
+            });
+        }
+        
+        function clearAll() {
+            document.getElementById('xmlInput').value = '';
+            document.getElementById('statusDiv').innerHTML = '';
+            document.getElementById('formattedDiv').innerHTML = '';
+            trackToolUsage('xml-formatter', 'clear');
+        }
+        
+        function highlightXML(xml) {
+            return xml
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/(&lt;!--.*?--&gt;)/g, '<span class="comment">$1</span>')
+                .replace(/(&lt;\/?)(\w+)(.*?)(&gt;)/g, (match, p1, p2, p3, p4) => {
+                    const attrs = p3.replace(/(\s+\w+)=(".*?")/g, '<span class="attr-name">$1</span>=<span class="attr-value">$2</span>');
+                    return '<span class="tag">' + p1 + p2 + '</span>' + attrs + '<span class="tag">' + p4 + '</span>';
+                })
+                .replace(/([^&<>\s]+)/g, '<span class="text">$1</span>');
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
     </script>
 </body>
 </html>

@@ -3,10 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Compressor - 免费在线工具 | Multi Tools</title>
-    <meta name="description" content="image compressor，在线工具">
+    <title>图片压缩工具 - 免费在线压缩PNG、JPG、WebP图片 | Multi Tools</title>
+    <meta name="description" content="免费在线图片压缩工具，支持PNG、JPG、WebP格式压缩，本地处理保护隐私。适用于网页优化、邮件附件、社交媒体分享。">
+    <meta name="keywords" content="图片压缩,压缩图片,PNG压缩,JPG压缩,WebP压缩,在线压缩,免费压缩">
+    <meta name="author" content="Multi Tools">
+    <meta name="robots" content="index, follow">
     
-    <!-- GA4 -->
+    <!-- Open Graph -->
+    <meta property="og:title" content="图片压缩工具 - 免费在线压缩PNG、JPG、WebP图片">
+    <meta property="og:description" content="免费在线图片压缩工具，支持多种格式，本地处理保护隐私">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zh8888.dpdns.org/tools/image-compressor.html">
+    <meta property="og:image" content="https://zh8888.dpdns.org/og-image.jpg">
+    <meta property="og:site_name" content="Multi Tools">
+    <meta property="og:locale" content="zh_CN">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="图片压缩工具 - 免费在线压缩图片">
+    <meta name="twitter:description" content="免费在线图片压缩工具，支持多种格式，本地处理保护隐私">
+    <meta name="twitter:image" content="https://zh8888.dpdns.org/og-image.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://zh8888.dpdns.org/tools/image-compressor.html">
+    
+    <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -15,59 +36,19 @@
       gtag('config', 'G-L7GQFYBWB6');
     </script>
     
+    <script>
+        function trackToolUsage(toolName, action) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'tool_usage', {
+                    'event_category': 'Tool',
+                    'event_label': toolName,
+                    'value': action
+                });
+            }
+        }
+    </script>
+    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            color: white;
-        }
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 10px 20px;
-            background: rgba(255,255,255,0.2);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: all 0.3s;
-        }
-        .back-btn:hover {
-            background: rgba(255,255,255,0.3);
-            transform: translateY(-2px);
-        }
-        .tool-content {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            margin-bottom: 30px;
-        }
-        .tool-content h2 {
-            color: #333;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-        }
-        /* 保留原有工具样式 */
-        
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
         .container { max-width: 800px; margin: 0 auto; }
@@ -90,24 +71,9 @@
         .download-btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; text-decoration: none; display: inline-block; }
         .download-btn:hover { transform: scale(1.05); }
         footer { text-align: center; padding: 40px 20px; color: white; opacity: 0.8; }
-    
-        @media (max-width: 768px) {
-            header h1 { font-size: 2rem; }
-            .tool-content { padding: 20px; }
-        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="/" class="back-btn">← 返回首页</a>
-        
-        <header>
-            <h1>🛠️ Image Compressor</h1>
-            <p>免费在线image compressor工具</p>
-        </header>
-        
-        <main class="tool-content">
-            
     <div class="container">
         <a href="/" class="back-btn">← 返回首页</a>
         <header>
@@ -206,29 +172,6 @@
             const i = Math.floor(Math.log(bytes) / Math.log(k));
             return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
         }
-    </script>
-
-        </main>
-        
-        <footer style="text-align: center; color: white; padding: 20px;">
-            <p>© 2026 Multi Tools - 免费在线工具集</p>
-        </footer>
-    </div>
-    
-    <!-- 工具追踪 -->
-    <script>
-        function trackToolUsage(toolName) {
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'tool_usage', {
-                    'event_category': 'tools',
-                    'event_label': toolName,
-                    'value': 1
-                });
-            }
-            console.log('工具使用:', toolName);
-        }
-        
-        trackToolUsage('image-compressor');
     </script>
 </body>
 </html>

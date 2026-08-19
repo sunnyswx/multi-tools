@@ -3,71 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qr Generator - 免费在线工具 | Multi Tools</title>
-    <meta name="description" content="qr generator，在线工具">
-    
-    <!-- GA4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-L7GQFYBWB6');
-    </script>
-    
+    <title>二维码生成器 - 免费在线二维码生成器工具 | Multi Tools</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            color: white;
-        }
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 10px 20px;
-            background: rgba(255,255,255,0.2);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: all 0.3s;
-        }
-        .back-btn:hover {
-            background: rgba(255,255,255,0.3);
-            transform: translateY(-2px);
-        }
-        .tool-content {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            margin-bottom: 30px;
-        }
-        .tool-content h2 {
-            color: #333;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-        }
-        /* 保留原有工具样式 */
-        
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
         .container { max-width: 1200px; margin: 0 auto; }
@@ -201,24 +138,30 @@
             margin-top: 15px;
             display: none;
         }
-    
-        @media (max-width: 768px) {
-            header h1 { font-size: 2rem; }
-            .tool-content { padding: 20px; }
-        }
     </style>
+<meta name="description" content="免费在线二维码生成器，支持文本、URL、Wi-Fi、联系信息等。快速生成高质量二维码。">
+<meta name="keywords" content="二维码生成,qrcode,二维码制作,在线生成,扫码">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="二维码生成器 - 免费在线工具">
+    <meta property="og:description" content="免费在线二维码生成器，支持文本、URL、Wi-Fi、联系信息等。快速生成高质量二维码。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zh8888.dpdns.org/tools/qr-generator.html">
+    <meta property="og:image" content="https://zh8888.dpdns.org/og-image.jpg">
+    <meta property="og:site_name" content="Multi Tools">
+    <meta property="og:locale" content="zh_CN">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="二维码生成器 - 免费在线工具">
+    <meta name="twitter:description" content="免费在线二维码生成器，支持文本、URL、Wi-Fi、联系信息等。快速生成高质量二维码。">
+    <meta name="twitter:image" content="https://zh8888.dpdns.org/og-image.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://zh8888.dpdns.org/tools/qr-generator.html">
+
 </head>
 <body>
-    <div class="container">
-        <a href="/" class="back-btn">← 返回首页</a>
-        
-        <header>
-            <h1>🛠️ Qr Generator</h1>
-            <p>免费在线qr generator工具</p>
-        </header>
-        
-        <main class="tool-content">
-            
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-7B5H09J4KB">
         // 追踪工具使用
@@ -470,28 +413,148 @@
             });
         });
 </script>
-
-        </main>
+</body>
+</html></div>
+            
+            <div id="qrcode"></div>
+        </div>
         
-        <footer style="text-align: center; color: white; padding: 20px;">
-            <p>© 2026 Multi Tools - 免费在线工具集</p>
+        <footer>
+            <p>© 2026 Multi Tools | 免费在线工具集</p>
         </footer>
     </div>
     
-    <!-- 工具追踪 -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js">
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('qr-generator', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('qr-generator', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('qr-generator', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('qr-generator', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('qr-generator', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('qr-generator', 'click');
+            });
+        });
+</script>
     <script>
-        function trackToolUsage(toolName) {
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'tool_usage', {
-                    'event_category': 'tools',
-                    'event_label': toolName,
-                    'value': 1
-                });
-            }
-            console.log('工具使用:', toolName);
-        }
+        const inputText = document.getElementById('inputText');
+        const generateBtn = document.getElementById('generateBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const qrcodeDiv = document.getElementById('qrcode');
         
-        trackToolUsage('qr-generator');
-    </script>
+        generateBtn.addEventListener('click', () => {
+            const text = inputText.value.trim();
+            if (!text) {
+                alert('请输入内容');
+                return;
+            }
+            
+            qrcodeDiv.innerHTML = '<p>生成中...</p>';
+            
+            setTimeout(() => {
+                QRCode.toDataURL(text, { 
+                    width: 300,
+                    margin: 2,
+                    color: {
+                        dark: '#667eea',
+                        light: '#ffffff'
+                    }
+                }, (err, url) => {
+                    if (err) {
+                        qrcodeDiv.innerHTML = '<p style="color: red;">生成失败</p>';
+                        return;
+                    }
+                    
+                    qrcodeDiv.innerHTML = `<img src="${url}" alt="QR Code">`;
+                    downloadBtn.style.display = 'inline-block';
+                    downloadBtn.onclick = () => {
+                        const link = document.createElement('a');
+                        link.download = 'qrcode.png';
+                        link.href = url;
+                        link.click();
+                    };
+                });
+            }, 500);
+        });
+        
+        inputText.addEventListener('input', () => {
+            if (inputText.value.trim()) {
+                generateBtn.click();
+            }
+        });
+    
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('qr-generator', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('qr-generator', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('qr-generator', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('qr-generator', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('qr-generator', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('qr-generator', 'click');
+            });
+        });
+</script>
 </body>
 </html>

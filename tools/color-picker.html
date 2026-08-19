@@ -3,71 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Color Picker - 免费在线工具 | Multi Tools</title>
-    <meta name="description" content="color picker，在线工具">
-    
-    <!-- GA4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-L7GQFYBWB6');
-    </script>
-    
+    <title>颜色选择器 - 免费在线颜色选择器工具 | Multi Tools</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            color: white;
-        }
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 10px 20px;
-            background: rgba(255,255,255,0.2);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: all 0.3s;
-        }
-        .back-btn:hover {
-            background: rgba(255,255,255,0.3);
-            transform: translateY(-2px);
-        }
-        .tool-content {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            margin-bottom: 30px;
-        }
-        .tool-content h2 {
-            color: #333;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-        }
-        /* 保留原有工具样式 */
-        
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
         .container { max-width: 800px; margin: 0 auto; }
@@ -207,24 +144,30 @@
             margin-top: 15px;
             display: none;
         }
-    
-        @media (max-width: 768px) {
-            header h1 { font-size: 2rem; }
-            .tool-content { padding: 20px; }
-        }
     </style>
+<meta name="description" content="免费在线颜色选择器，支持HEX、RGB、HSL格式。一键复制颜色代码，适用于网页设计和开发。">
+<meta name="keywords" content="颜色选择器,color picker,HEX,RGB,HSL,在线取色">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="颜色选择器 - 免费在线工具">
+    <meta property="og:description" content="免费在线颜色选择器，支持HEX、RGB、HSL格式。一键复制颜色代码，适用于网页设计和开发。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zh8888.dpdns.org/tools/color-picker.html">
+    <meta property="og:image" content="https://zh8888.dpdns.org/og-image.jpg">
+    <meta property="og:site_name" content="Multi Tools">
+    <meta property="og:locale" content="zh_CN">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="颜色选择器 - 免费在线工具">
+    <meta name="twitter:description" content="免费在线颜色选择器，支持HEX、RGB、HSL格式。一键复制颜色代码，适用于网页设计和开发。">
+    <meta name="twitter:image" content="https://zh8888.dpdns.org/og-image.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://zh8888.dpdns.org/tools/color-picker.html">
+
 </head>
 <body>
-    <div class="container">
-        <a href="/" class="back-btn">← 返回首页</a>
-        
-        <header>
-            <h1>🛠️ Color Picker</h1>
-            <p>免费在线color picker工具</p>
-        </header>
-        
-        <main class="tool-content">
-            
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-7B5H09J4KB">
         // 追踪工具使用
@@ -401,28 +344,175 @@
             });
         });
 </script>
-
-        </main>
+</body>
+</html></div>
+            
+            <input type="color" id="colorPicker" value="#667eea" style="width: 100%; height: 50px; border: none; border-radius: 10px; cursor: pointer;">
+            
+            <div class="color-inputs">
+                <div class="color-input-group">
+                    <label>HEX</label>
+                    <input type="text" id="hexInput" value="#667eea" maxlength="7">
+                </div>
+                <div class="color-input-group">
+                    <label>RGB</label>
+                    <input type="text" id="rgbInput" value="102, 126, 234">
+                </div>
+                <div class="color-input-group">
+                    <label>HSL</label>
+                    <input type="text" id="hslInput" value="234°, 82%, 66%">
+                </div>
+            </div>
+            
+            <div class="color-formats">
+                <div class="format-row">
+                    <span class="format-label">CSS Variable</span>
+                    <span class="format-value" id="cssVar">--color: #667eea;</span>
+                </div>
+                <div class="format-row">
+                    <span class="format-label">Tailwind</span>
+                    <span class="format-value" id="tailwind">#667eea</span>
+                </div>
+                <div class="format-row">
+                    <span class="format-label">Scss</span>
+                    <span class="format-value" id="scss">$color: #667eea;</span>
+                </div>
+            </div>
+        </div>
         
-        <footer style="text-align: center; color: white; padding: 20px;">
-            <p>© 2026 Multi Tools - 免费在线工具集</p>
+        <footer>
+            <p>© 2026 Multi Tools | 免费在线工具集</p>
         </footer>
     </div>
     
-    <!-- 工具追踪 -->
     <script>
-        function trackToolUsage(toolName) {
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'tool_usage', {
-                    'event_category': 'tools',
-                    'event_label': toolName,
-                    'value': 1
-                });
-            }
-            console.log('工具使用:', toolName);
+        const colorPicker = document.getElementById('colorPicker');
+        const colorPreview = document.getElementById('colorPreview');
+        const hexInput = document.getElementById('hexInput');
+        const rgbInput = document.getElementById('rgbInput');
+        const hslInput = document.getElementById('hslInput');
+        const cssVar = document.getElementById('cssVar');
+        const tailwind = document.getElementById('tailwind');
+        const scss = document.getElementById('scss');
+        
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : null;
         }
         
-        trackToolUsage('color-picker');
-    </script>
+        function rgbToHsl(r, g, b) {
+            r /= 255; g /= 255; b /= 255;
+            const max = Math.max(r, g, b), min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+            
+            if (max === min) {
+                h = s = 0;
+            } else {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                switch (max) {
+                    case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
+                    case g: h = ((b - r) / d + 2) / 6; break;
+                    case b: h = ((r - g) / d + 4) / 6; break;
+                }
+            }
+            
+            return {
+                h: Math.round(h * 360),
+                s: Math.round(s * 100),
+                l: Math.round(l * 100)
+            };
+        }
+        
+        function updateColor(hex) {
+            if (!/^#[0-9A-Fa-f]{6}$/.test(hex)) return;
+            
+            colorPicker.value = hex;
+            colorPreview.style.background = hex;
+            hexInput.value = hex;
+            
+            const rgb = hexToRgb(hex);
+            rgbInput.value = `${rgb.r}, ${rgb.g}, ${rgb.b}`;
+            
+            const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+            hslInput.value = `${hsl.h}°, ${hsl.s}%, ${hsl.l}%`;
+            
+            cssVar.textContent = `--color: ${hex};`;
+            tailwind.textContent = hex;
+            scss.textContent = `$color: ${hex};`;
+        }
+        
+        colorPicker.addEventListener('input', (e) => updateColor(e.target.value));
+        hexInput.addEventListener('input', (e) => updateColor(e.target.value));
+        
+        rgbInput.addEventListener('change', (e) => {
+            const [r, g, b] = e.target.value.split(',').map(v => parseInt(v.trim()));
+            if (!isNaN(r) && !isNaN(g) && !isNaN(b)) {
+                const hex = '#' + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('').toUpperCase();
+                updateColor(hex);
+            }
+        });
+        
+        hslInput.addEventListener('change', (e) => {
+            const match = e.target.value.match(/(\d+)°?,\s*(\d+)%?,\s*(\d+)%?/);
+            if (match) {
+                const [_, h, s, l] = match.map(v => parseInt(v));
+                const rgb = hslToRgb(h, s, l);
+                if (rgb) updateColor('#' + [rgb.r, rgb.g, rgb.b].map(x => x.toString(16).padStart(2, '0')).join('').toUpperCase());
+            }
+        });
+        
+        function hslToRgb(h, s, l) {
+            h /= 360; s /= 100; l /= 100;
+            let r, g, b;
+            
+            if (s === 0) {
+                r = g = b = l;
+            } else {
+                const hue2rgb = (p, q, t) => {
+                    if (t < 0) t += 1;
+                    if (t > 1) t -= 1;
+                    if (t < 1/6) return p + (q - p) * 6 * t;
+                    if (t < 1/2) return q;
+                    if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+                    return p;
+                };
+                const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+                const p = 2 * l - q;
+                r = hue2rgb(p, q, h + 1/3);
+                g = hue2rgb(p, q, h);
+                b = hue2rgb(p, q, h - 1/3);
+            }
+            
+            return {
+                r: Math.round(r * 255),
+                g: Math.round(g * 255),
+                b: Math.round(b * 255)
+            };
+        }
+        
+        // 复制功能
+        document.querySelectorAll('.format-value').forEach(el => {
+            el.style.cursor = 'pointer';
+            el.title = '点击复制';
+            el.addEventListener('click', () => {
+                navigator.clipboard.writeText(el.textContent);
+                const original = el.textContent;
+                el.textContent = '✓ 已复制';
+                setTimeout(() => el.textContent = original, 1500);
+            });
+        });
+    
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('color-picker', 'click');
+            });
+        });
+</script>
 </body>
 </html>

@@ -3,71 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lorem Ipsum - 免费在线工具 | Multi Tools</title>
-    <meta name="description" content="lorem ipsum，在线工具">
-    
-    <!-- GA4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-L7GQFYBWB6');
-    </script>
-    
+    <title>Lorem Ipsum生成器 - 免费在线Lorem Ipsum生成器工具 | Multi Tools</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            color: white;
-        }
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 10px 20px;
-            background: rgba(255,255,255,0.2);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: all 0.3s;
-        }
-        .back-btn:hover {
-            background: rgba(255,255,255,0.3);
-            transform: translateY(-2px);
-        }
-        .tool-content {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            margin-bottom: 30px;
-        }
-        .tool-content h2 {
-            color: #333;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-        }
-        /* 保留原有工具样式 */
-        
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
         .container { max-width: 1000px; margin: 0 auto; }
@@ -204,24 +141,30 @@
             margin-top: 15px;
             display: none;
         }
-    
-        @media (max-width: 768px) {
-            header h1 { font-size: 2rem; }
-            .tool-content { padding: 20px; }
-        }
     </style>
+<meta name="description" content="免费在线Lorem Ipsum生成器，生成随机占位文本。适用于网页设计、印刷排版等场景。">
+<meta name="keywords" content="lorem ipsum,占位文本,虚拟文本,设计用文,随机文本">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Lorem Ipsum生成器 - 免费在线工具">
+    <meta property="og:description" content="免费在线Lorem Ipsum生成器，生成随机占位文本。适用于网页设计、印刷排版等场景。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zh8888.dpdns.org/tools/lorem-ipsum.html">
+    <meta property="og:image" content="https://zh8888.dpdns.org/og-image.jpg">
+    <meta property="og:site_name" content="Multi Tools">
+    <meta property="og:locale" content="zh_CN">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Lorem Ipsum生成器 - 免费在线工具">
+    <meta name="twitter:description" content="免费在线Lorem Ipsum生成器，生成随机占位文本。适用于网页设计、印刷排版等场景。">
+    <meta name="twitter:image" content="https://zh8888.dpdns.org/og-image.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://zh8888.dpdns.org/tools/lorem-ipsum.html">
+
 </head>
 <body>
-    <div class="container">
-        <a href="/" class="back-btn">← 返回首页</a>
-        
-        <header>
-            <h1>🛠️ Lorem Ipsum</h1>
-            <p>免费在线lorem ipsum工具</p>
-        </header>
-        
-        <main class="tool-content">
-            
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-7B5H09J4KB">
         // 追踪工具使用
@@ -476,28 +419,140 @@
             });
         });
 </script>
-
-        </main>
+</body>
+</html></div>
+                
+                <div class="control-group">
+                    <label>数量：</label>
+                    <input type="number" id="count" value="3" min="1" max="50">
+                </div>
+                
+                <button class="btn btn-primary" onclick="generate()">生成</button>
+                <button class="btn btn-secondary" onclick="copyText()">复制</button>
+                <button class="btn btn-secondary" onclick="clearText()">清空</button>
+            </div>
+            
+            <div class="output" id="output">点击"生成"按钮开始...</div>
+        </div>
         
-        <footer style="text-align: center; color: white; padding: 20px;">
-            <p>© 2026 Multi Tools - 免费在线工具集</p>
+        <footer>
+            <p>© 2026 Multi Tools | 免费在线工具集</p>
         </footer>
     </div>
     
-    <!-- 工具追踪 -->
     <script>
-        function trackToolUsage(toolName) {
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'tool_usage', {
-                    'event_category': 'tools',
-                    'event_label': toolName,
-                    'value': 1
-                });
-            }
-            console.log('工具使用:', toolName);
+        const loremWords = 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum'.split(' ');
+        
+        function randomWord() {
+            return loremWords[Math.floor(Math.random() * loremWords.length)];
         }
         
-        trackToolUsage('lorem-ipsum');
-    </script>
+        function randomSentence() {
+            const length = Math.floor(Math.random() * 15) + 5;
+            let sentence = '';
+            for (let i = 0; i < length; i++) {
+                sentence += randomWord() + ' ';
+            }
+            return sentence.trim() + '.';
+        }
+        
+        function randomParagraph() {
+            const sentences = Math.floor(Math.random() * 5) + 3;
+            let paragraph = '';
+            for (let i = 0; i < sentences; i++) {
+                paragraph += randomSentence() + ' ';
+            }
+            return paragraph.trim();
+        }
+        
+        function generate() {
+            const type = document.getElementById('type').value;
+            const count = parseInt(document.getElementById('count').value) || 3;
+            let output = '';
+            
+            if (type === 'paragraphs') {
+                const paragraphs = [];
+                for (let i = 0; i < count; i++) {
+                    paragraphs.push(randomParagraph());
+                }
+                output = paragraphs.join('\n\n');
+            } else if (type === 'sentences') {
+                const sentences = [];
+                for (let i = 0; i < count; i++) {
+                    sentences.push(randomSentence());
+                }
+                output = sentences.join(' ');
+            } else if (type === 'words') {
+                const words = [];
+                for (let i = 0; i < count; i++) {
+                    words.push(randomWord());
+                }
+                output = words.join(' ');
+            }
+            
+            document.getElementById('output').textContent = output;
+        }
+        
+        function copyText() {
+            const text = document.getElementById('output').textContent;
+            if (text && text !== '点击"生成"按钮开始...') {
+                navigator.clipboard.writeText(text).then(() => {
+                    const btn = event.target;
+                    const original = btn.textContent;
+                    btn.textContent = '✓ 已复制';
+                    setTimeout(() => btn.textContent = original, 2000);
+                });
+            }
+        }
+        
+        function clearText() {
+            document.getElementById('output').textContent = '点击"生成"按钮开始...';
+        }
+        
+        // 页面加载时自动生成
+        generate();
+    
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('lorem-ipsum', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('lorem-ipsum', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('lorem-ipsum', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('lorem-ipsum', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('lorem-ipsum', 'click');
+            });
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('lorem-ipsum', 'click');
+            });
+        });
+</script>
 </body>
 </html>
