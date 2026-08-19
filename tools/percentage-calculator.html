@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{TITLE} - 免费在线工具 | Multi Tools</title>
-    <meta name="description" content="{DESCRIPTION}">
+    <title>百分比计算器 - 免费在线工具 | Multi Tools</title>
+    <meta name="description" content="百分比计算器，在线计算百分比">
     
     <!-- GA4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"><\/script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-L7GQFYBWB6');
-    <\/script>
+    </script>
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -24,7 +24,7 @@
             padding: 20px;
         }
         .container {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
         }
         header {
@@ -35,10 +35,6 @@
         header h1 {
             font-size: 2.5rem;
             margin-bottom: 10px;
-        }
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
         }
         .back-btn {
             display: inline-block;
@@ -59,33 +55,32 @@
             border-radius: 20px;
             padding: 40px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .calc-type {
             margin-bottom: 30px;
         }
-        .tool-content h2 {
+        .calc-type h3 {
+            margin-bottom: 15px;
             color: #333;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
         }
-        .tool-content p {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 20px;
+        .input-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            align-items: center;
+            flex-wrap: wrap;
         }
-        .input-area, .output-area {
-            width: 100%;
-            padding: 15px;
+        .input-row input {
+            flex: 1;
+            min-width: 100px;
+            padding: 12px;
             border: 2px solid #e0e0e0;
             border-radius: 10px;
-            font-size: 14px;
-            transition: border-color 0.3s;
+            font-size: 16px;
         }
-        .input-area:focus, .output-area:focus {
+        .input-row input:focus {
             outline: none;
             border-color: #667eea;
-        }
-        .input-area {
-            min-height: 150px;
-            resize: vertical;
         }
         .btn {
             display: inline-block;
@@ -103,34 +98,21 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
         }
-        .btn-secondary {
-            background: #f0f0f0;
-            color: #333;
-        }
-        .btn-secondary:hover {
-            background: #e0e0e0;
-            box-shadow: none;
-        }
         .result {
             margin-top: 20px;
             padding: 20px;
             background: #f8f9fa;
             border-radius: 10px;
             border-left: 4px solid #667eea;
+            display: none;
         }
-        .result h3 {
-            color: #333;
-            margin-bottom: 10px;
+        .result.show {
+            display: block;
         }
         .result-value {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: #667eea;
             font-weight: bold;
-        }
-        @media (max-width: 768px) {
-            header h1 { font-size: 2rem; }
-            .tool-content { padding: 20px; }
-            .btn { padding: 10px 20px; font-size: 14px; }
         }
     </style>
 </head>
@@ -139,22 +121,104 @@
         <a href="/" class="back-btn">← 返回首页</a>
         
         <header>
-            <h1>🛠️ {TITLE}</h1>
-            <p>{DESCRIPTION}</p>
+            <h1>💯 百分比计算器</h1>
+            <p>快速计算百分比，支持多种场景</p>
         </header>
         
         <main class="tool-content">
-            <!-- 工具功能区域 -->
-            {CONTENT}
+            <div class="calc-type">
+                <h3>1. 计算百分比</h3>
+                <div class="input-row">
+                    <input type="number" id="percent1_num" placeholder="数值">
+                    <span>是</span>
+                    <input type="number" id="percent1_pct" placeholder="百分比">
+                    <span>的多少？</span>
+                </div>
+                <button class="btn" onclick="calcPercent1()">计算</button>
+                <div id="result1" class="result">
+                    <div class="result-value" id="result1_value">--</div>
+                </div>
+            </div>
+            
+            <div class="calc-type">
+                <h3>2. 百分比计算</h3>
+                <div class="input-row">
+                    <input type="number" id="percent2_a" placeholder="数值A">
+                    <span>是</span>
+                    <input type="number" id="percent2_b" placeholder="数值B">
+                    <span>的百分之几？</span>
+                </div>
+                <button class="btn" onclick="calcPercent2()">计算</button>
+                <div id="result2" class="result">
+                    <div class="result-value" id="result2_value">--</div>
+                </div>
+            </div>
+            
+            <div class="calc-type">
+                <h3>3. 百分比增减</h3>
+                <div class="input-row">
+                    <input type="number" id="percent3_orig" placeholder="原始数值">
+                    <span>增加/减少</span>
+                    <input type="number" id="percent3_change" placeholder="百分比">
+                    <span>%后是？</span>
+                </div>
+                <div class="input-row">
+                    <button class="btn" onclick="calcPercent3(1)">增加</button>
+                    <button class="btn" onclick="calcPercent3(-1)">减少</button>
+                </div>
+                <div id="result3" class="result">
+                    <div class="result-value" id="result3_value">--</div>
+                </div>
+            </div>
         </main>
-        
-        <footer style="text-align: center; color: white; padding: 20px;">
-            <p>© 2026 Multi Tools - 免费在线工具集</p>
-        </footer>
     </div>
     
-    <!-- 工具追踪 -->
     <script>
+        function calcPercent1() {
+            const num = parseFloat(document.getElementById('percent1_num').value);
+            const pct = parseFloat(document.getElementById('percent1_pct').value);
+            
+            if (isNaN(num) || isNaN(pct)) {
+                alert('请输入有效的数值');
+                return;
+            }
+            
+            const result = (num * pct / 100).toFixed(2);
+            document.getElementById('result1_value').textContent = result;
+            document.getElementById('result1').classList.add('show');
+            trackToolUsage('percentage-calculator');
+        }
+        
+        function calcPercent2() {
+            const a = parseFloat(document.getElementById('percent2_a').value);
+            const b = parseFloat(document.getElementById('percent2_b').value);
+            
+            if (isNaN(a) || isNaN(b) || b === 0) {
+                alert('请输入有效的数值（B不能为0）');
+                return;
+            }
+            
+            const result = (a / b * 100).toFixed(2);
+            document.getElementById('result2_value').textContent = result + '%';
+            document.getElementById('result2').classList.add('show');
+            trackToolUsage('percentage-calculator');
+        }
+        
+        function calcPercent3(direction) {
+            const orig = parseFloat(document.getElementById('percent3_orig').value);
+            const change = parseFloat(document.getElementById('percent3_change').value);
+            
+            if (isNaN(orig) || isNaN(change)) {
+                alert('请输入有效的数值');
+                return;
+            }
+            
+            const result = direction === 1 ? orig * (1 + change / 100) : orig * (1 - change / 100);
+            document.getElementById('result3_value').textContent = result.toFixed(2);
+            document.getElementById('result3').classList.add('show');
+            trackToolUsage('percentage-calculator');
+        }
+        
         function trackToolUsage(toolName) {
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'tool_usage', {
@@ -163,10 +227,9 @@
                     'value': 1
                 });
             }
-            console.log('工具使用:', toolName);
         }
         
         trackToolUsage('percentage-calculator');
-    <\/script>
+    </script>
 </body>
 </html>

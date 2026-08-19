@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{TITLE} - 免费在线工具 | Multi Tools</title>
-    <meta name="description" content="{DESCRIPTION}">
+    <title>时间格式转换 - 免费在线工具 | Multi Tools</title>
+    <meta name="description" content="时间格式转换工具，时间戳与格式化时间相互转换">
     
     <!-- GA4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"><\/script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-L7GQFYBWB6');
-    <\/script>
+    </script>
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -24,7 +24,7 @@
             padding: 20px;
         }
         .container {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
         }
         header {
@@ -35,10 +35,6 @@
         header h1 {
             font-size: 2.5rem;
             margin-bottom: 10px;
-        }
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
         }
         .back-btn {
             display: inline-block;
@@ -59,33 +55,36 @@
             border-radius: 20px;
             padding: 40px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .convert-type {
             margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
         }
-        .tool-content h2 {
+        .convert-type:last-child {
+            border-bottom: none;
+        }
+        .convert-type h3 {
+            margin-bottom: 15px;
             color: #333;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
         }
-        .tool-content p {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 20px;
+        .input-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
         }
-        .input-area, .output-area {
-            width: 100%;
-            padding: 15px;
+        .input-row input, .input-row select {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px;
             border: 2px solid #e0e0e0;
             border-radius: 10px;
-            font-size: 14px;
-            transition: border-color 0.3s;
+            font-size: 16px;
         }
-        .input-area:focus, .output-area:focus {
+        .input-row input:focus, .input-row select:focus {
             outline: none;
             border-color: #667eea;
-        }
-        .input-area {
-            min-height: 150px;
-            resize: vertical;
         }
         .btn {
             display: inline-block;
@@ -103,34 +102,35 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
         }
-        .btn-secondary {
-            background: #f0f0f0;
-            color: #333;
-        }
-        .btn-secondary:hover {
-            background: #e0e0e0;
-            box-shadow: none;
-        }
         .result {
-            margin-top: 20px;
-            padding: 20px;
+            margin-top: 15px;
+            padding: 15px;
             background: #f8f9fa;
             border-radius: 10px;
             border-left: 4px solid #667eea;
+            display: none;
+            word-break: break-all;
         }
-        .result h3 {
-            color: #333;
-            margin-bottom: 10px;
+        .result.show {
+            display: block;
         }
         .result-value {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: #667eea;
             font-weight: bold;
         }
-        @media (max-width: 768px) {
-            header h1 { font-size: 2rem; }
-            .tool-content { padding: 20px; }
-            .btn { padding: 10px 20px; font-size: 14px; }
+        .copy-btn {
+            margin-left: 10px;
+            padding: 5px 15px;
+            background: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .copy-btn:hover {
+            background: #27ae60;
         }
     </style>
 </head>
@@ -139,22 +139,155 @@
         <a href="/" class="back-btn">← 返回首页</a>
         
         <header>
-            <h1>🛠️ {TITLE}</h1>
-            <p>{DESCRIPTION}</p>
+            <h1>🕐 时间格式转换</h1>
+            <p>时间戳与格式化时间相互转换</p>
         </header>
         
         <main class="tool-content">
-            <!-- 工具功能区域 -->
-            {CONTENT}
+            <div class="convert-type">
+                <h3>1. 时间戳 → 格式化时间</h3>
+                <div class="input-row">
+                    <input type="number" id="timestamp_input" placeholder="输入时间戳，例如：1692345600">
+                    <select id="timestamp_format">
+                        <option value="YYYY-MM-DD HH:mm:ss">YYYY-MM-DD HH:mm:ss</option>
+                        <option value="YYYY/MM/DD HH:mm">YYYY/MM/DD HH:mm</option>
+                        <option value="YYYY年MM月DD日 HH:mm">YYYY年MM月DD日 HH:mm</option>
+                        <option value="MM-DD-YYYY HH:mm:ss">MM-DD-YYYY HH:mm:ss</option>
+                    </select>
+                </div>
+                <button class="btn" onclick="timestampToFormat()">转换</button>
+                <div id="result1" class="result">
+                    <span class="result-value" id="result1_value">--</span>
+                    <button class="copy-btn" onclick="copyResult('result1_value')">复制</button>
+                </div>
+            </div>
+            
+            <div class="convert-type">
+                <h3>2. 格式化时间 → 时间戳</h3>
+                <div class="input-row">
+                    <input type="text" id="format_input" placeholder="输入时间，例如：2023-08-19 12:00:00">
+                    <select id="format_type">
+                        <option value="YYYY-MM-DD HH:mm:ss">YYYY-MM-DD HH:mm:ss</option>
+                        <option value="YYYY/MM/DD HH:mm">YYYY/MM/DD HH:mm</option>
+                        <option value="MM-DD-YYYY HH:mm:ss">MM-DD-YYYY HH:mm:ss</option>
+                    </select>
+                </div>
+                <button class="btn" onclick="formatToTimestamp()">转换</button>
+                <div id="result2" class="result">
+                    <span class="result-value" id="result2_value">--</span>
+                    <button class="copy-btn" onclick="copyResult('result2_value')">复制</button>
+                </div>
+            </div>
+            
+            <div class="convert-type">
+                <h3>3. 快速获取当前时间戳</h3>
+                <button class="btn" onclick="getCurrentTimestamp()">获取当前时间戳</button>
+                <div id="result3" class="result">
+                    <span class="result-value" id="result3_value">--</span>
+                    <button class="copy-btn" onclick="copyResult('result3_value')">复制</button>
+                </div>
+            </div>
         </main>
-        
-        <footer style="text-align: center; color: white; padding: 20px;">
-            <p>© 2026 Multi Tools - 免费在线工具集</p>
-        </footer>
     </div>
     
-    <!-- 工具追踪 -->
     <script>
+        function timestampToFormat() {
+            const timestamp = document.getElementById('timestamp_input').value;
+            const format = document.getElementById('timestamp_format').value;
+            
+            if (!timestamp) {
+                alert('请输入时间戳');
+                return;
+            }
+            
+            const date = new Date(parseInt(timestamp) * 1000);
+            
+            if (isNaN(date.getTime())) {
+                alert('时间戳无效');
+                return;
+            }
+            
+            const result = formatDate(date, format);
+            document.getElementById('result1_value').textContent = result;
+            document.getElementById('result1').classList.add('show');
+            trackToolUsage('time-format');
+        }
+        
+        function formatToTimestamp() {
+            const input = document.getElementById('format_input').value;
+            const format = document.getElementById('format_type').value;
+            
+            if (!input) {
+                alert('请输入时间');
+                return;
+            }
+            
+            const date = parseDate(input, format);
+            
+            if (!date) {
+                alert('时间格式错误');
+                return;
+            }
+            
+            const timestamp = Math.floor(date.getTime() / 1000);
+            document.getElementById('result2_value').textContent = timestamp;
+            document.getElementById('result2').classList.add('show');
+            trackToolUsage('time-format');
+        }
+        
+        function getCurrentTimestamp() {
+            const timestamp = Math.floor(Date.now() / 1000);
+            document.getElementById('result3_value').textContent = timestamp;
+            document.getElementById('result3').classList.add('show');
+            trackToolUsage('time-format');
+        }
+        
+        function formatDate(date, format) {
+            const map = {
+                'YYYY': date.getFullYear(),
+                'MM': String(date.getMonth() + 1).padStart(2, '0'),
+                'DD': String(date.getDate()).padStart(2, '0'),
+                'HH': String(date.getHours()).padStart(2, '0'),
+                'mm': String(date.getMinutes()).padStart(2, '0'),
+                'ss': String(date.getSeconds()).padStart(2, '0')
+            };
+            
+            return format.replace(/YYYY|MM|DD|HH|mm|ss/g, match => map[match]);
+        }
+        
+        function parseDate(input, format) {
+            const parts = input.split(/[-\/\s:]/);
+            
+            let year, month, day, hour = 0, minute = 0, second = 0;
+            
+            if (format.startsWith('MM')) {
+                month = parseInt(parts[0]) - 1;
+                day = parseInt(parts[1]);
+                year = parseInt(parts[2]);
+            } else {
+                year = parseInt(parts[0]);
+                month = parseInt(parts[1]) - 1;
+                day = parseInt(parts[2]);
+            }
+            
+            if (parts.length > 3) {
+                hour = parseInt(parts[3]) || 0;
+                minute = parseInt(parts[4]) || 0;
+                second = parseInt(parts[5]) || 0;
+            }
+            
+            return new Date(year, month, day, hour, minute, second);
+        }
+        
+        function copyResult(elementId) {
+            const text = document.getElementById(elementId).textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('已复制到剪贴板');
+            }).catch(() => {
+                alert('复制失败，请手动复制');
+            });
+        }
+        
         function trackToolUsage(toolName) {
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'tool_usage', {
@@ -163,10 +296,9 @@
                     'value': 1
                 });
             }
-            console.log('工具使用:', toolName);
         }
         
         trackToolUsage('time-format');
-    <\/script>
+    </script>
 </body>
 </html>

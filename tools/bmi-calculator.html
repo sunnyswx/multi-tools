@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{TITLE} - 免费在线工具 | Multi Tools</title>
-    <meta name="description" content="{DESCRIPTION}">
+    <title>BMI计算器 - 免费在线工具 | Multi Tools</title>
+    <meta name="description" content="BMI计算器，在线计算身体质量指数">
     
     <!-- GA4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"><\/script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-L7GQFYBWB6');
-    <\/script>
+    </script>
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -24,7 +24,7 @@
             padding: 20px;
         }
         .container {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
         }
         header {
@@ -35,10 +35,6 @@
         header h1 {
             font-size: 2.5rem;
             margin-bottom: 10px;
-        }
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
         }
         .back-btn {
             display: inline-block;
@@ -59,33 +55,26 @@
             border-radius: 20px;
             padding: 40px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            margin-bottom: 30px;
         }
-        .tool-content h2 {
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
             color: #333;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
+            font-weight: bold;
         }
-        .tool-content p {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        .input-area, .output-area {
+        .input-group input {
             width: 100%;
-            padding: 15px;
+            padding: 12px;
             border: 2px solid #e0e0e0;
             border-radius: 10px;
-            font-size: 14px;
-            transition: border-color 0.3s;
+            font-size: 16px;
         }
-        .input-area:focus, .output-area:focus {
+        .input-group input:focus {
             outline: none;
             border-color: #667eea;
-        }
-        .input-area {
-            min-height: 150px;
-            resize: vertical;
         }
         .btn {
             display: inline-block;
@@ -103,35 +92,31 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
         }
-        .btn-secondary {
-            background: #f0f0f0;
-            color: #333;
-        }
-        .btn-secondary:hover {
-            background: #e0e0e0;
-            box-shadow: none;
-        }
         .result {
-            margin-top: 20px;
+            margin-top: 30px;
             padding: 20px;
             background: #f8f9fa;
             border-radius: 10px;
             border-left: 4px solid #667eea;
+            display: none;
         }
-        .result h3 {
-            color: #333;
-            margin-bottom: 10px;
+        .result.show {
+            display: block;
         }
         .result-value {
-            font-size: 1.5rem;
+            font-size: 2rem;
             color: #667eea;
             font-weight: bold;
         }
-        @media (max-width: 768px) {
-            header h1 { font-size: 2rem; }
-            .tool-content { padding: 20px; }
-            .btn { padding: 10px 20px; font-size: 14px; }
+        .result-level {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
         }
+        .underweight { color: #3498db; }
+        .normal { color: #2ecc71; }
+        .overweight { color: #f39c12; }
+        .obese { color: #e74c3c; }
     </style>
 </head>
 <body>
@@ -139,22 +124,92 @@
         <a href="/" class="back-btn">← 返回首页</a>
         
         <header>
-            <h1>🛠️ {TITLE}</h1>
-            <p>{DESCRIPTION}</p>
+            <h1>⚖️ BMI计算器</h1>
+            <p>计算身体质量指数，评估健康状况</p>
         </header>
         
         <main class="tool-content">
-            <!-- 工具功能区域 -->
-            {CONTENT}
+            <div class="input-group">
+                <label for="height">身高（厘米）</label>
+                <input type="number" id="height" placeholder="请输入身高，例如：170" min="1" max="300">
+            </div>
+            
+            <div class="input-group">
+                <label for="weight">体重（公斤）</label>
+                <input type="number" id="weight" placeholder="请输入体重，例如：65" min="1" max="500">
+            </div>
+            
+            <button class="btn" onclick="calculateBMI()">计算BMI</button>
+            <button class="btn btn-secondary" onclick="clearForm()">清空</button>
+            
+            <div id="result" class="result">
+                <div>您的BMI指数为：</div>
+                <div class="result-value" id="bmiValue">--</div>
+                <div class="result-level" id="bmiLevel">--</div>
+                <div id="bmiAdvice" style="margin-top: 15px; color: #666;"></div>
+            </div>
         </main>
-        
-        <footer style="text-align: center; color: white; padding: 20px;">
-            <p>© 2026 Multi Tools - 免费在线工具集</p>
-        </footer>
     </div>
     
-    <!-- 工具追踪 -->
     <script>
+        function calculateBMI() {
+            const height = parseFloat(document.getElementById('height').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            
+            if (!height || !weight) {
+                alert('请输入身高和体重');
+                return;
+            }
+            
+            if (height <= 0 || height > 300 || weight <= 0 || weight > 500) {
+                alert('请输入有效的数值（身高：1-300cm，体重：1-500kg）');
+                return;
+            }
+            
+            const heightM = height / 100;
+            const bmi = weight / (heightM * heightM);
+            const bmiFixed = bmi.toFixed(2);
+            
+            document.getElementById('bmiValue').textContent = bmiFixed;
+            
+            let level = '';
+            let levelClass = '';
+            let advice = '';
+            
+            if (bmi < 18.5) {
+                level = '体重过轻';
+                levelClass = 'underweight';
+                advice = '建议增加营养摄入，适当锻炼增重';
+            } else if (bmi < 25) {
+                level = '正常体重';
+                levelClass = 'normal';
+                advice = '保持健康的生活方式，继续维持！';
+            } else if (bmi < 30) {
+                level = '超重';
+                levelClass = 'overweight';
+                advice = '建议控制饮食，增加运动量';
+            } else {
+                level = '肥胖';
+                levelClass = 'obese';
+                advice = '建议咨询医生，制定减肥计划';
+            }
+            
+            const levelElement = document.getElementById('bmiLevel');
+            levelElement.textContent = level;
+            levelElement.className = 'result-level ' + levelClass;
+            
+            document.getElementById('bmiAdvice').textContent = advice;
+            document.getElementById('result').classList.add('show');
+            
+            trackToolUsage('bmi-calculator');
+        }
+        
+        function clearForm() {
+            document.getElementById('height').value = '';
+            document.getElementById('weight').value = '';
+            document.getElementById('result').classList.remove('show');
+        }
+        
         function trackToolUsage(toolName) {
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'tool_usage', {
@@ -163,10 +218,9 @@
                     'value': 1
                 });
             }
-            console.log('工具使用:', toolName);
         }
         
         trackToolUsage('bmi-calculator');
-    <\/script>
+    </script>
 </body>
 </html>
