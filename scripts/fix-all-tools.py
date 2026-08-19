@@ -1,62 +1,75 @@
-<!DOCTYPE html>
+#!/usr/bin/env python3
+"""
+批量修复工具页面 - 统一格式和样式
+"""
+
+import os
+import re
+from datetime import datetime
+
+def read_file(filepath):
+    """读取文件内容"""
+    with open(filepath, 'r', encoding='utf-8') as f:
+        return f.read()
+
+def write_file(filepath, content):
+    """写入文件内容"""
+    with open(filepath, 'w', encoding='utf-8') as f:
+        f.write(content)
+
+def fix_tool_page(filepath):
+    """修复单个工具页面"""
+    
+    # 读取原文件
+    content = read_file(filepath)
+    
+    # 提取工具名称
+    tool_name = os.path.basename(filepath).replace('.html', '')
+    
+    # 生成新内容（使用统一模板）
+    new_content = f'''<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{TITLE}} - 免费在线工具 | Multi Tools</title>
     <meta name="description" content="{{DESCRIPTION}}">
-    <meta name="keywords" content="{{KEYWORDS}}">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="{{TITLE}} - Multi Tools">
-    <meta property="og:description" content="{{DESCRIPTION}}">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://zh8888.dpdns.org{{URL}}">
-    <meta property="og:image" content="https://zh8888.dpdns.org/og-image.png">
     
     <!-- GA4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"><\\/script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag(){{dataLayer.push(arguments);}}
       gtag('js', new Date());
       gtag('config', 'G-L7GQFYBWB6');
-    </script>
+    <\\/script>
     
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
+        * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+        body {{
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
-        }
-        
-        .container {
+        }}
+        .container {{
             max-width: 1200px;
             margin: 0 auto;
-        }
-        
-        /* 头部 */
-        header {
+        }}
+        header {{
             text-align: center;
             padding: 40px 20px;
             color: white;
-        }
-        
-        header h1 {
+        }}
+        header h1 {{
             font-size: 2.5rem;
             margin-bottom: 10px;
-        }
-        
-        header p {
+        }}
+        header p {{
             font-size: 1.1rem;
             opacity: 0.9;
-        }
-        
-        /* 导航 */
-        .back-btn {
+        }}
+        .back-btn {{
             display: inline-block;
             margin-bottom: 20px;
             padding: 10px 20px;
@@ -65,56 +78,45 @@
             text-decoration: none;
             border-radius: 25px;
             transition: all 0.3s;
-        }
-        
-        .back-btn:hover {
+        }}
+        .back-btn:hover {{
             background: rgba(255,255,255,0.3);
             transform: translateY(-2px);
-        }
-        
-        /* 工具内容 */
-        .tool-content {
+        }}
+        .tool-content {{
             background: white;
             border-radius: 20px;
             padding: 40px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             margin-bottom: 30px;
-        }
-        
-        .tool-content h2 {
+        }}
+        .tool-content h2 {{
             color: #333;
             margin-bottom: 20px;
             font-size: 1.8rem;
-        }
-        
-        .tool-content p {
+        }}
+        .tool-content p {{
             color: #666;
             line-height: 1.6;
             margin-bottom: 20px;
-        }
-        
-        /* 输入输出区域 */
-        .input-area, .output-area {
+        }}
+        .input-area, .output-area {{
             width: 100%;
             padding: 15px;
             border: 2px solid #e0e0e0;
             border-radius: 10px;
             font-size: 14px;
             transition: border-color 0.3s;
-        }
-        
-        .input-area:focus, .output-area:focus {
+        }}
+        .input-area:focus, .output-area:focus {{
             outline: none;
             border-color: #667eea;
-        }
-        
-        .input-area {
+        }}
+        .input-area {{
             min-height: 150px;
             resize: vertical;
-        }
-        
-        /* 按钮样式 */
-        .btn {
+        }}
+        .btn {{
             display: inline-block;
             padding: 12px 30px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -125,58 +127,40 @@
             cursor: pointer;
             transition: all 0.3s;
             margin: 10px 5px;
-        }
-        
-        .btn:hover {
+        }}
+        .btn:hover {{
             transform: translateY(-2px);
             box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
-        }
-        
-        .btn-secondary {
+        }}
+        .btn-secondary {{
             background: #f0f0f0;
             color: #333;
-        }
-        
-        .btn-secondary:hover {
+        }}
+        .btn-secondary:hover {{
             background: #e0e0e0;
             box-shadow: none;
-        }
-        
-        /* 结果展示 */
-        .result {
+        }}
+        .result {{
             margin-top: 20px;
             padding: 20px;
             background: #f8f9fa;
             border-radius: 10px;
             border-left: 4px solid #667eea;
-        }
-        
-        .result h3 {
+        }}
+        .result h3 {{
             color: #333;
             margin-bottom: 10px;
-        }
-        
-        .result-value {
+        }}
+        .result-value {{
             font-size: 1.5rem;
             color: #667eea;
             font-weight: bold;
-        }
-        
-        /* 响应式 */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
-            
-            .tool-content {
-                padding: 20px;
-            }
-            
-            .btn {
-                padding: 10px 20px;
-                font-size: 14px;
-            }
-        }
+        }}
+        @media (max-width: 768px) {{
+            header h1 {{ font-size: 2rem; }}
+            .tool-content {{ padding: 20px; }}
+            .btn {{ padding: 10px 20px; font-size: 14px; }}
+        }}
     </style>
 </head>
 <body>
@@ -200,19 +184,62 @@
     
     <!-- 工具追踪 -->
     <script>
-        function trackToolUsage(toolName) {
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'tool_usage', {
+        function trackToolUsage(toolName) {{
+            if (typeof gtag !== 'undefined') {{
+                gtag('event', 'tool_usage', {{
                     'event_category': 'tools',
                     'event_label': toolName,
                     'value': 1
-                });
-            }
+                }});
+            }}
             console.log('工具使用:', toolName);
-        }
+        }}
         
-        // 页面加载时记录
-        trackToolUsage('{{TOOL_NAME}}');
-    </script>
+        trackToolUsage('{tool_name}');
+    <\\/script>
 </body>
 </html>
+'''
+    
+    # 写入新内容
+    write_file(filepath, new_content)
+    
+    return True
+
+def main():
+    """主函数"""
+    print("=" * 60)
+    print("🔧 批量修复工具页面")
+    print("=" * 60)
+    print()
+    
+    # 获取所有工具文件
+    tools_dir = 'tools'
+    if not os.path.exists(tools_dir):
+        print(f"❌ 工具目录不存在: {tools_dir}")
+        return
+    
+    html_files = [f for f in os.listdir(tools_dir) if f.endswith('.html') and f != 'template.html']
+    
+    print(f"📊 找到 {len(html_files)} 个工具文件")
+    print()
+    
+    # 修复每个工具页面
+    fixed_count = 0
+    for html_file in html_files:
+        filepath = os.path.join(tools_dir, html_file)
+        print(f"🔧 修复: {html_file}")
+        
+        if fix_tool_page(filepath):
+            fixed_count += 1
+            print(f"   ✅ 成功")
+        else:
+            print(f"   ❌ 失败")
+    
+    print()
+    print("=" * 60)
+    print(f"✅ 修复完成！共修复 {fixed_count}/{len(html_files)} 个工具页面")
+    print("=" * 60)
+
+if __name__ == '__main__':
+    main()

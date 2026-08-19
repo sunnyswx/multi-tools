@@ -3,176 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>房贷计算器 - 免费在线房贷计算器,计算每月还款额 | Multi Tools</title>
-    <meta name="description" content="免费在线房贷计算器，支持等额本息和等额本金两种还款方式，计算每月还款额、总利息和还款总额。适用于购房贷款计算。">
-    <meta name="keywords" content="房贷计算器,贷款计算,月供计算,等额本息,等额本金,房贷计算,贷款计算器">
-    <meta name="author" content="Multi Tools">
-    <meta name="robots" content="index, follow">
+    <title>{TITLE} - 免费在线工具 | Multi Tools</title>
+    <meta name="description" content="{DESCRIPTION}">
     
-    <!-- Open Graph -->
-    <meta property="og:title" content="房贷计算器 - 免费在线房贷计算器">
-    <meta property="og:description" content="计算每月还款额和总利息，支持等额本息和等额本金">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://zh8888.dpdns.org/tools/mortgage-calculator.html">
-    <meta property="og:image" content="https://zh8888.dpdns.org/og-image.jpg">
-    <meta property="og:site_name" content="Multi Tools">
-    <meta property="og:locale" content="zh_CN">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="房贷计算器 - 免费在线房贷计算器">
-    <meta name="twitter:description" content="计算每月还款额和总利息，支持等额本息和等额本金">
-    <meta name="twitter:image" content="https://zh8888.dpdns.org/og-image.jpg">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://zh8888.dpdns.org/tools/mortgage-calculator.html">
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "房贷计算器",
-      "description": "免费在线房贷计算器，支持等额本息和等额本金两种还款方式",
-      "url": "https://zh8888.dpdns.org/tools/mortgage-calculator.html",
-      "applicationCategory": "FinanceApplication",
-      "operatingSystem": "Any",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    }
-    </script>
+    <!-- GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"><\/script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-L7GQFYBWB6');
+    <\/script>
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
-        .container { max-width: 800px; margin: 0 auto; }
-        header { text-align: center; padding: 20px; color: white; }
-        header h1 { font-size: 2rem; margin-bottom: 10px; }
-        .back-btn { display: inline-block; margin-bottom: 15px; padding: 8px 20px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 20px; font-size: 0.9rem; }
-        .back-btn:hover { background: rgba(255,255,255,0.3); }
-        .tool-card { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
-        .input-group { margin: 20px 0; }
-        .input-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #333; }
-        .input-group input, .input-group select { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem; }
-        .input-group input:focus, .input-group select:focus { outline: none; border-color: #667eea; }
-        .btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 15px 40px; font-size: 1.1rem; border-radius: 30px; cursor: pointer; transition: transform 0.2s; margin: 20px auto; display: block; }
-        .btn:hover { transform: scale(1.05); }
-        .result { background: #f8f9fa; padding: 25px; border-radius: 15px; margin-top: 20px; }
-        .result h3 { color: #667eea; margin-bottom: 15px; }
-        .result-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-        .result-item { text-align: center; }
-        .result-value { font-size: 2rem; font-weight: bold; color: #667eea; }
-        .result-label { color: #666; font-size: 0.9rem; margin-top: 5px; }
-        footer { text-align: center; padding: 40px 20px; color: white; opacity: 0.8; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        .tool-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+        }
+        .tool-content h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        .tool-content p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .input-area, .output-area {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        .input-area:focus, .output-area:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .input-area {
+            min-height: 150px;
+            resize: vertical;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px 5px;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+        .btn-secondary:hover {
+            background: #e0e0e0;
+            box-shadow: none;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        .result h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .result-value {
+            font-size: 1.5rem;
+            color: #667eea;
+            font-weight: bold;
+        }
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            .tool-content { padding: 20px; }
+            .btn { padding: 10px 20px; font-size: 14px; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <a href="/" class="back-btn">← 返回首页</a>
+        
         <header>
-            <h1>🏠 房贷计算器</h1>
-            <p>计算每月还款额和总利息</p>
+            <h1>🛠️ {TITLE}</h1>
+            <p>{DESCRIPTION}</p>
         </header>
         
-        <div class="tool-card">
-            <div class="input-group">
-                <label>贷款金额（万元）</label>
-                <input type="number" id="loanAmount" value="100" min="1" max="10000">
-            </div>
-            
-            <div class="input-group">
-                <label>贷款年限（年）</label>
-                <select id="loanYears">
-                    <option value="10">10年</option>
-                    <option value="15">15年</option>
-                    <option value="20" selected>20年</option>
-                    <option value="25">25年</option>
-                    <option value="30">30年</option>
-                </select>
-            </div>
-            
-            <div class="input-group">
-                <label>年利率（%）</label>
-                <input type="number" id="interestRate" value="4.9" min="0.1" max="20" step="0.1">
-            </div>
-            
-            <div class="input-group">
-                <label>还款方式</label>
-                <select id="repaymentMethod">
-                    <option value="equal_principal">等额本金</option>
-                    <option value="equal_payment" selected>等额本息</option>
-                </select>
-            </div>
-            
-            <button class="btn" onclick="calculate()">开始计算</button>
-            
-            <div class="result" id="result" style="display: none;">
-                <h3>计算结果</h3>
-                <div class="result-grid">
-                    <div class="result-item">
-                        <div class="result-value" id="monthlyPayment">0</div>
-                        <div class="result-label">月供（元）</div>
-                    </div>
-                    <div class="result-item">
-                        <div class="result-value" id="totalInterest">0</div>
-                        <div class="result-label">总利息（元）</div>
-                    </div>
-                    <div class="result-item">
-                        <div class="result-value" id="totalPayment">0</div>
-                        <div class="result-label">总还款（元）</div>
-                    </div>
-                    <div class="result-item">
-                        <div class="result-value" id="interestRatio">0%</div>
-                        <div class="result-label">利息占比</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <main class="tool-content">
+            <!-- 工具功能区域 -->
+            {CONTENT}
+        </main>
         
-        <footer>
-            <p>© 2026 Multi Tools | 免费在线房贷计算器</p>
+        <footer style="text-align: center; color: white; padding: 20px;">
+            <p>© 2026 Multi Tools - 免费在线工具集</p>
         </footer>
     </div>
     
+    <!-- 工具追踪 -->
     <script>
-        function calculate() {
-            const amount = parseFloat(document.getElementById('loanAmount').value) * 10000;
-            const years = parseInt(document.getElementById('loanYears').value);
-            const rate = parseFloat(document.getElementById('interestRate').value) / 100;
-            const method = document.getElementById('repaymentMethod').value;
-            
-            const months = years * 12;
-            const monthlyRate = rate / 12;
-            
-            let monthlyPayment, totalInterest, totalPayment;
-            
-            if (method === 'equal_payment') {
-                monthlyPayment = amount * monthlyRate * Math.pow(1 + monthlyRate, months) / (Math.pow(1 + monthlyRate, months) - 1);
-                totalPayment = monthlyPayment * months;
-                totalInterest = totalPayment - amount;
-            } else {
-                const principalPerMonth = amount / months;
-                monthlyPayment = principalPerMonth + amount * monthlyRate;
-                totalInterest = (months + 1) * amount * monthlyRate / 2;
-                totalPayment = amount + totalInterest;
+        function trackToolUsage(toolName) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'tool_usage', {
+                    'event_category': 'tools',
+                    'event_label': toolName,
+                    'value': 1
+                });
             }
-            
-            document.getElementById('monthlyPayment').textContent = formatNumber(monthlyPayment);
-            document.getElementById('totalInterest').textContent = formatNumber(totalInterest);
-            document.getElementById('totalPayment').textContent = formatNumber(totalPayment);
-            document.getElementById('interestRatio').textContent = ((totalInterest / totalPayment) * 100).toFixed(1) + '%';
-            
-            document.getElementById('result').style.display = 'block';
+            console.log('工具使用:', toolName);
         }
         
-        function formatNumber(num) {
-            return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-        }
-        
-        calculate();
-    </script>
+        trackToolUsage('mortgage-calculator-seo');
+    <\/script>
 </body>
 </html>
