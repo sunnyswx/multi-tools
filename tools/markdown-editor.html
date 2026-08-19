@@ -212,6 +212,13 @@
                 trackToolUsage('markdown-editor', 'click');
             });
         });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('markdown-editor', 'click');
+            });
+        });
 </script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -219,6 +226,13 @@
       gtag('js', new Date());
       gtag('config', 'G-L7GQFYBWB6');
     
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('markdown-editor', 'click');
+            });
+        });
+
         // 追踪工具使用
         document.querySelectorAll('button').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -391,7 +405,14 @@
                 console.error('反馈提交失败:', error);
             }
         }
-    </script>
+    
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('markdown-editor', 'click');
+            });
+        });
+</script>
 </body>
 </html></div>
                 <textarea id="editor" placeholder="在此输入Markdown..."># 欢迎使用Markdown编辑器
@@ -471,6 +492,13 @@ function hello() {
                 trackToolUsage('markdown-editor', 'click');
             });
         });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('markdown-editor', 'click');
+            });
+        });
 </script>
     <script>
         const editor = document.getElementById('editor');
@@ -504,6 +532,13 @@ function hello() {
         
         updatePreview();
     
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('markdown-editor', 'click');
+            });
+        });
+
         // 追踪工具使用
         document.querySelectorAll('button').forEach(btn => {
             btn.addEventListener('click', () => {

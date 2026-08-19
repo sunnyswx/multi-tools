@@ -165,10 +165,40 @@
 </head>
 <body>
     <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7B5H09J4KB">
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('word-counter', 'click');
+            });
+        });
+</script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7B5H09J4KB');
+    
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('word-counter', 'click');
+            });
+        });
+</script>
+
+    <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6">
         // 追踪按钮点击
         document.querySelector('button').addEventListener('click', () => {
             trackToolUsage('word-counter', 'click');
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('word-counter', 'click');
+            });
         });
 
         // 追踪工具使用
@@ -215,6 +245,13 @@
         // 追踪按钮点击
         document.querySelector('button').addEventListener('click', () => {
             trackToolUsage('word-counter', 'click');
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('word-counter', 'click');
+            });
         });
 
         // 追踪工具使用
@@ -379,7 +416,14 @@
                 console.error('反馈提交失败:', error);
             }
         }
-    </script>
+    
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('word-counter', 'click');
+            });
+        });
+</script>
 </body>
 </html></div>
                     <div class="stat-label">字符数</div>
@@ -455,6 +499,13 @@
         // 追踪按钮点击
         document.querySelector('button').addEventListener('click', () => {
             trackToolUsage('word-counter', 'click');
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('word-counter', 'click');
+            });
         });
 
         // 追踪工具使用

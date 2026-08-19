@@ -172,13 +172,27 @@
         }
     </style>
     <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6">
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('image-converter', 'click');
+            });
+        });
+</script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-L7GQFYBWB6');
-    </script>
+    
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('image-converter', 'click');
+            });
+        });
+</script>
     </head>
 <body>
     <div class="container">
@@ -322,7 +336,14 @@
                 console.error('反馈提交失败:', error);
             }
         }
-    </script>
+    
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('image-converter', 'click');
+            });
+        });
+</script>
 </body>
 </html></div>
             
@@ -441,6 +462,13 @@
         // 追踪按钮点击
         document.querySelector('button').addEventListener('click', () => {
             trackToolUsage('image-converter', 'click');
+        });
+
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('image-converter', 'click');
+            });
         });
 
         // 追踪工具使用

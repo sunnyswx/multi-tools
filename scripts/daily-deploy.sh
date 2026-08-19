@@ -56,7 +56,7 @@ echo ""
 # 5. 运行SEO和GA4更新
 echo "📝 步骤5: 运行SEO和GA4更新..."
 if [ -f "scripts/batch-seo-ga4.py" ]; then
-    python3 scripts/batch-seo-ga4.py
+    python scripts/batch-seo-ga4.py
 else
     echo "⚠️ batch-seo-ga4.py不存在，跳过"
 fi
@@ -65,7 +65,7 @@ echo ""
 # 6. 运行追踪更新
 echo "📝 步骤6: 运行追踪更新..."
 if [ -f "scripts/batch-tracking.py" ]; then
-    python3 scripts/batch-tracking.py
+    python scripts/batch-tracking.py
 else
     echo "⚠️ batch-tracking.py不存在，跳过"
 fi

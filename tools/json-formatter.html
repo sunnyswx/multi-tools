@@ -170,13 +170,27 @@
         }
     </style>
     <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6">
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('json-formatter', 'click');
+            });
+        });
+</script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-L7GQFYBWB6');
-    </script>
+    
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('json-formatter', 'click');
+            });
+        });
+</script>
     </head>
 <body>
     <div class="container">
@@ -307,7 +321,14 @@
                 console.error('反馈提交失败:', error);
             }
         }
-    </script>
+    
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('json-formatter', 'click');
+            });
+        });
+</script>
 </body>
 </html></div>
         
@@ -453,6 +474,13 @@
             }
         });
     
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('json-formatter', 'click');
+            });
+        });
+
         // 追踪工具使用
         document.querySelectorAll('button').forEach(btn => {
             btn.addEventListener('click', () => {

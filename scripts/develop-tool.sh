@@ -21,7 +21,7 @@ fi
 
 # 1. 运行开发工作流
 echo "📝 步骤1: 开发新工具..."
-python3 scripts/develop-new-tool-workflow.py
+python scripts/develop-new-tool-workflow.py
 if [ $? -ne 0 ]; then
     echo "❌ 开发工作流失败"
     exit 1

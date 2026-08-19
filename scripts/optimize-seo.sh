@@ -10,7 +10,7 @@ cd ~/Documents/functional-website/multi-tools
 
 # 运行Python脚本优化SEO
 echo "📝 步骤1: 优化工具SEO..."
-python3 scripts/optimize-tool-seo.py
+python scripts/optimize-tool-seo.py
 if [ $? -ne 0 ]; then
     echo "❌ SEO优化失败"
     exit 1

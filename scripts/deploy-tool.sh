@@ -25,11 +25,11 @@ cd "$REPO_DIR"
 
 # 3. 运行批量优化脚本
 echo "📝 运行SEO和GA4优化..."
-python3 scripts/batch-seo-ga4.py
+python scripts/batch-seo-ga4.py
 
 echo ""
 echo "📝 运化工具追踪优化..."
-python3 scripts/batch-tracking.py
+python scripts/batch-tracking.py
 
 # 4. 提交更改
 echo ""
