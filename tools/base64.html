@@ -102,7 +102,7 @@
         function copyResult() {
             const result = document.getElementById('result').textContent;
             if (!result) { alert('没有结果可复制'); return; }
-            navigator.clipboard.writeText(result).then(() => alert('已复制'));
+            navigator.clipboard.writeText(result).then(() => alert('已复制到剪贴板'));
         }
         
         function trackToolUsage(toolName) {

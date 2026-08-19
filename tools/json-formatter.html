@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Json Formatter - 免费在线工具 | Multi Tools</title>
-    <meta name="description" content="在线json formatter工具">
+    <title>JSON格式化器 - 免费在线工具 | Multi Tools</title>
+    <meta name="description" content="在线JSON格式化和验证工具">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -15,25 +15,156 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
-        .container { max-width: 1000px; margin: 0 auto; }
+        .container { max-width: 1200px; margin: 0 auto; }
         header { text-align: center; padding: 40px 20px; color: white; }
         header h1 { font-size: 2.5rem; margin-bottom: 10px; }
         .back-btn { display: inline-block; margin-bottom: 20px; padding: 10px 20px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 25px; }
         .tool-content { background: white; border-radius: 20px; padding: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #333; }
+        textarea { width: 100%; height: 300px; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 14px; font-family: monospace; resize: vertical; }
+        textarea:focus { outline: none; border-color: #667eea; }
+        .btn-group { display: flex; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
+        .btn { padding: 12px 30px; border: none; border-radius: 25px; cursor: pointer; font-size: 16px; transition: all 0.3s; }
+        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
+        .btn-secondary { background: #f0f0f0; color: #333; }
+        .btn-secondary:hover { background: #e0e0e0; }
+        .result { background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px; font-family: monospace; white-space: pre-wrap; word-break: break-all; display: none; max-height: 400px; overflow: auto; }
+        .result.show { display: block; }
+        .error { background: #fee2e2; color: #991b1b; padding: 15px; border-radius: 10px; margin-top: 20px; display: none; }
+        .error.show { display: block; }
+        .indent-control { margin: 20px 0; }
+        .indent-control label { margin-right: 10px; }
+        .indent-control select { padding: 8px 15px; border-radius: 8px; border: 2px solid #e0e0e0; }
     </style>
 </head>
 <body>
     <div class="container">
         <a href="/" class="back-btn">← 返回首页</a>
         <header>
-            <h1>🔧 Json Formatter</h1>
-            <p>免费在线json formatter工具</p>
+            <h1>📋 JSON格式化器</h1>
+            <p>在线JSON格式化和验证工具</p>
         </header>
         <main class="tool-content">
-            <p>工具功能开发中...</p>
+            <div class="input-group">
+                <label>输入JSON</label>
+                <textarea id="jsonInput" placeholder='粘贴JSON数据，例如：{"name": "张三", "age": 25}'></textarea>
+            </div>
+            <div class="indent-control">
+                <label>缩进空格数：</label>
+                <select id="indentSize">
+                    <option value="2">2个空格</option>
+                    <option value="4" selected>4个空格</option>
+                    <option value="8">8个空格</option>
+                    <option value="tab">Tab</option>
+                </select>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="formatJSON()">格式化</button>
+                <button class="btn btn-primary" onclick="minifyJSON()">压缩</button>
+                <button class="btn btn-primary" onclick="validateJSON()">验证</button>
+                <button class="btn btn-secondary" onclick="clearAll()">清空</button>
+                <button class="btn btn-secondary" onclick="copyResult()">复制结果</button>
+            </div>
+            <div id="result" class="result"></div>
+            <div id="error" class="error"></div>
         </main>
     </div>
     <script>
+        function formatJSON() {
+            const input = document.getElementById('jsonInput').value.trim();
+            const errorDiv = document.getElementById('error');
+            const resultDiv = document.getElementById('result');
+            
+            errorDiv.classList.remove('show');
+            resultDiv.classList.remove('show');
+            
+            if (!input) {
+                showError('请输入JSON数据');
+                return;
+            }
+            
+            try {
+                const obj = JSON.parse(input);
+                const indent = document.getElementById('indentSize').value;
+                const spaces = indent === 'tab' ? '\t' : parseInt(indent);
+                const formatted = JSON.stringify(obj, null, spaces);
+                showResult(formatted);
+            } catch (e) {
+                showError('JSON格式错误: ' + e.message);
+            }
+        }
+        
+        function minifyJSON() {
+            const input = document.getElementById('jsonInput').value.trim();
+            const errorDiv = document.getElementById('error');
+            const resultDiv = document.getElementById('result');
+            
+            errorDiv.classList.remove('show');
+            resultDiv.classList.remove('show');
+            
+            if (!input) {
+                showError('请输入JSON数据');
+                return;
+            }
+            
+            try {
+                const obj = JSON.parse(input);
+                const minified = JSON.stringify(obj);
+                showResult(minified);
+            } catch (e) {
+                showError('JSON格式错误: ' + e.message);
+            }
+        }
+        
+        function validateJSON() {
+            const input = document.getElementById('jsonInput').value.trim();
+            const errorDiv = document.getElementById('error');
+            const resultDiv = document.getElementById('result');
+            
+            errorDiv.classList.remove('show');
+            resultDiv.classList.remove('show');
+            
+            if (!input) {
+                showError('请输入JSON数据');
+                return;
+            }
+            
+            try {
+                JSON.parse(input);
+                showResult('✅ JSON格式正确！');
+            } catch (e) {
+                showError('❌ JSON格式错误: ' + e.message);
+            }
+        }
+        
+        function showResult(text) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = text;
+            resultDiv.classList.add('show');
+        }
+        
+        function showError(text) {
+            const errorDiv = document.getElementById('error');
+            errorDiv.textContent = text;
+            errorDiv.classList.add('show');
+        }
+        
+        function clearAll() {
+            document.getElementById('jsonInput').value = '';
+            document.getElementById('result').classList.remove('show');
+            document.getElementById('result').textContent = '';
+            document.getElementById('error').classList.remove('show');
+            document.getElementById('error').textContent = '';
+        }
+        
+        function copyResult() {
+            const result = document.getElementById('result').textContent;
+            if (!result) { alert('没有结果可复制'); return; }
+            navigator.clipboard.writeText(result).then(() => alert('已复制到剪贴板'));
+        }
+        
         function trackToolUsage(name) {
             if (typeof gtag !== 'undefined') gtag('event', 'tool_usage', { event_category: 'tools', event_label: name });
         }
