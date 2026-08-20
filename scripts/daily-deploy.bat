@@ -1,120 +1,93 @@
 @echo off
-REM 每日自动部署脚本 - 完整版（含新工具开发）
-REM 更新时间: 2026-08-18
-REM 域名: zh8888.dpdns.org
+REM 每日自动部署脚本 - Windows版
+REM 功能：整合daily-deploy.sh的所有功能
 
-echo 🚀 开始每日自动部署...
+cd /d "%~dp0.."
+
+echo ============================================================
+echo 开始每日自动部署
 echo 时间: %date% %time%
+echo ============================================================
 echo.
 
-REM 0. 检测WARP状态
-echo 📝 步骤0: 检测WARP状态...
-if exist scripts\check-warp.bat (
-    call scripts\check-warp.bat
-) else (
-    echo ⚠️ check-warp.bat不存在，跳过WARP检测
-)
-echo.
-
-REM 1. 进入项目目录
-echo 📝 步骤1: 进入项目目录...
-cd /d "C:\Users\s\Documents\functional-website\multi-tools"
+REM 1. 连接WARP
+echo [1/9] 连接WARP...
+warp-cli.exe connect
 if %errorlevel% neq 0 (
-    echo ❌ 无法进入项目目录
-    pause
+    echo WARP连接失败，退出
     exit /b 1
 )
-echo ✅ 项目目录: %cd%
+echo WARP连接成功
 echo.
 
-REM 2. 检查Git状态
-echo 📝 步骤2: 检查Git状态...
-git status --short
-echo.
-
-REM 3. 拉取最新代码
-echo 📝 步骤3: 拉取最新代码...
+REM 2. 拉取最新代码
+echo [2/9] 拉取最新代码...
 git pull origin main
 if %errorlevel% neq 0 (
-    echo ⚠️ Git pull失败，可能是网络问题
-    echo    尝试重新连接WARP...
-    if exist scripts\check-warp.bat (
-        call scripts\check-warp.bat
-    )
+    echo 拉取失败，尝试重新连接WARP...
+    warp-cli.exe connect
     git pull origin main
 )
 echo.
 
-REM 4. 开发新工具
-echo 📝 步骤4: 开发新工具...
-if exist scripts\develop-tool.bat (
-    call scripts\develop-tool.bat
+REM 3. 开发新工具
+echo [3/9] 开发新工具...
+if exist "scripts\smart-tool-dev-workflow.py" (
+    python scripts\smart-tool-dev-workflow.py
 ) else (
-    echo ⚠️ develop-tool.bat不存在，跳过新工具开发
+    echo 智能开发脚本不存在，跳过
 )
 echo.
 
-REM 5. 运行SEO和GA4更新
-echo 📝 步骤5: 运行SEO和GA4更新...
-if exist scripts\batch-seo-ga4.py (
+REM 4. 更新SEO和GA4
+echo [4/9] 更新SEO和GA4...
+if exist "scripts\batch-seo-ga4.py" (
     python scripts\batch-seo-ga4.py
 ) else (
-    echo ⚠️ batch-seo-ga4.py不存在，跳过
+    echo SEO更新脚本不存在，跳过
 )
 echo.
 
-REM 6. 运行追踪更新
-echo 📝 步骤6: 运行追踪更新...
-if exist scripts\batch-tracking.py (
+REM 5. 更新追踪代码
+echo [5/9] 更新追踪代码...
+if exist "scripts\batch-tracking.py" (
     python scripts\batch-tracking.py
 ) else (
-    echo ⚠️ batch-tracking.py不存在，跳过
+    echo 追踪更新脚本不存在，跳过
 )
 echo.
 
-REM 7. 提交更改
-echo 📝 步骤7: 提交更改...
+REM 6. 提交更改
+echo [6/9] 提交更改...
+git status --short
 git add -A
 git commit -m "chore: daily automated deployment - %date%"
 if %errorlevel% neq 0 (
-    echo ℹ️ 没有需要提交的更改
+    echo 没有需要提交的更改
 )
 echo.
 
-REM 8. 推送到GitHub
-echo 📝 步骤8: 推送到GitHub...
+REM 7. 推送到GitHub
+echo [7/9] 推送到GitHub...
 git push origin main
 if %errorlevel% neq 0 (
-    echo ⚠️ Git push失败，可能是网络问题
-    echo    尝试重新连接WARP...
-    if exist scripts\check-warp.bat (
-        call scripts\check-warp.bat
-    )
+    echo 推送失败，尝试重新连接WARP...
+    warp-cli.exe connect
     git push origin main
 )
 echo.
 
-REM 9. 检查部署状态
-echo 📝 步骤9: 检查部署状态...
-echo    访问: https://zh8888.dpdns.org
-echo    Sitemap: https://zh8888.dpdns.org/sitemap.xml
+REM 8. 检查网站
+echo [8/9] 检查网站可访问性...
+curl -I https://zh8888.dpdns.org --connect-timeout 10
 echo.
 
-REM 10. 断开WARP
-echo 📝 步骤10: 断开WARP连接...
-if exist warp-cli.exe (
-    warp-cli.exe disconnect >nul 2>&1
-    echo ✅ WARP已断开
-) else (
-    echo ⚠️ warp-cli.exe不存在，跳过
-)
+REM 9. 断开WARP
+echo [9/9] 断开WARP...
+warp-cli.exe disconnect
 echo.
 
-echo 🎉 每日自动部署完成！
-echo.
-echo 📊 总结:
-echo    域名: https://zh8888.dpdns.org
-echo    工具数: 27个
-echo    状态: 已部署
-echo.
-pause
+echo ============================================================
+echo 每日自动部署完成！
+echo 时间: %date% %time%
+echo ============================================================
