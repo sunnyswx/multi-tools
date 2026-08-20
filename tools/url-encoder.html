@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Url Encoder - 免费在线工具 | Multi Tools</title>
-    <meta name="description" content="URL编解码工具">
+    <title>URL编解码器 - 免费在线工具 | Multi Tools</title>
+    <meta name="description" content="在线URL编码和解码工具">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -20,24 +20,78 @@
         header h1 { font-size: 2.5rem; margin-bottom: 10px; }
         .back-btn { display: inline-block; margin-bottom: 20px; padding: 10px 20px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 25px; }
         .tool-content { background: white; border-radius: 20px; padding: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #333; }
+        textarea { width: 100%; height: 150px; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 14px; resize: vertical; font-family: monospace; }
+        textarea:focus { outline: none; border-color: #667eea; }
+        .btn-group { display: flex; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
+        .btn { padding: 12px 30px; border: none; border-radius: 25px; cursor: pointer; font-size: 16px; transition: all 0.3s; }
+        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
+        .btn-secondary { background: #f0f0f0; color: #333; }
+        .btn-secondary:hover { background: #e0e0e0; }
+        .result { background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px; word-break: break-all; font-family: monospace; display: none; }
+        .result.show { display: block; }
     </style>
 </head>
 <body>
     <div class="container">
         <a href="/" class="back-btn">← 返回首页</a>
         <header>
-            <h1>🔧 Url Encoder</h1>
-            <p>URL编解码工具</p>
+            <h1>🔗 URL编解码器</h1>
+            <p>在线URL编码和解码工具</p>
         </header>
         <main class="tool-content">
-            <p>工具功能开发中...</p>
+            <div class="input-group">
+                <label>输入内容</label>
+                <textarea id="inputText" placeholder="请输入URL或文本..."></textarea>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="encode()">编码</button>
+                <button class="btn btn-primary" onclick="decode()">解码</button>
+                <button class="btn btn-secondary" onclick="clearAll()">清空</button>
+                <button class="btn btn-secondary" onclick="copyResult()">复制结果</button>
+            </div>
+            <div id="result" class="result"></div>
         </main>
     </div>
     <script>
+        function encode() {
+            const input = document.getElementById('inputText').value;
+            if (!input) { alert('请输入内容'); return; }
+            try {
+                const encoded = encodeURIComponent(input);
+                document.getElementById('result').textContent = encoded;
+                document.getElementById('result').classList.add('show');
+            } catch (e) { alert('编码失败: ' + e.message); }
+        }
+        
+        function decode() {
+            const input = document.getElementById('inputText').value;
+            if (!input) { alert('请输入内容'); return; }
+            try {
+                const decoded = decodeURIComponent(input);
+                document.getElementById('result').textContent = decoded;
+                document.getElementById('result').classList.add('show');
+            } catch (e) { alert('解码失败: ' + e.message); }
+        }
+        
+        function clearAll() {
+            document.getElementById('inputText').value = '';
+            document.getElementById('result').classList.remove('show');
+            document.getElementById('result').textContent = '';
+        }
+        
+        function copyResult() {
+            const result = document.getElementById('result').textContent;
+            if (!result) { alert('没有结果可复制'); return; }
+            navigator.clipboard.writeText(result).then(() => alert('已复制到剪贴板'));
+        }
+        
         function trackToolUsage(name) {
             if (typeof gtag !== 'undefined') gtag('event', 'tool_usage', { event_category: 'tools', event_label: name });
         }
-        trackToolUsage('Url Encoder');
+        trackToolUsage('url-encoder');
     </script>
 </body>
 </html>
