@@ -221,10 +221,10 @@ def main():
         # 7. 检查网站
         check_website()
         
-        log()
         log("=" * 70)
         log("每日自动部署完成！")
         log("=" * 70)
+        log()
         
         # 8. 断开WARP
         disconnect_warp()
