@@ -263,10 +263,10 @@ def main():
         if check_website():
             success_count += 1
         
+        log("=" * 70)
+        log("每日自动部署完成！")
+        log("=" * 70)
         log()
-        log("=" * 70)
-        log(f"每日自动部署完成！成功步骤: {success_count}/{total_steps}")
-        log("=" * 70)
         
         # 发送成功报告
         report_content = f"成功步骤: {success_count}/{total_steps}"
