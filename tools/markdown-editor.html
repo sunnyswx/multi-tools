@@ -7,13 +7,27 @@
     <meta name="description" content="在线Markdown编辑器，实时预览，支持GitHub Flavored Markdown">
     
     <!-- GA4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6">
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('markdown-editor', 'click');
+            });
+        });
+</script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-L7GQFYBWB6');
-    </script>
+    
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('markdown-editor', 'click');
+            });
+        });
+</script>
     
     <style>
         * {
@@ -579,6 +593,13 @@ function hello() {
             trackToolUsage('markdown-editor');
             loadSample();
         };
-    </script>
+    
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('markdown-editor', 'click');
+            });
+        });
+</script>
 </body>
 </html>

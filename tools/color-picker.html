@@ -3,15 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>颜色选择器 - 免费在线工具 | Multi Tools</title>
+    <title>颜色选择器 - 免费在线颜色选择器工具 | Multi Tools</title>
     <meta name="description" content="在线颜色选择工具">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6">
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('color-picker', 'click');
+            });
+        });
+</script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-L7GQFYBWB6');
-    </script>
+    
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('color-picker', 'click');
+            });
+        });
+</script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
@@ -31,8 +45,51 @@
         .copy-btn { padding: 5px 15px; font-size: 12px; background: #667eea; color: white; border: none; border-radius: 15px; cursor: pointer; }
         .copy-btn:hover { background: #5568d3; }
     </style>
+<meta name="keywords" content="颜色选择器,color picker,HEX,RGB,HSL,在线取色">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="颜色选择器 - 免费在线工具">
+    <meta property="og:description" content="免费在线颜色选择器，支持HEX、RGB、HSL格式。一键复制颜色代码，适用于网页设计和开发。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zh8888.dpdns.org/tools/color-picker.html">
+    <meta property="og:image" content="https://zh8888.dpdns.org/og-image.jpg">
+    <meta property="og:site_name" content="Multi Tools">
+    <meta property="og:locale" content="zh_CN">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="颜色选择器 - 免费在线工具">
+    <meta name="twitter:description" content="免费在线颜色选择器，支持HEX、RGB、HSL格式。一键复制颜色代码，适用于网页设计和开发。">
+    <meta name="twitter:image" content="https://zh8888.dpdns.org/og-image.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://zh8888.dpdns.org/tools/color-picker.html">
+
 </head>
 <body>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7B5H09J4KB">
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('color-picker', 'click');
+            });
+        });
+</script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7B5H09J4KB');
+    
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('color-picker', 'click');
+            });
+        });
+</script>
+
     <div class="container">
         <a href="/" class="back-btn">← 返回首页</a>
         <header>
@@ -138,6 +195,13 @@
         }
         trackToolUsage('color-picker');
         updateColor();
-    </script>
+    
+        // 追踪工具使用
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackToolUsage('color-picker', 'click');
+            });
+        });
+</script>
 </body>
 </html>

@@ -213,7 +213,7 @@ def main():
     log("=" * 70)
     log("开始每日自动部署")
     log("=" * 70)
-    log()
+    log("")
     
     success_count = 0
     total_steps = 7
@@ -266,7 +266,7 @@ def main():
         log("=" * 70)
         log("每日自动部署完成！")
         log("=" * 70)
-        log()
+        log("")
         
         # 发送成功报告
         report_content = f"成功步骤: {success_count}/{total_steps}"
