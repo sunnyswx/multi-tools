@@ -5,27 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JSON格式化器 - 免费在线工具 | Multi Tools</title>
     <meta name="description" content="在线JSON格式化和验证工具">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6">
-        // 追踪工具使用
-        document.querySelectorAll('button').forEach(btn => {
-            btn.addEventListener('click', () => {
-                trackToolUsage('json-formatter', 'click');
-            });
-        });
-</script>
+    <meta property="og:title" content="JSON格式化器 - 免费在线工具 | Multi Tools">
+    <meta property="og:description" content="在线JSON格式化和验证工具">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://multi-tools.app/tools/json-formatter.html">
+    <meta property="og:image" content="https://multi-tools.app/og-image.png">
+
+    <!-- GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-L7GQFYBWB6');
-    
-        // 追踪工具使用
-        document.querySelectorAll('button').forEach(btn => {
-            btn.addEventListener('click', () => {
-                trackToolUsage('json-formatter', 'click');
-            });
+
+      // 追踪工具使用
+      function trackToolUsage(tool, action) {
+        gtag('event', action, {
+          'event_category': 'Tools',
+          'event_label': tool
         });
-</script>
+      }
+      document.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          trackToolUsage('json-formatter', 'click');
+        });
+      });
+    </script>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "JSON格式化器",
+      "description": "在线JSON格式化和验证工具",
+      "url": "https://multi-tools.app/tools/json-formatter.html",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
