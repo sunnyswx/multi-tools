@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multi Tools - Free Online Tools Collection</title>
-    <meta name="description" content="Free online tools collection with 43+ practical tools: image compressor, Markdown editor, JSON formatter, timezone converter and more.">
+    <meta name="description" content="43+ free online tools for developers, designers, and everyone.">
     <meta name="keywords" content="online tools, free tools, image compressor, json formatter, markdown editor, calculator, converter">
     <meta name="author" content="Multi Tools">
     <meta name="robots" content="index, follow">
@@ -17,10 +17,16 @@
     <meta property="og:image" content="https://zh8888.dpdns.org/og-image.png">
     <meta property="og:locale" content="en_US">
     
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Multi Tools - Free Online Tools Collection">
-    <meta name="twitter:description" content="43+ free online tools for developers, designers, and everyone.">
+    <!-- Alternate Languages for SEO -->
+    <link rel="alternate" hreflang="en" href="https://zh8888.dpdns.org/">
+    <link rel="alternate" hreflang="zh" href="https://zh8888.dpdns.org/?lang=zh">
+    <link rel="alternate" hreflang="ja" href="https://zh8888.dpdns.org/?lang=ja">
+    <link rel="alternate" hreflang="ko" href="https://zh8888.dpdns.org/?lang=ko">
+    <link rel="alternate" hreflang="es" href="https://zh8888.dpdns.org/?lang=es">
+    <link rel="alternate" hreflang="fr" href="https://zh8888.dpdns.org/?lang=fr">
+    <link rel="alternate" hreflang="de" href="https://zh8888.dpdns.org/?lang=de">
+    <link rel="alternate" hreflang="ru" href="https://zh8888.dpdns.org/?lang=ru">
+    <link rel="alternate" hreflang="ar" href="https://zh8888.dpdns.org/?lang=ar">
     
     <!-- GA4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
@@ -54,6 +60,29 @@
         header p { 
             font-size: 1.3rem; 
             opacity: 0.9;
+        }
+        
+        /* Language Switcher */
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        .lang-switcher select {
+            padding: 10px 15px;
+            border-radius: 25px;
+            border: none;
+            background: white;
+            color: #333;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            min-width: 120px;
+        }
+        .lang-switcher select:focus {
+            outline: none;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
         
         .search-container { 
@@ -126,14 +155,49 @@
             opacity: 0.8;
         }
         
+        /* RTL Support */
+        html[dir="rtl"] .lang-switcher {
+            right: auto;
+            left: 20px;
+        }
+        html[dir="rtl"] .search-input {
+            padding: 15px 50px 15px 20px;
+        }
+        html[dir="rtl"] .search-icon {
+            left: auto;
+            right: 20px;
+        }
+        
         @media (max-width: 768px) {
             header h1 { font-size: 2rem; }
             header p { font-size: 1rem; }
             .tools-grid { grid-template-columns: 1fr; }
+            .lang-switcher {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-bottom: 20px;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Language Switcher -->
+    <div class="lang-switcher">
+        <select id="langSelector" onchange="changeLanguage(this.value)">
+            <option value="en">English</option>
+            <option value="zh">中文</option>
+            <option value="ja">日本語</option>
+            <option value="ko">한국어</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="ru">Русский</option>
+            <option value="ar">العربية</option>
+        </select>
+    </div>
+    
     <div class="container">
         <header>
             <h1>🛠️ Multi Tools</h1>
@@ -155,91 +219,249 @@
         </footer>
     </div>
     
+    <!-- Language System -->
+    <script src="lang.js"></script>
     <script>
-        const tools = [
+        // Tool data
+        const toolsData = [
             // Image Tools
-            { name: "Image Compressor", desc: "Compress images online for free. Reduce file size while maintaining quality.", icon: "🖼️", url: "tools/image-compressor.html" },
-            { name: "Image Converter", desc: "Convert images between JPG, PNG, WebP formats online.", icon: "🔄", url: "tools/image-converter.html" },
-            { name: "Image Resizer", desc: "Resize images to custom dimensions online.", icon: "📐", url: "tools/image-resizer.html" },
+            { name: "image-compressor", icon: "🖼️", url: "tools/image-compressor.html" },
+            { name: "image-converter", icon: "🔄", url: "tools/image-converter.html" },
+            { name: "image-resizer", icon: "📐", url: "tools/image-resizer.html" },
             
             // Text Tools
-            { name: "Markdown Editor", desc: "Edit Markdown online with live preview.", icon: "📝", url: "tools/markdown-editor.html" },
-            { name: "Lorem Ipsum Generator", desc: "Generate placeholder text for your designs.", icon: "📄", url: "tools/lorem-ipsum.html" },
-            { name: "Word Counter", desc: "Count words, characters, and paragraphs in real-time.", icon: "🔢", url: "tools/word-counter.html" },
-            { name: "Text Compressor", desc: "Compress text to reduce size using deflate algorithm.", icon: "📦", url: "tools/text-compressor.html" },
+            { name: "markdown-editor", icon: "📝", url: "tools/markdown-editor.html" },
+            { name: "lorem-ipsum", icon: "📄", url: "tools/lorem-ipsum.html" },
+            { name: "word-counter", icon: "🔢", url: "tools/word-counter.html" },
+            { name: "text-compressor", icon: "📦", url: "tools/text-compressor.html" },
             
             // Developer Tools
-            { name: "JSON Formatter", desc: "Format, validate and beautify JSON data instantly.", icon: "📋", url: "tools/json-formatter.html" },
-            { name: "JSON Validator", desc: "Validate JSON syntax and check for errors.", icon: "✅", url: "tools/json-validator.html" },
-            { name: "XML Formatter", desc: "Format and validate XML data online.", icon: "📄", url: "tools/xml-formatter.html" },
-            { name: "Base64 Encoder/Decoder", desc: "Encode and decode Base64 strings online.", icon: "🔐", url: "tools/base64.html" },
-            { name: "URL Encoder", desc: "Encode and decode URL components online.", icon: "🔗", url: "tools/url-encoder.html" },
-            { name: "Regex Tester", desc: "Test regular expressions with real-time matching.", icon: "🔍", url: "tools/regex-tester.html" },
-            { name: "Hash Generator", desc: "Generate MD5, SHA-1, SHA-256, SHA-512 hashes.", icon: "🔐", url: "tools/hash-generator.html" },
-            { name: "UUID Generator", desc: "Generate unique UUIDs instantly.", icon: "🎲", url: "tools/uuid-generator.html" },
-            { name: "Cron Generator", desc: "Generate cron expressions for scheduling.", icon: "⏰", url: "tools/cron-generator.html" },
+            { name: "json-formatter", icon: "📋", url: "tools/json-formatter.html" },
+            { name: "json-validator", icon: "✅", url: "tools/json-validator.html" },
+            { name: "xml-formatter", icon: "📄", url: "tools/xml-formatter.html" },
+            { name: "base64", icon: "🔐", url: "tools/base64.html" },
+            { name: "url-encoder", icon: "🔗", url: "tools/url-encoder.html" },
+            { name: "regex-tester", icon: "🔍", url: "tools/regex-tester.html" },
+            { name: "hash-generator", icon: "🔐", url: "tools/hash-generator.html" },
+            { name: "uuid-generator", icon: "🎲", url: "tools/uuid-generator.html" },
+            { name: "cron-generator", icon: "⏰", url: "tools/cron-generator.html" },
             
             // Security Tools
-            { name: "Password Generator", desc: "Generate strong, secure passwords online.", icon: "🔑", url: "tools/password-generator.html" },
-            { name: "Password Strength", desc: "Check password strength and security level.", icon: "💪", url: "tools/password-strength.html" },
+            { name: "password-generator", icon: "🔑", url: "tools/password-generator.html" },
+            { name: "password-strength", icon: "💪", url: "tools/password-strength.html" },
             
             // Calculator Tools
-            { name: "Age Calculator", desc: "Calculate your exact age from birthdate.", icon: "🎂", url: "tools/age-calculator.html" },
-            { name: "BMI Calculator", desc: "Calculate Body Mass Index online.", icon: "⚖️", url: "tools/bmi-calculator.html" },
-            { name: "Mortgage Calculator", desc: "Calculate monthly mortgage payments.", icon: "🏠", url: "tools/mortgage-calculator.html" },
-            { name: "Percentage Calculator", desc: "Calculate percentages easily online.", icon: "📊", url: "tools/percentage-calculator.html" },
-            { name: "Online Calculator", desc: "Basic calculator for everyday math.", icon: "🧮", url: "tools/online-calculator.html" },
+            { name: "age-calculator", icon: "🎂", url: "tools/age-calculator.html" },
+            { name: "bmi-calculator", icon: "⚖️", url: "tools/bmi-calculator.html" },
+            { name: "mortgage-calculator", icon: "🏠", url: "tools/mortgage-calculator.html" },
+            { name: "percentage-calculator", icon: "📊", url: "tools/percentage-calculator.html" },
+            { name: "online-calculator", icon: "🧮", url: "tools/online-calculator.html" },
             
             // Design Tools
-            { name: "Color Picker", desc: "Pick colors and get HEX, RGB, HSL values.", icon: "🎨", url: "tools/color-picker.html" },
-            { name: "Gradient Generator", desc: "Create beautiful CSS gradients online.", icon: "🌈", url: "tools/gradient-generator.html" },
-            { name: "CSS Box Model", desc: "Visualize and generate CSS box model code.", icon: "📦", url: "tools/box-model.html" },
-            { name: "CSS Shadow Generator", desc: "Create box-shadow and text-shadow CSS code.", icon: "🌑", url: "tools/shadow-generator.html" },
+            { name: "color-picker", icon: "🎨", url: "tools/color-picker.html" },
+            { name: "gradient-generator", icon: "🌈", url: "tools/gradient-generator.html" },
+            { name: "box-model", icon: "📦", url: "tools/box-model.html" },
+            { name: "shadow-generator", icon: "🌑", url: "tools/shadow-generator.html" },
             
             // Converter Tools
-            { name: "Unit Converter", desc: "Convert between different units of measurement.", icon: "📏", url: "tools/unit-converter.html" },
-            { name: "Timezone Converter", desc: "Convert time between different timezones.", icon: "🌍", url: "tools/timezone-converter.html" },
-            { name: "Time Format", desc: "Format and convert date/time strings.", icon: "🕐", url: "tools/time-format.html" },
-            { name: "CSV to JSON", desc: "Convert CSV data to JSON format instantly.", icon: "📊", url: "tools/csv-to-json.html" },
+            { name: "unit-converter", icon: "📏", url: "tools/unit-converter.html" },
+            { name: "timezone-converter", icon: "🌍", url: "tools/timezone-converter.html" },
+            { name: "time-format", icon: "🕐", url: "tools/time-format.html" },
+            { name: "csv-to-json", icon: "📊", url: "tools/csv-to-json.html" },
             
             // Utility Tools
-            { name: "QR Code Generator", desc: "Generate QR codes for text, URLs, WiFi.", icon: "📱", url: "tools/qr-generator.html" },
-            { name: "PDF Converter", desc: "Convert images to PDF online.", icon: "📄", url: "tools/pdf-converter.html" },
-            { name: "Countdown Timer", desc: "Create countdown timers online.", icon: "⏱️", url: "tools/countdown-timer.html" },
-            { name: "Random Generator", desc: "Generate random numbers, strings, passwords.", icon: "🎲", url: "tools/random-generator.html" },
+            { name: "qr-generator", icon: "📱", url: "tools/qr-generator.html" },
+            { name: "pdf-converter", icon: "📄", url: "tools/pdf-converter.html" },
+            { name: "countdown-timer", icon: "⏱️", url: "tools/countdown-timer.html" },
+            { name: "random-generator", icon: "🎲", url: "tools/random-generator.html" },
             
             // SEO Tools
-            { name: "SEO Analyzer", desc: "Analyze basic SEO factors for web pages.", icon: "🔍", url: "tools/seo-analyzer.html" },
-            { name: "Readability Score", desc: "Check text readability and comprehension level.", icon: "📖", url: "tools/readability-score.html" }
+            { name: "seo-analyzer", icon: "🔍", url: "tools/seo-analyzer.html" },
+            { name: "readability-score", icon: "📖", url: "tools/readability-score.html" }
         ];
         
-        function renderTools(toolsToRender) {
-            const grid = document.getElementById('toolsGrid');
-            grid.innerHTML = toolsToRender.map(tool => `
-                <a href="${tool.url}" class="tool-card">
-                    <div class="tool-icon">${tool.icon}</div>
-                    <div class="tool-name">${tool.name}</div>
-                    <div class="tool-desc">${tool.desc}</div>
-                </a>
-            `).join('');
+        // Language-specific names and descriptions
+        const toolTranslations = {
+            en: {
+                "image-compressor": { name: "Image Compressor", desc: "Compress images online for free. Reduce file size while maintaining quality." },
+                "image-converter": { name: "Image Converter", desc: "Convert images between JPG, PNG, WebP formats online." },
+                "image-resizer": { name: "Image Resizer", desc: "Resize images to custom dimensions online." },
+                "markdown-editor": { name: "Markdown Editor", desc: "Edit Markdown online with live preview." },
+                "lorem-ipsum": { name: "Lorem Ipsum Generator", desc: "Generate placeholder text for your designs." },
+                "word-counter": { name: "Word Counter", desc: "Count words, characters, and paragraphs in real-time." },
+                "text-compressor": { name: "Text Compressor", desc: "Compress text to reduce size using deflate algorithm." },
+                "json-formatter": { name: "JSON Formatter", desc: "Format, validate and beautify JSON data instantly." },
+                "json-validator": { name: "JSON Validator", desc: "Validate JSON syntax and check for errors." },
+                "xml-formatter": { name: "XML Formatter", desc: "Format and validate XML data online." },
+                "base64": { name: "Base64 Encoder/Decoder", desc: "Encode and decode Base64 strings online." },
+                "url-encoder": { name: "URL Encoder", desc: "Encode and decode URL components online." },
+                "regex-tester": { name: "Regex Tester", desc: "Test regular expressions with real-time matching." },
+                "hash-generator": { name: "Hash Generator", desc: "Generate MD5, SHA-1, SHA-256, SHA-512 hashes." },
+                "uuid-generator": { name: "UUID Generator", desc: "Generate unique UUIDs instantly." },
+                "cron-generator": { name: "Cron Generator", desc: "Generate cron expressions for scheduling." },
+                "password-generator": { name: "Password Generator", desc: "Generate strong, secure passwords online." },
+                "password-strength": { name: "Password Strength", desc: "Check password strength and security level." },
+                "age-calculator": { name: "Age Calculator", desc: "Calculate your exact age from birthdate." },
+                "bmi-calculator": { name: "BMI Calculator", desc: "Calculate Body Mass Index online." },
+                "mortgage-calculator": { name: "Mortgage Calculator", desc: "Calculate monthly mortgage payments." },
+                "percentage-calculator": { name: "Percentage Calculator", desc: "Calculate percentages easily online." },
+                "online-calculator": { name: "Online Calculator", desc: "Basic calculator for everyday math." },
+                "color-picker": { name: "Color Picker", desc: "Pick colors and get HEX, RGB, HSL values." },
+                "gradient-generator": { name: "Gradient Generator", desc: "Create beautiful CSS gradients online." },
+                "box-model": { name: "CSS Box Model", desc: "Visualize and generate CSS box model code." },
+                "shadow-generator": { name: "CSS Shadow Generator", desc: "Create box-shadow and text-shadow CSS code." },
+                "unit-converter": { name: "Unit Converter", desc: "Convert between different units of measurement." },
+                "timezone-converter": { name: "Timezone Converter", desc: "Convert time between different timezones." },
+                "time-format": { name: "Time Format", desc: "Format and convert date/time strings." },
+                "csv-to-json": { name: "CSV to JSON", desc: "Convert CSV data to JSON format instantly." },
+                "qr-generator": { name: "QR Code Generator", desc: "Generate QR codes for text, URLs, WiFi." },
+                "pdf-converter": { name: "PDF Converter", desc: "Convert images to PDF online." },
+                "countdown-timer": { name: "Countdown Timer", desc: "Create countdown timers online." },
+                "random-generator": { name: "Random Generator", desc: "Generate random numbers, strings, passwords." },
+                "seo-analyzer": { name: "SEO Analyzer", desc: "Analyze basic SEO factors for web pages." },
+                "readability-score": { name: "Readability Score", desc: "Check text readability and comprehension level." }
+            },
+            zh: {
+                "image-compressor": { name: "图片压缩工具", desc: "免费在线压缩PNG、JPG、WebP图片，本地处理保护隐私" },
+                "image-converter": { name: "图片格式转换", desc: "在线转换图片格式为JPG、PNG、WebP" },
+                "image-resizer": { name: "图片尺寸调整", desc: "自定义尺寸调整图片大小" },
+                "markdown-editor": { name: "Markdown编辑器", desc: "实时预览，支持GitHub Flavored Markdown" },
+                "lorem-ipsum": { name: "Lorem Ipsum生成器", desc: "生成设计占位文本" },
+                "word-counter": { name: "字数统计器", desc: "实时统计字数、字符数和段落数" },
+                "text-compressor": { name: "文本压缩工具", desc: "使用deflate算法压缩文本" },
+                "json-formatter": { name: "JSON格式化", desc: "即时格式化、验证和美化JSON数据" },
+                "json-validator": { name: "JSON验证器", desc: "验证JSON语法并检查错误" },
+                "xml-formatter": { name: "XML格式化", desc: "在线格式化和验证XML数据" },
+                "base64": { name: "Base64编解码器", desc: "在线编码和解码Base64字符串" },
+                "url-encoder": { name: "URL编解码器", desc: "在线编码和解码URL组件" },
+                "regex-tester": { name: "正则表达式测试器", desc: "实时测试正则表达式" },
+                "hash-generator": { name: "Hash生成器", desc: "生成MD5、SHA-1、SHA-256、SHA-512哈希" },
+                "uuid-generator": { name: "UUID生成器", desc: "即时生成唯一UUID" },
+                "cron-generator": { name: "Cron表达式生成器", desc: "生成定时任务Cron表达式" },
+                "password-generator": { name: "密码生成器", desc: "在线生成强密码" },
+                "password-strength": { name: "密码强度检测", desc: "检查密码强度和安全性" },
+                "age-calculator": { name: "年龄计算器", desc: "根据出生日期计算精确年龄" },
+                "bmi-calculator": { name: "BMI计算器", desc: "在线计算身体质量指数" },
+                "mortgage-calculator": { name: "房贷计算器", desc: "计算每月房贷还款额" },
+                "percentage-calculator": { name: "百分比计算器", desc: "轻松计算百分比" },
+                "online-calculator": { name: "在线计算器", desc: "日常数学基本计算器" },
+                "color-picker": { name: "颜色选择器", desc: "选择颜色并获取HEX、RGB、HSL值" },
+                "gradient-generator": { name: "渐变生成器", desc: "在线创建美丽的CSS渐变" },
+                "box-model": { name: "CSS盒子模型", desc: "可视化并生成CSS盒子模型代码" },
+                "shadow-generator": { name: "CSS阴影生成器", desc: "创建box-shadow和text-shadow CSS代码" },
+                "unit-converter": { name: "单位转换器", desc: "在不同测量单位之间转换" },
+                "timezone-converter": { name: "时区转换器", desc: "在不同时区之间转换时间" },
+                "time-format": { name: "时间格式化工具", desc: "格式化和转换日期时间字符串" },
+                "csv-to-json": { name: "CSV转JSON", desc: "即时将CSV数据转换为JSON格式" },
+                "qr-generator": { name: "二维码生成器", desc: "为文本、URL、WiFi生成二维码" },
+                "pdf-converter": { name: "PDF转换器", desc: "将图片转换为PDF在线" },
+                "countdown-timer": { name: "倒计时器", desc: "在线创建倒计时" },
+                "random-generator": { name: "随机生成器", desc: "生成随机数字、字符串、密码" },
+                "seo-analyzer": { name: "SEO分析器", desc: "分析网页基本SEO因素" },
+                "readability-score": { name: "可读性评分", desc: "检查文本可读性和理解水平" }
+            }
+        };
+        
+        // Get current language
+        function getCurrentLang() {
+            const params = new URLSearchParams(window.location.search);
+            const langParam = params.get('lang');
+            if (langParam && translations[langParam]) {
+                return langParam;
+            }
+            return window.multiLanguage.get();
         }
         
+        // Change language
+        function changeLanguage(lang) {
+            window.multiLanguage.set(lang);
+            
+            // Update URL parameter
+            const url = new URL(window.location);
+            url.searchParams.set('lang', lang);
+            window.history.pushState({}, '', url);
+            
+            // Re-render tools
+            renderTools(toolsData);
+            
+            // Update header text
+            updateHeaderText(lang);
+            
+            // Track language change
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'language_change', { 'language': lang });
+            }
+        }
+        
+        // Update header text based on language
+        function updateHeaderText(lang) {
+            const t = translations[lang] || translations.en;
+            document.querySelector('header h1').textContent = t.header_title;
+            document.querySelector('header p').textContent = t.header_subtitle;
+            document.querySelector('footer p:last-child').textContent = t.footer_text;
+            document.getElementById('searchInput').placeholder = t.search_placeholder;
+        }
+        
+        // Render tool cards
+        function renderTools(tools) {
+            const grid = document.getElementById('toolsGrid');
+            const lang = getCurrentLang();
+            
+            grid.innerHTML = tools.map(tool => {
+                const trans = toolTranslations[lang] && toolTranslations[lang][tool.name] 
+                    ? toolTranslations[lang][tool.name] 
+                    : (toolTranslations['en'] && toolTranslations['en'][tool.name] 
+                        ? toolTranslations['en'][tool.name] 
+                        : { name: tool.name, desc: '' });
+                
+                return `
+                    <a href="${tool.url}" class="tool-card">
+                        <div class="tool-icon">${tool.icon}</div>
+                        <div class="tool-name">${trans.name}</div>
+                        <div class="tool-desc">${trans.desc}</div>
+                    </a>
+                `;
+            }).join('');
+        }
+        
+        // Search tools
         function searchTools() {
             const query = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = tools.filter(tool => 
-                tool.name.toLowerCase().includes(query) || 
-                tool.desc.toLowerCase().includes(query)
-            );
+            const lang = getCurrentLang();
+            const filtered = toolsData.filter(tool => {
+                const trans = toolTranslations[lang] && toolTranslations[lang][tool.name]
+                    ? toolTranslations[lang][tool.name]
+                    : (toolTranslations['en'] && toolTranslations['en'][tool.name]
+                        ? toolTranslations['en'][tool.name]
+                        : { name: tool.name, desc: '' });
+                return trans.name.toLowerCase().includes(query) || 
+                       trans.desc.toLowerCase().includes(query);
+            });
             renderTools(filtered);
         }
         
-        // Initial render
-        renderTools(tools);
-        
-        // Track page view
-        if (typeof gtag !== 'undefined') {
-            gtag('event', 'page_view', { 'page_title': 'Multi Tools Home', 'page_path': '/' });
-        }
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize language system
+            window.multiLanguage.init();
+            
+            // Get language from URL or browser
+            const lang = getCurrentLang();
+            
+            // Set language selector
+            document.getElementById('langSelector').value = lang;
+            
+            // Apply language
+            window.multiLanguage.apply(lang);
+            
+            // Render tools
+            renderTools(toolsData);
+            
+            // Track page view
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'page_view', { 'page_title': 'Multi Tools Home', 'page_path': '/' });
+            }
+        });
     </script>
 </body>
 </html>
