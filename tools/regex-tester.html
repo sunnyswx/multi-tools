@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>正则表达式测试器 - 免费在线正则表达式测试器工具 | Multi Tools</title>
-    <meta name="description" content="正则表达式测试工具">
+    <title>Regex Tester - Free Online Tool | Multi Tools</title>
+    <meta name="description" content="Free online regular expression tester. Test regex patterns in real-time with highlighting. Support multiple regex flavors.">
+    <meta name="keywords" content="regex, regular expression, tester, pattern matching, online tool">
+    
+    <!-- GA4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -12,61 +15,113 @@
       gtag('js', new Date());
       gtag('config', 'G-L7GQFYBWB6');
     </script>
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
         .container { max-width: 1000px; margin: 0 auto; }
         header { text-align: center; padding: 40px 20px; color: white; }
         header h1 { font-size: 2.5rem; margin-bottom: 10px; }
         .back-btn { display: inline-block; margin-bottom: 20px; padding: 10px 20px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 25px; }
         .tool-content { background: white; border-radius: 20px; padding: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; font-weight: bold; margin-bottom: 8px; color: #333; }
+        .input-group input, .input-group textarea { width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 14px; }
+        .input-group textarea { min-height: 150px; resize: vertical; font-family: 'Courier New', monospace; }
+        .input-group input:focus, .input-group textarea:focus { outline: none; border-color: #667eea; }
+        .flags { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+        .flag-item { display: flex; align-items: center; gap: 5px; }
+        .flag-item input { width: 18px; height: 18px; }
+        .result-box { background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px; }
+        .match { background: #ffd93d; padding: 2px 5px; border-radius: 3px; }
+        .match-list { margin-top: 15px; }
+        .match-item { padding: 10px; background: white; border-radius: 5px; margin-bottom: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        @media (max-width: 768px) { .tool-content { padding: 20px; } }
     </style>
-<meta name="keywords" content="正则表达式,regex,正则测试,在线正则,pattern匹配">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="正则表达式测试器 - 免费在线工具">
-    <meta property="og:description" content="免费在线正则表达式测试器，实时匹配和验证。支持多种正则语法，适用于开发调试。">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://zh8888.dpdns.org/tools/regex-tester.html">
-    <meta property="og:image" content="https://zh8888.dpdns.org/og-image.jpg">
-    <meta property="og:site_name" content="Multi Tools">
-    <meta property="og:locale" content="zh_CN">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="正则表达式测试器 - 免费在线工具">
-    <meta name="twitter:description" content="免费在线正则表达式测试器，实时匹配和验证。支持多种正则语法，适用于开发调试。">
-    <meta name="twitter:image" content="https://zh8888.dpdns.org/og-image.jpg">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://zh8888.dpdns.org/tools/regex-tester.html">
-
 </head>
 <body>
-    <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7B5H09J4KB"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-7B5H09J4KB');
-    </script>
-
     <div class="container">
-        <a href="/" class="back-btn">← 返回首页</a>
+        <a href="/" class="back-btn">← Back to Home</a>
         <header>
-            <h1>🔧 Regex Tester</h1>
-            <p>正则表达式测试工具</p>
+            <h1>🔍 Regex Tester</h1>
+            <p>Test regular expressions in real-time</p>
         </header>
         <main class="tool-content">
-            <p>工具功能开发中...</p>
+            <div class="input-group">
+                <label>Regular Expression</label>
+                <input type="text" id="regex" placeholder="Enter regex pattern..." oninput="testRegex()">
+            </div>
+            
+            <div class="flags">
+                <div class="flag-item">
+                    <input type="checkbox" id="global" onchange="testRegex()">
+                    <label for="global">Global (g)</label>
+                </div>
+                <div class="flag-item">
+                    <input type="checkbox" id="multiline" onchange="testRegex()">
+                    <label for="multiline">Multiline (m)</label>
+                </div>
+                <div class="flag-item">
+                    <input type="checkbox" id="caseInsensitive" onchange="testRegex()">
+                    <label for="caseInsensitive">Case Insensitive (i)</label>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label>Test String</label>
+                <textarea id="testString" placeholder="Enter text to test..." oninput="testRegex()"></textarea>
+            </div>
+            
+            <div class="result-box">
+                <h3>Result</h3>
+                <div id="highlightedText" style="margin-top: 15px; white-space: pre-wrap; word-break: break-all;"></div>
+                <div class="match-list" id="matchList"></div>
+            </div>
         </main>
     </div>
+    
     <script>
-        function trackToolUsage(name) {
-            if (typeof gtag !== 'undefined') gtag('event', 'tool_usage', { event_category: 'tools', event_label: name });
+        function testRegex() {
+            const pattern = document.getElementById('regex').value;
+            const text = document.getElementById('testString').value;
+            
+            if (!pattern || !text) {
+                document.getElementById('highlightedText').textContent = text;
+                document.getElementById('matchList').innerHTML = '';
+                return;
+            }
+            
+            let flags = '';
+            if (document.getElementById('global').checked) flags += 'g';
+            if (document.getElementById('multiline').checked) flags += 'm';
+            if (document.getElementById('caseInsensitive').checked) flags += 'i';
+            
+            try {
+                const regex = new RegExp(pattern, flags);
+                const matches = text.match(regex);
+                
+                // Highlight matches
+                let highlighted = text.replace(regex, match => `<span class="match">${match}</span>`);
+                document.getElementById('highlightedText').innerHTML = highlighted;
+                
+                // Show matches
+                if (matches) {
+                    document.getElementById('matchList').innerHTML = matches.map((m, i) => 
+                        `<div class="match-item"><strong>Match ${i + 1}:</strong> ${m}</div>`
+                    ).join('');
+                } else {
+                    document.getElementById('matchList').innerHTML = '<div class="match-item">No matches found</div>';
+                }
+            } catch (e) {
+                document.getElementById('highlightedText').textContent = 'Invalid regex: ' + e.message;
+                document.getElementById('matchList').innerHTML = '';
+            }
         }
-        trackToolUsage('Regex Tester');
+        
+        // Track usage
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'tool_usage', { 'event_category': 'tools', 'event_label': 'regex-tester', 'value': 1 });
+        }
     </script>
 </body>
 </html>

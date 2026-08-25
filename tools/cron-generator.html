@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cron表达式生成器 - 免费在线Cron表达式生成器工具 | Multi Tools</title>
-    <meta name="description" content="Cron表达式生成器">
+    <title>Cron Generator - Free Online Tool | Multi Tools</title>
+    <meta name="description" content="Free online cron expression generator. Create and test cron schedules easily. Support all cron formats.">
+    <meta name="keywords" content="cron, cron generator, schedule, crontab, online tool">
+    
+    <!-- GA4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -12,61 +15,173 @@
       gtag('js', new Date());
       gtag('config', 'G-L7GQFYBWB6');
     </script>
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
-        .container { max-width: 1000px; margin: 0 auto; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
         header { text-align: center; padding: 40px 20px; color: white; }
         header h1 { font-size: 2.5rem; margin-bottom: 10px; }
         .back-btn { display: inline-block; margin-bottom: 20px; padding: 10px 20px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 25px; }
         .tool-content { background: white; border-radius: 20px; padding: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .cron-display { background: #2d2d2d; color: #6bcf7f; padding: 30px; border-radius: 10px; text-align: center; font-size: 2.5rem; font-family: 'Courier New', monospace; margin-bottom: 30px; }
+        .field-group { margin-bottom: 20px; }
+        .field-group label { display: block; font-weight: bold; margin-bottom: 8px; color: #333; }
+        .field-group input, .field-group select { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 16px; }
+        .field-group input:focus, .field-group select:focus { outline: none; border-color: #667eea; }
+        .presets { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; }
+        .preset-btn { padding: 10px 20px; background: #f0f0f0; border: none; border-radius: 20px; cursor: pointer; transition: all 0.3s; }
+        .preset-btn:hover { background: #667eea; color: white; }
+        .description { background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px; }
+        @media (max-width: 768px) { .tool-content { padding: 20px; } .cron-display { font-size: 1.5rem; } }
     </style>
-<meta name="keywords" content="cron表达式,cron生成器,定时任务,cron在线,cron语法">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="Cron表达式生成器 - 免费在线工具">
-    <meta property="og:description" content="免费在线Cron表达式生成器，支持可视化创建定时任务。适用于服务器定时任务配置。">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://zh8888.dpdns.org/tools/cron-generator.html">
-    <meta property="og:image" content="https://zh8888.dpdns.org/og-image.jpg">
-    <meta property="og:site_name" content="Multi Tools">
-    <meta property="og:locale" content="zh_CN">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Cron表达式生成器 - 免费在线工具">
-    <meta name="twitter:description" content="免费在线Cron表达式生成器，支持可视化创建定时任务。适用于服务器定时任务配置。">
-    <meta name="twitter:image" content="https://zh8888.dpdns.org/og-image.jpg">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://zh8888.dpdns.org/tools/cron-generator.html">
-
 </head>
 <body>
-    <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7B5H09J4KB"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-7B5H09J4KB');
-    </script>
-
     <div class="container">
-        <a href="/" class="back-btn">← 返回首页</a>
+        <a href="/" class="back-btn">← Back to Home</a>
         <header>
-            <h1>🔧 Cron Generator</h1>
-            <p>Cron表达式生成器</p>
+            <h1>⏰ Cron Generator</h1>
+            <p>Generate cron expressions easily</p>
         </header>
         <main class="tool-content">
-            <p>工具功能开发中...</p>
+            <div class="presets">
+                <button class="preset-btn" onclick="setPreset('* * * * *')">Every minute</button>
+                <button class="preset-btn" onclick="setPreset('0 * * * *')">Every hour</button>
+                <button class="preset-btn" onclick="setPreset('0 0 * * *')">Daily</button>
+                <button class="preset-btn" onclick="setPreset('0 0 * * 0')">Weekly</button>
+                <button class="preset-btn" onclick="setPreset('0 0 1 * *')">Monthly</button>
+            </div>
+            
+            <div class="cron-display" id="cronDisplay">* * * * *</div>
+            
+            <div class="field-group">
+                <label>Minute (0-59)</label>
+                <input type="number" id="minute" min="0" max="59" value="*" oninput="updateCron()">
+            </div>
+            
+            <div class="field-group">
+                <label>Hour (0-23)</label>
+                <input type="number" id="hour" min="0" max="23" value="*" oninput="updateCron()">
+            </div>
+            
+            <div class="field-group">
+                <label>Day of Month (1-31)</label>
+                <input type="number" id="day" min="1" max="31" value="*" oninput="updateCron()">
+            </div>
+            
+            <div class="field-group">
+                <label>Month (1-12)</label>
+                <input type="number" id="month" min="1" max="12" value="*" oninput="updateCron()">
+            </div>
+            
+            <div class="field-group">
+                <label>Day of Week (0-6, 0=Sunday)</label>
+                <input type="number" id="weekday" min="0" max="6" value="*" oninput="updateCron()">
+            </div>
+            
+            <div class="description" id="description">
+                <strong>Next 5 runs:</strong>
+                <div id="nextRuns"></div>
+            </div>
         </main>
     </div>
+    
     <script>
-        function trackToolUsage(name) {
-            if (typeof gtag !== 'undefined') gtag('event', 'tool_usage', { event_category: 'tools', event_label: name });
+        function setPreset(cron) {
+            const parts = cron.split(' ');
+            document.getElementById('minute').value = parts[0];
+            document.getElementById('hour').value = parts[1];
+            document.getElementById('day').value = parts[2];
+            document.getElementById('month').value = parts[3];
+            document.getElementById('weekday').value = parts[4];
+            updateCron();
         }
-        trackToolUsage('Cron Generator');
+        
+        function updateCron() {
+            const minute = document.getElementById('minute').value || '*';
+            const hour = document.getElementById('hour').value || '*';
+            const day = document.getElementById('day').value || '*';
+            const month = document.getElementById('month').value || '*';
+            const weekday = document.getElementById('weekday').value || '*';
+            
+            const cron = `${minute} ${hour} ${day} ${month} ${weekday}`;
+            document.getElementById('cronDisplay').textContent = cron;
+            
+            calculateNextRuns(cron);
+        }
+        
+        function calculateNextRuns(cron) {
+            const runs = [];
+            const now = new Date();
+            
+            for (let i = 0; i < 5; i++) {
+                const next = getNextRun(now, cron);
+                if (next) {
+                    runs.push(next.toLocaleString());
+                    now.setTime(next.getTime() + 60000);
+                }
+            }
+            
+            document.getElementById('nextRuns').innerHTML = runs.map(r => `<div>${r}</div>`).join('');
+        }
+        
+        function getNextRun(current, cron) {
+            const parts = cron.split(' ');
+            const minute = parseField(parts[0], 0, 59);
+            const hour = parseField(parts[1], 0, 23);
+            const day = parseField(parts[2], 1, 31);
+            const month = parseField(parts[3], 1, 12);
+            const weekday = parseField(parts[4], 0, 6);
+            
+            let next = new Date(current);
+            next.setSeconds(0);
+            next.setMilliseconds(0);
+            next.setMinutes(next.getMinutes() + 1);
+            
+            for (let i = 0; i < 366 * 24 * 60; i++) {
+                if ((month.includes(next.getMonth() + 1) || month.includes('*')) &&
+                    (day.includes(next.getDate()) || day.includes('*')) &&
+                    (weekday.includes(next.getDay()) || weekday.includes('*')) &&
+                    (hour.includes(next.getHours()) || hour.includes('*')) &&
+                    (minute.includes(next.getMinutes()) || minute.includes('*'))) {
+                    return next;
+                }
+                next.setMinutes(next.getMinutes() + 1);
+            }
+            
+            return null;
+        }
+        
+        function parseField(field, min, max) {
+            if (field === '*') return Array.from({length: max - min + 1}, (_, i) => i + min);
+            
+            const values = new Set();
+            const parts = field.split(',');
+            
+            for (const part of parts) {
+                if (part.includes('/')) {
+                    const [range, step] = part.split('/');
+                    const start = range === '*' ? min : parseInt(range);
+                    const stepValue = parseInt(step);
+                    for (let i = start; i <= max; i += stepValue) values.add(i);
+                } else if (part.includes('-')) {
+                    const [start, end] = part.split('-').map(Number);
+                    for (let i = start; i <= end; i++) values.add(i);
+                } else if (!isNaN(parseInt(part))) {
+                    values.add(parseInt(part));
+                }
+            }
+            
+            return Array.from(values);
+        }
+        
+        // Initialize
+        updateCron();
+        
+        // Track usage
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'tool_usage', { 'event_category': 'tools', 'event_label': 'cron-generator', 'value': 1 });
+        }
     </script>
 </body>
 </html>

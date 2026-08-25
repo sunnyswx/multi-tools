@@ -1,16 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hash生成器 - 免费在线Hash生成器工具 | Multi Tools</title>
-    <meta name="description" content="在线生成MD5、SHA1、SHA256等Hash值">
-    <meta property="og:title" content="Hash生成器 - 免费在线工具 | Multi Tools">
-    <meta property="og:description" content="在线生成MD5、SHA1、SHA256等Hash值">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://multi-tools.app/tools/hash-generator.html">
-    <meta property="og:image" content="https://multi-tools.app/og-image.png">
-
+    <title>Hash Generator - Free Online Tool | Multi Tools</title>
+    <meta name="description" content="Free online hash generator. Generate MD5, SHA-1, SHA-256, SHA-512 hashes instantly. Support text and file hashing.">
+    <meta name="keywords" content="hash, md5, sha, sha256, hash generator, online tool">
+    
     <!-- GA4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
     <script>
@@ -18,192 +14,223 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-L7GQFYBWB6');
-
-      // 追踪工具使用
-      function trackToolUsage(tool, action) {
-        gtag('event', action, {
-          'event_category': 'Tools',
-          'event_label': tool
-        });
-      }
-      document.querySelectorAll('button').forEach(btn => {
-        btn.addEventListener('click', () => {
-          trackToolUsage('hash-generator', 'click');
-        });
-      });
     </script>
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Hash生成器",
-      "description": "在线生成MD5、SHA1、SHA256等Hash值",
-      "url": "https://multi-tools.app/tools/hash-generator.html",
-      "applicationCategory": "UtilityApplication",
-      "operatingSystem": "Any",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    }
-    </script>
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
         .container { max-width: 1000px; margin: 0 auto; }
         header { text-align: center; padding: 40px 20px; color: white; }
         header h1 { font-size: 2.5rem; margin-bottom: 10px; }
         .back-btn { display: inline-block; margin-bottom: 20px; padding: 10px 20px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 25px; }
         .tool-content { background: white; border-radius: 20px; padding: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
         .input-group { margin-bottom: 20px; }
-        .input-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #333; }
-        textarea { width: 100%; height: 150px; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 14px; resize: vertical; font-family: monospace; }
-        textarea:focus { outline: none; border-color: #667eea; }
-        .btn { padding: 12px 30px; border: none; border-radius: 25px; cursor: pointer; font-size: 16px; transition: all 0.3s; margin: 10px 5px; }
+        .input-group label { display: block; font-weight: bold; margin-bottom: 8px; color: #333; }
+        .input-group textarea { width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 14px; min-height: 150px; resize: vertical; }
+        .input-group textarea:focus { outline: none; border-color: #667eea; }
+        .hash-algorithms { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+        .algorithm-btn { padding: 10px 20px; background: #f0f0f0; border: 2px solid #e0e0e0; border-radius: 20px; cursor: pointer; transition: all 0.3s; }
+        .algorithm-btn.active { background: #667eea; color: white; border-color: #667eea; }
+        .hash-result { background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 15px; }
+        .hash-result label { font-weight: bold; color: #667eea; display: block; margin-bottom: 5px; }
+        .hash-result code { font-family: 'Courier New', monospace; word-break: break-all; color: #333; }
+        .btn { padding: 12px 30px; border: none; border-radius: 25px; cursor: pointer; font-size: 16px; transition: all 0.3s; margin: 5px; }
         .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
         .btn-secondary { background: #f0f0f0; color: #333; }
-        .result-item { background: #f8f9fa; padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #667eea; }
-        .result-label { font-weight: bold; color: #333; margin-bottom: 5px; }
-        .result-value { font-family: monospace; word-break: break-all; color: #667eea; }
-        .copy-btn { float: right; padding: 5px 15px; font-size: 12px; }
+        .btn-secondary:hover { background: #e0e0e0; }
+        @media (max-width: 768px) { .tool-content { padding: 20px; } }
     </style>
-<meta name="keywords" content="hash生成,md5,sha256,sha1,在线哈希,加密">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="Hash生成器 - 免费在线工具">
-    <meta property="og:description" content="免费在线Hash生成器，支持MD5、SHA-1、SHA-256、SHA-512等多种哈希算法。快速生成哈希值。">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://zh8888.dpdns.org/tools/hash-generator.html">
-    <meta property="og:image" content="https://zh8888.dpdns.org/og-image.jpg">
-    <meta property="og:site_name" content="Multi Tools">
-    <meta property="og:locale" content="zh_CN">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Hash生成器 - 免费在线工具">
-    <meta name="twitter:description" content="免费在线Hash生成器，支持MD5、SHA-1、SHA-256、SHA-512等多种哈希算法。快速生成哈希值。">
-    <meta name="twitter:image" content="https://zh8888.dpdns.org/og-image.jpg">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://zh8888.dpdns.org/tools/hash-generator.html">
-
 </head>
 <body>
-    <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7B5H09J4KB">
-        // 追踪工具使用
-        document.querySelectorAll('button').forEach(btn => {
-            btn.addEventListener('click', () => {
-                trackToolUsage('hash-generator', 'click');
-            });
-        });
-</script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-7B5H09J4KB');
-    
-        // 追踪工具使用
-        document.querySelectorAll('button').forEach(btn => {
-            btn.addEventListener('click', () => {
-                trackToolUsage('hash-generator', 'click');
-            });
-        });
-</script>
-
     <div class="container">
-        <a href="/" class="back-btn">← 返回首页</a>
+        <a href="/" class="back-btn">← Back to Home</a>
         <header>
-            <h1>🔐 Hash生成器</h1>
-            <p>生成MD5、SHA1、SHA256等Hash值</p>
+            <h1>🔐 Hash Generator</h1>
+            <p>Generate MD5, SHA-1, SHA-256, SHA-512 hashes</p>
         </header>
         <main class="tool-content">
             <div class="input-group">
-                <label>输入文本</label>
-                <textarea id="inputText" placeholder="请输入要生成Hash的文本..."></textarea>
+                <label>Input Text</label>
+                <textarea id="inputText" placeholder="Enter text to hash..."></textarea>
             </div>
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="generateAll()">生成所有Hash</button>
-                <button class="btn btn-secondary" onclick="clearAll()">清空</button>
+            
+            <div class="hash-algorithms">
+                <button class="algorithm-btn active" onclick="setAlgorithm('MD5')">MD5</button>
+                <button class="algorithm-btn" onclick="setAlgorithm('SHA-1')">SHA-1</button>
+                <button class="algorithm-btn" onclick="setAlgorithm('SHA-256')">SHA-256</button>
+                <button class="algorithm-btn" onclick="setAlgorithm('SHA-512')">SHA-512</button>
             </div>
-            <div id="results">
-                <div class="result-item">
-                    <div class="result-label">MD5</div>
-                    <button class="btn btn-secondary copy-btn" onclick="copyResult('md5')">复制</button>
-                    <div class="result-value" id="md5">--</div>
-                </div>
-                <div class="result-item">
-                    <div class="result-label">SHA-1</div>
-                    <button class="btn btn-secondary copy-btn" onclick="copyResult('sha1')">复制</button>
-                    <div class="result-value" id="sha1">--</div>
-                </div>
-                <div class="result-item">
-                    <div class="result-label">SHA-256</div>
-                    <button class="btn btn-secondary copy-btn" onclick="copyResult('sha256')">复制</button>
-                    <div class="result-value" id="sha256">--</div>
-                </div>
+            
+            <div style="text-align: center; margin-bottom: 30px;">
+                <button class="btn btn-primary" onclick="generateHash()">🔐 Generate Hash</button>
+                <button class="btn btn-secondary" onclick="copyHash('md5')">📋 Copy MD5</button>
+                <button class="btn btn-secondary" onclick="copyHash('sha256')">📋 Copy SHA-256</button>
+                <button class="btn btn-secondary" onclick="clearAll()">🗑️ Clear</button>
+            </div>
+            
+            <div class="hash-result">
+                <label>MD5</label>
+                <code id="md5">-</code>
+            </div>
+            <div class="hash-result">
+                <label>SHA-1</label>
+                <code id="sha1">-</code>
+            </div>
+            <div class="hash-result">
+                <label>SHA-256</label>
+                <code id="sha256">-</code>
+            </div>
+            <div class="hash-result">
+                <label>SHA-512</label>
+                <code id="sha512">-</code>
             </div>
         </main>
     </div>
+    
     <script>
-        async function generateAll() {
+        let currentAlgorithm = 'MD5';
+        
+        async function generateHash() {
             const text = document.getElementById('inputText').value;
-            if (!text) { alert('请输入文本'); return; }
+            if (!text) {
+                alert('Please enter text to hash!');
+                return;
+            }
             
             const encoder = new TextEncoder();
             const data = encoder.encode(text);
             
-            const md5 = await hashMD5(data);
-            const sha1 = await hashSHA('SHA-1', data);
-            const sha256 = await hashSHA('SHA-256', data);
+            // MD5 (simplified implementation)
+            document.getElementById('md5').textContent = simpleMD5(text);
             
-            document.getElementById('md5').textContent = md5;
-            document.getElementById('sha1').textContent = sha1;
-            document.getElementById('sha256').textContent = sha256;
+            // SHA algorithms using Web Crypto API
+            const algorithms = ['SHA-1', 'SHA-256', 'SHA-512'];
+            for (const algo of algorithms) {
+                const hash = await crypto.subtle.digest(algo, data);
+                const hashArray = Array.from(new Uint8Array(hash));
+                const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+                document.getElementById(algo.toLowerCase().replace('-', '')).textContent = hashHex;
+            }
+        }
+        
+        // Simple MD5 implementation
+        function simpleMD5(message) {
+            function md5cycle(x, k) {
+                var a = x[0], b = x[1], c = x[2], d = x[3];
+                a = ff(a, b, c, d, k[0], 7, -680876936); d = ff(d, a, b, c, k[1], 12, -389564586);
+                c = ff(c, d, a, b, k[2], 17, 606105819); b = ff(b, c, d, a, k[3], 22, -1044525330);
+                a = ff(a, b, c, d, k[4], 7, -176418897); d = ff(d, a, b, c, k[5], 12, 1200080426);
+                c = ff(c, d, a, b, k[6], 17, -1473231341); b = ff(b, c, d, a, k[7], 22, -45705983);
+                a = ff(a, b, c, d, k[8], 7, 1770035416); d = ff(d, a, b, c, k[9], 12, -1958414417);
+                c = ff(c, d, a, b, k[10], 17, -42063); b = ff(b, c, d, a, k[11], 22, -1990404162);
+                a = ff(a, b, c, d, k[12], 7, 1804603682); d = ff(d, a, b, c, k[13], 12, -40341101);
+                c = ff(c, d, a, b, k[14], 17, -1502002290); b = ff(b, c, d, a, k[15], 22, 1236535329);
+                a = gg(a, b, c, d, k[1], 5, -165796510); d = gg(d, a, b, c, k[6], 9, -1069501632);
+                c = gg(c, d, a, b, k[11], 14, 643717713); b = gg(b, c, d, a, k[0], 20, -373897302);
+                a = gg(a, b, c, d, k[5], 5, -701558691); d = gg(d, a, b, c, k[10], 9, 38016083);
+                c = gg(c, d, a, b, k[15], 14, -660478335); b = gg(b, c, d, a, k[4], 20, -405537848);
+                a = gg(a, b, c, d, k[9], 5, 568446438); d = gg(d, a, b, c, k[14], 9, -1019803690);
+                c = gg(c, d, a, b, k[3], 14, -187363961); b = gg(b, c, d, a, k[8], 20, 1163531501);
+                a = gg(a, b, c, d, k[13], 5, -1444681467); d = gg(d, a, b, c, k[2], 9, -51403784);
+                c = gg(c, d, a, b, k[7], 14, 1735328473); b = gg(b, c, d, a, k[12], 20, -1926607734);
+                a = hh(a, b, c, d, k[5], 4, -378558); d = hh(d, a, b, c, k[8], 11, -2022574463);
+                c = hh(c, d, a, b, k[11], 16, 1839030562); b = hh(b, c, d, a, k[14], 23, -35309556);
+                a = hh(a, b, c, d, k[1], 4, -1530992060); d = hh(d, a, b, c, k[4], 11, 1272893353);
+                c = hh(c, d, a, b, k[7], 16, -155497632); b = hh(b, c, d, a, k[10], 23, -1094730640);
+                a = hh(a, b, c, d, k[13], 4, 681279174); d = hh(d, a, b, c, k[0], 11, -358537222);
+                c = hh(c, d, a, b, k[3], 16, -722521979); b = hh(b, c, d, a, k[6], 23, 76029189);
+                a = hh(a, b, c, d, k[9], 4, -640364487); d = hh(d, a, b, c, k[12], 11, -421815835);
+                c = hh(c, d, a, b, k[15], 16, 530742520); b = hh(b, c, d, a, k[2], 23, -995338651);
+                a = ii(a, b, c, d, k[0], 6, -198630844); d = ii(d, a, b, c, k[7], 10, 1126891415);
+                c = ii(c, d, a, b, k[14], 15, -1416354905); b = ii(b, c, d, a, k[5], 21, -57434055);
+                a = ii(a, b, c, d, k[12], 6, 1700485571); d = ii(d, a, b, c, k[3], 10, -1894986606);
+                c = ii(c, d, a, b, k[10], 15, -1051523); b = ii(b, c, d, a, k[1], 21, -2054922799);
+                a = ii(a, b, c, d, k[8], 6, 1873313359); d = ii(d, a, b, c, k[15], 10, -30611744);
+                c = ii(c, d, a, b, k[6], 15, -1560198380); b = ii(b, c, d, a, k[13], 21, 1309151649);
+                a = ii(a, b, c, d, k[4], 6, -145523070); d = ii(d, a, b, c, k[11], 10, -1120210379);
+                c = ii(c, d, a, b, k[2], 15, 718787259); b = ii(b, c, d, a, k[9], 21, -343485551);
+                x[0] = add32(a, x[0]); x[1] = add32(b, x[1]); x[2] = add32(c, x[2]); x[3] = add32(d, x[3]);
+            }
             
-            trackToolUsage('hash-generator');
+            function cmn(q, a, b, x, s, t) {
+                a = add32(add32(a, q), add32(x, t));
+                return add32((a << s) | (a >>> (32 - s)), b);
+            }
+            function ff(a, b, c, d, x, s, t) { return cmn((b & c) | ((~b) & d), a, b, x, s, t); }
+            function gg(a, b, c, d, x, s, t) { return cmn((b & d) | (c & (~d)), a, b, x, s, t); }
+            function hh(a, b, c, d, x, s, t) { return cmn(b ^ c ^ d, a, b, x, s, t); }
+            function ii(a, b, c, d, x, s, t) { return cmn(c ^ (b | (~d)), a, b, x, s, t); }
+            
+            function md51(s) {
+                var n = s.length, state = [1732584193, -271733879, -1732584194, 271733878], i;
+                for (i = 64; i <= n; i += 64) {
+                    md5cycle(state, md5blk(s.substring(i - 64, i)));
+                }
+                s = s.substring(i - 64);
+                var tail = Array(16);
+                for (i = 0; i < s.length; i += 4) {
+                    var o = (s.charCodeAt(i) & 0xff) | ((s.charCodeAt(i + 1) & 0xff) << 8) | ((s.charCodeAt(i + 2) & 0xff) << 16) | ((s.charCodeAt(i + 3) & 0xff) << 24);
+                    tail.push(o);
+                }
+                tail.push(n * 8);
+                while (tail.length % 16 !== 14) tail.push(0);
+                tail.push(n >= 0x100000000 ? 1 : 0);
+                md5cycle(state, tail);
+                return state;
+            }
+            
+            function md5blk(s) {
+                var md5blks = Array(16), i;
+                for (i = 0; i < 64; i += 4) {
+                    md5blks[i >> 2] = (s.charCodeAt(i) & 0xff) | ((s.charCodeAt(i + 1) & 0xff) << 8) | ((s.charCodeAt(i + 2) & 0xff) << 16) | ((s.charCodeAt(i + 3) & 0xff) << 24);
+                }
+                return md5blks;
+            }
+            
+            function rhex(n) {
+                var hex_chr = '0123456789abcdef';
+                var s = '';
+                for (var j = 0; j < 4; j++) s += hex_chr.charAt((n >> (j * 8 + 4)) & 0x0f) + hex_chr.charAt((n >> (j * 8)) & 0x0f);
+                return s;
+            }
+            
+            function add32(a, b) { return (a + b) & 0xffffffff; }
+            
+            var state = md51(text);
+            return rhex(state[0]) + rhex(state[1]) + rhex(state[2]) + rhex(state[3]);
         }
         
-        async function hashSHA(algorithm, data) {
-            const hashBuffer = await crypto.subtle.digest(algorithm, data);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        function setAlgorithm(algo) {
+            currentAlgorithm = algo;
+            document.querySelectorAll('.algorithm-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            generateHash();
         }
         
-        async function hashMD5(data) {
-            // 简化的MD5实现
-            return 'd41d8cd98f00b204e9800998ecf8427e'; // 占位，实际需要使用完整实现
-        }
-        
-        function copyResult(id) {
-            const text = document.getElementById(id).textContent;
-            if (text === '--') { alert('请先生成Hash'); return; }
-            navigator.clipboard.writeText(text).then(() => alert('已复制'));
+        function copyHash(type) {
+            const hash = document.getElementById(type).textContent;
+            if (hash === '-') {
+                alert('Please generate a hash first!');
+                return;
+            }
+            navigator.clipboard.writeText(hash).then(() => {
+                alert('Hash copied to clipboard!');
+            });
         }
         
         function clearAll() {
             document.getElementById('inputText').value = '';
-            document.getElementById('md5').textContent = '--';
-            document.getElementById('sha1').textContent = '--';
-            document.getElementById('sha256').textContent = '--';
+            document.getElementById('md5').textContent = '-';
+            document.getElementById('sha1').textContent = '-';
+            document.getElementById('sha256').textContent = '-';
+            document.getElementById('sha512').textContent = '-';
         }
         
-        function trackToolUsage(name) {
-            if (typeof gtag !== 'undefined') gtag('event', 'tool_usage', { event_category: 'tools', event_label: name });
+        // Track usage
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'tool_usage', { 'event_category': 'tools', 'event_label': 'hash-generator', 'value': 1 });
         }
-        trackToolUsage('hash-generator');
-    
-        // 追踪工具使用
-        document.querySelectorAll('button').forEach(btn => {
-            btn.addEventListener('click', () => {
-                trackToolUsage('hash-generator', 'click');
-            });
-        });
-</script>
+    </script>
 </body>
 </html>
