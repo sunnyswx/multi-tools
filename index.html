@@ -1,13 +1,28 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multi Tools - 多功能在线工具集</title>
-    <meta name="description" content="免费在线工具集，包含32个实用工具：图片压缩、Markdown编辑器、JSON格式化、时区转换等">
-    <meta name="google-site-verification" content="3av6z5QUYHpe3kGclPSSC54Uo167UHc_InpeL4dMStM" />
+    <title>Multi Tools - Free Online Tools Collection</title>
+    <meta name="description" content="Free online tools collection with 43+ practical tools: image compressor, Markdown editor, JSON formatter, timezone converter and more.">
+    <meta name="keywords" content="online tools, free tools, image compressor, json formatter, markdown editor, calculator, converter">
+    <meta name="author" content="Multi Tools">
+    <meta name="robots" content="index, follow">
     
-    <!-- Google Analytics 4 -->
+    <!-- Open Graph -->
+    <meta property="og:title" content="Multi Tools - Free Online Tools Collection">
+    <meta property="og:description" content="43+ free online tools for developers, designers, and everyone.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zh8888.dpdns.org/">
+    <meta property="og:image" content="https://zh8888.dpdns.org/og-image.png">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Multi Tools - Free Online Tools Collection">
+    <meta name="twitter:description" content="43+ free online tools for developers, designers, and everyone.">
+    
+    <!-- GA4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -18,17 +33,34 @@
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            min-height: 100vh; 
+            padding: 20px;
+        }
         .container { max-width: 1200px; margin: 0 auto; }
         
-        header { text-align: center; padding: 60px 20px 40px; color: white; }
-        header h1 { font-size: 3rem; margin-bottom: 15px; }
-        header p { font-size: 1.3rem; opacity: 0.9; }
+        header { 
+            text-align: center; 
+            padding: 60px 20px 40px; 
+            color: white;
+        }
+        header h1 { 
+            font-size: 3rem; 
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        header p { 
+            font-size: 1.3rem; 
+            opacity: 0.9;
+        }
         
-        .lang-switcher { position: fixed; top: 20px; right: 20px; z-index: 1000; }
-        .lang-switcher select { padding: 10px 15px; border-radius: 25px; border: none; background: white; color: #333; font-size: 14px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-        
-        .search-container { max-width: 600px; margin: 30px auto; position: relative; }
+        .search-container { 
+            max-width: 600px; 
+            margin: 30px auto; 
+            position: relative;
+        }
         .search-input {
             width: 100%;
             padding: 15px 20px 15px 50px;
@@ -50,44 +82,6 @@
             font-size: 20px;
             color: #999;
         }
-        .search-results {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: white;
-            border-radius: 15px;
-            margin-top: 10px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            display: none;
-            max-height: 400px;
-            overflow-y: auto;
-            z-index: 1001;
-        }
-        .search-results.active {
-            display: block;
-        }
-        .search-result-item {
-            padding: 15px 20px;
-            border-bottom: 1px solid #f0f0f0;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .search-result-item:last-child {
-            border-bottom: none;
-        }
-        .search-result-item:hover {
-            background: #f8f9fa;
-        }
-        .search-result-item .tool-name {
-            font-weight: bold;
-            color: #333;
-        }
-        .search-result-item .tool-desc {
-            font-size: 14px;
-            color: #666;
-            margin-top: 5px;
-        }
         
         .tools-grid {
             display: grid;
@@ -99,7 +93,7 @@
             background: white;
             border-radius: 15px;
             padding: 25px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             transition: all 0.3s;
             text-decoration: none;
             color: inherit;
@@ -107,113 +101,22 @@
         }
         .tool-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         .tool-icon {
             font-size: 2.5rem;
             margin-bottom: 15px;
         }
-        .tool-info h3 {
+        .tool-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 8px;
             color: #333;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
         }
-        .tool-info p {
-            color: #666;
+        .tool-desc {
             font-size: 0.9rem;
+            color: #666;
             line-height: 1.5;
-        }
-        
-        .feedback-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 15px 30px;
-            font-size: 16px;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
-            transition: all 0.3s;
-            z-index: 999;
-        }
-        .feedback-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
-        }
-        
-        /* 反馈弹窗 */
-        .feedback-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-        .feedback-modal.active {
-            display: flex;
-        }
-        .feedback-content {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 500px;
-            width: 90%;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-        .feedback-content h2 {
-            color: #333;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .feedback-content textarea {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 14px;
-            resize: vertical;
-            min-height: 120px;
-            margin-bottom: 20px;
-        }
-        .feedback-content textarea:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        .feedback-buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-        }
-        .feedback-buttons button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s;
-        }
-        .btn-cancel {
-            background: #f0f0f0;
-            color: #333;
-        }
-        .btn-cancel:hover {
-            background: #e0e0e0;
-        }
-        .btn-submit {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
         }
         
         footer {
@@ -227,185 +130,115 @@
             header h1 { font-size: 2rem; }
             header p { font-size: 1rem; }
             .tools-grid { grid-template-columns: 1fr; }
-            .feedback-btn { bottom: 20px; right: 20px; padding: 12px 25px; font-size: 14px; }
         }
     </style>
 </head>
 <body>
-    <div class="lang-switcher">
-        <select id="langSelect" onchange="switchLanguage(this.value)">
-            <option value="zh">中文</option>
-            <option value="en">English</option>
-        </select>
-    </div>
-    
     <div class="container">
         <header>
             <h1>🛠️ Multi Tools</h1>
-            <p>免费在线工具集，让工作更高效</p>
+            <p>43+ Free Online Tools for Everyone</p>
         </header>
         
         <div class="search-container">
             <span class="search-icon">🔍</span>
-            <input type="text" class="search-input" id="searchInput" placeholder="搜索工具..." oninput="searchTools(this.value)">
-            <div class="search-results" id="searchResults"></div>
+            <input type="text" class="search-input" id="searchInput" placeholder="Search tools..." oninput="searchTools()">
         </div>
         
         <div class="tools-grid" id="toolsGrid">
-            <!-- 工具卡片将通过JavaScript动态生成 -->
+            <!-- Tools will be generated by JavaScript -->
         </div>
-    </div>
-    
-    <footer>
-        <p>© 2026 Multi Tools - 免费在线工具集</p>
-    </footer>
-    
-    <!-- 反馈按钮 -->
-    <button class="feedback-btn" onclick="openFeedback()">💬 意见反馈</button>
-    
-    <!-- 反馈弹窗 -->
-    <div class="feedback-modal" id="feedbackModal">
-        <div class="feedback-content">
-            <h2>💬 意见反馈</h2>
-            <textarea id="feedbackText" placeholder="请描述您遇到的问题或建议..."></textarea>
-            <div class="feedback-buttons">
-                <button class="btn-cancel" onclick="closeFeedback()">取消</button>
-                <button class="btn-submit" onclick="submitFeedback()">提交</button>
-            </div>
-        </div>
+        
+        <footer>
+            <p>&copy; 2026 Multi Tools. All rights reserved.</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">Free online tools for developers, designers, and everyone.</p>
+        </footer>
     </div>
     
     <script>
-        // 工具列表数据
         const tools = [
-            { name: 'image-compressor', icon: '🖼️', title: '图片压缩工具', desc: '免费在线压缩PNG、JPG、WebP图片，本地处理保护隐私' },
-            { name: 'markdown-editor', icon: '📝', title: 'Markdown编辑器', desc: '实时预览，支持GitHub Flavored Markdown' },
-            { name: 'json-formatter', icon: '🔧', title: 'JSON格式化器', desc: '在线格式化、验证、压缩JSON数据' },
-            { name: 'image-converter', icon: '🔄', title: '图片格式转换', desc: 'JPG、PNG、WebP格式互转' },
-            { name: 'mortgage-calculator', icon: '🏠', title: '房贷计算器', desc: '计算每月还款额和总利息' },
-            { name: 'base64', icon: '🔤', title: 'Base64编解码', desc: '在线Base64编码和解码工具' },
-            { name: 'hash-generator', icon: '🔐', title: 'Hash生成器', desc: 'MD5、SHA-1、SHA-256、SHA-512生成' },
-            { name: 'uuid-generator', icon: '🔑', title: 'UUID生成器', desc: '生成随机UUID v4' },
-            { name: 'lorem-ipsum', icon: '📄', title: 'Lorem Ipsum生成', desc: '生成随机占位文本' },
-            { name: 'url-encoder', icon: '🔗', title: 'URL编解码器', desc: '在线URL编码和解码工具' },
-            { name: 'regex-tester', icon: '🔍', title: '正则表达式测试', desc: '在线测试正则表达式' },
-            { name: 'cron-generator', icon: '⏰', title: 'Cron表达式生成', desc: '轻松创建Cron定时任务' },
-            { name: 'pdf-converter', icon: '📑', title: 'PDF转换工具', desc: '在线转换PDF格式' },
-            { name: 'qr-generator', icon: '📱', title: '二维码生成器', desc: '快速生成二维码' },
-            { name: 'password-generator', icon: '🔒', title: '密码生成器', desc: '生成高强度安全密码' },
-            { name: 'color-picker', icon: '🎨', title: '颜色选择器', desc: '在线颜色选择' },
-            { name: 'word-counter', icon: '📊', title: '字数统计器', desc: '实时统计文字数量' },
-            { name: 'timezone-converter', icon: '🌍', title: '时区转换器', desc: '时区对比和时差计算' },
-            { name: 'countdown-timer', icon: '⏱️', title: '倒计时器', desc: '自定义时间倒计时' },
-            { name: 'unit-converter', icon: '📏', title: '单位转换器', desc: '长度、重量、温度转换' },
-            { name: 'online-calculator', icon: '🧮', title: '在线计算器', desc: '基础计算器和科学计算器' },
-            { name: 'random-generator', icon: '🎲', title: '随机工具生成器', desc: '随机数生成、随机选择、随机密码' },
-            { name: 'text-compressor', icon: '📝', title: '文本压缩器', desc: '在线压缩文本，去除多余空格和换行' },
-            { name: 'json-validator', icon: '🔍', title: 'JSON验证器', desc: '验证JSON格式，显示错误位置' },
-            { name: 'xml-formatter', icon: '📄', title: 'XML格式化器', desc: '格式化XML文档，语法高亮' },
-            { name: 'csv-to-json', icon: '📊', title: 'CSV转JSON', desc: '将CSV数据转换为JSON格式' },
-            { name: 'image-resizer', icon: '🖼️', title: '图片调整大小', desc: '调整图片尺寸，支持自定义宽高' },
-            { name: 'bmi-calculator', icon: '⚖️', title: 'BMI计算器', desc: '计算身体质量指数，评估健康状况' },
-            { name: 'percentage-calculator', icon: '💯', title: '百分比计算器', desc: '快速计算百分比，支持各种场景' },
-            { name: 'age-calculator', icon: '🎂', title: '年龄计算器', desc: '精确计算年龄，显示详细时间信息' },
-            { name: 'time-format', icon: '🕐', title: '时间格式转换', desc: '时间戳与格式化时间相互转换' },
-            { name: 'gradient-generator', icon: '🌈', title: 'CSS渐变生成器', desc: '生成CSS渐变代码，支持多种类型' }
+            // Image Tools
+            { name: "Image Compressor", desc: "Compress images online for free. Reduce file size while maintaining quality.", icon: "🖼️", url: "tools/image-compressor.html" },
+            { name: "Image Converter", desc: "Convert images between JPG, PNG, WebP formats online.", icon: "🔄", url: "tools/image-converter.html" },
+            { name: "Image Resizer", desc: "Resize images to custom dimensions online.", icon: "📐", url: "tools/image-resizer.html" },
+            
+            // Text Tools
+            { name: "Markdown Editor", desc: "Edit Markdown online with live preview.", icon: "📝", url: "tools/markdown-editor.html" },
+            { name: "Lorem Ipsum Generator", desc: "Generate placeholder text for your designs.", icon: "📄", url: "tools/lorem-ipsum.html" },
+            { name: "Word Counter", desc: "Count words, characters, and paragraphs in real-time.", icon: "🔢", url: "tools/word-counter.html" },
+            { name: "Text Compressor", desc: "Compress text to reduce size using deflate algorithm.", icon: "📦", url: "tools/text-compressor.html" },
+            
+            // Developer Tools
+            { name: "JSON Formatter", desc: "Format, validate and beautify JSON data instantly.", icon: "📋", url: "tools/json-formatter.html" },
+            { name: "JSON Validator", desc: "Validate JSON syntax and check for errors.", icon: "✅", url: "tools/json-validator.html" },
+            { name: "XML Formatter", desc: "Format and validate XML data online.", icon: "📄", url: "tools/xml-formatter.html" },
+            { name: "Base64 Encoder/Decoder", desc: "Encode and decode Base64 strings online.", icon: "🔐", url: "tools/base64.html" },
+            { name: "URL Encoder", desc: "Encode and decode URL components online.", icon: "🔗", url: "tools/url-encoder.html" },
+            { name: "Regex Tester", desc: "Test regular expressions with real-time matching.", icon: "🔍", url: "tools/regex-tester.html" },
+            { name: "Hash Generator", desc: "Generate MD5, SHA-1, SHA-256, SHA-512 hashes.", icon: "🔐", url: "tools/hash-generator.html" },
+            { name: "UUID Generator", desc: "Generate unique UUIDs instantly.", icon: "🎲", url: "tools/uuid-generator.html" },
+            { name: "Cron Generator", desc: "Generate cron expressions for scheduling.", icon: "⏰", url: "tools/cron-generator.html" },
+            
+            // Security Tools
+            { name: "Password Generator", desc: "Generate strong, secure passwords online.", icon: "🔑", url: "tools/password-generator.html" },
+            { name: "Password Strength", desc: "Check password strength and security level.", icon: "💪", url: "tools/password-strength.html" },
+            
+            // Calculator Tools
+            { name: "Age Calculator", desc: "Calculate your exact age from birthdate.", icon: "🎂", url: "tools/age-calculator.html" },
+            { name: "BMI Calculator", desc: "Calculate Body Mass Index online.", icon: "⚖️", url: "tools/bmi-calculator.html" },
+            { name: "Mortgage Calculator", desc: "Calculate monthly mortgage payments.", icon: "🏠", url: "tools/mortgage-calculator.html" },
+            { name: "Percentage Calculator", desc: "Calculate percentages easily online.", icon: "📊", url: "tools/percentage-calculator.html" },
+            { name: "Online Calculator", desc: "Basic calculator for everyday math.", icon: "🧮", url: "tools/online-calculator.html" },
+            
+            // Design Tools
+            { name: "Color Picker", desc: "Pick colors and get HEX, RGB, HSL values.", icon: "🎨", url: "tools/color-picker.html" },
+            { name: "Gradient Generator", desc: "Create beautiful CSS gradients online.", icon: "🌈", url: "tools/gradient-generator.html" },
+            { name: "CSS Box Model", desc: "Visualize and generate CSS box model code.", icon: "📦", url: "tools/box-model.html" },
+            { name: "CSS Shadow Generator", desc: "Create box-shadow and text-shadow CSS code.", icon: "🌑", url: "tools/shadow-generator.html" },
+            
+            // Converter Tools
+            { name: "Unit Converter", desc: "Convert between different units of measurement.", icon: "📏", url: "tools/unit-converter.html" },
+            { name: "Timezone Converter", desc: "Convert time between different timezones.", icon: "🌍", url: "tools/timezone-converter.html" },
+            { name: "Time Format", desc: "Format and convert date/time strings.", icon: "🕐", url: "tools/time-format.html" },
+            { name: "CSV to JSON", desc: "Convert CSV data to JSON format instantly.", icon: "📊", url: "tools/csv-to-json.html" },
+            
+            // Utility Tools
+            { name: "QR Code Generator", desc: "Generate QR codes for text, URLs, WiFi.", icon: "📱", url: "tools/qr-generator.html" },
+            { name: "PDF Converter", desc: "Convert images to PDF online.", icon: "📄", url: "tools/pdf-converter.html" },
+            { name: "Countdown Timer", desc: "Create countdown timers online.", icon: "⏱️", url: "tools/countdown-timer.html" },
+            { name: "Random Generator", desc: "Generate random numbers, strings, passwords.", icon: "🎲", url: "tools/random-generator.html" },
+            
+            // SEO Tools
+            { name: "SEO Analyzer", desc: "Analyze basic SEO factors for web pages.", icon: "🔍", url: "tools/seo-analyzer.html" },
+            { name: "Readability Score", desc: "Check text readability and comprehension level.", icon: "📖", url: "tools/readability-score.html" }
         ];
         
-        // 渲染工具卡片
         function renderTools(toolsToRender) {
             const grid = document.getElementById('toolsGrid');
             grid.innerHTML = toolsToRender.map(tool => `
-                <a href="/tools/${tool.name}.html" class="tool-card" data-tool="${tool.name}">
+                <a href="${tool.url}" class="tool-card">
                     <div class="tool-icon">${tool.icon}</div>
-                    <div class="tool-info">
-                        <h3>${tool.title}</h3>
-                        <p>${tool.desc}</p>
-                    </div>
+                    <div class="tool-name">${tool.name}</div>
+                    <div class="tool-desc">${tool.desc}</div>
                 </a>
             `).join('');
         }
         
-        // 初始化
+        function searchTools() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = tools.filter(tool => 
+                tool.name.toLowerCase().includes(query) || 
+                tool.desc.toLowerCase().includes(query)
+            );
+            renderTools(filtered);
+        }
+        
+        // Initial render
         renderTools(tools);
         
-        // 搜索功能
-        function searchTools(query) {
-            const results = document.getElementById('searchResults');
-            if (!query) {
-                results.classList.remove('active');
-                return;
-            }
-            
-            const filtered = tools.filter(tool => 
-                tool.title.includes(query) || 
-                tool.desc.includes(query)
-            );
-            
-            if (filtered.length > 0) {
-                results.innerHTML = filtered.map(tool => `
-                    <div class="search-result-item" onclick="window.location.href='/tools/${tool.name}.html'">
-                        <div class="tool-name">${tool.icon} ${tool.title}</div>
-                        <div class="tool-desc">${tool.desc}</div>
-                    </div>
-                `).join('');
-                results.classList.add('active');
-            } else {
-                results.innerHTML = '<div class="search-result-item"><div class="tool-name">未找到相关工具</div></div>';
-                results.classList.add('active');
-            }
-        }
-        
-        // 关闭搜索结果
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.search-container')) {
-                document.getElementById('searchResults').classList.remove('active');
-            }
-        });
-        
-        // 语言切换
-        function switchLanguage(lang) {
-            localStorage.setItem('lang', lang);
-            // 实际应用中这里会切换界面语言
-            alert('语言切换功能开发中...');
-        }
-        
-        // 反馈功能
-        function openFeedback() {
-            document.getElementById('feedbackModal').classList.add('active');
-        }
-        
-        function closeFeedback() {
-            document.getElementById('feedbackModal').classList.remove('active');
-            document.getElementById('feedbackText').value = '';
-        }
-        
-        function submitFeedback() {
-            const text = document.getElementById('feedbackText').value.trim();
-            if (!text) {
-                alert('请输入反馈内容');
-                return;
-            }
-            
-            // 实际应用中这里会发送到服务器
-            console.log('反馈内容:', text);
-            alert('感谢您的反馈！我们会尽快处理。');
-            closeFeedback();
-        }
-        
-        // 点击弹窗外部关闭
-        document.getElementById('feedbackModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeFeedback();
-            }
-        });
-        
-        // 页面加载时记录
+        // Track page view
         if (typeof gtag !== 'undefined') {
-            gtag('event', 'page_view', {
-                'page_title': 'Multi Tools - 首页',
-                'page_location': window.location.href
-            });
+            gtag('event', 'page_view', { 'page_title': 'Multi Tools Home', 'page_path': '/' });
         }
     </script>
 </body>
