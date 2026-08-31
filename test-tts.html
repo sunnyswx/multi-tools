@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tool Test - Text to Speech</title>
+</head>
+<body>
+    <h1>Test: Text to Speech</h1>
+    <iframe src="tools/text-to-speech.html" width="100%" height="600"></iframe>
+    <script>
+        setTimeout(() => {
+            const iframe = document.querySelector('iframe');
+            const doc = iframe.contentDocument || iframe.contentWindow.document;
+            const textarea = doc.getElementById('textInput');
+            const playBtn = doc.querySelector('.btn-play');
+            
+            console.log('Textarea found:', !!textarea);
+            console.log('Play button found:', !!playBtn);
+            
+            if (textarea && playBtn) {
+                textarea.value = 'Hello world! This is a test.';
+                playBtn.click();
+                console.log('Test completed successfully');
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

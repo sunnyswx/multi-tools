@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer - Multi Tools</title>
+    <meta name="description" content="Boost productivity with the Pomodoro Technique. Free online timer with work/break intervals.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .tool-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        .timer-display {
+            font-size: 5rem;
+            font-weight: 700;
+            color: #333;
+            margin: 30px 0;
+            font-family: 'Courier New', monospace;
+        }
+        .timer-display.work {
+            color: #e74c3c;
+        }
+        .timer-display.break {
+            color: #27ae60;
+        }
+        .mode-indicator {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            border-radius: 30px;
+            display: inline-block;
+        }
+        .mode-indicator.work {
+            background: #ffebee;
+            color: #c62828;
+        }
+        .mode-indicator.break {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        .controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-start {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        .btn-pause {
+            background: #ff9800;
+            color: white;
+        }
+        .btn-pause:hover {
+            background: #f57c00;
+        }
+        .btn-reset {
+            background: #9e9e9e;
+            color: white;
+        }
+        .btn-reset:hover {
+            background: #757575;
+        }
+        .settings {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #f0f0f0;
+        }
+        .settings h3 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .setting-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 8px;
+        }
+        .setting-row label {
+            font-weight: 500;
+            color: #555;
+        }
+        .setting-row input {
+            width: 80px;
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .setting-row input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .session-counter {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: #666;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+        }
+        .back-link:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍅 Pomodoro Timer</h1>
+            <p>Boost your productivity with the Pomodoro Technique</p>
+        </header>
+        
+        <div class="tool-card">
+            <div id="modeIndicator" class="mode-indicator work">Work Time</div>
+            <div id="timerDisplay" class="timer-display work">25:00</div>
+            
+            <div class="controls">
+                <button class="btn-start" id="startBtn" onclick="startTimer()">▶ Start</button>
+                <button class="btn-pause" id="pauseBtn" onclick="pauseTimer()" style="display: none;">⏸ Pause</button>
+                <button class="btn-reset" onclick="resetTimer()">⏹ Reset</button>
+            </div>
+            
+            <div class="session-counter">
+                Sessions completed: <strong id="sessionCount">0</strong>
+            </div>
+            
+            <div class="settings">
+                <h3>⚙️ Settings</h3>
+                <div class="setting-row">
+                    <label>Work (minutes):</label>
+                    <input type="number" id="workTime" value="25" min="1" max="60" onchange="updateSettings()">
+                </div>
+                <div class="setting-row">
+                    <label>Short Break (minutes):</label>
+                    <input type="number" id="shortBreak" value="5" min="1" max="30" onchange="updateSettings()">
+                </div>
+                <div class="setting-row">
+                    <label>Long Break (minutes):</label>
+                    <input type="number" id="longBreak" value="15" min="1" max="60" onchange="updateSettings()">
+                </div>
+                <div class="setting-row">
+                    <label>Sessions before long break:</label>
+                    <input type="number" id="sessionsBeforeLong" value="4" min="2" max="10" onchange="updateSettings()">
+                </div>
+            </div>
+        </div>
+        
+        <a href="/" class="back-link">← Back to All Tools</a>
+    </div>
+    
+    <script>
+        let timerInterval = null;
+        let timeLeft = 25 * 60;
+        let isWorkTime = true;
+        let isRunning = false;
+        let sessionsCompleted = 0;
+        
+        const workTimeInput = document.getElementById('workTime');
+        const shortBreakInput = document.getElementById('shortBreak');
+        const longBreakInput = document.getElementById('longBreak');
+        const sessionsBeforeLongInput = document.getElementById('sessionsBeforeLong');
+        
+        const timerDisplay = document.getElementById('timerDisplay');
+        const modeIndicator = document.getElementById('modeIndicator');
+        const startBtn = document.getElementById('startBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const sessionCount = document.getElementById('sessionCount');
+        
+        function updateDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        function updateSettings() {
+            if (!isRunning) {
+                const workMinutes = parseInt(workTimeInput.value) || 25;
+                timeLeft = workMinutes * 60;
+                isWorkTime = true;
+                updateModeDisplay();
+                updateDisplay();
+            }
+        }
+        
+        function updateModeDisplay() {
+            if (isWorkTime) {
+                timerDisplay.className = 'timer-display work';
+                modeIndicator.className = 'mode-indicator work';
+                modeIndicator.textContent = 'Work Time';
+            } else {
+                timerDisplay.className = 'timer-display break';
+                modeIndicator.className = 'mode-indicator break';
+                modeIndicator.textContent = 'Break Time';
+            }
+        }
+        
+        function startTimer() {
+            if (isRunning) return;
+            
+            isRunning = true;
+            startBtn.style.display = 'none';
+            pauseBtn.style.display = 'inline-block';
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateDisplay();
+                
+                if (timeLeft <= 0) {
+                    completeTimer();
+                }
+            }, 1000);
+        }
+        
+        function pauseTimer() {
+            isRunning = false;
+            clearInterval(timerInterval);
+            startBtn.style.display = 'inline-block';
+            pauseBtn.style.display = 'none';
+        }
+        
+        function resetTimer() {
+            pauseTimer();
+            sessionsCompleted = 0;
+            sessionCount.textContent = '0';
+            isWorkTime = true;
+            const workMinutes = parseInt(workTimeInput.value) || 25;
+            timeLeft = workMinutes * 60;
+            updateModeDisplay();
+            updateDisplay();
+        }
+        
+        function completeTimer() {
+            clearInterval(timerInterval);
+            isRunning = false;
+            startBtn.style.display = 'inline-block';
+            pauseBtn.style.display = 'none';
+            
+            // Play notification sound
+            playNotification();
+            
+            if (isWorkTime) {
+                sessionsCompleted++;
+                sessionCount.textContent = sessionsCompleted;
+                
+                // Determine break type
+                const sessionsBeforeLong = parseInt(sessionsBeforeLongInput.value) || 4;
+                if (sessionsCompleted % sessionsBeforeLong === 0) {
+                    // Long break
+                    timeLeft = parseInt(longBreakInput.value) * 60;
+                } else {
+                    // Short break
+                    timeLeft = parseInt(shortBreakInput.value) * 60;
+                }
+            } else {
+                // Back to work
+                timeLeft = parseInt(workTimeInput.value) * 60;
+            }
+            
+            isWorkTime = !isWorkTime;
+            updateModeDisplay();
+            updateDisplay();
+            
+            // Auto-start next session
+            setTimeout(() => {
+                startTimer();
+            }, 1000);
+        }
+        
+        function playNotification() {
+            // Create a simple beep sound
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.value = 800;
+            oscillator.type = 'sine';
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.5);
+        }
+        
+        // Initialize
+        updateDisplay();
+        
+        // GA4 tracking
+        gtag('event', 'tool_used', {
+            'tool_name': 'pomodoro-timer'
+        });
+    </script>
+</body>
+</html>
