@@ -342,9 +342,10 @@ function detectLanguage() {
   return 'en';
 }
 
-// Get current language
+// Get current language - MANUAL ONLY, no auto-detection
 function getCurrentLanguage() {
-  return localStorage.getItem('multi-tools-lang') || detectLanguage();
+  // Always return stored language, never auto-detect
+  return localStorage.getItem('multi-tools-lang') || 'en';
 }
 
 // Set language
