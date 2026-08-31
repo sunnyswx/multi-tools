@@ -453,17 +453,8 @@
         
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize language system
+            // Initialize language system (manual only)
             window.multiLanguage.init();
-            
-            // Get language from URL or browser
-            const lang = getCurrentLang();
-            
-            // Set language selector
-            document.getElementById('langSelector').value = lang;
-            
-            // Apply language
-            window.multiLanguage.apply(lang);
             
             // Render tools
             renderTools(toolsData);
