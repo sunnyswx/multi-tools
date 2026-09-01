@@ -7,7 +7,21 @@
     <meta name="description" content="Compress images online for free. Reduce file size while maintaining quality.">
     
     <!-- GA4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6">
+        // Apply tool-specific translations
+        function applyToolTranslations(lang) {
+            const translations = toolTranslations[lang] || toolTranslations.en;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[key]) {
+                    el.textContent = translations[key];
+                }
+            });
+            if (translations.tool_title) {
+                document.title = translations.tool_title + ' - Multi Tools';
+            }
+        }
+    </script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -203,6 +217,9 @@
         
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
+            const lang = getLanguage();
+            applyLanguage(lang);
+            applyToolTranslations(lang);
             initLanguage();
             setupUpload();
         });

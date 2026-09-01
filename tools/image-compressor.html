@@ -107,7 +107,7 @@
     </div>
     
     <script>
-        // Tool-specific translations
+        // Tool-specific translations for this page
         const toolTranslations = {
             en: {
                 tool_title: '🖼️ Image Compressor',
@@ -203,14 +203,48 @@
         
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            initLanguage();
+            // Initialize language from localStorage
+            const lang = getLanguage();
+            applyLanguage(lang);
+            applyToolTranslations(lang);
             setupUpload();
         });
+        
+        // Apply tool-specific translations
+        function applyToolTranslations(lang) {
+            const translations = toolTranslations[lang] || toolTranslations.en;
+            
+            // Update all elements with data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[key]) {
+                    // Special handling for labels with span children
+                    if (key === 'quality_label') {
+                        const span = el.querySelector('span');
+                        if (span) {
+                            el.textContent = translations[key];
+                            el.appendChild(span);
+                        } else {
+                            el.textContent = translations[key];
+                        }
+                    } else {
+                        el.textContent = translations[key];
+                    }
+                }
+            });
+            
+            // Update page title
+            if (translations.tool_title) {
+                document.title = translations.tool_title + ' - Multi Tools';
+            }
+        }
         
         // Setup upload
         function setupUpload() {
             const uploadArea = document.getElementById('uploadArea');
             const fileInput = document.getElementById('fileInput');
+            
+            if (!uploadArea || !fileInput) return;
             
             uploadArea.addEventListener('click', () => fileInput.click());
             uploadArea.addEventListener('dragover', (e) => {
@@ -234,23 +268,38 @@
                 const file = files[0];
                 const reader = new FileReader();
                 reader.onload = (e) => {
-                    document.getElementById('previewImage').src = e.target.result;
-                    document.getElementById('previewSection').style.display = 'block';
+                    const previewImage = document.getElementById('previewImage');
+                    const previewSection = document.getElementById('previewSection');
+                    if (previewImage && previewSection) {
+                        previewImage.src = e.target.result;
+                        previewSection.style.display = 'block';
+                    }
                 };
                 reader.readAsDataURL(file);
             }
         }
         
         // Quality slider
-        document.getElementById('qualitySlider').addEventListener('input', function() {
-            document.getElementById('qualityValue').textContent = this.value;
-        });
+        const qualitySlider = document.getElementById('qualitySlider');
+        const qualityValue = document.getElementById('qualityValue');
+        if (qualitySlider && qualityValue) {
+            qualitySlider.addEventListener('input', function() {
+                qualityValue.textContent = this.value;
+            });
+        }
         
         // Compress button
-        document.getElementById('compressBtn').addEventListener('click', function() {
-            // Compression logic would go here
-            this.textContent = translations[getLanguage()]?.tools?.['image-compressor']?.desc || 'Compressing...';
-        });
+        const compressBtn = document.getElementById('compressBtn');
+        if (compressBtn) {
+            compressBtn.addEventListener('click', function() {
+                // Compression logic would go here
+                this.textContent = 'Compressing...';
+                setTimeout(() => {
+                    this.textContent = 'Compress Image';
+                    alert('Compression feature coming soon!');
+                }, 1000);
+            });
+        }
         
         // Track tool usage
         if (typeof gtag !== 'undefined') {
