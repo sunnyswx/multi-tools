@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Word Counter - Multi Tools</title>
-    <meta name="description" content="Word Counter: Count words, characters, and paragraphs in real-time.">
-    
-    <!-- GA4 -->
+    <meta name="description" content="Count words, characters, sentences.">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -14,217 +12,57 @@
       gtag('js', new Date());
       gtag('config', 'G-L7GQFYBWB6');
     </script>
-    
     <link rel="stylesheet" href="../css/style.css">
     <script src="../lang.js"></script>
-    
     <style>
-        .tool-container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .tool-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .tool-header h1 {
-            color: #333;
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-        .tool-header p {
-            color: #666;
-            font-size: 1.1rem;
-        }
-        .tool-content {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-        }
-        .input-group {
-            margin-bottom: 20px;
-        }
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #333;
-        }
-        .input-group input,
-        .input-group textarea,
-        .input-group select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 14px;
-            transition: border-color 0.3s;
-        }
-        .input-group input:focus,
-        .input-group textarea:focus,
-        .input-group select:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        .input-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-        .btn-group {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-        .btn {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 25px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
-        }
-        .btn-secondary {
-            background: #f0f0f0;
-            color: #333;
-        }
-        .btn-secondary:hover {
-            background: #e0e0e0;
-        }
-        .result {
-            margin-top: 20px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            border-left: 4px solid #667eea;
-        }
-        .result h3 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-        .result pre {
-            background: #2d2d2d;
-            color: #f8f8f2;
-            padding: 15px;
-            border-radius: 8px;
-            overflow-x: auto;
-            font-size: 14px;
-        }
-        .result code {
-            font-family: 'Consolas', 'Monaco', monospace;
-        }
-        .language-selector {
-            margin-top: 30px;
-            text-align: center;
-        }
-        .language-selector select {
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 25px;
-            background: #667eea;
-            color: white;
-            cursor: pointer;
-        }
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 10px 20px;
-            background: rgba(102, 126, 234, 0.1);
-            color: #667eea;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: all 0.3s;
-        }
-        .back-btn:hover {
-            background: rgba(102, 126, 234, 0.2);
-        }
-        /* Color Picker Styles */
-        .color-preview {
-            width: 100%;
-            height: 150px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border: 2px solid #e0e0e0;
-        }
-        /* Range Slider */
-        input[type="range"] {
-            width: 100%;
-            margin: 10px 0;
-        }
-        /* Gradient Preview */
-        .gradient-preview {
-            width: 100%;
-            height: 150px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border: 2px solid #e0e0e0;
-        }
-        /* Shadow Preview */
-        .shadow-preview {
-            width: 200px;
-            height: 200px;
-            background: white;
-            border-radius: 10px;
-            margin: 20px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-        }
-        /* Countdown Timer */
-        .timer-display {
-            font-size: 4rem;
-            text-align: center;
-            font-weight: bold;
-            color: #667eea;
-            margin: 30px 0;
-        }
-        /* Calculator */
-        .calculator-display {
-            width: 100%;
-            padding: 20px;
-            font-size: 2rem;
-            text-align: right;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        /* QR Code */
-        .qr-preview {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .qr-preview img {
-            max-width: 200px;
-            border-radius: 10px;
-        }
+        .tool-container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        .tool-header { text-align: center; margin-bottom: 30px; }
+        .tool-header h1 { color: #333; font-size: 2rem; margin-bottom: 10px; }
+        .tool-header p { color: #666; }
+        .tool-content { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+        textarea { width: 100%; height: 250px; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; resize: vertical; box-sizing: border-box; }
+        textarea:focus { outline: none; border-color: #667eea; }
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; }
+        .stat-box { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px; text-align: center; }
+        .stat-number { font-size: 2.5rem; font-weight: bold; }
+        .stat-label { font-size: 0.9rem; opacity: 0.9; }
+        .language-selector { margin-top: 30px; text-align: center; }
+        .language-selector select { padding: 10px 20px; font-size: 16px; border: none; border-radius: 25px; background: #667eea; color: white; cursor: pointer; }
     </style>
 </head>
 <body>
     <div class="container">
         <a href="../" class="back-btn">← Back to Home</a>
-        
         <div class="tool-container">
             <div class="tool-header">
-                <h1>🔢 Word Counter</h1>
-                <p>Count words, characters, and paragraphs in real-time.</p>
+                <h1>📝 Word Counter</h1>
+                <p>Count words, characters, sentences</p>
             </div>
-            
-            <div class="tool-content" id="toolContent">
-                <!-- Tool-specific content will be inserted here -->
+            <div class="tool-content">
+                <textarea id="textInput" placeholder="Enter text here..." oninput="countText()"></textarea>
+                <div class="stats">
+                    <div class="stat-box">
+                        <div class="stat-number" id="wordCount">0</div>
+                        <div class="stat-label">Words</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number" id="charCount">0</div>
+                        <div class="stat-label">Characters</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number" id="sentenceCount">0</div>
+                        <div class="stat-label">Sentences</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number" id="paragraphCount">0</div>
+                        <div class="stat-label">Paragraphs</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number" id="readTime">0</div>
+                        <div class="stat-label">Min Read</div>
+                    </div>
+                </div>
             </div>
-            
             <div class="language-selector">
                 <select id="langSelect" onchange="changeLanguage(this.value)">
                     <option value="en">English</option>
@@ -240,54 +78,28 @@
             </div>
         </div>
     </div>
-    
     <script>
-        // Initialize language
         document.addEventListener('DOMContentLoaded', function() {
             const lang = getLanguage();
             applyLanguage(lang);
-            initTool();
         });
         
-        // Initialize tool
-        function initTool() {
+        function countText() {
+            const text = document.getElementById('textInput').value;
             
-            const textarea = document.createElement('textarea');
-            textarea.id = 'textInput';
-            textarea.placeholder = 'Type or paste your text here...';
-            textarea.style.minHeight = '200px';
+            const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+            const chars = text.length;
+            const sentences = text.split(/[.!?]+/).filter(s => s.trim()).length;
+            const paragraphs = text.split(/\n\s*\n/).filter(p => p.trim()).length || (text.trim() ? 1 : 0);
+            const readTime = Math.ceil(words / 200);
             
-            const statsDiv = document.createElement('div');
-            statsDiv.id = 'wordStats';
-            statsDiv.style.marginTop = '20px';
-            statsDiv.style.padding = '20px';
-            statsDiv.style.background = '#f8f9fa';
-            statsDiv.style.borderRadius = '10px';
-            
-            const toolContent = document.getElementById('toolContent');
-            toolContent.innerHTML = '';
-            toolContent.appendChild(textarea);
-            toolContent.appendChild(statsDiv);
-            
-            textarea.addEventListener('input', () => {
-                const text = textarea.value;
-                const words = text.trim() ? text.trim().split(/\s+/) : [];
-                const chars = text.length;
-                const charsNoSpaces = text.replace(/\s/g, '').length;
-                const paragraphs = text.trim() ? text.split(/\n+/).filter(p => p.trim()).length : 0;
-                const sentences = text.split(/[.!?]+/).filter(s => s.trim()).length;
-                
-                statsDiv.innerHTML = '<h3>Statistics:</h3>' +
-                    '<p>Words: <strong>' + words.length + '</strong></p>' +
-                    '<p>Characters: <strong>' + chars + '</strong></p>' +
-                    '<p>Characters (no spaces): <strong>' + charsNoSpaces + '</strong></p>' +
-                    '<p>Sentences: <strong>' + sentences + '</strong></p>' +
-                    '<p>Paragraphs: <strong>' + paragraphs + '</strong></p>';
-            });
-        
+            document.getElementById('wordCount').textContent = words;
+            document.getElementById('charCount').textContent = chars;
+            document.getElementById('sentenceCount').textContent = sentences;
+            document.getElementById('paragraphCount').textContent = paragraphs;
+            document.getElementById('readTime').textContent = readTime;
         }
         
-        // Track tool usage
         if (typeof gtag !== 'undefined') {
             gtag('event', 'tool_open', { tool: 'word-counter' });
         }

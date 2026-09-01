@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BMI Calculator - Multi Tools</title>
-    <meta name="description" content="BMI Calculator: Calculate Body Mass Index online.">
-    
-    <!-- GA4 -->
+    <meta name="description" content="Calculate Body Mass Index online.">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -14,217 +12,63 @@
       gtag('js', new Date());
       gtag('config', 'G-L7GQFYBWB6');
     </script>
-    
     <link rel="stylesheet" href="../css/style.css">
     <script src="../lang.js"></script>
-    
     <style>
-        .tool-container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .tool-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .tool-header h1 {
-            color: #333;
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-        .tool-header p {
-            color: #666;
-            font-size: 1.1rem;
-        }
-        .tool-content {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-        }
-        .input-group {
-            margin-bottom: 20px;
-        }
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #333;
-        }
-        .input-group input,
-        .input-group textarea,
-        .input-group select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 14px;
-            transition: border-color 0.3s;
-        }
-        .input-group input:focus,
-        .input-group textarea:focus,
-        .input-group select:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        .input-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-        .btn-group {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-        .btn {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 25px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
-        }
-        .btn-secondary {
-            background: #f0f0f0;
-            color: #333;
-        }
-        .btn-secondary:hover {
-            background: #e0e0e0;
-        }
-        .result {
-            margin-top: 20px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            border-left: 4px solid #667eea;
-        }
-        .result h3 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-        .result pre {
-            background: #2d2d2d;
-            color: #f8f8f2;
-            padding: 15px;
-            border-radius: 8px;
-            overflow-x: auto;
-            font-size: 14px;
-        }
-        .result code {
-            font-family: 'Consolas', 'Monaco', monospace;
-        }
-        .language-selector {
-            margin-top: 30px;
-            text-align: center;
-        }
-        .language-selector select {
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 25px;
-            background: #667eea;
-            color: white;
-            cursor: pointer;
-        }
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 10px 20px;
-            background: rgba(102, 126, 234, 0.1);
-            color: #667eea;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: all 0.3s;
-        }
-        .back-btn:hover {
-            background: rgba(102, 126, 234, 0.2);
-        }
-        /* Color Picker Styles */
-        .color-preview {
-            width: 100%;
-            height: 150px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border: 2px solid #e0e0e0;
-        }
-        /* Range Slider */
-        input[type="range"] {
-            width: 100%;
-            margin: 10px 0;
-        }
-        /* Gradient Preview */
-        .gradient-preview {
-            width: 100%;
-            height: 150px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border: 2px solid #e0e0e0;
-        }
-        /* Shadow Preview */
-        .shadow-preview {
-            width: 200px;
-            height: 200px;
-            background: white;
-            border-radius: 10px;
-            margin: 20px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-        }
-        /* Countdown Timer */
-        .timer-display {
-            font-size: 4rem;
-            text-align: center;
-            font-weight: bold;
-            color: #667eea;
-            margin: 30px 0;
-        }
-        /* Calculator */
-        .calculator-display {
-            width: 100%;
-            padding: 20px;
-            font-size: 2rem;
-            text-align: right;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        /* QR Code */
-        .qr-preview {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .qr-preview img {
-            max-width: 200px;
-            border-radius: 10px;
-        }
+        .tool-container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        .tool-header { text-align: center; margin-bottom: 30px; }
+        .tool-header h1 { color: #333; font-size: 2rem; margin-bottom: 10px; }
+        .tool-header p { color: #666; }
+        .tool-content { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; }
+        input[type="number"] { width: 100%; padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; }
+        input[type="number"]:focus { outline: none; border-color: #667eea; }
+        .btn-group { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+        .btn { padding: 12px 30px; border: none; border-radius: 25px; font-size: 16px; cursor: pointer; transition: all 0.3s; }
+        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
+        .result { margin-top: 20px; padding: 25px; background: #f8f9fa; border-radius: 10px; text-align: center; display: none; }
+        .bmi-value { font-size: 3rem; font-weight: bold; margin-bottom: 10px; }
+        .bmi-category { font-size: 1.3rem; margin-bottom: 15px; }
+        .bmi-scale { display: flex; height: 20px; border-radius: 10px; overflow: hidden; margin-top: 15px; }
+        .bmi-scale div { flex: 1; }
+        .language-selector { margin-top: 30px; text-align: center; }
+        .language-selector select { padding: 10px 20px; font-size: 16px; border: none; border-radius: 25px; background: #667eea; color: white; cursor: pointer; }
     </style>
 </head>
 <body>
     <div class="container">
         <a href="../" class="back-btn">← Back to Home</a>
-        
         <div class="tool-container">
             <div class="tool-header">
                 <h1>⚖️ BMI Calculator</h1>
-                <p>Calculate Body Mass Index online.</p>
+                <p>Calculate Body Mass Index online</p>
             </div>
-            
-            <div class="tool-content" id="toolContent">
-                <!-- Tool-specific content will be inserted here -->
+            <div class="tool-content">
+                <div class="input-group">
+                    <label>Height (cm):</label>
+                    <input type="number" id="height" placeholder="170">
+                </div>
+                <div class="input-group">
+                    <label>Weight (kg):</label>
+                    <input type="number" id="weight" placeholder="70">
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="calculateBMI()">Calculate BMI</button>
+                </div>
+                <div class="result" id="result">
+                    <div class="bmi-value" id="bmiValue">0</div>
+                    <div class="bmi-category" id="bmiCategory">-</div>
+                    <div class="bmi-scale">
+                        <div style="background: #3498db;"></div>
+                        <div style="background: #2ecc71;"></div>
+                        <div style="background: #f39c12;"></div>
+                        <div style="background: #e74c3c;"></div>
+                    </div>
+                    <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">Underweight: &lt;18.5 | Normal: 18.5-24.9 | Overweight: 25-29.9 | Obese: ≥30</p>
+                </div>
             </div>
-            
             <div class="language-selector">
                 <select id="langSelect" onchange="changeLanguage(this.value)">
                     <option value="en">English</option>
@@ -240,68 +84,46 @@
             </div>
         </div>
     </div>
-    
     <script>
-        // Initialize language
         document.addEventListener('DOMContentLoaded', function() {
             const lang = getLanguage();
             applyLanguage(lang);
-            initTool();
         });
         
-        // Initialize tool
-        function initTool() {
+        function calculateBMI() {
+            const height = parseFloat(document.getElementById('height').value) / 100;
+            const weight = parseFloat(document.getElementById('weight').value);
             
-            const heightGroup = document.createElement('div');
-            heightGroup.className = 'input-group';
-            heightGroup.innerHTML = '<label>Height (cm):</label><input type="number" id="height" placeholder="170">';
+            if (!height || !weight) {
+                alert('Please enter valid height and weight!');
+                return;
+            }
             
-            const weightGroup = document.createElement('div');
-            weightGroup.className = 'input-group';
-            weightGroup.innerHTML = '<label>Weight (kg):</label><input type="number" id="weight" placeholder="70">';
+            const bmi = weight / (height * height);
+            let category = '';
+            let color = '';
             
-            const calculateBtn = document.createElement('button');
-            calculateBtn.className = 'btn btn-primary';
-            calculateBtn.textContent = 'Calculate BMI';
+            if (bmi < 18.5) {
+                category = 'Underweight';
+                color = '#3498db';
+            } else if (bmi < 25) {
+                category = 'Normal';
+                color = '#2ecc71';
+            } else if (bmi < 30) {
+                category = 'Overweight';
+                color = '#f39c12';
+            } else {
+                category = 'Obese';
+                color = '#e74c3c';
+            }
             
-            const resultDiv = document.createElement('div');
-            resultDiv.className = 'result';
-            resultDiv.id = 'bmiResult';
-            resultDiv.style.display = 'none';
-            
-            const toolContent = document.getElementById('toolContent');
-            toolContent.appendChild(heightGroup);
-            toolContent.appendChild(weightGroup);
-            toolContent.appendChild(calculateBtn);
-            toolContent.appendChild(resultDiv);
-            
-            calculateBtn.addEventListener('click', () => {
-                const height = parseFloat(document.getElementById('height').value) / 100;
-                const weight = parseFloat(document.getElementById('weight').value);
-                
-                if (!height || !weight) {
-                    alert('Please enter valid height and weight!');
-                    return;
-                }
-                
-                const bmi = weight / (height * height);
-                let category = '';
-                let color = '';
-                
-                if (bmi < 18.5) { category = 'Underweight'; color = '#3498db'; }
-                else if (bmi < 25) { category = 'Normal'; color = '#2ecc71'; }
-                else if (bmi < 30) { category = 'Overweight'; color = '#f39c12'; }
-                else { category = 'Obese'; color = '#e74c3c'; }
-                
-                resultDiv.innerHTML = '<h3>Your BMI: ' + bmi.toFixed(1) + '</h3>' +
-                    '<p>Category: <strong style="color: ' + color + ';">' + category + '</strong></p>' +
-                    '<p>Healthy BMI range: 18.5 - 24.9</p>';
-                resultDiv.style.display = 'block';
-            });
-        
+            document.getElementById('bmiValue').textContent = bmi.toFixed(1);
+            document.getElementById('bmiValue').style.color = color;
+            document.getElementById('bmiCategory').textContent = category;
+            document.getElementById('bmiCategory').style.color = color;
+            document.getElementById('result').style.display = 'block';
         }
         
-        // Track tool usage
         if (typeof gtag !== 'undefined') {
             gtag('event', 'tool_open', { tool: 'bmi-calculator' });
         }

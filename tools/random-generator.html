@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Generator - Multi Tools</title>
-    <meta name="description" content="Random Generator: Generate random numbers, strings, passwords.">
-    
-    <!-- GA4 -->
+    <title>Random Number Generator - Multi Tools</title>
+    <meta name="description" content="Generate random numbers.">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -14,217 +12,63 @@
       gtag('js', new Date());
       gtag('config', 'G-L7GQFYBWB6');
     </script>
-    
     <link rel="stylesheet" href="../css/style.css">
     <script src="../lang.js"></script>
-    
     <style>
-        .tool-container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .tool-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .tool-header h1 {
-            color: #333;
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-        .tool-header p {
-            color: #666;
-            font-size: 1.1rem;
-        }
-        .tool-content {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-        }
-        .input-group {
-            margin-bottom: 20px;
-        }
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #333;
-        }
-        .input-group input,
-        .input-group textarea,
-        .input-group select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 14px;
-            transition: border-color 0.3s;
-        }
-        .input-group input:focus,
-        .input-group textarea:focus,
-        .input-group select:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        .input-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-        .btn-group {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-        .btn {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 25px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
-        }
-        .btn-secondary {
-            background: #f0f0f0;
-            color: #333;
-        }
-        .btn-secondary:hover {
-            background: #e0e0e0;
-        }
-        .result {
-            margin-top: 20px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            border-left: 4px solid #667eea;
-        }
-        .result h3 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-        .result pre {
-            background: #2d2d2d;
-            color: #f8f8f2;
-            padding: 15px;
-            border-radius: 8px;
-            overflow-x: auto;
-            font-size: 14px;
-        }
-        .result code {
-            font-family: 'Consolas', 'Monaco', monospace;
-        }
-        .language-selector {
-            margin-top: 30px;
-            text-align: center;
-        }
-        .language-selector select {
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 25px;
-            background: #667eea;
-            color: white;
-            cursor: pointer;
-        }
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 10px 20px;
-            background: rgba(102, 126, 234, 0.1);
-            color: #667eea;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: all 0.3s;
-        }
-        .back-btn:hover {
-            background: rgba(102, 126, 234, 0.2);
-        }
-        /* Color Picker Styles */
-        .color-preview {
-            width: 100%;
-            height: 150px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border: 2px solid #e0e0e0;
-        }
-        /* Range Slider */
-        input[type="range"] {
-            width: 100%;
-            margin: 10px 0;
-        }
-        /* Gradient Preview */
-        .gradient-preview {
-            width: 100%;
-            height: 150px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border: 2px solid #e0e0e0;
-        }
-        /* Shadow Preview */
-        .shadow-preview {
-            width: 200px;
-            height: 200px;
-            background: white;
-            border-radius: 10px;
-            margin: 20px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-        }
-        /* Countdown Timer */
-        .timer-display {
-            font-size: 4rem;
-            text-align: center;
-            font-weight: bold;
-            color: #667eea;
-            margin: 30px 0;
-        }
-        /* Calculator */
-        .calculator-display {
-            width: 100%;
-            padding: 20px;
-            font-size: 2rem;
-            text-align: right;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        /* QR Code */
-        .qr-preview {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .qr-preview img {
-            max-width: 200px;
-            border-radius: 10px;
-        }
+        .tool-container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        .tool-header { text-align: center; margin-bottom: 30px; }
+        .tool-header h1 { color: #333; font-size: 2rem; margin-bottom: 10px; }
+        .tool-header p { color: #666; }
+        .tool-content { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; }
+        .range-inputs { display: flex; gap: 15px; align-items: center; }
+        .range-inputs div { flex: 1; }
+        input[type="number"] { width: 100%; padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; }
+        input[type="number"]:focus { outline: none; border-color: #667eea; }
+        .btn-group { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+        .btn { padding: 12px 30px; border: none; border-radius: 25px; font-size: 16px; cursor: pointer; transition: all 0.3s; }
+        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
+        .result { margin-top: 20px; text-align: center; }
+        .result-value { font-size: 4rem; font-weight: bold; color: #667eea; }
+        .result-label { color: #666; margin-top: 10px; }
+        .count-group { margin-bottom: 20px; }
+        .language-selector { margin-top: 30px; text-align: center; }
+        .language-selector select { padding: 10px 20px; font-size: 16px; border: none; border-radius: 25px; background: #667eea; color: white; cursor: pointer; }
     </style>
 </head>
 <body>
     <div class="container">
         <a href="../" class="back-btn">← Back to Home</a>
-        
         <div class="tool-container">
             <div class="tool-header">
-                <h1>🎲 Random Generator</h1>
-                <p>Generate random numbers, strings, passwords.</p>
+                <h1>🎲 Random Number Generator</h1>
+                <p>Generate random numbers</p>
             </div>
-            
-            <div class="tool-content" id="toolContent">
-                <!-- Tool-specific content will be inserted here -->
+            <div class="tool-content">
+                <div class="range-inputs">
+                    <div class="input-group">
+                        <label>Min</label>
+                        <input type="number" id="min" value="1">
+                    </div>
+                    <div class="input-group">
+                        <label>Max</label>
+                        <input type="number" id="max" value="100">
+                    </div>
+                </div>
+                <div class="count-group">
+                    <label>Count: <input type="number" id="count" value="1" min="1" max="100" style="width: 80px;"></label>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="generate()">Generate</button>
+                    <button class="btn btn-secondary" onclick="copy()">Copy</button>
+                </div>
+                <div class="result" id="result">
+                    <div class="result-value" id="resultValue">-</div>
+                    <div class="result-label">Result</div>
+                </div>
             </div>
-            
             <div class="language-selector">
                 <select id="langSelect" onchange="changeLanguage(this.value)">
                     <option value="en">English</option>
@@ -240,46 +84,43 @@
             </div>
         </div>
     </div>
-    
     <script>
-        // Initialize language
         document.addEventListener('DOMContentLoaded', function() {
             const lang = getLanguage();
             applyLanguage(lang);
-            initTool();
         });
         
-        // Initialize tool
-        function initTool() {
+        function generate() {
+            const min = parseInt(document.getElementById('min').value);
+            const max = parseInt(document.getElementById('max').value);
+            const count = parseInt(document.getElementById('count').value) || 1;
             
-            const textarea = document.createElement('textarea');
-            textarea.id = 'inputText';
-            textarea.placeholder = 'Enter your text here...';
-            textarea.style.minHeight = '150px';
+            if (isNaN(min) || isNaN(max)) {
+                alert('Please enter valid numbers!');
+                return;
+            }
             
-            const processBtn = document.createElement('button');
-            processBtn.className = 'btn btn-primary';
-            processBtn.textContent = 'Process';
+            let results = [];
+            for (let i = 0; i < count; i++) {
+                results.push(Math.floor(Math.random() * (max - min + 1)) + min);
+            }
             
-            const resultDiv = document.createElement('div');
-            resultDiv.className = 'result';
-            resultDiv.id = 'result';
-            resultDiv.style.display = 'none';
+            const resultValue = results.join(', ');
+            document.getElementById('resultValue').textContent = resultValue;
+            document.getElementById('result').style.display = 'block';
             
-            const toolContent = document.getElementById('toolContent');
-            toolContent.appendChild(textarea);
-            toolContent.appendChild(processBtn);
-            toolContent.appendChild(resultDiv);
-            
-            processBtn.addEventListener('click', () => {
-                const text = textarea.value;
-                resultDiv.innerHTML = '<h3>Result:</h3><pre><code>' + escapeHtml(text) + '</code></pre>';
-                resultDiv.style.display = 'block';
-            });
-        
+            window.lastResults = results;
         }
         
-        // Track tool usage
+        function copy() {
+            if (!window.lastResults) {
+                alert('Generate a number first!');
+                return;
+            }
+            navigator.clipboard.writeText(window.lastResults.join(', '));
+            alert('Copied!');
+        }
+        
         if (typeof gtag !== 'undefined') {
             gtag('event', 'tool_open', { tool: 'random-generator' });
         }

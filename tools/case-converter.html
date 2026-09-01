@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Base64 Encode Decode - Multi Tools</title>
-    <meta name="description" content="Encode and decode Base64 strings.">
+    <title>Case Converter - Multi Tools</title>
+    <meta name="description" content="Convert text case.">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -20,12 +20,11 @@
         .tool-header h1 { color: #333; font-size: 2rem; margin-bottom: 10px; }
         .tool-header p { color: #666; }
         .tool-content { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
-        textarea { width: 100%; height: 150px; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 14px; resize: vertical; }
+        textarea { width: 100%; height: 150px; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; resize: vertical; box-sizing: border-box; }
         textarea:focus { outline: none; border-color: #667eea; }
-        .btn-group { display: flex; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
-        .btn { padding: 12px 30px; border: none; border-radius: 25px; font-size: 16px; cursor: pointer; transition: all 0.3s; }
-        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
-        .btn-secondary { background: #f0f0f0; color: #333; }
+        .btn-group { display: flex; gap: 10px; margin: 15px 0; flex-wrap: wrap; }
+        .btn { padding: 10px 20px; border: none; border-radius: 25px; font-size: 14px; cursor: pointer; background: #f0f0f0; }
+        .btn:hover { background: #667eea; color: white; }
         .language-selector { margin-top: 30px; text-align: center; }
         .language-selector select { padding: 10px 20px; font-size: 16px; border: none; border-radius: 25px; background: #667eea; color: white; cursor: pointer; }
     </style>
@@ -35,18 +34,20 @@
         <a href="../" class="back-btn">← Back to Home</a>
         <div class="tool-container">
             <div class="tool-header">
-                <h1>🔤 Base64 Encoder/Decoder</h1>
-                <p>Encode and decode Base64 strings</p>
+                <h1>🔤 Case Converter</h1>
+                <p>Convert text case</p>
             </div>
             <div class="tool-content">
-                <textarea id="input" placeholder="Enter text here..."></textarea>
+                <textarea id="input" placeholder="Enter text...">Hello World</textarea>
                 <div class="btn-group">
-                    <button class="btn btn-primary" onclick="encode()">Encode to Base64</button>
-                    <button class="btn btn-primary" onclick="decode()">Decode from Base64</button>
-                    <button class="btn btn-secondary" onclick="clearAll()">Clear</button>
-                    <button class="btn btn-secondary" onclick="copyResult()">Copy</button>
+                    <button class="btn" onclick="convert('upper')">UPPERCASE</button>
+                    <button class="btn" onclick="convert('lower')">lowercase</button>
+                    <button class="btn" onclick="convert('title')">Title Case</button>
+                    <button class="btn" onclick="convert('sentence')">Sentence case</button>
+                    <button class="btn" onclick="convert('toggle')">tOGGLE</button>
+                    <button class="btn" onclick="convert('inverse')">Inverse</button>
                 </div>
-                <textarea id="output" placeholder="Result will appear here..." readonly></textarea>
+                <textarea id="output" placeholder="Result..." readonly></textarea>
             </div>
             <div class="language-selector">
                 <select id="langSelect" onchange="changeLanguage(this.value)">
@@ -69,38 +70,36 @@
             applyLanguage(lang);
         });
         
-        function encode() {
-            const input = document.getElementById('input').value;
-            try {
-                document.getElementById('output').value = btoa(unescape(encodeURIComponent(input)));
-            } catch (e) {
-                alert('Invalid input');
+        function convert(type) {
+            const text = document.getElementById('input').value;
+            let result = '';
+            
+            switch(type) {
+                case 'upper':
+                    result = text.toUpperCase();
+                    break;
+                case 'lower':
+                    result = text.toLowerCase();
+                    break;
+                case 'title':
+                    result = text.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+                    break;
+                case 'sentence':
+                    result = text.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, c => c.toUpperCase());
+                    break;
+                case 'toggle':
+                    result = text.split('').map(c => c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()).join('');
+                    break;
+                case 'inverse':
+                    result = text.split('').map(c => c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()).join('');
+                    break;
             }
-        }
-        
-        function decode() {
-            const input = document.getElementById('input').value;
-            try {
-                document.getElementById('output').value = decodeURIComponent(escape(atob(input)));
-            } catch (e) {
-                alert('Invalid Base64');
-            }
-        }
-        
-        function clearAll() {
-            document.getElementById('input').value = '';
-            document.getElementById('output').value = '';
-        }
-        
-        function copyResult() {
-            const output = document.getElementById('output');
-            output.select();
-            navigator.clipboard.writeText(output.value);
-            alert('Copied!');
+            
+            document.getElementById('output').value = result;
         }
         
         if (typeof gtag !== 'undefined') {
-            gtag('event', 'tool_open', { tool: 'base64-encode-decode' });
+            gtag('event', 'tool_open', { tool: 'case-converter' });
         }
     </script>
 </body>

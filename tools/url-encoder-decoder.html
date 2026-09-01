@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSV to JSON - Multi Tools</title>
-    <meta name="description" content="Convert CSV to JSON format.">
+    <title>URL Encoder Decoder - Multi Tools</title>
+    <meta name="description" content="Encode and decode URLs online.">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -15,15 +15,15 @@
     <link rel="stylesheet" href="../css/style.css">
     <script src="../lang.js"></script>
     <style>
-        .tool-container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .tool-container { max-width: 900px; margin: 0 auto; padding: 20px; }
         .tool-header { text-align: center; margin-bottom: 30px; }
         .tool-header h1 { color: #333; font-size: 2rem; margin-bottom: 10px; }
         .tool-header p { color: #666; }
         .tool-content { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
-        textarea { width: 100%; height: 200px; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-family: monospace; font-size: 14px; resize: vertical; box-sizing: border-box; }
+        textarea { width: 100%; height: 150px; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 14px; resize: vertical; }
         textarea:focus { outline: none; border-color: #667eea; }
-        .btn-group { display: flex; gap: 10px; margin: 20px 0; }
-        .btn { padding: 12px 30px; border: none; border-radius: 25px; font-size: 16px; cursor: pointer; }
+        .btn-group { display: flex; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
+        .btn { padding: 12px 30px; border: none; border-radius: 25px; font-size: 16px; cursor: pointer; transition: all 0.3s; }
         .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
         .btn-secondary { background: #f0f0f0; color: #333; }
         .language-selector { margin-top: 30px; text-align: center; }
@@ -35,19 +35,18 @@
         <a href="../" class="back-btn">← Back to Home</a>
         <div class="tool-container">
             <div class="tool-header">
-                <h1>📊 CSV to JSON</h1>
-                <p>Convert CSV to JSON format</p>
+                <h1>🔗 URL Encoder/Decoder</h1>
+                <p>Encode and decode URLs online</p>
             </div>
             <div class="tool-content">
-                <textarea id="csvInput" placeholder="Paste CSV data here...">Name,Age,City
-John,30,New York
-Jane,25,London
-Bob,35,Paris</textarea>
+                <textarea id="input" placeholder="Enter URL or text here..."></textarea>
                 <div class="btn-group">
-                    <button class="btn btn-primary" onclick="convert()">Convert</button>
+                    <button class="btn btn-primary" onclick="encode()">Encode</button>
+                    <button class="btn btn-primary" onclick="decode()">Decode</button>
+                    <button class="btn btn-secondary" onclick="clearAll()">Clear</button>
                     <button class="btn btn-secondary" onclick="copyResult()">Copy</button>
                 </div>
-                <textarea id="jsonOutput" placeholder="JSON output will appear here..." readonly></textarea>
+                <textarea id="output" placeholder="Result will appear here..." readonly></textarea>
             </div>
             <div class="language-selector">
                 <select id="langSelect" onchange="changeLanguage(this.value)">
@@ -70,39 +69,34 @@ Bob,35,Paris</textarea>
             applyLanguage(lang);
         });
         
-        function convert() {
-            const csv = document.getElementById('csvInput').value.trim();
-            if (!csv) {
-                alert('Please enter CSV data');
-                return;
+        function encode() {
+            const input = document.getElementById('input').value;
+            document.getElementById('output').value = encodeURIComponent(input);
+        }
+        
+        function decode() {
+            const input = document.getElementById('input').value;
+            try {
+                document.getElementById('output').value = decodeURIComponent(input);
+            } catch (e) {
+                alert('Invalid URL encoding');
             }
-            
-            const lines = csv.split('\n');
-            const headers = lines[0].split(',').map(h => h.trim());
-            const result = [];
-            
-            for (let i = 1; i < lines.length; i++) {
-                if (!lines[i].trim()) continue;
-                const values = lines[i].split(',').map(v => v.trim());
-                const obj = {};
-                headers.forEach((header, index) => {
-                    obj[header] = values[index] || '';
-                });
-                result.push(obj);
-            }
-            
-            document.getElementById('jsonOutput').value = JSON.stringify(result, null, 2);
+        }
+        
+        function clearAll() {
+            document.getElementById('input').value = '';
+            document.getElementById('output').value = '';
         }
         
         function copyResult() {
-            const output = document.getElementById('jsonOutput');
+            const output = document.getElementById('output');
             output.select();
             navigator.clipboard.writeText(output.value);
             alert('Copied!');
         }
         
         if (typeof gtag !== 'undefined') {
-            gtag('event', 'tool_open', { tool: 'csv-to-json' });
+            gtag('event', 'tool_open', { tool: 'url-encoder-decoder' });
         }
     </script>
 </body>

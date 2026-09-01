@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unit Converter - Multi Tools</title>
-    <meta name="description" content="Unit Converter: Convert between different units of measurement.">
-    
-    <!-- GA4 -->
+    <meta name="description" content="Convert between different units.">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -14,217 +12,56 @@
       gtag('js', new Date());
       gtag('config', 'G-L7GQFYBWB6');
     </script>
-    
     <link rel="stylesheet" href="../css/style.css">
     <script src="../lang.js"></script>
-    
     <style>
-        .tool-container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .tool-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .tool-header h1 {
-            color: #333;
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-        .tool-header p {
-            color: #666;
-            font-size: 1.1rem;
-        }
-        .tool-content {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-        }
-        .input-group {
-            margin-bottom: 20px;
-        }
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #333;
-        }
-        .input-group input,
-        .input-group textarea,
-        .input-group select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 14px;
-            transition: border-color 0.3s;
-        }
-        .input-group input:focus,
-        .input-group textarea:focus,
-        .input-group select:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        .input-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-        .btn-group {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-        .btn {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 25px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
-        }
-        .btn-secondary {
-            background: #f0f0f0;
-            color: #333;
-        }
-        .btn-secondary:hover {
-            background: #e0e0e0;
-        }
-        .result {
-            margin-top: 20px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            border-left: 4px solid #667eea;
-        }
-        .result h3 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-        .result pre {
-            background: #2d2d2d;
-            color: #f8f8f2;
-            padding: 15px;
-            border-radius: 8px;
-            overflow-x: auto;
-            font-size: 14px;
-        }
-        .result code {
-            font-family: 'Consolas', 'Monaco', monospace;
-        }
-        .language-selector {
-            margin-top: 30px;
-            text-align: center;
-        }
-        .language-selector select {
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 25px;
-            background: #667eea;
-            color: white;
-            cursor: pointer;
-        }
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 10px 20px;
-            background: rgba(102, 126, 234, 0.1);
-            color: #667eea;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: all 0.3s;
-        }
-        .back-btn:hover {
-            background: rgba(102, 126, 234, 0.2);
-        }
-        /* Color Picker Styles */
-        .color-preview {
-            width: 100%;
-            height: 150px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border: 2px solid #e0e0e0;
-        }
-        /* Range Slider */
-        input[type="range"] {
-            width: 100%;
-            margin: 10px 0;
-        }
-        /* Gradient Preview */
-        .gradient-preview {
-            width: 100%;
-            height: 150px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border: 2px solid #e0e0e0;
-        }
-        /* Shadow Preview */
-        .shadow-preview {
-            width: 200px;
-            height: 200px;
-            background: white;
-            border-radius: 10px;
-            margin: 20px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-        }
-        /* Countdown Timer */
-        .timer-display {
-            font-size: 4rem;
-            text-align: center;
-            font-weight: bold;
-            color: #667eea;
-            margin: 30px 0;
-        }
-        /* Calculator */
-        .calculator-display {
-            width: 100%;
-            padding: 20px;
-            font-size: 2rem;
-            text-align: right;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        /* QR Code */
-        .qr-preview {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .qr-preview img {
-            max-width: 200px;
-            border-radius: 10px;
-        }
+        .tool-container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        .tool-header { text-align: center; margin-bottom: 30px; }
+        .tool-header h1 { color: #333; font-size: 2rem; margin-bottom: 10px; }
+        .tool-header p { color: #666; }
+        .tool-content { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+        .converter-group { margin-bottom: 20px; }
+        .converter-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; }
+        input[type="number"] { width: 100%; padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; box-sizing: border-box; }
+        input[type="number"]:focus { outline: none; border-color: #667eea; }
+        select { width: 100%; padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; box-sizing: border-box; }
+        .result-box { margin-top: 20px; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px; color: white; font-size: 1.5rem; text-align: center; display: none; }
+        .language-selector { margin-top: 30px; text-align: center; }
+        .language-selector select { padding: 10px 20px; font-size: 16px; border: none; border-radius: 25px; background: #667eea; color: white; cursor: pointer; }
     </style>
 </head>
 <body>
     <div class="container">
         <a href="../" class="back-btn">← Back to Home</a>
-        
         <div class="tool-container">
             <div class="tool-header">
                 <h1>📏 Unit Converter</h1>
-                <p>Convert between different units of measurement.</p>
+                <p>Convert between different units</p>
             </div>
-            
-            <div class="tool-content" id="toolContent">
-                <!-- Tool-specific content will be inserted here -->
+            <div class="tool-content">
+                <div class="converter-group">
+                    <label>Category:</label>
+                    <select id="category" onchange="updateUnits()">
+                        <option value="length">Length</option>
+                        <option value="weight">Weight</option>
+                        <option value="temperature">Temperature</option>
+                        <option value="area">Area</option>
+                        <option value="volume">Volume</option>
+                        <option value="speed">Speed</option>
+                        <option value="data">Data</option>
+                    </select>
+                </div>
+                <div class="converter-group">
+                    <label>From:</label>
+                    <select id="fromUnit"></select>
+                    <input type="number" id="fromValue" placeholder="Enter value" oninput="convert()">
+                </div>
+                <div class="converter-group">
+                    <label>To:</label>
+                    <select id="toUnit"></select>
+                </div>
+                <div class="result-box" id="result"></div>
             </div>
-            
             <div class="language-selector">
                 <select id="langSelect" onchange="changeLanguage(this.value)">
                     <option value="en">English</option>
@@ -240,46 +77,79 @@
             </div>
         </div>
     </div>
-    
     <script>
-        // Initialize language
+        const units = {
+            length: { m: 1, km: 0.001, cm: 100, mm: 1000, mi: 0.000621371, yd: 1.09361, ft: 3.28084, in: 39.3701 },
+            weight: { kg: 1, g: 1000, mg: 1000000, lb: 2.20462, oz: 35.274 },
+            temperature: { C: 'C', F: 'F', K: 'K' },
+            area: { m2: 1, km2: 0.000001, ha: 0.0001, acre: 0.000247105, ft2: 10.7639 },
+            volume: { l: 1, ml: 1000, gal: 0.264172, qt: 1.05669, pt: 2.11338, cup: 4.22675 },
+            speed: { 'm/s': 1, 'km/h': 3.6, 'mph': 2.23694, 'knot': 1.94384 },
+            data: { B: 1, KB: 0.001, MB: 0.000001, GB: 0.000000001, TB: 0.000000000001 }
+        };
+        
         document.addEventListener('DOMContentLoaded', function() {
             const lang = getLanguage();
             applyLanguage(lang);
-            initTool();
+            updateUnits();
         });
         
-        // Initialize tool
-        function initTool() {
+        function updateUnits() {
+            const category = document.getElementById('category').value;
+            const fromSelect = document.getElementById('fromUnit');
+            const toSelect = document.getElementById('toUnit');
             
-            const textarea = document.createElement('textarea');
-            textarea.id = 'inputText';
-            textarea.placeholder = 'Enter your text here...';
-            textarea.style.minHeight = '150px';
+            fromSelect.innerHTML = '';
+            toSelect.innerHTML = '';
             
-            const processBtn = document.createElement('button');
-            processBtn.className = 'btn btn-primary';
-            processBtn.textContent = 'Process';
-            
-            const resultDiv = document.createElement('div');
-            resultDiv.className = 'result';
-            resultDiv.id = 'result';
-            resultDiv.style.display = 'none';
-            
-            const toolContent = document.getElementById('toolContent');
-            toolContent.appendChild(textarea);
-            toolContent.appendChild(processBtn);
-            toolContent.appendChild(resultDiv);
-            
-            processBtn.addEventListener('click', () => {
-                const text = textarea.value;
-                resultDiv.innerHTML = '<h3>Result:</h3><pre><code>' + escapeHtml(text) + '</code></pre>';
-                resultDiv.style.display = 'block';
+            Object.keys(units[category]).forEach(unit => {
+                fromSelect.add(new Option(unit, unit));
+                toSelect.add(new Option(unit, unit));
             });
-        
+            
+            if (fromSelect.options.length > 1) {
+                toSelect.selectedIndex = 1;
+            }
         }
         
-        // Track tool usage
+        function convert() {
+            const category = document.getElementById('category').value;
+            const from = document.getElementById('fromUnit').value;
+            const to = document.getElementById('toUnit').value;
+            const value = parseFloat(document.getElementById('fromValue').value);
+            
+            if (isNaN(value)) {
+                document.getElementById('result').style.display = 'none';
+                return;
+            }
+            
+            let result;
+            
+            if (category === 'temperature') {
+                result = convertTemperature(value, from, to);
+            } else {
+                const fromFactor = units[category][from];
+                const toFactor = units[category][to];
+                result = value * fromFactor / toFactor;
+            }
+            
+            document.getElementById('result').textContent = value + ' ' + from + ' = ' + result.toFixed(4) + ' ' + to;
+            document.getElementById('result').style.display = 'block';
+        }
+        
+        function convertTemperature(value, from, to) {
+            if (from === to) return value;
+            
+            let celsius;
+            if (from === 'C') celsius = value;
+            else if (from === 'F') celsius = (value - 32) * 5/9;
+            else celsius = value - 273.15;
+            
+            if (to === 'C') return celsius;
+            else if (to === 'F') return celsius * 9/5 + 32;
+            else return celsius + 273.15;
+        }
+        
         if (typeof gtag !== 'undefined') {
             gtag('event', 'tool_open', { tool: 'unit-converter' });
         }

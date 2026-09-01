@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoREM Ipsum Generator - Multi Tools</title>
+    <meta name="description" content="Generate placeholder text.">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-L7GQFYBWB6');
+    </script>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../lang.js"></script>
+    <style>
+        .tool-container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        .tool-header { text-align: center; margin-bottom: 30px; }
+        .tool-header h1 { color: #333; font-size: 2rem; margin-bottom: 10px; }
+        .tool-header p { color: #666; }
+        .tool-content { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; margin-bottom: 8px; font-weight: 600; }
+        select { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; box-sizing: border-box; }
+        input[type="number"] { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; box-sizing: border-box; }
+        textarea { width: 100%; height: 300px; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 14px; resize: vertical; box-sizing: border-box; margin-top: 20px; }
+        textarea:focus { outline: none; border-color: #667eea; }
+        .btn-group { display: flex; gap: 10px; }
+        .btn { padding: 12px 30px; border: none; border-radius: 25px; font-size: 16px; cursor: pointer; }
+        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .btn-secondary { background: #f0f0f0; color: #333; }
+        .language-selector { margin-top: 30px; text-align: center; }
+        .language-selector select { padding: 10px 20px; font-size: 16px; border: none; border-radius: 25px; background: #667eea; color: white; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../" class="back-btn">← Back to Home</a>
+        <div class="tool-container">
+            <div class="tool-header">
+                <h1>📄 Lorem Ipsum Generator</h1>
+                <p>Generate placeholder text</p>
+            </div>
+            <div class="tool-content">
+                <div class="input-group">
+                    <label>Type:</label>
+                    <select id="type">
+                        <option value="paragraphs">Paragraphs</option>
+                        <option value="sentences">Sentences</option>
+                        <option value="words">Words</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Count:</label>
+                    <input type="number" id="count" value="3" min="1" max="50">
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="generate()">Generate</button>
+                    <button class="btn btn-secondary" onclick="copyText()">Copy</button>
+                </div>
+                <textarea id="output" readonly></textarea>
+            </div>
+            <div class="language-selector">
+                <select id="langSelect" onchange="changeLanguage(this.value)">
+                    <option value="en">English</option>
+                    <option value="zh">中文</option>
+                    <option value="ja">日本語</option>
+                    <option value="ko">한국어</option>
+                    <option value="es">Español</option>
+                    <option value="fr">Français</option>
+                    <option value="de">Deutsch</option>
+                    <option value="ru">Русский</option>
+                    <option value="ar">العربية</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <script>
+        const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+        const words = lorem.split(' ');
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const lang = getLanguage();
+            applyLanguage(lang);
+        });
+        
+        function generate() {
+            const type = document.getElementById('type').value;
+            const count = parseInt(document.getElementById('count').value);
+            let result = '';
+            
+            if (type === 'words') {
+                result = words.slice(0, count).join(' ');
+            } else if (type === 'sentences') {
+                const sentences = lorem.split('. ');
+                result = sentences.slice(0, count).join('. ');
+            } else {
+                const paragraphs = lorem.match(/[^.]+\. [^.]+\. [^.]+\./g) || [lorem];
+                result = paragraphs.slice(0, count).map(p => '<p>' + p + '</p>').join('\n');
+            }
+            
+            document.getElementById('output').value = result;
+        }
+        
+        function copyText() {
+            const output = document.getElementById('output');
+            output.select();
+            navigator.clipboard.writeText(output.value);
+            alert('Copied!');
+        }
+        
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'tool_open', { tool: 'lorem-ipsum-generator' });
+        }
+    </script>
+</body>
+</html>

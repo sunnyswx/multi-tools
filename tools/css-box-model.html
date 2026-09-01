@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Box Model - Multi Tools</title>
+    <meta name="description" content="Visualize CSS box model.">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-L7GQFYBWB6');
+    </script>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../lang.js"></script>
+    <style>
+        .tool-container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        .tool-header { text-align: center; margin-bottom: 30px; }
+        .tool-header h1 { color: #333; font-size: 2rem; margin-bottom: 10px; }
+        .tool-header p { color: #666; }
+        .tool-content { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+        .box-model { display: flex; align-items: center; justify-content: center; margin: 40px 0; }
+        .margin { background: #ff6b6b; padding: 40px; border-radius: 10px; text-align: center; color: white; font-weight: bold; }
+        .border { background: #4ecdc4; padding: 20px; border-radius: 5px; text-align: center; color: white; font-weight: bold; }
+        .padding { background: #45b7d1; padding: 30px; border-radius: 5px; text-align: center; color: white; font-weight: bold; }
+        .content { background: #96ceb4; padding: 50px; border-radius: 5px; text-align: center; color: white; font-weight: bold; }
+        .control-group { margin-bottom: 15px; }
+        .control-group label { display: flex; justify-content: space-between; margin-bottom: 5px; font-weight: 600; }
+        .control-group input[type="range"] { width: 100%; }
+        .language-selector { margin-top: 30px; text-align: center; }
+        .language-selector select { padding: 10px 20px; font-size: 16px; border: none; border-radius: 25px; background: #667eea; color: white; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../" class="back-btn">← Back to Home</a>
+        <div class="tool-container">
+            <div class="tool-header">
+                <h1>📦 CSS Box Model</h1>
+                <p>Visualize CSS box model</p>
+            </div>
+            <div class="tool-content">
+                <div class="box-model">
+                    <div class="margin" id="marginBox">
+                        <div>Margin: <span id="marginValue">40</span>px</div>
+                        <div class="border" id="borderBox">
+                            <div>Border: <span id="borderValue">20</span>px</div>
+                            <div class="padding" id="paddingBox">
+                                <div>Padding: <span id="paddingValue">30</span>px</div>
+                                <div class="content" id="contentBox">
+                                    Content: <span id="contentValue">50</span>px
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label>Margin: <span id="marginDisplay">40px</span></label>
+                    <input type="range" id="margin" min="0" max="100" value="40" oninput="updateBox()">
+                </div>
+                <div class="control-group">
+                    <label>Border: <span id="borderDisplay">20px</span></label>
+                    <input type="range" id="border" min="0" max="50" value="20" oninput="updateBox()">
+                </div>
+                <div class="control-group">
+                    <label>Padding: <span id="paddingDisplay">30px</span></label>
+                    <input type="range" id="padding" min="0" max="100" value="30" oninput="updateBox()">
+                </div>
+                <div class="control-group">
+                    <label>Content: <span id="contentDisplay">50px</span></label>
+                    <input type="range" id="content" min="20" max="200" value="50" oninput="updateBox()">
+                </div>
+            </div>
+            <div class="language-selector">
+                <select id="langSelect" onchange="changeLanguage(this.value)">
+                    <option value="en">English</option>
+                    <option value="zh">中文</option>
+                    <option value="ja">日本語</option>
+                    <option value="ko">한국어</option>
+                    <option value="es">Español</option>
+                    <option value="fr">Français</option>
+                    <option value="de">Deutsch</option>
+                    <option value="ru">Русский</option>
+                    <option value="ar">العربية</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const lang = getLanguage();
+            applyLanguage(lang);
+        });
+        
+        function updateBox() {
+            const margin = document.getElementById('margin').value;
+            const border = document.getElementById('border').value;
+            const padding = document.getElementById('padding').value;
+            const content = document.getElementById('content').value;
+            
+            document.getElementById('marginBox').style.padding = margin + 'px';
+            document.getElementById('marginValue').textContent = margin;
+            document.getElementById('marginDisplay').textContent = margin + 'px';
+            
+            document.getElementById('borderBox').style.padding = border + 'px';
+            document.getElementById('borderValue').textContent = border;
+            document.getElementById('borderDisplay').textContent = border + 'px';
+            
+            document.getElementById('paddingBox').style.padding = padding + 'px';
+            document.getElementById('paddingValue').textContent = padding;
+            document.getElementById('paddingDisplay').textContent = padding + 'px';
+            
+            document.getElementById('contentBox').style.padding = content + 'px';
+            document.getElementById('contentValue').textContent = content;
+            document.getElementById('contentDisplay').textContent = content + 'px';
+        }
+        
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'tool_open', { tool: 'css-box-model' });
+        }
+    </script>
+</body>
+</html>

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSV to JSON - Multi Tools</title>
-    <meta name="description" content="Convert CSV to JSON format.">
+    <title>CSS Minifier - Multi Tools</title>
+    <meta name="description" content="Minify CSS code.">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -26,6 +26,7 @@
         .btn { padding: 12px 30px; border: none; border-radius: 25px; font-size: 16px; cursor: pointer; }
         .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
         .btn-secondary { background: #f0f0f0; color: #333; }
+        .info { margin-top: 10px; color: #666; }
         .language-selector { margin-top: 30px; text-align: center; }
         .language-selector select { padding: 10px 20px; font-size: 16px; border: none; border-radius: 25px; background: #667eea; color: white; cursor: pointer; }
     </style>
@@ -35,19 +36,28 @@
         <a href="../" class="back-btn">← Back to Home</a>
         <div class="tool-container">
             <div class="tool-header">
-                <h1>📊 CSV to JSON</h1>
-                <p>Convert CSV to JSON format</p>
+                <h1>🎨 CSS Minifier</h1>
+                <p>Minify CSS code</p>
             </div>
             <div class="tool-content">
-                <textarea id="csvInput" placeholder="Paste CSV data here...">Name,Age,City
-John,30,New York
-Jane,25,London
-Bob,35,Paris</textarea>
+                <textarea id="input" placeholder="Paste CSS here...">body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}</textarea>
                 <div class="btn-group">
-                    <button class="btn btn-primary" onclick="convert()">Convert</button>
-                    <button class="btn btn-secondary" onclick="copyResult()">Copy</button>
+                    <button class="btn btn-primary" onclick="minify()">Minify</button>
+                    <button class="btn btn-secondary" onclick="format()">Format</button>
+                    <button class="btn btn-secondary" onclick="copyCSS()">Copy</button>
                 </div>
-                <textarea id="jsonOutput" placeholder="JSON output will appear here..." readonly></textarea>
+                <div class="info" id="info"></div>
+                <textarea id="output" placeholder="Minified CSS..." readonly></textarea>
             </div>
             <div class="language-selector">
                 <select id="langSelect" onchange="changeLanguage(this.value)">
@@ -70,39 +80,41 @@ Bob,35,Paris</textarea>
             applyLanguage(lang);
         });
         
-        function convert() {
-            const csv = document.getElementById('csvInput').value.trim();
-            if (!csv) {
-                alert('Please enter CSV data');
-                return;
-            }
+        function minify() {
+            const css = document.getElementById('input').value;
+            let minified = css
+                .replace(/\/\*[\s\S]*?\*\//g, '')
+                .replace(/\s+/g, ' ')
+                .replace(/\s*{\s*/g, '{')
+                .replace(/\s*}\s*/g, '}')
+                .replace(/\s*:\s*/g, ':')
+                .replace(/\s*;\s*/g, ';')
+                .replace(/;}/g, '}')
+                .trim();
             
-            const lines = csv.split('\n');
-            const headers = lines[0].split(',').map(h => h.trim());
-            const result = [];
-            
-            for (let i = 1; i < lines.length; i++) {
-                if (!lines[i].trim()) continue;
-                const values = lines[i].split(',').map(v => v.trim());
-                const obj = {};
-                headers.forEach((header, index) => {
-                    obj[header] = values[index] || '';
-                });
-                result.push(obj);
-            }
-            
-            document.getElementById('jsonOutput').value = JSON.stringify(result, null, 2);
+            document.getElementById('output').value = minified;
+            const reduction = ((1 - minified.length / css.length) * 100).toFixed(1);
+            document.getElementById('info').textContent = 'Reduced by ' + reduction + '%';
         }
         
-        function copyResult() {
-            const output = document.getElementById('jsonOutput');
+        function format() {
+            const css = document.getElementById('input').value;
+            let formatted = css
+                .replace(/\s*{\s*/g, ' {\n    ')
+                .replace(/\s*}\s*/g, '\n}\n')
+                .replace(/;\s*/g, ';\n    ');
+            document.getElementById('output').value = formatted;
+        }
+        
+        function copyCSS() {
+            const output = document.getElementById('output');
             output.select();
             navigator.clipboard.writeText(output.value);
             alert('Copied!');
         }
         
         if (typeof gtag !== 'undefined') {
-            gtag('event', 'tool_open', { tool: 'csv-to-json' });
+            gtag('event', 'tool_open', { tool: 'css-minifier' });
         }
     </script>
 </body>
