@@ -1,3 +1,261 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Cron GeneratorFree Online Tool | Multi Tools</title> <meta name="description" content="Free online cron expression generator. Create and test cron schedules easily. Support all cron formats."> <meta name="keywords" content="cron, cron generator, schedule, crontab, online tool"> <!-- GA4 --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-L7GQFYBWB6'); </script>
-    <script src="tool-translations.js"></script>
-    <script src="lang-helper.js"></script> <style> * { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; } .container { max-width: 800px; margin: 0 auto; } header { text-align: center; padding: 40px 20px; color: white; } header h1 { font-size: 2.5rem; margin-bottom: 10px; } .back-btn { display: inline-block; margin-bottom: 20px; padding: 10px 20px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 25px; } .tool-content { background: white; border-radius: 20px; padding: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); } .cron-display { background: #2d2d2d; color: #6bcf7f; padding: 30px; border-radius: 10px; text-align: center; font-size: 2.5rem; font-family: 'Courier New', monospace; margin-bottom: 30px; } .field-group { margin-bottom: 20px; } .field-group label { display: block; font-weight: bold; margin-bottom: 8px; color: #333; } .field-group input, .field-group select { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 16px; } .field-group input:focus, .field-group select:focus { outline: none; border-color: #667eea; } .presets { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; } .preset-btn { padding: 10px 20px; background: #f0f0f0; border: none; border-radius: 20px; cursor: pointer; transition: all 0.3s; } .preset-btn:hover { background: #667eea; color: white; } .description { background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px; } @media (max-width: 768px) { .tool-content { padding: 20px; } .cron-display { font-size: 1.5rem; } } </style> </head> <body> <div class="container"> <a href="/" class="back-btn">← Back to Home</a> <header> <h1>⏰ Cron Generator</h1> <p>Generate cron expressions easily</p> </header> <main class="tool-content"> <div class="presets"> <button class="preset-btn" onclick="setPreset('* * * * *')">Every minute</button> <button class="preset-btn" onclick="setPreset('0 * * * *')">Every hour</button> <button class="preset-btn" onclick="setPreset('0 0 * * *')">Daily</button> <button class="preset-btn" onclick="setPreset('0 0 * * 0')">Weekly</button> <button class="preset-btn" onclick="setPreset('0 0 1 * *')">Monthly</button> </div> <div class="cron-display" id="cronDisplay">* * * * *</div> <div class="field-group"> <label>Minute (0-59)</label> <input type="number" id="minute" min="0" max="59" value="*" oninput="updateCron()"> </div> <div class="field-group"> <label>Hour (0-23)</label> <input type="number" id="hour" min="0" max="23" value="*" oninput="updateCron()"> </div> <div class="field-group"> <label>Day of Month (1-31)</label> <input type="number" id="day" min="1" max="31" value="*" oninput="updateCron()"> </div> <div class="field-group"> <label>Month (1-12)</label> <input type="number" id="month" min="1" max="12" value="*" oninput="updateCron()"> </div> <div class="field-group"> <label>Day of Week (0-6, 0=Sunday)</label> <input type="number" id="weekday" min="0" max="6" value="*" oninput="updateCron()"> </div> <div class="description" id="description"> <strong>Next 5 runs:</strong> <div id="nextRuns"></div> </div> </main> </div> <script> function setPreset(cron) { const parts = cron.split(' '); document.getElementById('minute').value = parts[0]; document.getElementById('hour').value = parts[1]; document.getElementById('day').value = parts[2]; document.getElementById('month').value = parts[3]; document.getElementById('weekday').value = parts[4]; updateCron(); } function updateCron() { const minute = document.getElementById('minute').value || '*'; const hour = document.getElementById('hour').value || '*'; const day = document.getElementById('day').value || '*'; const month = document.getElementById('month').value || '*'; const weekday = document.getElementById('weekday').value || '*'; const cron = `${minute} ${hour} ${day} ${month} ${weekday}`; document.getElementById('cronDisplay').textContent = cron; calculateNextRuns(cron); } function calculateNextRuns(cron) { const runs = []; const now = new Date(); for (let i = 0; i < 5; i++) { const next = getNextRun(now, cron); if (next) { runs.push(next.toLocaleString()); now.setTime(next.getTime() + 60000); } } document.getElementById('nextRuns').innerHTML = runs.map(r => `<div>${r}</div>`).join(''); } function getNextRun(current, cron) { const parts = cron.split(' '); const minute = parseField(parts[0], 0, 59); const hour = parseField(parts[1], 0, 23); const day = parseField(parts[2], 1, 31); const month = parseField(parts[3], 1, 12); const weekday = parseField(parts[4], 0, 6); let next = new Date(current); next.setSeconds(0); next.setMilliseconds(0); next.setMinutes(next.getMinutes() + 1); for (let i = 0; i < 366 * 24 * 60; i++) { if ((month.includes(next.getMonth() + 1) || month.includes('*')) && (day.includes(next.getDate()) || day.includes('*')) && (weekday.includes(next.getDay()) || weekday.includes('*')) && (hour.includes(next.getHours()) || hour.includes('*')) && (minute.includes(next.getMinutes()) || minute.includes('*'))) { return next; } next.setMinutes(next.getMinutes() + 1); } return null; } function parseField(field, min, max) { if (field === '*') return Array.from({length: max - min + 1}, (_, i) => i + min); const values = new Set(); const parts = field.split(','); for (const part of parts) { if (part.includes('/')) { const [range, step] = part.split('/'); const start = range === '*' ? min : parseInt(range); const stepValue = parseInt(step); for (let i = start; i <= max; i += stepValue) values.add(i); } else if (part.includes('-')) { const [start, end] = part.split('-').map(Number); for (let i = start; i <= end; i++) values.add(i); } else if (!isNaN(parseInt(part))) { values.add(parseInt(part)); } } return Array.from(values); } // Initialize updateCron(); // Track usage if (typeof gtag !== 'undefined') { gtag('event', 'tool_usage', { 'event_category': 'tools', 'event_label': 'cron-generator', 'value': 1 }); } </script> </body> </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cron Generator - Multi Tools</title>
+    <meta name="description" content="Compress images online for free. Reduce file size while maintaining quality.">
+    
+    <!-- GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-L7GQFYBWB6');
+    </script>
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../lang.js"></script>
+    
+    <style>
+        .upload-area {
+            border: 3px dashed #e0e0e0;
+            border-radius: 15px;
+            padding: 60px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .upload-area:hover {
+            border-color: #667eea;
+            background: #f8f9fa;
+        }
+        .upload-area.dragover {
+            border-color: #667eea;
+            background: #e8eaff;
+        }
+        .preview {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .slider {
+            margin: 20px 0;
+        }
+        .slider label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../" class="back-btn">← Back to Home</a>
+        
+        <header>
+            <h1 data-i18n="tool_title">⏰ Cron Generator</h1>
+            <p data-i18n="tool_desc">Compress images online for free. Reduce file size while maintaining quality.</p>
+        </header>
+        
+        <main class="tool-content">
+            <!-- Upload Area -->
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">📤</div>
+                <h3 data-i18n="upload_title">Drop images here or click to upload</h3>
+                <p data-i18n="upload_desc">Supports JPG, PNG, WebP, GIF</p>
+                <input type="file" id="fileInput" accept="image/*" multiple style="display: none">
+            </div>
+            
+            <!-- Preview Section -->
+            <div id="previewSection" style="display: none;">
+                <img id="previewImage" class="preview" src="" alt="Preview">
+                
+                <!-- Compression Slider -->
+                <div class="slider">
+                    <label data-i18n="quality_label">Compression Quality: <span id="qualityValue">80</span>%</label>
+                    <input type="range" id="qualitySlider" min="1" max="100" value="80">
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="btn-group">
+                    <button class="btn btn-primary" id="compressBtn" data-i18n="compress_btn">Compress Image</button>
+                    <button class="btn btn-secondary" id="downloadBtn" data-i18n="download_btn" style="display: none;">Download Compressed</button>
+                </div>
+            </div>
+            
+            <!-- Language Selector -->
+            <div class="language-selector" style="margin-top: 30px;">
+                <select id="langSelect" onchange="changeLanguage(this.value)">
+                    <option value="en">English</option>
+                    <option value="zh">中文</option>
+                    <option value="ja">日本語</option>
+                    <option value="ko">한국어</option>
+                    <option value="es">Español</option>
+                    <option value="fr">Français</option>
+                    <option value="de">Deutsch</option>
+                    <option value="ru">Русский</option>
+                    <option value="ar">العربية</option>
+                </select>
+            </div>
+        </main>
+        
+        <footer>
+            <p data-i18n="footer_text">Free online tools for developers, designers, and everyone.</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Tool-specific translations
+        const toolTranslations = {
+            en: {
+                tool_title: '⏰ Cron Generator',
+                tool_desc: 'Compress images online for free. Reduce file size while maintaining quality.',
+                upload_title: 'Drop images here or click to upload',
+                upload_desc: 'Supports JPG, PNG, WebP, GIF',
+                quality_label: 'Compression Quality: ',
+                compress_btn: 'Compress Image',
+                download_btn: 'Download Compressed',
+                footer_text: 'Free online tools for developers, designers, and everyone.'
+            },
+            zh: {
+                tool_title: '⏰ 图片压缩工具',
+                tool_desc: '免费在线压缩PNG、JPG、WebP图片，本地处理保护隐私',
+                upload_title: '拖拽图片到这里或点击上传',
+                upload_desc: '支持JPG、PNG、WebP、GIF格式',
+                quality_label: '压缩质量：',
+                compress_btn: '压缩图片',
+                download_btn: '下载压缩后的图片',
+                footer_text: '为开发者、设计师和所有人提供的免费在线工具。'
+            },
+            ja: {
+                tool_title: '⏰ 画像圧縮ツール',
+                tool_desc: 'PNG、JPG、WebP画像を無料で圧縮',
+                upload_title: 'ここに画像をドロップまたはクリックしてアップロード',
+                upload_desc: 'JPG、PNG、WebP、GIFに対応',
+                quality_label: '圧縮品質：',
+                compress_btn: '画像を圧縮',
+                download_btn: '圧縮版をダウンロード',
+                footer_text: '開発者、デザイナー、すべての人のための無料オンラインツール。'
+            },
+            ko: {
+                tool_title: '⏰ 이미지 압축기',
+                tool_desc: 'PNG, JPG, WebP 이미지를 무료로 압축',
+                upload_title: '여기에 이미지를 드래그하거나 클릭하여 업로드',
+                upload_desc: 'JPG, PNG, WebP, GIF 지원',
+                quality_label: '압축 품질: ',
+                compress_btn: '이미지 압축',
+                download_btn: '압축 다운로드',
+                footer_text: '개발자, 디자이너 및 모든 사람을 위한 무료 온라인 도구.'
+            },
+            es: {
+                tool_title: '⏰ Compresor de Imágenes',
+                tool_desc: 'Comprime imágenes PNG, JPG, WebP gratis',
+                upload_title: 'Arrastra imágenes aquí o haz clic para subir',
+                upload_desc: 'Soporta JPG, PNG, WebP, GIF',
+                quality_label: 'Calidad de compresión: ',
+                compress_btn: 'Comprimir Imagen',
+                download_btn: 'Descargar Comprimido',
+                footer_text: 'Herramientas online gratuitas para desarrolladores, diseñadores y todos.'
+            },
+            fr: {
+                tool_title: '⏰ Compresseur d\'Images',
+                tool_desc: 'Compressez des images PNG, JPG, WebP gratuitement',
+                upload_title: 'Déposez des images ici ou cliquez pour télécharger',
+                upload_desc: 'Supporte JPG, PNG, WebP, GIF',
+                quality_label: 'Qualité de compression: ',
+                compress_btn: 'Compresser l\'Image',
+                download_btn: 'Télécharger Compressé',
+                footer_text: 'Outils en ligne gratuits pour développeurs, designers et tout le monde.'
+            },
+            de: {
+                tool_title: '⏰ Bild-Kompressor',
+                tool_desc: 'Komprimieren Sie PNG, JPG, WebP Bilder kostenlos',
+                upload_title: 'Bilder hier ablegen oder klicken zum Hochladen',
+                upload_desc: 'Unterstützt JPG, PNG, WebP, GIF',
+                quality_label: 'Kompressionsqualität: ',
+                compress_btn: 'Bild Komprimieren',
+                download_btn: 'Komprimiert Herunterladen',
+                footer_text: 'Kostenlose Online-Tools für Entwickler, Designer und alle.'
+            },
+            ru: {
+                tool_title: '⏰ Компрессор Изображений',
+                tool_desc: 'Бесплатно сжимайте PNG, JPG, WebP изображения',
+                upload_title: 'Перетащите изображения сюда или нажмите для загрузки',
+                upload_desc: 'Поддерживает JPG, PNG, WebP, GIF',
+                quality_label: 'Качество сжатия: ',
+                compress_btn: 'Сжать Изображение',
+                download_btn: 'Скачать Сжатое',
+                footer_text: 'Бесплатные онлайн-инструменты для разработчиков, дизайнеров и всех.'
+            },
+            ar: {
+                tool_title: '⏰ ضاغط الصور',
+                tool_desc: 'اضغط الصور PNG, JPG, WebP مجانا',
+                upload_title: 'اسحب الصور هنا أو انقر للرفع',
+                upload_desc: 'يدعم JPG, PNG, WebP, GIF',
+                quality_label: 'جودة الضغط: ',
+                compress_btn: 'ضغط الصورة',
+                download_btn: 'تحميل المضغوط',
+                footer_text: 'أدوات عبر الإنترنت مجانية للمطورين والمصممين والجميع.'
+            }
+        };
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initLanguage();
+            setupUpload();
+        });
+        
+        // Setup upload
+        function setupUpload() {
+            const uploadArea = document.getElementById('uploadArea');
+            const fileInput = document.getElementById('fileInput');
+            
+            uploadArea.addEventListener('click', () => fileInput.click());
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('dragover');
+            });
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+                handleFiles(e.dataTransfer.files);
+            });
+            fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+        }
+        
+        // Handle files
+        function handleFiles(files) {
+            if (files.length > 0) {
+                const file = files[0];
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    document.getElementById('previewImage').src = e.target.result;
+                    document.getElementById('previewSection').style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        // Quality slider
+        document.getElementById('qualitySlider').addEventListener('input', function() {
+            document.getElementById('qualityValue').textContent = this.value;
+        });
+        
+        // Compress button
+        document.getElementById('compressBtn').addEventListener('click', function() {
+            // Compression logic would go here
+            this.textContent = translations[getLanguage()]?.tools?.['cron-generator']?.desc || 'Compressing...';
+        });
+        
+        // Track tool usage
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'tool_open', { tool: 'cron-generator' });
+        }
+    </script>
+</body>
+</html>

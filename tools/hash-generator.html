@@ -1,3 +1,261 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Hash GeneratorFree Online Tool | Multi Tools</title> <meta name="description" content="Free online hash generator. Generate MD5, SHA-1, SHA-256, SHA-512 hashes instantly. Support text and file hashing."> <meta name="keywords" content="hash, md5, sha, sha256, hash generator, online tool"> <!-- GA4 --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-L7GQFYBWB6'); </script>
-    <script src="tool-translations.js"></script>
-    <script src="lang-helper.js"></script> <style> * { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; } .container { max-width: 1000px; margin: 0 auto; } header { text-align: center; padding: 40px 20px; color: white; } header h1 { font-size: 2.5rem; margin-bottom: 10px; } .back-btn { display: inline-block; margin-bottom: 20px; padding: 10px 20px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 25px; } .tool-content { background: white; border-radius: 20px; padding: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); } .input-group { margin-bottom: 20px; } .input-group label { display: block; font-weight: bold; margin-bottom: 8px; color: #333; } .input-group textarea { width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 14px; min-height: 150px; resize: vertical; } .input-group textarea:focus { outline: none; border-color: #667eea; } .hash-algorithms { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; } .algorithm-btn { padding: 10px 20px; background: #f0f0f0; border: 2px solid #e0e0e0; border-radius: 20px; cursor: pointer; transition: all 0.3s; } .algorithm-btn.active { background: #667eea; color: white; border-color: #667eea; } .hash-result { background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 15px; } .hash-result label { font-weight: bold; color: #667eea; display: block; margin-bottom: 5px; } .hash-result code { font-family: 'Courier New', monospace; word-break: break-all; color: #333; } .btn { padding: 12px 30px; border: none; border-radius: 25px; cursor: pointer; font-size: 16px; transition: all 0.3s; margin: 5px; } .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; } .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); } .btn-secondary { background: #f0f0f0; color: #333; } .btn-secondary:hover { background: #e0e0e0; } @media (max-width: 768px) { .tool-content { padding: 20px; } } </style> </head> <body> <div class="container"> <a href="/" class="back-btn">← Back to Home</a> <header> <h1>🔐 Hash Generator</h1> <p>Generate MD5, SHA-1, SHA-256, SHA-512 hashes</p> </header> <main class="tool-content"> <div class="input-group"> <label>Input Text</label> <textarea id="inputText" placeholder="Enter text to hash..."></textarea> </div> <div class="hash-algorithms"> <button class="algorithm-btn active" onclick="setAlgorithm('MD5')">MD5</button> <button class="algorithm-btn" onclick="setAlgorithm('SHA-1')">SHA-1</button> <button class="algorithm-btn" onclick="setAlgorithm('SHA-256')">SHA-256</button> <button class="algorithm-btn" onclick="setAlgorithm('SHA-512')">SHA-512</button> </div> <div style="text-align: center; margin-bottom: 30px;"> <button class="btn btn-primary" onclick="generateHash()">🔐 Generate Hash</button> <button class="btn btn-secondary" onclick="copyHash('md5')">📋 Copy MD5</button> <button class="btn btn-secondary" onclick="copyHash('sha256')">📋 Copy SHA-256</button> <button class="btn btn-secondary" onclick="clearAll()">🗑️ Clear</button> </div> <div class="hash-result"> <label>MD5</label> <code id="md5">-</code> </div> <div class="hash-result"> <label>SHA-1</label> <code id="sha1">-</code> </div> <div class="hash-result"> <label>SHA-256</label> <code id="sha256">-</code> </div> <div class="hash-result"> <label>SHA-512</label> <code id="sha512">-</code> </div> </main> </div> <script> let currentAlgorithm = 'MD5'; async function generateHash() { const text = document.getElementById('inputText').value; if (!text) { alert('Please enter text to hash!'); return; } const encoder = new TextEncoder(); const data = encoder.encode(text); // MD5 (simplified implementation) document.getElementById('md5').textContent = simpleMD5(text); // SHA algorithms using Web Crypto API const algorithms = ['SHA-1', 'SHA-256', 'SHA-512']; for (const algo of algorithms) { const hash = await crypto.subtle.digest(algo, data); const hashArray = Array.from(new Uint8Array(hash)); const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); document.getElementById(algo.toLowerCase().replace('-', '')).textContent = hashHex; } } // Simple MD5 implementation function simpleMD5(message) { function md5cycle(x, k) { var a = x[0], b = x[1], c = x[2], d = x[3]; a = ff(a, b, c, d, k[0], 7, -680876936); d = ff(d, a, b, c, k[1], 12, -389564586); c = ff(c, d, a, b, k[2], 17, 606105819); b = ff(b, c, d, a, k[3], 22, -1044525330); a = ff(a, b, c, d, k[4], 7, -176418897); d = ff(d, a, b, c, k[5], 12, 1200080426); c = ff(c, d, a, b, k[6], 17, -1473231341); b = ff(b, c, d, a, k[7], 22, -45705983); a = ff(a, b, c, d, k[8], 7, 1770035416); d = ff(d, a, b, c, k[9], 12, -1958414417); c = ff(c, d, a, b, k[10], 17, -42063); b = ff(b, c, d, a, k[11], 22, -1990404162); a = ff(a, b, c, d, k[12], 7, 1804603682); d = ff(d, a, b, c, k[13], 12, -40341101); c = ff(c, d, a, b, k[14], 17, -1502002290); b = ff(b, c, d, a, k[15], 22, 1236535329); a = gg(a, b, c, d, k[1], 5, -165796510); d = gg(d, a, b, c, k[6], 9, -1069501632); c = gg(c, d, a, b, k[11], 14, 643717713); b = gg(b, c, d, a, k[0], 20, -373897302); a = gg(a, b, c, d, k[5], 5, -701558691); d = gg(d, a, b, c, k[10], 9, 38016083); c = gg(c, d, a, b, k[15], 14, -660478335); b = gg(b, c, d, a, k[4], 20, -405537848); a = gg(a, b, c, d, k[9], 5, 568446438); d = gg(d, a, b, c, k[14], 9, -1019803690); c = gg(c, d, a, b, k[3], 14, -187363961); b = gg(b, c, d, a, k[8], 20, 1163531501); a = gg(a, b, c, d, k[13], 5, -1444681467); d = gg(d, a, b, c, k[2], 9, -51403784); c = gg(c, d, a, b, k[7], 14, 1735328473); b = gg(b, c, d, a, k[12], 20, -1926607734); a = hh(a, b, c, d, k[5], 4, -378558); d = hh(d, a, b, c, k[8], 11, -2022574463); c = hh(c, d, a, b, k[11], 16, 1839030562); b = hh(b, c, d, a, k[14], 23, -35309556); a = hh(a, b, c, d, k[1], 4, -1530992060); d = hh(d, a, b, c, k[4], 11, 1272893353); c = hh(c, d, a, b, k[7], 16, -155497632); b = hh(b, c, d, a, k[10], 23, -1094730640); a = hh(a, b, c, d, k[13], 4, 681279174); d = hh(d, a, b, c, k[0], 11, -358537222); c = hh(c, d, a, b, k[3], 16, -722521979); b = hh(b, c, d, a, k[6], 23, 76029189); a = hh(a, b, c, d, k[9], 4, -640364487); d = hh(d, a, b, c, k[12], 11, -421815835); c = hh(c, d, a, b, k[15], 16, 530742520); b = hh(b, c, d, a, k[2], 23, -995338651); a = ii(a, b, c, d, k[0], 6, -198630844); d = ii(d, a, b, c, k[7], 10, 1126891415); c = ii(c, d, a, b, k[14], 15, -1416354905); b = ii(b, c, d, a, k[5], 21, -57434055); a = ii(a, b, c, d, k[12], 6, 1700485571); d = ii(d, a, b, c, k[3], 10, -1894986606); c = ii(c, d, a, b, k[10], 15, -1051523); b = ii(b, c, d, a, k[1], 21, -2054922799); a = ii(a, b, c, d, k[8], 6, 1873313359); d = ii(d, a, b, c, k[15], 10, -30611744); c = ii(c, d, a, b, k[6], 15, -1560198380); b = ii(b, c, d, a, k[13], 21, 1309151649); a = ii(a, b, c, d, k[4], 6, -145523070); d = ii(d, a, b, c, k[11], 10, -1120210379); c = ii(c, d, a, b, k[2], 15, 718787259); b = ii(b, c, d, a, k[9], 21, -343485551); x[0] = add32(a, x[0]); x[1] = add32(b, x[1]); x[2] = add32(c, x[2]); x[3] = add32(d, x[3]); } function cmn(q, a, b, x, s, t) { a = add32(add32(a, q), add32(x, t)); return add32((a << s) | (a >>> (32 - s)), b); } function ff(a, b, c, d, x, s, t) { return cmn((b & c) | ((~b) & d), a, b, x, s, t); } function gg(a, b, c, d, x, s, t) { return cmn((b & d) | (c & (~d)), a, b, x, s, t); } function hh(a, b, c, d, x, s, t) { return cmn(b ^ c ^ d, a, b, x, s, t); } function ii(a, b, c, d, x, s, t) { return cmn(c ^ (b | (~d)), a, b, x, s, t); } function md51(s) { var n = s.length, state = [1732584193, -271733879, -1732584194, 271733878], i; for (i = 64; i <= n; i += 64) { md5cycle(state, md5blk(s.substring(i - 64, i))); } s = s.substring(i - 64); var tail = Array(16); for (i = 0; i < s.length; i += 4) { var o = (s.charCodeAt(i) & 0xff) | ((s.charCodeAt(i + 1) & 0xff) << 8) | ((s.charCodeAt(i + 2) & 0xff) << 16) | ((s.charCodeAt(i + 3) & 0xff) << 24); tail.push(o); } tail.push(n * 8); while (tail.length % 16 !== 14) tail.push(0); tail.push(n >= 0x100000000 ? 1 : 0); md5cycle(state, tail); return state; } function md5blk(s) { var md5blks = Array(16), i; for (i = 0; i < 64; i += 4) { md5blks[i >> 2] = (s.charCodeAt(i) & 0xff) | ((s.charCodeAt(i + 1) & 0xff) << 8) | ((s.charCodeAt(i + 2) & 0xff) << 16) | ((s.charCodeAt(i + 3) & 0xff) << 24); } return md5blks; } function rhex(n) { var hex_chr = '0123456789abcdef'; var s = ''; for (var j = 0; j < 4; j++) s += hex_chr.charAt((n >> (j * 8 + 4)) & 0x0f) + hex_chr.charAt((n >> (j * 8)) & 0x0f); return s; } function add32(a, b) { return (a + b) & 0xffffffff; } var state = md51(text); return rhex(state[0]) + rhex(state[1]) + rhex(state[2]) + rhex(state[3]); } function setAlgorithm(algo) { currentAlgorithm = algo; document.querySelectorAll('.algorithm-btn').forEach(btn => btn.classList.remove('active')); event.target.classList.add('active'); generateHash(); } function copyHash(type) { const hash = document.getElementById(type).textContent; if (hash === '-') { alert('Please generate a hash first!'); return; } navigator.clipboard.writeText(hash).then(() => { alert('Hash copied to clipboard!'); }); } function clearAll() { document.getElementById('inputText').value = ''; document.getElementById('md5').textContent = '-'; document.getElementById('sha1').textContent = '-'; document.getElementById('sha256').textContent = '-'; document.getElementById('sha512').textContent = '-'; } // Track usage if (typeof gtag !== 'undefined') { gtag('event', 'tool_usage', { 'event_category': 'tools', 'event_label': 'hash-generator', 'value': 1 }); } </script> </body> </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hash Generator - Multi Tools</title>
+    <meta name="description" content="Compress images online for free. Reduce file size while maintaining quality.">
+    
+    <!-- GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-L7GQFYBWB6');
+    </script>
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../lang.js"></script>
+    
+    <style>
+        .upload-area {
+            border: 3px dashed #e0e0e0;
+            border-radius: 15px;
+            padding: 60px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .upload-area:hover {
+            border-color: #667eea;
+            background: #f8f9fa;
+        }
+        .upload-area.dragover {
+            border-color: #667eea;
+            background: #e8eaff;
+        }
+        .preview {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .slider {
+            margin: 20px 0;
+        }
+        .slider label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../" class="back-btn">← Back to Home</a>
+        
+        <header>
+            <h1 data-i18n="tool_title">🔒 Hash Generator</h1>
+            <p data-i18n="tool_desc">Compress images online for free. Reduce file size while maintaining quality.</p>
+        </header>
+        
+        <main class="tool-content">
+            <!-- Upload Area -->
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">📤</div>
+                <h3 data-i18n="upload_title">Drop images here or click to upload</h3>
+                <p data-i18n="upload_desc">Supports JPG, PNG, WebP, GIF</p>
+                <input type="file" id="fileInput" accept="image/*" multiple style="display: none">
+            </div>
+            
+            <!-- Preview Section -->
+            <div id="previewSection" style="display: none;">
+                <img id="previewImage" class="preview" src="" alt="Preview">
+                
+                <!-- Compression Slider -->
+                <div class="slider">
+                    <label data-i18n="quality_label">Compression Quality: <span id="qualityValue">80</span>%</label>
+                    <input type="range" id="qualitySlider" min="1" max="100" value="80">
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="btn-group">
+                    <button class="btn btn-primary" id="compressBtn" data-i18n="compress_btn">Compress Image</button>
+                    <button class="btn btn-secondary" id="downloadBtn" data-i18n="download_btn" style="display: none;">Download Compressed</button>
+                </div>
+            </div>
+            
+            <!-- Language Selector -->
+            <div class="language-selector" style="margin-top: 30px;">
+                <select id="langSelect" onchange="changeLanguage(this.value)">
+                    <option value="en">English</option>
+                    <option value="zh">中文</option>
+                    <option value="ja">日本語</option>
+                    <option value="ko">한국어</option>
+                    <option value="es">Español</option>
+                    <option value="fr">Français</option>
+                    <option value="de">Deutsch</option>
+                    <option value="ru">Русский</option>
+                    <option value="ar">العربية</option>
+                </select>
+            </div>
+        </main>
+        
+        <footer>
+            <p data-i18n="footer_text">Free online tools for developers, designers, and everyone.</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Tool-specific translations
+        const toolTranslations = {
+            en: {
+                tool_title: '🔒 Hash Generator',
+                tool_desc: 'Compress images online for free. Reduce file size while maintaining quality.',
+                upload_title: 'Drop images here or click to upload',
+                upload_desc: 'Supports JPG, PNG, WebP, GIF',
+                quality_label: 'Compression Quality: ',
+                compress_btn: 'Compress Image',
+                download_btn: 'Download Compressed',
+                footer_text: 'Free online tools for developers, designers, and everyone.'
+            },
+            zh: {
+                tool_title: '🔒 图片压缩工具',
+                tool_desc: '免费在线压缩PNG、JPG、WebP图片，本地处理保护隐私',
+                upload_title: '拖拽图片到这里或点击上传',
+                upload_desc: '支持JPG、PNG、WebP、GIF格式',
+                quality_label: '压缩质量：',
+                compress_btn: '压缩图片',
+                download_btn: '下载压缩后的图片',
+                footer_text: '为开发者、设计师和所有人提供的免费在线工具。'
+            },
+            ja: {
+                tool_title: '🔒 画像圧縮ツール',
+                tool_desc: 'PNG、JPG、WebP画像を無料で圧縮',
+                upload_title: 'ここに画像をドロップまたはクリックしてアップロード',
+                upload_desc: 'JPG、PNG、WebP、GIFに対応',
+                quality_label: '圧縮品質：',
+                compress_btn: '画像を圧縮',
+                download_btn: '圧縮版をダウンロード',
+                footer_text: '開発者、デザイナー、すべての人のための無料オンラインツール。'
+            },
+            ko: {
+                tool_title: '🔒 이미지 압축기',
+                tool_desc: 'PNG, JPG, WebP 이미지를 무료로 압축',
+                upload_title: '여기에 이미지를 드래그하거나 클릭하여 업로드',
+                upload_desc: 'JPG, PNG, WebP, GIF 지원',
+                quality_label: '압축 품질: ',
+                compress_btn: '이미지 압축',
+                download_btn: '압축 다운로드',
+                footer_text: '개발자, 디자이너 및 모든 사람을 위한 무료 온라인 도구.'
+            },
+            es: {
+                tool_title: '🔒 Compresor de Imágenes',
+                tool_desc: 'Comprime imágenes PNG, JPG, WebP gratis',
+                upload_title: 'Arrastra imágenes aquí o haz clic para subir',
+                upload_desc: 'Soporta JPG, PNG, WebP, GIF',
+                quality_label: 'Calidad de compresión: ',
+                compress_btn: 'Comprimir Imagen',
+                download_btn: 'Descargar Comprimido',
+                footer_text: 'Herramientas online gratuitas para desarrolladores, diseñadores y todos.'
+            },
+            fr: {
+                tool_title: '🔒 Compresseur d\'Images',
+                tool_desc: 'Compressez des images PNG, JPG, WebP gratuitement',
+                upload_title: 'Déposez des images ici ou cliquez pour télécharger',
+                upload_desc: 'Supporte JPG, PNG, WebP, GIF',
+                quality_label: 'Qualité de compression: ',
+                compress_btn: 'Compresser l\'Image',
+                download_btn: 'Télécharger Compressé',
+                footer_text: 'Outils en ligne gratuits pour développeurs, designers et tout le monde.'
+            },
+            de: {
+                tool_title: '🔒 Bild-Kompressor',
+                tool_desc: 'Komprimieren Sie PNG, JPG, WebP Bilder kostenlos',
+                upload_title: 'Bilder hier ablegen oder klicken zum Hochladen',
+                upload_desc: 'Unterstützt JPG, PNG, WebP, GIF',
+                quality_label: 'Kompressionsqualität: ',
+                compress_btn: 'Bild Komprimieren',
+                download_btn: 'Komprimiert Herunterladen',
+                footer_text: 'Kostenlose Online-Tools für Entwickler, Designer und alle.'
+            },
+            ru: {
+                tool_title: '🔒 Компрессор Изображений',
+                tool_desc: 'Бесплатно сжимайте PNG, JPG, WebP изображения',
+                upload_title: 'Перетащите изображения сюда или нажмите для загрузки',
+                upload_desc: 'Поддерживает JPG, PNG, WebP, GIF',
+                quality_label: 'Качество сжатия: ',
+                compress_btn: 'Сжать Изображение',
+                download_btn: 'Скачать Сжатое',
+                footer_text: 'Бесплатные онлайн-инструменты для разработчиков, дизайнеров и всех.'
+            },
+            ar: {
+                tool_title: '🔒 ضاغط الصور',
+                tool_desc: 'اضغط الصور PNG, JPG, WebP مجانا',
+                upload_title: 'اسحب الصور هنا أو انقر للرفع',
+                upload_desc: 'يدعم JPG, PNG, WebP, GIF',
+                quality_label: 'جودة الضغط: ',
+                compress_btn: 'ضغط الصورة',
+                download_btn: 'تحميل المضغوط',
+                footer_text: 'أدوات عبر الإنترنت مجانية للمطورين والمصممين والجميع.'
+            }
+        };
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initLanguage();
+            setupUpload();
+        });
+        
+        // Setup upload
+        function setupUpload() {
+            const uploadArea = document.getElementById('uploadArea');
+            const fileInput = document.getElementById('fileInput');
+            
+            uploadArea.addEventListener('click', () => fileInput.click());
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('dragover');
+            });
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+                handleFiles(e.dataTransfer.files);
+            });
+            fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+        }
+        
+        // Handle files
+        function handleFiles(files) {
+            if (files.length > 0) {
+                const file = files[0];
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    document.getElementById('previewImage').src = e.target.result;
+                    document.getElementById('previewSection').style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        // Quality slider
+        document.getElementById('qualitySlider').addEventListener('input', function() {
+            document.getElementById('qualityValue').textContent = this.value;
+        });
+        
+        // Compress button
+        document.getElementById('compressBtn').addEventListener('click', function() {
+            // Compression logic would go here
+            this.textContent = translations[getLanguage()]?.tools?.['hash-generator']?.desc || 'Compressing...';
+        });
+        
+        // Track tool usage
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'tool_open', { tool: 'hash-generator' });
+        }
+    </script>
+</body>
+</html>

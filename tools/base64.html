@@ -1,3 +1,261 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Base64 Encoder/DecoderFree Online Tool | Multi Tools</title> <meta name="description" content="Free online Base64 encoder and decoder. Encode text to Base64 or decode Base64 to text instantly."> <meta name="keywords" content="base64, encoder, decoder, encode, decode, online tool"> <!-- GA4 --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-L7GQFYBWB6'); </script>
-    <script src="tool-translations.js"></script>
-    <script src="lang-helper.js"></script> <style> * { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; } .container { max-width: 1000px; margin: 0 auto; } header { text-align: center; padding: 40px 20px; color: white; } header h1 { font-size: 2.5rem; margin-bottom: 10px; } .back-btn { display: inline-block; margin-bottom: 20px; padding: 10px 20px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 25px; } .tool-content { background: white; border-radius: 20px; padding: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); } .input-group { margin-bottom: 20px; } .input-group label { display: block; font-weight: bold; margin-bottom: 8px; color: #333; } .input-group textarea { width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 14px; min-height: 150px; resize: vertical; font-family: 'Courier New', monospace; } .input-group textarea:focus { outline: none; border-color: #667eea; } .btn-group { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; } .btn { padding: 12px 30px; border: none; border-radius: 25px; cursor: pointer; font-size: 16px; transition: all 0.3s; } .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; } .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); } .btn-secondary { background: #f0f0f0; color: #333; } .btn-secondary:hover { background: #e0e0e0; } .stats { display: flex; gap: 30px; margin-top: 20px; padding: 20px; background: #f8f9fa; border-radius: 10px; } .stat-item { text-align: center; } .stat-value { font-size: 1.5rem; font-weight: bold; color: #667eea; } .stat-label { color: #666; font-size: 0.9rem; } @media (max-width: 768px) { .tool-content { padding: 20px; } .btn-group { flex-direction: column; } .btn { width: 100%; } } </style> </head> <body> <div class="container"> <a href="/" class="back-btn">← Back to Home</a> <header> <h1>🔤 Base64 Encoder/Decoder</h1> <p>Encode or decode Base64 strings online</p> </header> <main class="tool-content"> <div class="input-group"> <label>Input Text</label> <textarea id="inputText" placeholder="Enter text to encode or Base64 to decode..."></textarea> </div> <div class="btn-group"> <button class="btn btn-primary" onclick="encode()">🔒 Encode to Base64</button> <button class="btn btn-primary" onclick="decode()">🔓 Decode from Base64</button> <button class="btn btn-secondary" onclick="swap()">⇄ Swap</button> <button class="btn btn-secondary" onclick="copyResult()">📋 Copy Result</button> <button class="btn btn-secondary" onclick="clearAll()">🗑️ Clear</button> </div> <div class="input-group"> <label>Result</label> <textarea id="resultText" readonly placeholder="Result will appear here..."></textarea> </div> <div class="stats"> <div class="stat-item"> <div class="stat-value" id="inputLength">0</div> <div class="stat-label">Input Length</div> </div> <div class="stat-item"> <div class="stat-value" id="outputLength">0</div> <div class="stat-label">Output Length</div> </div> <div class="stat-item"> <div class="stat-value" id="compressionRatio">0%</div> <div class="stat-label">Compression</div> </div> </div> </main> </div> <script> function encode() { const input = document.getElementById('inputText').value; if (!input) { alert('Please enter text to encode!'); return; } try { const encoded = btoa(unescape(encodeURIComponent(input))); document.getElementById('resultText').value = encoded; updateStats(input.length, encoded.length); } catch (e) { alert('Error encoding text: ' + e.message); } } function decode() { const input = document.getElementById('inputText').value; if (!input) { alert('Please enter Base64 to decode!'); return; } try { const decoded = decodeURIComponent(escape(atob(input))); document.getElementById('resultText').value = decoded; updateStats(input.length, decoded.length); } catch (e) { alert('Invalid Base64 string!'); } } function swap() { const input = document.getElementById('inputText').value; const result = document.getElementById('resultText').value; document.getElementById('inputText').value = result; document.getElementById('resultText').value = input; updateStats(result.length, input.length); } function copyResult() { const result = document.getElementById('resultText').value; if (!result) { alert('No result to copy!'); return; } navigator.clipboard.writeText(result).then(() => { alert('Copied to clipboard!'); }); } function clearAll() { document.getElementById('inputText').value = ''; document.getElementById('resultText').value = ''; updateStats(0, 0); } function updateStats(inputLen, outputLen) { document.getElementById('inputLength').textContent = inputLen; document.getElementById('outputLength').textContent = outputLen; if (inputLen > 0) { const ratio = ((1 - outputLen / inputLen) * 100).toFixed(1); document.getElementById('compressionRatio').textContent = ratio + '%'; } else { document.getElementById('compressionRatio').textContent = '0%'; } } // Track usage if (typeof gtag !== 'undefined') { gtag('event', 'tool_usage', { 'event_category': 'tools', 'event_label': 'base64', 'value': 1 }); } </script> </body> </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 Encoder/Decoder - Multi Tools</title>
+    <meta name="description" content="Compress images online for free. Reduce file size while maintaining quality.">
+    
+    <!-- GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-L7GQFYBWB6');
+    </script>
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../lang.js"></script>
+    
+    <style>
+        .upload-area {
+            border: 3px dashed #e0e0e0;
+            border-radius: 15px;
+            padding: 60px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .upload-area:hover {
+            border-color: #667eea;
+            background: #f8f9fa;
+        }
+        .upload-area.dragover {
+            border-color: #667eea;
+            background: #e8eaff;
+        }
+        .preview {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .slider {
+            margin: 20px 0;
+        }
+        .slider label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../" class="back-btn">← Back to Home</a>
+        
+        <header>
+            <h1 data-i18n="tool_title">🔐 Base64 Encoder/Decoder</h1>
+            <p data-i18n="tool_desc">Compress images online for free. Reduce file size while maintaining quality.</p>
+        </header>
+        
+        <main class="tool-content">
+            <!-- Upload Area -->
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">📤</div>
+                <h3 data-i18n="upload_title">Drop images here or click to upload</h3>
+                <p data-i18n="upload_desc">Supports JPG, PNG, WebP, GIF</p>
+                <input type="file" id="fileInput" accept="image/*" multiple style="display: none">
+            </div>
+            
+            <!-- Preview Section -->
+            <div id="previewSection" style="display: none;">
+                <img id="previewImage" class="preview" src="" alt="Preview">
+                
+                <!-- Compression Slider -->
+                <div class="slider">
+                    <label data-i18n="quality_label">Compression Quality: <span id="qualityValue">80</span>%</label>
+                    <input type="range" id="qualitySlider" min="1" max="100" value="80">
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="btn-group">
+                    <button class="btn btn-primary" id="compressBtn" data-i18n="compress_btn">Compress Image</button>
+                    <button class="btn btn-secondary" id="downloadBtn" data-i18n="download_btn" style="display: none;">Download Compressed</button>
+                </div>
+            </div>
+            
+            <!-- Language Selector -->
+            <div class="language-selector" style="margin-top: 30px;">
+                <select id="langSelect" onchange="changeLanguage(this.value)">
+                    <option value="en">English</option>
+                    <option value="zh">中文</option>
+                    <option value="ja">日本語</option>
+                    <option value="ko">한국어</option>
+                    <option value="es">Español</option>
+                    <option value="fr">Français</option>
+                    <option value="de">Deutsch</option>
+                    <option value="ru">Русский</option>
+                    <option value="ar">العربية</option>
+                </select>
+            </div>
+        </main>
+        
+        <footer>
+            <p data-i18n="footer_text">Free online tools for developers, designers, and everyone.</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Tool-specific translations
+        const toolTranslations = {
+            en: {
+                tool_title: '🔐 Base64 Encoder/Decoder',
+                tool_desc: 'Compress images online for free. Reduce file size while maintaining quality.',
+                upload_title: 'Drop images here or click to upload',
+                upload_desc: 'Supports JPG, PNG, WebP, GIF',
+                quality_label: 'Compression Quality: ',
+                compress_btn: 'Compress Image',
+                download_btn: 'Download Compressed',
+                footer_text: 'Free online tools for developers, designers, and everyone.'
+            },
+            zh: {
+                tool_title: '🔐 图片压缩工具',
+                tool_desc: '免费在线压缩PNG、JPG、WebP图片，本地处理保护隐私',
+                upload_title: '拖拽图片到这里或点击上传',
+                upload_desc: '支持JPG、PNG、WebP、GIF格式',
+                quality_label: '压缩质量：',
+                compress_btn: '压缩图片',
+                download_btn: '下载压缩后的图片',
+                footer_text: '为开发者、设计师和所有人提供的免费在线工具。'
+            },
+            ja: {
+                tool_title: '🔐 画像圧縮ツール',
+                tool_desc: 'PNG、JPG、WebP画像を無料で圧縮',
+                upload_title: 'ここに画像をドロップまたはクリックしてアップロード',
+                upload_desc: 'JPG、PNG、WebP、GIFに対応',
+                quality_label: '圧縮品質：',
+                compress_btn: '画像を圧縮',
+                download_btn: '圧縮版をダウンロード',
+                footer_text: '開発者、デザイナー、すべての人のための無料オンラインツール。'
+            },
+            ko: {
+                tool_title: '🔐 이미지 압축기',
+                tool_desc: 'PNG, JPG, WebP 이미지를 무료로 압축',
+                upload_title: '여기에 이미지를 드래그하거나 클릭하여 업로드',
+                upload_desc: 'JPG, PNG, WebP, GIF 지원',
+                quality_label: '압축 품질: ',
+                compress_btn: '이미지 압축',
+                download_btn: '압축 다운로드',
+                footer_text: '개발자, 디자이너 및 모든 사람을 위한 무료 온라인 도구.'
+            },
+            es: {
+                tool_title: '🔐 Compresor de Imágenes',
+                tool_desc: 'Comprime imágenes PNG, JPG, WebP gratis',
+                upload_title: 'Arrastra imágenes aquí o haz clic para subir',
+                upload_desc: 'Soporta JPG, PNG, WebP, GIF',
+                quality_label: 'Calidad de compresión: ',
+                compress_btn: 'Comprimir Imagen',
+                download_btn: 'Descargar Comprimido',
+                footer_text: 'Herramientas online gratuitas para desarrolladores, diseñadores y todos.'
+            },
+            fr: {
+                tool_title: '🔐 Compresseur d\'Images',
+                tool_desc: 'Compressez des images PNG, JPG, WebP gratuitement',
+                upload_title: 'Déposez des images ici ou cliquez pour télécharger',
+                upload_desc: 'Supporte JPG, PNG, WebP, GIF',
+                quality_label: 'Qualité de compression: ',
+                compress_btn: 'Compresser l\'Image',
+                download_btn: 'Télécharger Compressé',
+                footer_text: 'Outils en ligne gratuits pour développeurs, designers et tout le monde.'
+            },
+            de: {
+                tool_title: '🔐 Bild-Kompressor',
+                tool_desc: 'Komprimieren Sie PNG, JPG, WebP Bilder kostenlos',
+                upload_title: 'Bilder hier ablegen oder klicken zum Hochladen',
+                upload_desc: 'Unterstützt JPG, PNG, WebP, GIF',
+                quality_label: 'Kompressionsqualität: ',
+                compress_btn: 'Bild Komprimieren',
+                download_btn: 'Komprimiert Herunterladen',
+                footer_text: 'Kostenlose Online-Tools für Entwickler, Designer und alle.'
+            },
+            ru: {
+                tool_title: '🔐 Компрессор Изображений',
+                tool_desc: 'Бесплатно сжимайте PNG, JPG, WebP изображения',
+                upload_title: 'Перетащите изображения сюда или нажмите для загрузки',
+                upload_desc: 'Поддерживает JPG, PNG, WebP, GIF',
+                quality_label: 'Качество сжатия: ',
+                compress_btn: 'Сжать Изображение',
+                download_btn: 'Скачать Сжатое',
+                footer_text: 'Бесплатные онлайн-инструменты для разработчиков, дизайнеров и всех.'
+            },
+            ar: {
+                tool_title: '🔐 ضاغط الصور',
+                tool_desc: 'اضغط الصور PNG, JPG, WebP مجانا',
+                upload_title: 'اسحب الصور هنا أو انقر للرفع',
+                upload_desc: 'يدعم JPG, PNG, WebP, GIF',
+                quality_label: 'جودة الضغط: ',
+                compress_btn: 'ضغط الصورة',
+                download_btn: 'تحميل المضغوط',
+                footer_text: 'أدوات عبر الإنترنت مجانية للمطورين والمصممين والجميع.'
+            }
+        };
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initLanguage();
+            setupUpload();
+        });
+        
+        // Setup upload
+        function setupUpload() {
+            const uploadArea = document.getElementById('uploadArea');
+            const fileInput = document.getElementById('fileInput');
+            
+            uploadArea.addEventListener('click', () => fileInput.click());
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('dragover');
+            });
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+                handleFiles(e.dataTransfer.files);
+            });
+            fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+        }
+        
+        // Handle files
+        function handleFiles(files) {
+            if (files.length > 0) {
+                const file = files[0];
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    document.getElementById('previewImage').src = e.target.result;
+                    document.getElementById('previewSection').style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        // Quality slider
+        document.getElementById('qualitySlider').addEventListener('input', function() {
+            document.getElementById('qualityValue').textContent = this.value;
+        });
+        
+        // Compress button
+        document.getElementById('compressBtn').addEventListener('click', function() {
+            // Compression logic would go here
+            this.textContent = translations[getLanguage()]?.tools?.['base64']?.desc || 'Compressing...';
+        });
+        
+        // Track tool usage
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'tool_open', { tool: 'base64' });
+        }
+    </script>
+</body>
+</html>

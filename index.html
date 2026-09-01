@@ -5,28 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multi Tools - Free Online Tools Collection</title>
     <meta name="description" content="46+ free online tools for developers, designers, and everyone.">
-    <meta name="keywords" content="online tools, free tools, image compressor, json formatter, markdown editor, calculator, converter">
-    <meta name="author" content="Multi Tools">
-    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="online tools, free tools, image compressor, json formatter, markdown editor">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Multi Tools - Free Online Tools Collection">
-    <meta property="og:description" content="46+ free online tools for developers, designers, and everyone.">
+    <meta property="og:title" content="Multi Tools - Free Online Tools">
+    <meta property="og:description" content="46+ free online tools for developers and designers.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://zh8888.dpdns.org/">
-    <meta property="og:image" content="https://zh8888.dpdns.org/og-image.png">
     <meta property="og:locale" content="en_US">
-    
-    <!-- Alternate Languages for SEO -->
-    <link rel="alternate" hreflang="en" href="https://zh8888.dpdns.org/">
-    <link rel="alternate" hreflang="zh" href="https://zh8888.dpdns.org/?lang=zh">
-    <link rel="alternate" hreflang="ja" href="https://zh8888.dpdns.org/?lang=ja">
-    <link rel="alternate" hreflang="ko" href="https://zh8888.dpdns.org/?lang=ko">
-    <link rel="alternate" hreflang="es" href="https://zh8888.dpdns.org/?lang=es">
-    <link rel="alternate" hreflang="fr" href="https://zh8888.dpdns.org/?lang=fr">
-    <link rel="alternate" hreflang="de" href="https://zh8888.dpdns.org/?lang=de">
-    <link rel="alternate" hreflang="ru" href="https://zh8888.dpdns.org/?lang=ru">
-    <link rel="alternate" hreflang="ar" href="https://zh8888.dpdns.org/?lang=ar">
     
     <!-- GA4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
@@ -37,394 +23,106 @@
       gtag('config', 'G-L7GQFYBWB6');
     </script>
     
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-            min-height: 100vh; 
-            padding: 20px;
-        }
-        .container { max-width: 1200px; margin: 0 auto; }
-        
-        header { 
-            text-align: center; 
-            padding: 60px 20px 40px; 
-            color: white;
-        }
-        header h1 { 
-            font-size: 3rem; 
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-        header p { 
-            font-size: 1.3rem; 
-            opacity: 0.9;
-        }
-        
-        /* Language Switcher */
-        .lang-switcher {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-        .lang-switcher select {
-            padding: 10px 15px;
-            border-radius: 25px;
-            border: none;
-            background: white;
-            color: #333;
-            font-size: 14px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            min-width: 120px;
-        }
-        .lang-switcher select:focus {
-            outline: none;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-        }
-        
-        .search-container { 
-            max-width: 600px; 
-            margin: 30px auto; 
-            position: relative;
-        }
-        .search-input {
-            width: 100%;
-            padding: 15px 20px 15px 50px;
-            border: none;
-            border-radius: 30px;
-            font-size: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-            transition: all 0.3s;
-        }
-        .search-input:focus {
-            outline: none;
-            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
-        }
-        .search-icon {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 20px;
-            color: #999;
-        }
-        
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
-        }
-        .tool-card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-        .tool-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        .tool-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-        .tool-name {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 8px;
-            color: #333;
-        }
-        .tool-desc {
-            font-size: 0.9rem;
-            color: #666;
-            line-height: 1.5;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: white;
-            opacity: 0.8;
-        }
-        
-        /* RTL Support */
-        html[dir="rtl"] .lang-switcher {
-            right: auto;
-            left: 20px;
-        }
-        html[dir="rtl"] .search-input {
-            padding: 15px 50px 15px 20px;
-        }
-        html[dir="rtl"] .search-icon {
-            left: auto;
-            right: 20px;
-        }
-        
-        @media (max-width: 768px) {
-            header h1 { font-size: 2rem; }
-            header p { font-size: 1rem; }
-            .tools-grid { grid-template-columns: 1fr; }
-            .lang-switcher {
-                position: relative;
-                top: 0;
-                right: 0;
-                margin-bottom: 20px;
-                text-align: center;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="lang.js"></script>
 </head>
 <body>
-    <!-- Language Switcher -->
-    <div class="lang-switcher">
-        <select id="langSelector" onchange="changeLanguage(this.value)">
-            <option value="en">English</option>
-            <option value="zh">中文</option>
-            <option value="ja">日本語</option>
-            <option value="ko">한국어</option>
-            <option value="es">Español</option>
-            <option value="fr">Français</option>
-            <option value="de">Deutsch</option>
-            <option value="ru">Русский</option>
-            <option value="ar">العربية</option>
-        </select>
-    </div>
-    
     <div class="container">
+        <!-- Header -->
         <header>
-            <h1>🛠️ Multi Tools</h1>
-            <p>46+ Free Online Tools for Everyone</p>
+            <h1 data-i18n="site_title">🛠️ Multi Tools</h1>
+            <p data-i18n="site_subtitle">46+ Free Online Tools for Everyone</p>
+            
+            <!-- Language Selector -->
+            <div class="language-selector">
+                <select id="langSelect" onchange="changeLanguage(this.value)">
+                    <option value="en">English</option>
+                    <option value="zh">中文</option>
+                    <option value="ja">日本語</option>
+                    <option value="ko">한국어</option>
+                    <option value="es">Español</option>
+                    <option value="fr">Français</option>
+                    <option value="de">Deutsch</option>
+                    <option value="ru">Русский</option>
+                    <option value="ar">العربية</option>
+                </select>
+            </div>
+            
+            <!-- Search -->
+            <div class="search-box">
+                <input type="text" id="searchInput" data-i18n-placeholder="search_placeholder" placeholder="Search tools...">
+            </div>
         </header>
         
-        <div class="search-container">
-            <span class="search-icon">🔍</span>
-            <input type="text" class="search-input" id="searchInput" placeholder="Search tools..." oninput="searchTools()">
-        </div>
+        <!-- Tools Grid -->
+        <main id="toolsGrid">
+            <!-- Tools will be loaded here -->
+        </main>
         
-        <div class="tools-grid" id="toolsGrid">
-            <!-- Tools will be generated by JavaScript -->
-        </div>
-        
+        <!-- Footer -->
         <footer>
-            <p>&copy; 2026 Multi Tools. All rights reserved.</p>
-            <p style="margin-top: 10px; font-size: 0.9rem;">Free online tools for developers, designers, and everyone.</p>
+            <p data-i18n="footer_text">Free online tools for developers, designers, and everyone.</p>
         </footer>
     </div>
     
-    <!-- Language System -->
-    <script src="lang.js"></script>
     <script>
         // Tool data
         const toolsData = [
-            // Image Tools
-            { name: "image-compressor", icon: "🖼️", url: "tools/image-compressor.html" },
-            { name: "image-converter", icon: "🔄", url: "tools/image-converter.html" },
-            { name: "image-resizer", icon: "📐", url: "tools/image-resizer.html" },
-            
-            // Text Tools
-            { name: "markdown-editor", icon: "📝", url: "tools/markdown-editor.html" },
-            { name: "lorem-ipsum", icon: "📄", url: "tools/lorem-ipsum.html" },
-            { name: "word-counter", icon: "🔢", url: "tools/word-counter.html" },
-            { name: "text-compressor", icon: "📦", url: "tools/text-compressor.html" },
-            
-            // Developer Tools
-            { name: "json-formatter", icon: "📋", url: "tools/json-formatter.html" },
-            { name: "json-validator", icon: "✅", url: "tools/json-validator.html" },
-            { name: "xml-formatter", icon: "📄", url: "tools/xml-formatter.html" },
-            { name: "base64", icon: "🔐", url: "tools/base64.html" },
-            { name: "url-encoder", icon: "🔗", url: "tools/url-encoder.html" },
-            { name: "regex-tester", icon: "🔍", url: "tools/regex-tester.html" },
-            { name: "hash-generator", icon: "🔐", url: "tools/hash-generator.html" },
-            { name: "uuid-generator", icon: "🎲", url: "tools/uuid-generator.html" },
-            { name: "cron-generator", icon: "⏰", url: "tools/cron-generator.html" },
-            
-            // Security Tools
-            { name: "password-generator", icon: "🔑", url: "tools/password-generator.html" },
-            { name: "password-strength", icon: "💪", url: "tools/password-strength.html" },
-            
-            // Calculator Tools
-            { name: "age-calculator", icon: "🎂", url: "tools/age-calculator.html" },
-            { name: "bmi-calculator", icon: "⚖️", url: "tools/bmi-calculator.html" },
-            { name: "mortgage-calculator", icon: "🏠", url: "tools/mortgage-calculator.html" },
-            { name: "percentage-calculator", icon: "📊", url: "tools/percentage-calculator.html" },
-            { name: "online-calculator", icon: "🧮", url: "tools/online-calculator.html" },
-            
-            // Design Tools
-            { name: "color-picker", icon: "🎨", url: "tools/color-picker.html" },
-            { name: "gradient-generator", icon: "🌈", url: "tools/gradient-generator.html" },
-            { name: "box-model", icon: "📦", url: "tools/box-model.html" },
-            { name: "shadow-generator", icon: "🌑", url: "tools/shadow-generator.html" },
-            
-            // Converter Tools
-            { name: "unit-converter", icon: "📏", url: "tools/unit-converter.html" },
-            { name: "timezone-converter", icon: "🌍", url: "tools/timezone-converter.html" },
-            { name: "time-format", icon: "🕐", url: "tools/time-format.html" },
-            { name: "csv-to-json", icon: "📊", url: "tools/csv-to-json.html" },
-            
-            // Utility Tools
-            { name: "qr-generator", icon: "📱", url: "tools/qr-generator.html" },
-            { name: "pdf-converter", icon: "📄", url: "tools/pdf-converter.html" },
-            { name: "countdown-timer", icon: "⏱️", url: "tools/countdown-timer.html" },
-            { name: "random-generator", icon: "🎲", url: "tools/random-generator.html" },
-            
-            // SEO Tools
-            { name: "seo-analyzer", icon: "🔍", url: "tools/seo-analyzer.html" },
-            { name: "readability-score", icon: "📖", url: "tools/readability-score.html" },
-            
-            // New Tools (2026-08-22)
-            { name: "text-to-speech", icon: "🔊", url: "tools/text-to-speech.html" },
-            { name: "pomodoro-timer", icon: "🍅", url: "tools/pomodoro-timer.html" },
-            { name: "color-contrast-checker", icon: "🎨", url: "tools/color-contrast-checker.html" }
+            { id: 'image-compressor', icon: '🖼️', category: 'image', url: 'tools/image-compressor.html' },
+            { id: 'image-converter', icon: '🔄', category: 'image', url: 'tools/image-converter.html' },
+            { id: 'image-resizer', icon: '📐', category: 'image', url: 'tools/image-resizer.html' },
+            { id: 'color-picker', icon: '🎨', category: 'design', url: 'tools/color-picker.html' },
+            { id: 'gradient-generator', icon: '🌈', category: 'design', url: 'tools/gradient-generator.html' },
+            { id: 'shadow-generator', icon: '💫', category: 'design', url: 'tools/shadow-generator.html' },
+            { id: 'box-model', icon: '📦', category: 'design', url: 'tools/box-model.html' },
+            { id: 'json-formatter', icon: '📋', category: 'developer', url: 'tools/json-formatter.html' },
+            { id: 'json-validator', icon: '✅', category: 'developer', url: 'tools/json-validator.html' },
+            { id: 'xml-formatter', icon: '📄', category: 'developer', url: 'tools/xml-formatter.html' },
+            { id: 'markdown-editor', icon: '📝', category: 'text', url: 'tools/markdown-editor.html' },
+            { id: 'lorem-ipsum', icon: '📃', category: 'text', url: 'tools/lorem-ipsum.html' },
+            { id: 'word-counter', icon: '🔢', category: 'text', url: 'tools/word-counter.html' },
+            { id: 'text-compressor', icon: '📉', category: 'text', url: 'tools/text-compressor.html' },
+            { id: 'base64', icon: '🔐', category: 'developer', url: 'tools/base64.html' },
+            { id: 'url-encoder', icon: '🔗', category: 'developer', url: 'tools/url-encoder.html' },
+            { id: 'hash-generator', icon: '🔒', category: 'security', url: 'tools/hash-generator.html' },
+            { id: 'password-generator', icon: '🔑', category: 'security', url: 'tools/password-generator.html' },
+            { id: 'password-strength', icon: '🛡️', category: 'security', url: 'tools/password-strength.html' },
+            { id: 'regex-tester', icon: '🔍', category: 'developer', url: 'tools/regex-tester.html' },
+            { id: 'cron-generator', icon: '⏰', category: 'developer', url: 'tools/cron-generator.html' },
+            { id: 'uuid-generator', icon: '🆔', category: 'developer', url: 'tools/uuid-generator.html' },
+            { id: 'qr-generator', icon: '📱', category: 'utility', url: 'tools/qr-generator.html' },
+            { id: 'csv-to-json', icon: '📊', category: 'converter', url: 'tools/csv-to-json.html' },
+            { id: 'unit-converter', icon: '📏', category: 'converter', url: 'tools/unit-converter.html' },
+            { id: 'timezone-converter', icon: '🌍', category: 'converter', url: 'tools/timezone-converter.html' },
+            { id: 'time-format', icon: '🕐', category: 'converter', url: 'tools/time-format.html' },
+            { id: 'age-calculator', icon: '🎂', category: 'calculator', url: 'tools/age-calculator.html' },
+            { id: 'bmi-calculator', icon: '⚖️', category: 'calculator', url: 'tools/bmi-calculator.html' },
+            { id: 'mortgage-calculator', icon: '🏠', category: 'calculator', url: 'tools/mortgage-calculator.html' },
+            { id: 'percentage-calculator', icon: '💯', category: 'calculator', url: 'tools/percentage-calculator.html' },
+            { id: 'online-calculator', icon: '🧮', category: 'calculator', url: 'tools/online-calculator.html' },
+            { id: 'color-contrast-checker', icon: '👁️', category: 'design', url: 'tools/color-contrast-checker.html' },
+            { id: 'countdown-timer', icon: '⏱️', category: 'utility', url: 'tools/countdown-timer.html' },
+            { id: 'pomodoro-timer', icon: '🍅', category: 'utility', url: 'tools/pomodoro-timer.html' },
+            { id: 'random-generator', icon: '🎲', category: 'utility', url: 'tools/random-generator.html' },
+            { id: 'pdf-converter', icon: '📕', category: 'converter', url: 'tools/pdf-converter.html' },
+            { id: 'readability-score', icon: '📖', category: 'text', url: 'tools/readability-score.html' },
+            { id: 'seo-analyzer', icon: '🔎', category: 'seo', url: 'tools/seo-analyzer.html' }
         ];
         
-        // Language-specific names and descriptions
-        const toolTranslations = {
-            en: {
-                "image-compressor": { name: "Image Compressor", desc: "Compress images online for free. Reduce file size while maintaining quality." },
-                "image-converter": { name: "Image Converter", desc: "Convert images between JPG, PNG, WebP formats online." },
-                "image-resizer": { name: "Image Resizer", desc: "Resize images to custom dimensions online." },
-                "markdown-editor": { name: "Markdown Editor", desc: "Edit Markdown online with live preview." },
-                "lorem-ipsum": { name: "Lorem Ipsum Generator", desc: "Generate placeholder text for your designs." },
-                "word-counter": { name: "Word Counter", desc: "Count words, characters, and paragraphs in real-time." },
-                "text-compressor": { name: "Text Compressor", desc: "Compress text to reduce size using deflate algorithm." },
-                "json-formatter": { name: "JSON Formatter", desc: "Format, validate and beautify JSON data instantly." },
-                "json-validator": { name: "JSON Validator", desc: "Validate JSON syntax and check for errors." },
-                "xml-formatter": { name: "XML Formatter", desc: "Format and validate XML data online." },
-                "base64": { name: "Base64 Encoder/Decoder", desc: "Encode and decode Base64 strings online." },
-                "url-encoder": { name: "URL Encoder", desc: "Encode and decode URL components online." },
-                "regex-tester": { name: "Regex Tester", desc: "Test regular expressions with real-time matching." },
-                "hash-generator": { name: "Hash Generator", desc: "Generate MD5, SHA-1, SHA-256, SHA-512 hashes." },
-                "uuid-generator": { name: "UUID Generator", desc: "Generate unique UUIDs instantly." },
-                "cron-generator": { name: "Cron Generator", desc: "Generate cron expressions for scheduling." },
-                "password-generator": { name: "Password Generator", desc: "Generate strong, secure passwords online." },
-                "password-strength": { name: "Password Strength", desc: "Check password strength and security level." },
-                "age-calculator": { name: "Age Calculator", desc: "Calculate your exact age from birthdate." },
-                "bmi-calculator": { name: "BMI Calculator", desc: "Calculate Body Mass Index online." },
-                "mortgage-calculator": { name: "Mortgage Calculator", desc: "Calculate monthly mortgage payments." },
-                "percentage-calculator": { name: "Percentage Calculator", desc: "Calculate percentages easily online." },
-                "online-calculator": { name: "Online Calculator", desc: "Basic calculator for everyday math." },
-                "color-picker": { name: "Color Picker", desc: "Pick colors and get HEX, RGB, HSL values." },
-                "gradient-generator": { name: "Gradient Generator", desc: "Create beautiful CSS gradients online." },
-                "box-model": { name: "CSS Box Model", desc: "Visualize and generate CSS box model code." },
-                "shadow-generator": { name: "CSS Shadow Generator", desc: "Create box-shadow and text-shadow CSS code." },
-                "unit-converter": { name: "Unit Converter", desc: "Convert between different units of measurement." },
-                "timezone-converter": { name: "Timezone Converter", desc: "Convert time between different timezones." },
-                "time-format": { name: "Time Format", desc: "Format and convert date/time strings." },
-                "csv-to-json": { name: "CSV to JSON", desc: "Convert CSV data to JSON format instantly." },
-                "qr-generator": { name: "QR Code Generator", desc: "Generate QR codes for text, URLs, WiFi." },
-                "pdf-converter": { name: "PDF Converter", desc: "Convert images to PDF online." },
-                "countdown-timer": { name: "Countdown Timer", desc: "Create countdown timers online." },
-                "random-generator": { name: "Random Generator", desc: "Generate random numbers, strings, passwords." },
-                "seo-analyzer": { name: "SEO Analyzer", desc: "Analyze basic SEO factors for web pages." },
-                "readability-score": { name: "Readability Score", desc: "Check text readability and comprehension level." },
-                "text-to-speech": { name: "Text to Speech", desc: "Convert text to natural speech with multiple voices." },
-                "pomodoro-timer": { name: "Pomodoro Timer", desc: "Boost productivity with the Pomodoro Technique." },
-                "color-contrast-checker": { name: "Color Contrast Checker", desc: "Check color contrast ratios for WCAG compliance." }
-            },
-            zh: {
-                "image-compressor": { name: "图片压缩工具", desc: "免费在线压缩PNG、JPG、WebP图片，本地处理保护隐私" },
-                "image-converter": { name: "图片格式转换", desc: "在线转换图片格式为JPG、PNG、WebP" },
-                "image-resizer": { name: "图片尺寸调整", desc: "自定义尺寸调整图片大小" },
-                "markdown-editor": { name: "Markdown编辑器", desc: "实时预览，支持GitHub Flavored Markdown" },
-                "lorem-ipsum": { name: "Lorem Ipsum生成器", desc: "生成设计占位文本" },
-                "word-counter": { name: "字数统计器", desc: "实时统计字数、字符数和段落数" },
-                "text-compressor": { name: "文本压缩工具", desc: "使用deflate算法压缩文本" },
-                "json-formatter": { name: "JSON格式化", desc: "即时格式化、验证和美化JSON数据" },
-                "json-validator": { name: "JSON验证器", desc: "验证JSON语法并检查错误" },
-                "xml-formatter": { name: "XML格式化", desc: "在线格式化和验证XML数据" },
-                "base64": { name: "Base64编解码器", desc: "在线编码和解码Base64字符串" },
-                "url-encoder": { name: "URL编解码器", desc: "在线编码和解码URL组件" },
-                "regex-tester": { name: "正则表达式测试器", desc: "实时测试正则表达式" },
-                "hash-generator": { name: "Hash生成器", desc: "生成MD5、SHA-1、SHA-256、SHA-512哈希" },
-                "uuid-generator": { name: "UUID生成器", desc: "即时生成唯一UUID" },
-                "cron-generator": { name: "Cron表达式生成器", desc: "生成定时任务Cron表达式" },
-                "password-generator": { name: "密码生成器", desc: "在线生成强密码" },
-                "password-strength": { name: "密码强度检测", desc: "检查密码强度和安全性" },
-                "age-calculator": { name: "年龄计算器", desc: "根据出生日期计算精确年龄" },
-                "bmi-calculator": { name: "BMI计算器", desc: "在线计算身体质量指数" },
-                "mortgage-calculator": { name: "房贷计算器", desc: "计算每月房贷还款额" },
-                "percentage-calculator": { name: "百分比计算器", desc: "轻松计算百分比" },
-                "online-calculator": { name: "在线计算器", desc: "日常数学基本计算器" },
-                "color-picker": { name: "颜色选择器", desc: "选择颜色并获取HEX、RGB、HSL值" },
-                "gradient-generator": { name: "渐变生成器", desc: "在线创建美丽的CSS渐变" },
-                "box-model": { name: "CSS盒子模型", desc: "可视化并生成CSS盒子模型代码" },
-                "shadow-generator": { name: "CSS阴影生成器", desc: "创建box-shadow和text-shadow CSS代码" },
-                "unit-converter": { name: "单位转换器", desc: "在不同测量单位之间转换" },
-                "timezone-converter": { name: "时区转换器", desc: "在不同时区之间转换时间" },
-                "time-format": { name: "时间格式化工具", desc: "格式化和转换日期时间字符串" },
-                "csv-to-json": { name: "CSV转JSON", desc: "即时将CSV数据转换为JSON格式" },
-                "qr-generator": { name: "二维码生成器", desc: "为文本、URL、WiFi生成二维码" },
-                "pdf-converter": { name: "PDF转换器", desc: "将图片转换为PDF在线" },
-                "countdown-timer": { name: "倒计时器", desc: "在线创建倒计时" },
-                "random-generator": { name: "随机生成器", desc: "生成随机数字、字符串、密码" },
-                "seo-analyzer": { name: "SEO分析器", desc: "分析网页基本SEO因素" },
-                "readability-score": { name: "可读性评分", desc: "检查文本可读性和理解水平" },
-                "text-to-speech": { name: "文本转语音", desc: "使用多种语音将文本转换为语音" },
-                "pomodoro-timer": { name: "番茄钟", desc: "使用番茄工作法提高工作效率" },
-                "color-contrast-checker": { name: "色彩对比度检查", desc: "检查颜色对比度以确保无障碍合规" }
-            }
-        };
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initLanguage();
+            renderTools();
+            setupSearch();
+        });
         
-        // Get current language
-        function getCurrentLang() {
-            const params = new URLSearchParams(window.location.search);
-            const langParam = params.get('lang');
-            if (langParam && translations[langParam]) {
-                return langParam;
-            }
-            return window.multiLanguage.get();
-        }
-        
-        // Change language
-        function changeLanguage(lang) {
-            window.multiLanguage.set(lang);
-            
-            // Update URL parameter
-            const url = new URL(window.location);
-            url.searchParams.set('lang', lang);
-            window.history.pushState({}, '', url);
-            
-            // Re-render tools
-            renderTools(toolsData);
-            
-            // Update header text
-            updateHeaderText(lang);
-            
-            // Track language change
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'language_change', { 'language': lang });
-            }
-        }
-        
-        // Update header text based on language
-        function updateHeaderText(lang) {
-            const t = translations[lang] || translations.en;
-            document.querySelector('header h1').textContent = t.header_title;
-            document.querySelector('header p').textContent = t.header_subtitle;
-            document.querySelector('footer p:last-child').textContent = t.footer_text;
-            document.getElementById('searchInput').placeholder = t.search_placeholder;
-        }
-        
-        // Render tool cards
-        function renderTools(tools) {
+        // Render tools
+        function renderTools() {
             const grid = document.getElementById('toolsGrid');
-            const lang = getCurrentLang();
+            const lang = getLanguage();
             
-            grid.innerHTML = tools.map(tool => {
-                const trans = toolTranslations[lang] && toolTranslations[lang][tool.name] 
-                    ? toolTranslations[lang][tool.name] 
-                    : (toolTranslations['en'] && toolTranslations['en'][tool.name] 
-                        ? toolTranslations['en'][tool.name] 
-                        : { name: tool.name, desc: '' });
-                
+            grid.innerHTML = toolsData.map(tool => {
+                const trans = translations[lang]?.tools?.[tool.id] || translations.en.tools?.[tool.id] || { name: tool.id, desc: '' };
                 return `
                     <a href="${tool.url}" class="tool-card">
                         <div class="tool-icon">${tool.icon}</div>
@@ -435,35 +133,37 @@
             }).join('');
         }
         
-        // Search tools
-        function searchTools() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const lang = getCurrentLang();
-            const filtered = toolsData.filter(tool => {
-                const trans = toolTranslations[lang] && toolTranslations[lang][tool.name]
-                    ? toolTranslations[lang][tool.name]
-                    : (toolTranslations['en'] && toolTranslations['en'][tool.name]
-                        ? toolTranslations['en'][tool.name]
-                        : { name: tool.name, desc: '' });
-                return trans.name.toLowerCase().includes(query) || 
-                       trans.desc.toLowerCase().includes(query);
+        // Setup search
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase();
+                const lang = getLanguage();
+                const cards = document.querySelectorAll('.tool-card');
+                
+                cards.forEach((card, index) => {
+                    const tool = toolsData[index];
+                    const trans = translations[lang]?.tools?.[tool.id] || translations.en.tools?.[tool.id] || { name: tool.id };
+                    const match = trans.name.toLowerCase().includes(query) || trans.desc.toLowerCase().includes(query);
+                    card.style.display = match ? 'block' : 'none';
+                });
             });
-            renderTools(filtered);
         }
         
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize language system (manual only)
-            window.multiLanguage.init();
-            
-            // Render tools
-            renderTools(toolsData);
-            
-            // Track page view
+        // Change language
+        function changeLanguage(lang) {
+            localStorage.setItem('multi-tools-lang', lang);
+            applyLanguage(lang);
+            renderTools();
+            trackLanguageChange(lang);
+        }
+        
+        // Track language change
+        function trackLanguageChange(lang) {
             if (typeof gtag !== 'undefined') {
-                gtag('event', 'page_view', { 'page_title': 'Multi Tools Home', 'page_path': '/' });
+                gtag('event', 'language_change', { language: lang });
             }
-        });
+        }
     </script>
 </body>
 </html>
