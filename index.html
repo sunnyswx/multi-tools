@@ -25,6 +25,50 @@
     
     <link rel="stylesheet" href="css/style.css">
     <script src="lang.js"></script>
+    <style>
+        /* Search styling */
+        .search-container {
+            position: relative;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            font-size: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 30px;
+            outline: none;
+            transition: all 0.3s;
+        }
+        .search-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 20px;
+        }
+        .search-stats {
+            text-align: center;
+            margin-top: 15px;
+            color: #666;
+            font-size: 14px;
+        }
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+        .no-results-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -49,15 +93,15 @@
             </div>
             
             <!-- Search -->
-            <div class="search-box">
-                <input type="text" id="searchInput" data-i18n-placeholder="search_placeholder" placeholder="Search tools...">
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" data-i18n-placeholder="search_placeholder" placeholder="Search tools...">
+                <span class="search-icon">🔍</span>
             </div>
+            <div class="search-stats" id="searchStats"></div>
         </header>
         
         <!-- Tools Grid -->
-        <main id="toolsGrid">
-            <!-- Tools will be loaded here by JavaScript -->
-        </main>
+        <main id="toolsGrid"></main>
         
         <!-- Footer -->
         <footer>
@@ -66,47 +110,52 @@
     </div>
     
     <script>
-        // Tool data
+        // Tool data with keywords for search
         const toolsData = [
-            { id: 'image-compressor', icon: '🖼️', category: 'image', url: 'tools/image-compressor.html' },
-            { id: 'image-converter', icon: '🔄', category: 'image', url: 'tools/image-converter.html' },
-            { id: 'image-resizer', icon: '📐', category: 'image', url: 'tools/image-resizer.html' },
-            { id: 'color-picker', icon: '🎨', category: 'design', url: 'tools/color-picker.html' },
-            { id: 'gradient-generator', icon: '🌈', category: 'design', url: 'tools/gradient-generator.html' },
-            { id: 'shadow-generator', icon: '💫', category: 'design', url: 'tools/shadow-generator.html' },
-            { id: 'box-model', icon: '📦', category: 'design', url: 'tools/box-model.html' },
-            { id: 'json-formatter', icon: '📋', category: 'developer', url: 'tools/json-formatter.html' },
-            { id: 'json-validator', icon: '✅', category: 'developer', url: 'tools/json-validator.html' },
-            { id: 'xml-formatter', icon: '📄', category: 'developer', url: 'tools/xml-formatter.html' },
-            { id: 'markdown-editor', icon: '📝', category: 'text', url: 'tools/markdown-editor.html' },
-            { id: 'lorem-ipsum', icon: '📃', category: 'text', url: 'tools/lorem-ipsum.html' },
-            { id: 'word-counter', icon: '🔢', category: 'text', url: 'tools/word-counter.html' },
-            { id: 'text-compressor', icon: '📉', category: 'text', url: 'tools/text-compressor.html' },
-            { id: 'base64', icon: '🔐', category: 'developer', url: 'tools/base64.html' },
-            { id: 'url-encoder', icon: '🔗', category: 'developer', url: 'tools/url-encoder.html' },
-            { id: 'hash-generator', icon: '🔒', category: 'security', url: 'tools/hash-generator.html' },
-            { id: 'password-generator', icon: '🔑', category: 'security', url: 'tools/password-generator.html' },
-            { id: 'password-strength', icon: '🛡️', category: 'security', url: 'tools/password-strength.html' },
-            { id: 'regex-tester', icon: '🔍', category: 'developer', url: 'tools/regex-tester.html' },
-            { id: 'cron-generator', icon: '⏰', category: 'developer', url: 'tools/cron-generator.html' },
-            { id: 'uuid-generator', icon: '🆔', category: 'developer', url: 'tools/uuid-generator.html' },
-            { id: 'qr-generator', icon: '📱', category: 'utility', url: 'tools/qr-generator.html' },
-            { id: 'csv-to-json', icon: '📊', category: 'converter', url: 'tools/csv-to-json.html' },
-            { id: 'unit-converter', icon: '📏', category: 'converter', url: 'tools/unit-converter.html' },
-            { id: 'timezone-converter', icon: '🌍', category: 'converter', url: 'tools/timezone-converter.html' },
-            { id: 'time-format', icon: '🕐', category: 'converter', url: 'tools/time-format.html' },
-            { id: 'age-calculator', icon: '🎂', category: 'calculator', url: 'tools/age-calculator.html' },
-            { id: 'bmi-calculator', icon: '⚖️', category: 'calculator', url: 'tools/bmi-calculator.html' },
-            { id: 'mortgage-calculator', icon: '🏠', category: 'calculator', url: 'tools/mortgage-calculator.html' },
-            { id: 'percentage-calculator', icon: '💯', category: 'calculator', url: 'tools/percentage-calculator.html' },
-            { id: 'online-calculator', icon: '🧮', category: 'calculator', url: 'tools/online-calculator.html' },
-            { id: 'color-contrast-checker', icon: '👁️', category: 'design', url: 'tools/color-contrast-checker.html' },
-            { id: 'countdown-timer', icon: '⏱️', category: 'utility', url: 'tools/countdown-timer.html' },
-            { id: 'pomodoro-timer', icon: '🍅', category: 'utility', url: 'tools/pomodoro-timer.html' },
-            { id: 'random-generator', icon: '🎲', category: 'utility', url: 'tools/random-generator.html' },
-            { id: 'pdf-converter', icon: '📕', category: 'converter', url: 'tools/pdf-converter.html' },
-            { id: 'readability-score', icon: '📖', category: 'text', url: 'tools/readability-score.html' },
-            { id: 'seo-analyzer', icon: '🔎', category: 'seo', url: 'tools/seo-analyzer.html' }
+            { id: 'image-compressor', icon: '🖼️', category: 'image', url: 'tools/image-compressor.html', keywords: ['compress', 'optimize', 'png', 'jpg', 'webp', 'size', 'reduce', 'file'] },
+            { id: 'image-converter', icon: '🔄', category: 'image', url: 'tools/image-converter.html', keywords: ['convert', 'format', 'png', 'jpg', 'webp', 'bmp', 'change'] },
+            { id: 'image-resizer', icon: '📐', category: 'image', url: 'tools/image-resizer.html', keywords: ['resize', 'dimension', 'width', 'height', 'scale', 'size'] },
+            { id: 'base64-image-converter', icon: '🖼️', category: 'image', url: 'tools/base64-image-converter.html', keywords: ['base64', 'encode', 'image', 'convert', 'data url'] },
+            { id: 'color-picker', icon: '🎨', category: 'design', url: 'tools/color-picker.html', keywords: ['color', 'picker', 'hex', 'rgb', 'hsl', 'choose', 'select'] },
+            { id: 'gradient-generator', icon: '🌈', category: 'design', url: 'tools/gradient-generator.html', keywords: ['gradient', 'css', 'background', 'color', 'transition'] },
+            { id: 'shadow-generator', icon: '💫', category: 'design', url: 'tools/shadow-generator.html', keywords: ['shadow', 'css', 'box-shadow', 'text-shadow', 'effect'] },
+            { id: 'css-box-model', icon: '📦', category: 'design', url: 'tools/css-box-model.html', keywords: ['box', 'model', 'css', 'margin', 'padding', 'border'] },
+            { id: 'color-contrast-checker', icon: '👁️', category: 'design', url: 'tools/color-contrast-checker.html', keywords: ['contrast', 'accessibility', 'color', 'wcag', 'check'] },
+            { id: 'json-formatter', icon: '📋', category: 'developer', url: 'tools/json-formatter.html', keywords: ['json', 'format', 'beautify', 'prettify', 'validate'] },
+            { id: 'json-validator', icon: '✅', category: 'developer', url: 'tools/json-validator.html', keywords: ['json', 'validate', 'check', 'syntax', 'error'] },
+            { id: 'xml-formatter', icon: '📄', category: 'developer', url: 'tools/xml-formatter.html', keywords: ['xml', 'format', 'beautify', 'validate', 'parser'] },
+            { id: 'base64', icon: '🔐', category: 'developer', url: 'tools/base64.html', keywords: ['base64', 'encode', 'decode', 'string'] },
+            { id: 'url-encoder-decoder', icon: '🔗', category: 'developer', url: 'tools/url-encoder-decoder.html', keywords: ['url', 'encode', 'decode', 'component', 'percent'] },
+            { id: 'hash-generator', icon: '🔒', category: 'security', url: 'tools/hash-generator.html', keywords: ['hash', 'md5', 'sha', 'sha256', 'encrypt', 'digest'] },
+            { id: 'password-generator', icon: '🔑', category: 'security', url: 'tools/password-generator.html', keywords: ['password', 'generate', 'secure', 'strong', 'random'] },
+            { id: 'password-strength', icon: '🛡️', category: 'security', url: 'tools/password-strength.html', keywords: ['password', 'strength', 'check', 'security', 'score'] },
+            { id: 'regex-tester', icon: '🔍', category: 'developer', url: 'tools/regex-tester.html', keywords: ['regex', 'regular', 'expression', 'test', 'pattern'] },
+            { id: 'cron-generator', icon: '⏰', category: 'developer', url: 'tools/cron-generator.html', keywords: ['cron', 'schedule', 'expression', 'timer', 'job'] },
+            { id: 'uuid-generator', icon: '🆔', category: 'developer', url: 'tools/uuid-generator.html', keywords: ['uuid', 'guid', 'unique', 'identifier', 'generate'] },
+            { id: 'qr-generator', icon: '📱', category: 'utility', url: 'tools/qr-generator.html', keywords: ['qr', 'code', 'generator', 'qrcode', 'scan'] },
+            { id: 'markdown-editor', icon: '📝', category: 'text', url: 'tools/markdown-editor.html', keywords: ['markdown', 'editor', 'preview', 'md', 'write'] },
+            { id: 'markdown-to-html', icon: '📝', category: 'text', url: 'tools/markdown-to-html.html', keywords: ['markdown', 'html', 'convert', 'translator'] },
+            { id: 'lorem-ipsum-generator', icon: '📃', category: 'text', url: 'tools/lorem-ipsum-generator.html', keywords: ['lorem', 'ipsum', 'dummy', 'placeholder', 'text', 'generator'] },
+            { id: 'word-counter', icon: '🔢', category: 'text', url: 'tools/word-counter.html', keywords: ['word', 'counter', 'count', 'characters', 'text', 'statistics'] },
+            { id: 'readability-score', icon: '📖', category: 'text', url: 'tools/readability-score.html', keywords: ['readability', 'score', 'flesch', 'level', 'text'] },
+            { id: 'text-repeater', icon: '🔁', category: 'text', url: 'tools/text-repeater.html', keywords: ['repeat', 'text', 'duplicate', 'copy'] },
+            { id: 'case-converter', icon: '🔤', category: 'text', url: 'tools/case-converter.html', keywords: ['case', 'convert', 'uppercase', 'lowercase', 'title', 'sentence'] },
+            { id: 'html-entity-encoder', icon: '🔤', category: 'text', url: 'tools/html-entity-encoder.html', keywords: ['html', 'entity', 'encode', 'decode', 'special', 'character'] },
+            { id: 'css-minifier', icon: '🎨', category: 'developer', url: 'tools/css-minifier.html', keywords: ['css', 'minify', 'compress', 'optimize', 'minimize'] },
+            { id: 'csv-to-json', icon: '📊', category: 'converter', url: 'tools/csv-to-json.html', keywords: ['csv', 'json', 'convert', 'spreadsheet', 'table'] },
+            { id: 'unit-converter', icon: '📏', category: 'converter', url: 'tools/unit-converter.html', keywords: ['unit', 'convert', 'length', 'weight', 'temperature', 'measure'] },
+            { id: 'timezone-converter', icon: '🌍', category: 'converter', url: 'tools/timezone-converter.html', keywords: ['timezone', 'time', 'convert', 'utc', 'gmt'] },
+            { id: 'timestamp-converter', icon: '⏱️', category: 'converter', url: 'tools/timestamp-converter.html', keywords: ['timestamp', 'unix', 'date', 'convert', 'epoch'] },
+            { id: 'age-calculator', icon: '🎂', category: 'calculator', url: 'tools/age-calculator.html', keywords: ['age', 'calculator', 'birth', 'date', 'years'] },
+            { id: 'bmi-calculator', icon: '⚖️', category: 'calculator', url: 'tools/bmi-calculator.html', keywords: ['bmi', 'calculator', 'body', 'mass', 'index', 'weight'] },
+            { id: 'mortgage-calculator', icon: '🏠', category: 'calculator', url: 'tools/mortgage-calculator.html', keywords: ['mortgage', 'calculator', 'loan', 'payment', 'house'] },
+            { id: 'percentage-calculator', icon: '💯', category: 'calculator', url: 'tools/percentage-calculator.html', keywords: ['percentage', 'calculator', 'percent', 'calculate'] },
+            { id: 'online-calculator', icon: '🧮', category: 'calculator', url: 'tools/online-calculator.html', keywords: ['calculator', 'math', 'calculate', 'arithmetic', 'basic'] },
+            { id: 'countdown-timer', icon: '⏱️', category: 'utility', url: 'tools/countdown-timer.html', keywords: ['countdown', 'timer', 'clock', 'count', 'time'] },
+            { id: 'pomodoro-timer', icon: '🍅', category: 'utility', url: 'tools/pomodoro-timer.html', keywords: ['pomodoro', 'timer', 'focus', 'productivity', 'technique'] },
+            { id: 'random-generator', icon: '🎲', category: 'utility', url: 'tools/random-generator.html', keywords: ['random', 'generator', 'number', 'dice', 'lottery'] },
+            { id: 'text-to-speech', icon: '🔊', category: 'utility', url: 'tools/text-to-speech.html', keywords: ['text', 'speech', 'tts', 'voice', 'read', 'listen'] },
+            { id: 'seo-analyzer', icon: '🔎', category: 'seo', url: 'tools/seo-analyzer.html', keywords: ['seo', 'analyzer', 'optimization', 'search', 'engine'] }
         ];
         
         // Initialize
@@ -124,7 +173,7 @@
             grid.innerHTML = toolsData.map(tool => {
                 const trans = translations[lang]?.tools?.[tool.id] || translations.en.tools?.[tool.id] || { name: tool.id, desc: '' };
                 return `
-                    <a href="${tool.url}" class="tool-card">
+                    <a href="${tool.url}" class="tool-card" data-id="${tool.id}">
                         <div class="tool-icon">${tool.icon}</div>
                         <div class="tool-name">${trans.name}</div>
                         <div class="tool-desc">${trans.desc}</div>
@@ -136,17 +185,51 @@
         // Setup search
         function setupSearch() {
             const searchInput = document.getElementById('searchInput');
+            const searchStats = document.getElementById('searchStats');
+            
             searchInput.addEventListener('input', function() {
-                const query = this.value.toLowerCase();
+                const query = this.value.toLowerCase().trim();
                 const lang = getLanguage();
                 const cards = document.querySelectorAll('.tool-card');
+                let visibleCount = 0;
                 
-                cards.forEach((card, index) => {
-                    const tool = toolsData[index];
-                    const trans = translations[lang]?.tools?.[tool.id] || translations.en.tools?.[tool.id] || { name: tool.id };
-                    const match = trans.name.toLowerCase().includes(query) || trans.desc.toLowerCase().includes(query);
+                if (query === '') {
+                    // Show all
+                    cards.forEach(card => {
+                        card.style.display = 'block';
+                    });
+                    searchStats.textContent = '';
+                    return;
+                }
+                
+                cards.forEach(card => {
+                    const toolId = card.getAttribute('data-id');
+                    const tool = toolsData.find(t => t.id === toolId);
+                    const trans = translations[lang]?.tools?.[toolId] || translations.en.tools?.[toolId];
+                    
+                    // Search in name, description, and keywords
+                    const name = trans?.name?.toLowerCase() || '';
+                    const desc = trans?.desc?.toLowerCase() || '';
+                    const keywords = tool?.keywords?.map(k => k.toLowerCase()) || [];
+                    
+                    const match = name.includes(query) || desc.includes(query) || keywords.some(k => k.includes(query));
+                    
                     card.style.display = match ? 'block' : 'none';
+                    if (match) visibleCount++;
                 });
+                
+                // Update stats
+                if (visibleCount === toolsData.length) {
+                    searchStats.textContent = '';
+                } else if (visibleCount > 0) {
+                    searchStats.textContent = lang === 'zh' ? `找到 ${visibleCount} 个工具` : 
+                                            lang === 'ja' ? `${visibleCount} 件のツールが見つかりました` :
+                                            `${visibleCount} tool${visibleCount !== 1 ? 's' : ''} found`;
+                } else {
+                    searchStats.textContent = lang === 'zh' ? '未找到匹配的工具' :
+                                            lang === 'ja' ? 'ツールが見つかりません' :
+                                            'No tools found';
+                }
             });
         }
         
@@ -155,6 +238,13 @@
             localStorage.setItem('multi-tools-lang', lang);
             applyLanguage(lang);
             renderTools();
+            
+            // Re-apply search if there's a query
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput.value.trim()) {
+                searchInput.dispatchEvent(new Event('input'));
+            }
+            
             trackLanguageChange(lang);
         }
         
