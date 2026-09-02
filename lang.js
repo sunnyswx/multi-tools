@@ -55,7 +55,15 @@ const translations = {
       'random-generator': { name: 'Random Generator', desc: 'Generate random numbers, strings, passwords.' },
       'pdf-converter': { name: 'PDF Converter', desc: 'Convert images to PDF online.' },
       'readability-score': { name: 'Readability Score', desc: 'Check text readability and comprehension level.' },
-      'seo-analyzer': { name: 'SEO Analyzer', desc: 'Analyze basic SEO factors for web pages.' }
+      'seo-analyzer': { name: 'SEO Analyzer', desc: 'Analyze basic SEO factors for web pages.' },
+      'base64-image-converter': { name: 'Base64 Image Converter', desc: 'Convert images to Base64 data URL format.' },
+      'case-converter': { name: 'Case Converter', desc: 'Convert text to uppercase, lowercase, title case.' },
+      'css-box-model': { name: 'CSS Box Model', desc: 'Visualize CSS margin, padding, border, and content.' },
+      'css-minifier': { name: 'CSS Minifier', desc: 'Compress and minify CSS code for faster loading.' },
+      'html-entity-encoder': { name: 'HTML Entity Encoder', desc: 'Encode or decode HTML special characters and entities.' },
+      'lorem-ipsum-generator': { name: 'Lorem Ipsum Generator', desc: 'Generate placeholder text for designs and mockups.' },
+      'markdown-to-html': { name: 'Markdown to HTML', desc: 'Convert Markdown text to HTML format instantly.' },
+      'text-repeater': { name: 'Text Repeater', desc: 'Repeat text multiple times with custom separators.' }
     }
   },
   
@@ -114,7 +122,15 @@ const translations = {
       'random-generator': { name: '随机生成器', desc: '生成随机数字、字符串、密码' },
       'pdf-converter': { name: 'PDF转换器', desc: '将图片转换为PDF在线' },
       'readability-score': { name: '可读性评分', desc: '检查文本可读性和理解水平' },
-      'seo-analyzer': { name: 'SEO分析器', desc: '分析网页基本SEO因素' }
+      'seo-analyzer': { name: 'SEO分析器', desc: '分析网页基本SEO因素' },
+      'base64-image-converter': { name: 'Base64图片转换', desc: '将图片转换为Base64数据URL格式' },
+      'case-converter': { name: '大小写转换器', desc: '转换文本为大小写、标题格式' },
+      'css-box-model': { name: 'CSS盒子模型', desc: '可视化CSS边距、内边距、边框和内容' },
+      'css-minifier': { name: 'CSS压缩器', desc: '压缩和最小化CSS代码以提高加载速度' },
+      'html-entity-encoder': { name: 'HTML实体编解码', desc: '编码或解码HTML特殊字符和实体' },
+      'lorem-ipsum-generator': { name: 'Lorem Ipsum生成器', desc: '为设计和原型生成占位文本' },
+      'markdown-to-html': { name: 'Markdown转HTML', desc: '将Markdown文本转换为HTML格式' },
+      'text-repeater': { name: '文本重复器', desc: '使用自定义分隔符重复文本多次' }
     }
   },
   
@@ -139,7 +155,15 @@ const translations = {
       'image-converter': { name: '画像変換ツール', desc: '画像形式をJPG、PNG、WebPに変換' },
       'color-picker': { name: 'カラーピッカー', desc: '色を選択してHEX、RGB、HSL値を取得' },
       'json-formatter': { name: 'JSONフォーマッター', desc: 'JSONデータをすぐにフォーマット' },
-      'word-counter': { name: 'ワードカウンター', desc: '単語数、文字数、段落数をリアルタイムでカウント' }
+      'word-counter': { name: 'ワードカウンター', desc: '単語数、文字数、段落数をリアルタイムでカウント' },
+      'base64-image-converter': { name: 'Base64画像変換', desc: '画像をBase64データURL形式に変換' },
+      'case-converter': { name: 'ケース変換', desc: 'テキストを大文字、小文字、タイトルケースに変換' },
+      'css-box-model': { name: 'CSSボックスモデル', desc: 'CSSのマージン、パディング、ボーダー、コンテンツを可視化' },
+      'css-minifier': { name: 'CSSミニファイア', desc: '読み込みを高速化するためにCSSコードを圧縮・最小化' },
+      'html-entity-encoder': { name: 'HTMLエンティティエンコーダ', desc: 'HTML特殊文字とエンティティをエンコードまたはデコード' },
+      'lorem-ipsum-generator': { name: 'Lorem Ipsumジェネレータ', desc: 'デザインとモックアップ用のプレースホルダーテキストを生成' },
+      'markdown-to-html': { name: 'Markdown to HTML', desc: 'MarkdownテキストをHTML形式に変換' },
+      'text-repeater': { name: 'テキストリピーター', desc: 'カスタムセパレータでテキストを複数回繰り返す' }
     }
   },
   
@@ -163,7 +187,15 @@ const translations = {
       'image-compressor': { name: '이미지 압축기', desc: 'PNG, JPG, WebP 이미지를 무료로 압축' },
       'color-picker': { name: '색상 선택기', desc: '색상을 선택하고 HEX, RGB, HSL 값을 얻으세요' },
       'json-formatter': { name: 'JSON 포매터', desc: 'JSON 데이터를 즉시 포맷팅' },
-      'word-counter': { name: '워드 카운터', desc: '단어 수, 문자 수, 단락을 실시간으로 카운트' }
+      'word-counter': { name: '워드 카운터', desc: '단어 수, 문자 수, 단락을 실시간으로 카운트' },
+      'base64-image-converter': { name: 'Base64 이미지 변환기', desc: '이미지를 Base64 데이터 URL 형식으로 변환' },
+      'case-converter': { name: '대소문자 변환기', desc: '텍스트를 대문자, 소문자, 제목 사례로 변환' },
+      'css-box-model': { name: 'CSS 박스 모델', desc: 'CSS 마진, 패딩, 테두리 및 콘텐츠를 시각화' },
+      'css-minifier': { name: 'CSS 미니파일러', desc: '로드 속도를 빠르게 하기 위해 CSS 코드 압축 및 최소화' },
+      'html-entity-encoder': { name: 'HTML 엔티티 인코더', desc: 'HTML 특수 문자 및 엔티티 인코딩 또는 디코딩' },
+      'lorem-ipsum-generator': { name: 'Lorem Ipsum 생성기', desc: '디자인 및 목업용 플레이스홀더 텍스트 생성' },
+      'markdown-to-html': { name: 'Markdown to HTML', desc: 'Markdown 텍스트를 HTML 형식으로 변환' },
+      'text-repeater': { name: '텍스트 반복기', desc: '사용자 정의 구분 기호로 텍스트 반복' }
     }
   },
   
@@ -187,7 +219,15 @@ const translations = {
       'image-compressor': { name: 'Compresor de Imágenes', desc: 'Comprime imágenes PNG, JPG, WebP gratis' },
       'color-picker': { name: 'Selector de Color', desc: 'Selecciona colores y obtén valores HEX, RGB, HSL' },
       'json-formatter': { name: 'Formateador JSON', desc: 'Formatea datos JSON al instante' },
-      'word-counter': { name: 'Contador de Palabras', desc: 'Cuenta palabras, caracteres y párrafos en tiempo real' }
+      'word-counter': { name: 'Contador de Palabras', desc: 'Cuenta palabras, caracteres y párrafos en tiempo real' },
+      'base64-image-converter': { name: 'Conversor de Imágenes Base64', desc: 'Convierte imágenes a formato URL de datos Base64' },
+      'case-converter': { name: 'Convertidor de Mayúsculas y Minúsculas', desc: 'Convierte texto a mayúsculas, minúsculas y título' },
+      'css-box-model': { name: 'Modelo de Caja CSS', desc: 'Visualiza márgenes, relleno, borde y contenido CSS' },
+      'css-minifier': { name: 'Minificador CSS', desc: 'Comprime y minimiza código CSS para carga más rápida' },
+      'html-entity-encoder': { name: 'Codificador de Entidades HTML', desc: 'Codifica o decodifica caracteres y entidades especiales HTML' },
+      'lorem-ipsum-generator': { name: 'Generador de Lorem Ipsum', desc: 'Genera texto de relleno para diseños y maquetas' },
+      'markdown-to-html': { name: 'Markdown a HTML', desc: 'Convierte texto Markdown a formato HTML' },
+      'text-repeater': { name: 'Repetidor de Texto', desc: 'Repite texto varias veces con separadores personalizados' }
     }
   },
   
@@ -211,7 +251,15 @@ const translations = {
       'image-compressor': { name: 'Compresseur d\'Images', desc: 'Compressez des images PNG, JPG, WebP gratuitement' },
       'color-picker': { name: 'Sélecteur de Couleurs', desc: 'Sélectionnez des couleurs et obtenez les valeurs HEX, RGB, HSL' },
       'json-formatter': { name: 'Formateur JSON', desc: 'Formatez des données JSON instantanément' },
-      'word-counter': { name: 'Compteur de Mots', desc: 'Comptez les mots, caractères et paragraphes en temps réel' }
+      'word-counter': { name: 'Compteur de Mots', desc: 'Comptez les mots, caractères et paragraphes en temps réel' },
+      'base64-image-converter': { name: 'Convertisseur d\\'Images Base64', desc: 'Convertissez des images en format URL de données Base64' },
+      'case-converter': { name: 'Convertisseur de Cas', desc: 'Convertissez le texte en majuscules, minuscules et titre' },
+      'css-box-model': { name: 'Modèle de Boîte CSS', desc: 'Visualisez les marges, padding, bordure et contenu CSS' },
+      'css-minifier': { name: 'Minifieur CSS', desc: 'Compressez et minimisez le code CSS pour un chargement plus rapide' },
+      'html-entity-encoder': { name: 'Encodeur d\\'Entités HTML', desc: 'Encodez ou décodez les caractères et entités spéciaux HTML' },
+      'lorem-ipsum-generator': { name: 'Générateur de Lorem Ipsum', desc: 'Générez du texte de remplissage pour les designs et maquettes' },
+      'markdown-to-html': { name: 'Markdown vers HTML', desc: 'Convertissez du texte Markdown en format HTML' },
+      'text-repeater': { name: 'Répéteur de Texte', desc: 'Répétez le texte plusieurs fois avec des séparateurs personnalisés' }
     }
   },
   
@@ -235,7 +283,15 @@ const translations = {
       'image-compressor': { name: 'Bild-Kompressor', desc: 'Komprimieren Sie PNG, JPG, WebP Bilder kostenlos' },
       'color-picker': { name: 'Farbauswahl', desc: 'Wählen Sie Farben und erhalten Sie HEX, RGB, HSL Werte' },
       'json-formatter': { name: 'JSON-Formatter', desc: 'Formatieren Sie JSON-Daten sofort' },
-      'word-counter': { name: 'Wortzähler', desc: 'Zählen Sie Wörter, Zeichen und Absätze in Echtzeit' }
+      'word-counter': { name: 'Wortzähler', desc: 'Zählen Sie Wörter, Zeichen und Absätze in Echtzeit' },
+      'base64-image-converter': { name: 'Base64-Bildkonverter', desc: 'Konvertieren Sie Bilder in Base64-Daten-URL-Format' },
+      'case-converter': { name: 'Fallkonverter', desc: 'Konvertieren Sie Text in Großbuchstaben, Kleinbuchstaben und Titelformat' },
+      'css-box-model': { name: 'CSS-Boxmodell', desc: 'Visualisieren Sie CSS-Ränder, Auffüllung, Rand und Inhalt' },
+      'css-minifier': { name: 'CSS-Minifizierer', desc: 'Komprimieren und minimieren Sie CSS-Code für schnelleres Laden' },
+      'html-entity-encoder': { name: 'HTML-Entitäten-Encoder', desc: 'Kodieren oderdekodieren Sie HTML-Sonderzeichen und Entitäten' },
+      'lorem-ipsum-generator': { name: 'Lorem-Ipsum-Generator', desc: 'Generieren Sie Platzhaltertext für Designs und Mockups' },
+      'markdown-to-html': { name: 'Markdown zu HTML', desc: 'Konvertieren Sie Markdown-Text in HTML-Format' },
+      'text-repeater': { name: 'Textwiederholer', desc: 'Wiederholen Sie Text mehrmals mit benutzerdefinierten Trennern' }
     }
   },
   
@@ -259,7 +315,15 @@ const translations = {
       'image-compressor': { name: 'Компрессор Изображений', desc: 'Бесплатно сжимайте PNG, JPG, WebP изображения' },
       'color-picker': { name: 'Селектор Цвета', desc: 'Выбирайте цвета и получайте значения HEX, RGB, HSL' },
       'json-formatter': { name: 'JSON Форматировщик', desc: 'Мгновенно форматируйте JSON данные' },
-      'word-counter': { name: 'Счетчик Слов', desc: 'Подсчитывайте слова, символы и абзацы в реальном времени' }
+      'word-counter': { name: 'Счетчик Слов', desc: 'Подсчитывайте слова, символы и абзацы в реальном времени' },
+      'base64-image-converter': { name: 'Конвертер Изображений Base64', desc: 'Преобразуйте изображения в формат URL-данных Base64' },
+      'case-converter': { name: 'Конвертер Регистара', desc: 'Преобразуйте текст в верхний, нижний регистр и заглавные буквы' },
+      'css-box-model': { name: 'CSS Модель Блока', desc: 'Визуализируйте CSS отступы, поля и содержимое' },
+      'css-minifier': { name: 'Минификатор CSS', desc: 'Сжимайте и минимизируйте CSS-код для быстрой загрузки' },
+      'html-entity-encoder': { name: 'Кодировщик HTML-Сущностей', desc: 'Кодируйте или декодируйте специальные символы и сущности HTML' },
+      'lorem-ipsum-generator': { name: 'Генератор Lorem Ipsum', desc: 'Генерируйте текст-заполнитель для дизайнов и макетов' },
+      'markdown-to-html': { name: 'Markdown в HTML', desc: 'Преобразуйте текст Markdown в формат HTML' },
+      'text-repeater': { name: 'Повторитель Текста', desc: 'Повторяйте текст несколько раз с пользовательскими разделителями' }
     }
   },
   
@@ -283,7 +347,15 @@ const translations = {
       'image-compressor': { name: 'ضاغط الصور', desc: 'اضغط الصور PNG, JPG, WebP مجانا' },
       'color-picker': { name: 'منتقي الألوان', desc: 'اختر الألوان واحصل على قيم HEX و RGB و HSL' },
       'json-formatter': { name: 'منسق JSON', desc: 'نسق بيانات JSON فورا' },
-      'word-counter': { name: 'عداد الكلمات', desc: 'عد الكلمات والحروف والفقرات في الوقت الفعلي' }
+      'word-counter': { name: 'عداد الكلمات', desc: 'عد الكلمات والحروف والفقرات في الوقت الفعلي' },
+      'base64-image-converter': { name: 'محول الصور Base64', desc: 'حولي الصور إلى تنسيق URL للبيانات Base64' },
+      'case-converter': { name: 'محول الحالة', desc: 'حولي النص إلى أحرف كبيرة وصغيرة وعنوان' },
+      'css-box-model': { name: 'نموذج مربع CSS', desc: 'تصور هوامش CSS والتحشى والحدود والمحتوى' },
+      'css-minifier': { name: 'مصحح CSS', desc: 'اضغط وصغّر كود CSS لتحميل أسرع' },
+      'html-entity-encoder': { name: 'مشفّر كيان HTML', desc: 'شفّر أو لفك تشفير الأحرف والكيانات الخاصة بـ HTML' },
+      'lorem-ipsum-generator': { name: 'مولد Lorem Ipsum', desc: 'ولّد نصًا بديلًا للتصاميم والنماذج الأولية' },
+      'markdown-to-html': { name: 'Markdown إلى HTML', desc: 'حوّل نص Markdown إلى تنسيق HTML' },
+      'text-repeater': { name: 'مكرر النص', desc: 'كرر النص عدة مرات مع فواصل مخصصة' }
     }
   }
 };
