@@ -68,7 +68,9 @@ const translations = {
       'text-repeater': { name: 'Text Repeater', desc: 'Repeat text multiple times with custom separators.' },
       'url-encoder-decoder': { name: 'URL Encoder/Decoder', desc: 'Encode and decode URL components online.' },
       'timestamp-converter': { name: 'Timestamp Converter', desc: 'Convert Unix timestamps to human-readable dates.' },
-      'text-to-speech': { name: 'Text to Speech', desc: 'Convert text to speech using Web Speech API.' }
+      'text-to-speech': { name: 'Text to Speech', desc: 'Convert text to speech using Web Speech API.' },
+      'image-compressor-name': { name: 'Image Compressor', desc: 'Compress images online for free' },
+      'image-compressor-desc': { desc: 'Compress images online for free' }
     }
   },
   
@@ -140,7 +142,9 @@ const translations = {
       'text-repeater': { name: '文本重复器', desc: '使用自定义分隔符重复文本多次' },
       'url-encoder-decoder': { name: 'URL编解码器', desc: '在线编码和解码URL组件' },
       'timestamp-converter': { name: '时间戳转换器', desc: '将Unix时间戳转换为人类可读日期' },
-      'text-to-speech': { name: '文本转语音', desc: '使用Web Speech API将文本转换为语音' }
+      'text-to-speech': { name: '文本转语音', desc: '使用Web Speech API将文本转换为语音' },
+      'image-compressor-name': { name: '图片压缩工具', desc: '免费在线压缩图片' },
+      'image-compressor-desc': { desc: '免费在线压缩图片' }
     }
   },
   
@@ -179,7 +183,9 @@ const translations = {
       'text-repeater': { name: 'テキストリピーター', desc: 'カスタムセパレータでテキストを複数回繰り返す' },
       'url-encoder-decoder': { name: 'URLエンコーダ/デコーダ', desc: 'URLコンポーネントをオンラインでエンコードおよびデコード' },
       'timestamp-converter': { name: 'タイムスタンプコンバーター', desc: 'Unixタイムスタンプを人間が読みできる日付に変換' },
-      'text-to-speech': { name: 'テキスト読み上げ', desc: 'Web Speech APIを使用してテキストを音声に変換' }
+      'text-to-speech': { name: 'テキスト読み上げ', desc: 'Web Speech APIを使用してテキストを音声に変換' },
+      'image-compressor-name': { name: '画像圧縮ツール', desc: 'オンラインで画像を圧縮' },
+      'image-compressor-desc': { desc: 'オンラインで画像を圧縮' }
     }
   },
   
@@ -216,7 +222,9 @@ const translations = {
       'text-repeater': { name: '텍스트 반복기', desc: '사용자 정의 구분 기호로 텍스트 반복' },
       'url-encoder-decoder': { name: 'URL 인코더/디코더', desc: 'URL 구성 요소를 온라인으로 인코딩 및 디코딩' },
       'timestamp-converter': { name: '타임스탬프 변환기', desc: 'Unix 타임스탬프를 사람이 읽을 수 있는 날짜로 변환' },
-      'text-to-speech': { name: '텍스트 음성 변환', desc: 'Web Speech API를 사용하여 텍스트를 음성으로 변환' }
+      'text-to-speech': { name: '텍스트 음성 변환', desc: 'Web Speech API를 사용하여 텍스트를 음성으로 변환' },
+      'image-compressor-name': { name: '이미지 압축기', desc: '온라인으로 이미지 압축' },
+      'image-compressor-desc': { desc: '온라인으로 이미지 압축' }
     }
   },
   
@@ -253,7 +261,9 @@ const translations = {
       'text-repeater': { name: 'Repetidor de Texto', desc: 'Repite texto varias veces con separadores personalizados' },
       'url-encoder-decoder': { name: 'Codificador/Decodificador de URL', desc: 'Codifica y decodifica componentes de URL en línea' },
       'timestamp-converter': { name: 'Conversor de Marca de Tiempo', desc: 'Convierte marcas de tiempo Unix a fechas legibles' },
-      'text-to-speech': { name: 'Texto a Voz', desc: 'Convierte texto a voz usando Web Speech API' }
+      'text-to-speech': { name: 'Texto a Voz', desc: 'Convierte texto a voz usando Web Speech API' },
+      'image-compressor-name': { name: 'Compresor de Imágenes', desc: 'Comprime imágenes en línea' },
+      'image-compressor-desc': { desc: 'Comprime imágenes en línea' }
     }
   },
   
@@ -289,7 +299,9 @@ const translations = {
       'text-repeater': { name: 'Répéteur de Texte', desc: 'Répétez le texte plusieurs fois avec des séparateurs personnalisés' },
       'url-encoder-decoder': { name: 'Encodeur/Décodeur URL', desc: 'Encodez et décodez les composants URL en ligne' },
       'timestamp-converter': { name: 'Convertisseur de Timestamp', desc: 'Convertissez les horodatages Unix en dates lisibles' },
-      'text-to-speech': { name: 'Texte vers Parole', desc: "Convertissez du texte en parole utilisant l'API Web Speech" }
+      'text-to-speech': { name: 'Texte vers Parole', desc: "Convertissez du texte en parole utilisant l'API Web Speech" },
+      'image-compressor-name': { name: 'Compresseur d\'Images', desc: 'Compressez des images en ligne' },
+      'image-compressor-desc': { desc: 'Compressez des images en ligne' }
     }
   },
   
@@ -326,7 +338,9 @@ const translations = {
       'text-repeater': { name: 'Textwiederholer', desc: 'Wiederholen Sie Text mehrmals mit benutzerdefinierten Trennern' },
       'url-encoder-decoder': { name: 'URL-Codierer/Decodierer', desc: 'Codieren und Decodieren Sie URL-Komponenten online' },
       'timestamp-converter': { name: 'Zeitstempel-Konverter', desc: 'Konvertieren Sie Unix-Zeitstempel in lesbare Daten' },
-      'text-to-speech': { name: 'Text-zu-Sprache', desc: 'Konvertieren Sie Text mit Web Speech API in Sprache' }
+      'text-to-speech': { name: 'Text-zu-Sprache', desc: 'Konvertieren Sie Text mit Web Speech API in Sprache' },
+      'image-compressor-name': { name: 'Bild-Kompressor', desc: 'Komprimieren Sie Bilder online' },
+      'image-compressor-desc': { desc: 'Komprimieren Sie Bilder online' }
     }
   },
   
@@ -362,7 +376,9 @@ const translations = {
       'text-repeater': { name: 'Повторитель Текста', desc: 'Повторяйте текст несколько раз с пользовательскими разделителями' },
       'url-encoder-decoder': { name: 'Кодировщик/Декодировщик URL', desc: 'Кодируйте и декодируйте компоненты URL онлайн' },
       'timestamp-converter': { name: 'Конвертер Времени', desc: 'Преобразуйте Unix-временные метки в читаемые даты' },
-      'text-to-speech': { name: 'Текст в Речь', desc: 'Преобразуйте текст в речь с помощью Web Speech API' }
+      'text-to-speech': { name: 'Текст в Речь', desc: 'Преобразуйте текст в речь с помощью Web Speech API' },
+      'image-compressor-name': { name: 'Компрессор Изображений', desc: 'Сжимайте изображения онлайн' },
+      'image-compressor-desc': { desc: 'Сжимайте изображения онлайн' }
     }
   },
   
@@ -398,7 +414,9 @@ const translations = {
       'text-repeater': { name: 'مكرر النص', desc: 'كرر النص عدة مرات مع فواصل مخصصة' },
       'url-encoder-decoder': { name: 'مشفّر/نافك تشفير URL', desc: 'شفّر وفك تشفير مكونات URL عبر الإنترنت' },
       'timestamp-converter': { name: 'محوّل الطابع الزمني', desc: 'حوّل طوابع الوقت من Unix إلى تواريخ مقروءة' },
-      'text-to-speech': { name: 'النص إلى كلام', desc: 'حوّل النص إلى كلام باستخدام Web Speech API' }
+      'text-to-speech': { name: 'النص إلى كلام', desc: 'حوّل النص إلى كلام باستخدام Web Speech API' },
+      'image-compressor-name': { name: 'ضاغط الصور', desc: 'اضغط الصور عبر الإنترنت' },
+      'image-compressor-desc': { desc: 'اضغط الصور عبر الإنترنت' }
     }
   }
 };
