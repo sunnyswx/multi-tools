@@ -18,6 +18,7 @@ const translations = {
     },
     tools: {
       'image-compressor': { name: 'Image Compressor', desc: 'Compress images online for free. Reduce file size while maintaining quality.' },
+      'image-compressor-page': { name: 'Image Compressor', desc: 'Compress images online for free' },
       'image-converter': { name: 'Image Converter', desc: 'Convert images between JPG, PNG, WebP formats online.' },
       'image-resizer': { name: 'Image Resizer', desc: 'Resize images to custom dimensions online.' },
       'color-picker': { name: 'Color Picker', desc: 'Pick colors and get HEX, RGB, HSL values.' },
@@ -89,6 +90,7 @@ const translations = {
     },
     tools: {
       'image-compressor': { name: '图片压缩工具', desc: '免费在线压缩PNG、JPG、WebP图片，本地处理保护隐私' },
+      'image-compressor-page': { name: '图片压缩工具', desc: '免费在线压缩图片' },
       'image-converter': { name: '图片格式转换', desc: '在线转换图片格式为JPG、PNG、WebP' },
       'image-resizer': { name: '图片尺寸调整', desc: '自定义尺寸调整图片大小' },
       'color-picker': { name: '颜色选择器', desc: '选择颜色并获取HEX、RGB、HSL值' },
@@ -160,6 +162,7 @@ const translations = {
     },
     tools: {
       'image-compressor': { name: '画像圧縮ツール', desc: 'PNG、JPG、WebP画像を無料で圧縮' },
+      'image-compressor-page': { name: '画像圧縮ツール', desc: 'オンラインで画像を無料で圧縮' },
       'image-converter': { name: '画像変換ツール', desc: '画像形式をJPG、PNG、WebPに変換' },
       'image-resizer': { name: '画像リサイズツール', desc: 'カスタムサイズで画像をリサイズ' },
       'color-picker': { name: 'カラーピッカー', desc: '色を選択してHEX、RGB、HSL値を取得' },
@@ -198,6 +201,7 @@ const translations = {
     },
     tools: {
       'image-compressor': { name: '이미지 압축기', desc: 'PNG, JPG, WebP 이미지를 무료로 압축' },
+      'image-compressor-page': { name: '이미지 압축기', desc: '온라인으로 이미지를 무료로 압축' },
       'color-picker': { name: '색상 선택기', desc: '색상을 선택하고 HEX, RGB, HSL 값을 얻으세요' },
       'json-formatter': { name: 'JSON 포매터', desc: 'JSON 데이터를 즉시 포맷팅' },
       'word-counter': { name: '워드 카운터', desc: '단어 수, 문자 수, 단락을 실시간으로 카운트' },
@@ -234,6 +238,7 @@ const translations = {
     },
     tools: {
       'image-compressor': { name: 'Compresor de Imágenes', desc: 'Comprime imágenes PNG, JPG, WebP gratis' },
+      'image-compressor-page': { name: 'Compresor de Imágenes', desc: 'Comprime imágenes en línea gratis' },
       'color-picker': { name: 'Selector de Color', desc: 'Selecciona colores y obtén valores HEX, RGB, HSL' },
       'json-formatter': { name: 'Formateador JSON', desc: 'Formatea datos JSON al instante' },
       'word-counter': { name: 'Contador de Palabras', desc: 'Cuenta palabras, caracteres y párrafos en tiempo real' },
@@ -269,7 +274,8 @@ const translations = {
       seo: 'Outils SEO'
     },
     tools: {
-      'image-compressor': { name: 'Compresseur d\'Images', desc: 'Compressez des images PNG, JPG, WebP gratuitement' },
+      'image-compressor': { name: 'Compresseur d'Images', desc: 'Compressez des images PNG, JPG, WebP gratuitement' },
+      'image-compressor-page': { name: 'Compresseur d'Images', desc: 'Compressez des images en ligne gratuitement' },
       'color-picker': { name: 'Sélecteur de Couleurs', desc: 'Sélectionnez des couleurs et obtenez les valeurs HEX, RGB, HSL' },
       'json-formatter': { name: 'Formateur JSON', desc: 'Formatez des données JSON instantanément' },
       'word-counter': { name: 'Compteur de Mots', desc: 'Comptez les mots, caractères et paragraphes en temps réel' },
@@ -305,6 +311,7 @@ const translations = {
     },
     tools: {
       'image-compressor': { name: 'Bild-Kompressor', desc: 'Komprimieren Sie PNG, JPG, WebP Bilder kostenlos' },
+      'image-compressor-page': { name: 'Bild-Kompressor', desc: 'Komprimieren Sie Bilder online kostenlos' },
       'color-picker': { name: 'Farbauswahl', desc: 'Wählen Sie Farben und erhalten Sie HEX, RGB, HSL Werte' },
       'json-formatter': { name: 'JSON-Formatter', desc: 'Formatieren Sie JSON-Daten sofort' },
       'word-counter': { name: 'Wortzähler', desc: 'Zählen Sie Wörter, Zeichen und Absätze in Echtzeit' },
@@ -341,6 +348,7 @@ const translations = {
     },
     tools: {
       'image-compressor': { name: 'Компрессор Изображений', desc: 'Бесплатно сжимайте PNG, JPG, WebP изображения' },
+      'image-compressor-page': { name: 'Компрессор Изображений', desc: 'Бесплатно сжимайте изображения онлайн' },
       'color-picker': { name: 'Селектор Цвета', desc: 'Выбирайте цвета и получайте значения HEX, RGB, HSL' },
       'json-formatter': { name: 'JSON Форматировщик', desc: 'Мгновенно форматируйте JSON данные' },
       'word-counter': { name: 'Счетчик Слов', desc: 'Подсчитывайте слова, символы и абзацы в реальном времени' },
@@ -376,6 +384,7 @@ const translations = {
     },
     tools: {
       'image-compressor': { name: 'ضاغط الصور', desc: 'اضغط الصور PNG, JPG, WebP مجانا' },
+      'image-compressor-page': { name: 'ضاغط الصور', desc: 'اضغط الصور عبر الإنترنت مجانا' },
       'color-picker': { name: 'منتقي الألوان', desc: 'اختر الألوان واحصل على قيم HEX و RGB و HSL' },
       'json-formatter': { name: 'منسق JSON', desc: 'نسق بيانات JSON فورا' },
       'word-counter': { name: 'عداد الكلمات', desc: 'عد الكلمات والحروف والفقرات في الوقت الفعلي' },
