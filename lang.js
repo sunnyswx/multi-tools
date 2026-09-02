@@ -252,11 +252,11 @@ const translations = {
       'color-picker': { name: 'Sélecteur de Couleurs', desc: 'Sélectionnez des couleurs et obtenez les valeurs HEX, RGB, HSL' },
       'json-formatter': { name: 'Formateur JSON', desc: 'Formatez des données JSON instantanément' },
       'word-counter': { name: 'Compteur de Mots', desc: 'Comptez les mots, caractères et paragraphes en temps réel' },
-      'base64-image-converter': { name: 'Convertisseur d'Images Base64', desc: 'Convertissez des images en format URL de données Base64' },
+      'base64-image-converter': { name: 'Convertisseur d\'Images Base64', desc: 'Convertissez des images en format URL de données Base64' },
       'case-converter': { name: 'Convertisseur de Cas', desc: 'Convertissez le texte en majuscules, minuscules et titre' },
       'css-box-model': { name: 'Modèle de Boîte CSS', desc: 'Visualisez les marges, padding, bordure et contenu CSS' },
       'css-minifier': { name: 'Minifieur CSS', desc: 'Compressez et minimisez le code CSS pour un chargement plus rapide' },
-      'html-entity-encoder': { name: 'Encodeur d'Entités HTML', desc: 'Encodez ou décodez les caractères et entités spéciaux HTML' },
+      'html-entity-encoder': { name: 'Encodeur d\'Entités HTML', desc: 'Encodez ou décodez les caractères et entités spéciaux HTML' },
       'lorem-ipsum-generator': { name: 'Générateur de Lorem Ipsum', desc: 'Générez du texte de remplissage pour les designs et maquettes' },
       'markdown-to-html': { name: 'Markdown vers HTML', desc: 'Convertissez du texte Markdown en format HTML' },
       'text-repeater': { name: 'Répéteur de Texte', desc: 'Répétez le texte plusieurs fois avec des séparateurs personnalisés' }
