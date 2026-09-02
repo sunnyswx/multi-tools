@@ -94,18 +94,6 @@
             const lang = getLanguage();
             applyLanguage(lang);
             
-            // Force re-apply language to ensure header and description are updated
-            setTimeout(() => {
-                const h1 = document.querySelector('h1[data-i18n="tools.image-compressor.name"]');
-                const p = document.querySelector('p[data-i18n="tools.image-compressor.desc"]');
-                if (h1 && translations[lang]?.tools?.['image-compressor']) {
-                    h1.textContent = '🗜️ ' + translations[lang].tools['image-compressor'].name;
-                }
-                if (p && translations[lang]?.tools?.['image-compressor']) {
-                    p.textContent = translations[lang].tools['image-compressor'].desc;
-                }
-            }, 100);
-            
             const uploadArea = document.getElementById('uploadArea');
             uploadArea.addEventListener('dragover', (e) => {
                 e.preventDefault();
