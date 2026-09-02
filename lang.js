@@ -277,7 +277,7 @@ const translations = {
       'text-repeater': { name: 'Répéteur de Texte', desc: 'Répétez le texte plusieurs fois avec des séparateurs personnalisés' },
       'url-encoder-decoder': { name: 'Encodeur/Décodeur URL', desc: 'Encodez et décodez les composants URL en ligne' },
       'timestamp-converter': { name: 'Convertisseur de Timestamp', desc: 'Convertissez les horodatages Unix en dates lisibles' },
-      'text-to-speech': { name: 'Texte vers Parole', desc: 'Convertissez du texte en parole utilisant l'API Web Speech' }
+      'text-to-speech': { name: 'Texte vers Parole', desc: "Convertissez du texte en parole utilisant l'API Web Speech" }
     }
   },
   
