@@ -159,6 +159,7 @@ const translations = {
     tools: {
       'image-compressor': { name: '画像圧縮ツール', desc: 'PNG、JPG、WebP画像を無料で圧縮' },
       'image-converter': { name: '画像変換ツール', desc: '画像形式をJPG、PNG、WebPに変換' },
+      'image-resizer': { name: '画像リサイズツール', desc: 'カスタムサイズで画像をリサイズ' },
       'color-picker': { name: 'カラーピッカー', desc: '色を選択してHEX、RGB、HSL値を取得' },
       'json-formatter': { name: 'JSONフォーマッター', desc: 'JSONデータをすぐにフォーマット' },
       'word-counter': { name: 'ワードカウンター', desc: '単語数、文字数、段落数をリアルタイムでカウント' },
