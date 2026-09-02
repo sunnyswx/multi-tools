@@ -274,9 +274,9 @@ const translations = {
       seo: 'Outils SEO'
     },
     tools: {
-      'image-compressor': { name: 'Compresseur d'Images', desc: 'Compressez des images PNG, JPG, WebP gratuitement' },
+      'image-compressor': { name: 'Compresseur d'Images', desc: "Compressez des images PNG, JPG, WebP gratuitement" },
       'image-compressor-page': { name: 'Compresseur d'Images', desc: 'Compressez des images en ligne gratuitement' },
-      'color-picker': { name: 'Sélecteur de Couleurs', desc: 'Sélectionnez des couleurs et obtenez les valeurs HEX, RGB, HSL' },
+      'color-picker': { name: 'Sélecteur de Couleurs', desc: "Sélectionnez des couleurs et obtenez les valeurs HEX, RGB, HSL" },
       'json-formatter': { name: 'Formateur JSON', desc: 'Formatez des données JSON instantanément' },
       'word-counter': { name: 'Compteur de Mots', desc: 'Comptez les mots, caractères et paragraphes en temps réel' },
       'base64-image-converter': { name: 'Convertisseur d\'Images Base64', desc: 'Convertissez des images en format URL de données Base64' },
