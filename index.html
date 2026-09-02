@@ -56,8 +56,9 @@
         .search-stats {
             text-align: center;
             margin-top: 15px;
-            color: #666;
+            color: #f39c12;
             font-size: 14px;
+            font-weight: 600;
         }
         .no-results {
             text-align: center;
@@ -222,13 +223,29 @@
                 if (visibleCount === toolsData.length) {
                     searchStats.textContent = '';
                 } else if (visibleCount > 0) {
-                    searchStats.textContent = lang === 'zh' ? `找到 ${visibleCount} 个工具` : 
-                                            lang === 'ja' ? `${visibleCount} 件のツールが見つかりました` :
-                                            `${visibleCount} tool${visibleCount !== 1 ? 's' : ''} found`;
+                    const statsText = {
+                        'zh': `找到 ${visibleCount} 个工具`,
+                        'ja': `${visibleCount} 件のツールが見つかりました`,
+                        'ko': `${visibleCount}개의 도구를 찾았습니다`,
+                        'es': `Se encontraron ${visibleCount} herramientas`,
+                        'fr': `${visibleCount} outil${visibleCount !== 1 ? 's' : ''} trouvé${visibleCount !== 1 ? 's' : ''}`,
+                        'de': `${visibleCount} Tool${visibleCount !== 1 ? 's' : ''} gefunden`,
+                        'ru': `Найдено ${visibleCount} инструмент${visibleCount === 1 ? '' : (visibleCount < 5 ? 'а' : 'ов')}`,
+                        'ar': `تم العثور على ${visibleCount} أداة`
+                    };
+                    searchStats.textContent = statsText[lang] || `${visibleCount} tool${visibleCount !== 1 ? 's' : ''} found`;
                 } else {
-                    searchStats.textContent = lang === 'zh' ? '未找到匹配的工具' :
-                                            lang === 'ja' ? 'ツールが見つかりません' :
-                                            'No tools found';
+                    const noResultText = {
+                        'zh': '未找到匹配的工具',
+                        'ja': 'ツールが見つかりません',
+                        'ko': '도구를 찾을 수 없습니다',
+                        'es': 'No se encontraron herramientas',
+                        'fr': 'Aucun outil trouvé',
+                        'de': 'Keine Tools gefunden',
+                        'ru': 'Инструменты не найдены',
+                        'ar': 'لم يتم العثور على أدوات'
+                    };
+                    searchStats.textContent = noResultText[lang] || 'No tools found';
                 }
             });
         }
