@@ -94,6 +94,16 @@
             const lang = getLanguage();
             applyLanguage(lang);
             
+            // Directly update title and description based on language
+            const h1 = document.querySelector('h1[data-i18n="image-compressor-name"]');
+            const p = document.querySelector('p[data-i18n="image-compressor-desc"]');
+            if (h1 && translations[lang]?.['image-compressor-name']) {
+                h1.textContent = '🗜️ ' + translations[lang]['image-compressor-name'].name;
+            }
+            if (p && translations[lang]?.['image-compressor-desc']) {
+                p.textContent = translations[lang]['image-compressor-desc'].desc;
+            }
+            
             const uploadArea = document.getElementById('uploadArea');
             uploadArea.addEventListener('dragover', (e) => {
                 e.preventDefault();
