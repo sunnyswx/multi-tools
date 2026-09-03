@@ -1,131 +1,77 @@
 # 📊 语言切换问题修复报告
 
-**修复时间**: 2026-09-02 10:30  
-**项目**: multi-tools
+**修复时间**: 2026-09-02
+**问题**: 1.首页切换不自动刷新 2.子页面不跟随
 
 ---
 
-## ✅ 问题确认
+## ✅ 已修复
 
-雄哥反馈：
-- 切换成日语后，"image resizer"工具卡片没有切换成功（还是显示英文）
+### 1. image-compressor.html data-i18n 属性
+```html
+<!-- 修复前 -->
+<h1 data-i18n="image-compressor-name">Image Compressor</h1>
+<p data-i18n="image-compressor-desc">Compress images online for free</p>
 
----
-
-## ✅ 检查步骤
-
-### 1. 检查`image-resizer`翻译
-```
-✅ 英文: 'image-resizer': { name: 'Image Resizer', desc: '...' }
-✅ 中文: 'image-resizer': { name: '图片尺寸调整', desc: '...' }
-✅ 日文: 'image-resizer': { name: '画像リサイズツール', desc: '...' }
-✅ 韩文: 'image-resizer': { name: '이미지 리사이즈', desc: '...' }
-✅ 西班牙: 'image-resizer': { name: 'Recortador de Imágenes', desc: '...' }
-✅ 法文: 'image-resizer': { name: 'Tailleur d\\'Images', desc: '...' }
-✅ 德文: 'image-resizer': { name: 'Bild-Resizer', desc: '...' }
-✅ 俄文: 'image-resizer': { name: 'Изменитель Размера Изображений', desc: '...' }
-✅ 阿拉伯: 'image-resizer': { name: 'مغير حجم الصور', desc: '...' }
+<!-- 修复后 -->
+<h1 data-i18n="tools.image-compressor.name">Image Compressor</h1>
+<p data-i18n="tools.image-compressor.desc">Compress images online for free</p>
 ```
 
-**结论**: 日文翻译已正确添加到`lang.js`第162行
-
----
-
-### 2. 检查index.html
-```
-✅ index.html第118行有image-resizer工具定义
-✅ toolsData数组包含image-resizer
-✅ renderTools()函数正确读取translations[lang].tools[tool.id]
-```
-
----
-
-### 3. 检查语言切换逻辑
+### 2. index.html 初始化优化
 ```javascript
-// 第175行
-const trans = translations[lang]?.tools?.[tool.id] || translations.en.tools?.[tool.id] || { name: tool.id, desc: '' };
+// 确保 i18n 对象加载后再初始化
+if (typeof i18n !== 'undefined') {
+    i18n.init();
+} else {
+    window.addEventListener('load', function() {
+        i18n.init();
+    });
+}
 ```
 
-**逻辑正确**：
-- 优先使用当前语言的翻译
-- 如果当前语言没有，使用英文翻译
-- 如果英文也没有，使用tool.id作为名称
-
----
-
-## ✅ 可能原因
-
-### 原因1: Cloudflare Pages缓存
-- Cloudflare Pages有缓存机制
-- 可能需要清除缓存或等待部署完成
-
-### 原因2: JavaScript缓存
-- 浏览器可能缓存了旧的`lang.js`文件
-- 需要强制刷新（Ctrl+Shift+R）
-
-### 原因3: 部署未完成
-- 提交已推送，但Cloudflare Pages可能还在构建中
-- 需要等待构建完成
-
----
-
-## ✅ 已执行的修复
-
-### 1. 添加缺失的日文翻译
-```
-✅ 添加30+个缺失的日文工具名称和描述
-✅ 包括image-resizer（画像リサイズツール）
-```
-
-### 2. 添加缺失的韩文翻译
-```
-✅ 添加30+个缺失的韩文工具名称和描述
-✅ 包括image-resizer（이미지 리사이즈）
-```
-
-### 3. 语法检查
-```
-✅ node -c lang.js 通过
-✅ 没有语法错误
+### 3. i18n.js setLanguage 优化
+```javascript
+// 触发事件通知其他组件
+window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang: lang } }));
 ```
 
 ---
 
-## 📋 下一步操作
+## 📋 雄哥，请测试
 
-### 1. 清除Cloudflare Pages缓存
-```bash
-# 登录Cloudflare Dashboard
-# 进入Pages → multi-tools → Deployments
-# 清除最近一次部署的缓存
+### 测试步骤
 ```
-
-### 2. 强制刷新浏览器
-```
-Ctrl+Shift+R (Windows)
-Cmd+Shift+R (Mac)
-```
-
-### 3. 验证修复
-```
-□ 打开 https://zh8888.dpdns.org/
-□ 切换到日文
-□ 检查"Image Resizer"是否显示为"画像リサイズツール"
-□ 检查其他工具是否也正确切换
+1. 打开 https://zh8888.dpdns.org/
+2. 按 Ctrl+Shift+R 强制刷新
+3. 切换语言到日文
+4. 检查页面是否自动变为日文（不需要刷新）
+5. 点击第一个工具卡片进入子页面
+6. 检查子页面是否显示日文
+7. 检查 URL 是否包含 ?lang=ja
 ```
 
 ---
 
-## 📊 Git状态
+## 🔧 技术细节
 
+### 语言检测优先级
 ```
-✅ lang.js 已修复（语法检查通过）
-✅ index.html 无需修改
-✅ 提交: 26d82d1 - Fix Japanese and Korean translations
-✅ 已推送到GitHub
-✅ Cloudflare Pages自动部署中
+1. URL 参数 (?lang=xx)
+2. localStorage (multi-tools-lang)
+3. 浏览器语言 (navigator.language)
+4. 默认英文 (en)
+```
+
+### 翻译键格式
+```
+旧格式: image-compressor-name
+新格式: tools.image-compressor.name
+
+支持嵌套访问:
+translations[lang]['tools']['image-compressor']['name']
 ```
 
 ---
 
-**雄哥，请等待Cloudflare Pages部署完成，然后强制刷新浏览器测试！**
+**雄哥，请测试并告诉我结果！** 🚀
