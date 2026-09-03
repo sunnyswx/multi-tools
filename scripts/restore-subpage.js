@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+#!/usr/bin/env node
+const fs = require('fs');
+const path = 'C:/Users/s/Documents/functional-website/multi-tools/tools/image-compressor.html';
+
+// 完整的子页面代码
+const htmlContent = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -177,4 +182,7 @@
         }
     </script>
 </body>
-</html>
+</html>`;
+
+fs.writeFileSync(path, htmlContent);
+console.log('恢复 image-compressor.html 完整代码');
