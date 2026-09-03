@@ -27,14 +27,15 @@
     <script src="lang.js"></script>
     <script src="js/i18n.js"></script>
     <script>
-        // 确保 i18n 对象已加载后初始化
-        if (typeof i18n !== 'undefined') {
-            i18n.init();
-        } else {
-            window.addEventListener('load', function() {
+        // 等待 translations 和 i18n 都加载后初始化
+        function initI18n() {
+            if (typeof translations !== 'undefined' && typeof i18n !== 'undefined') {
                 i18n.init();
-            });
+            } else {
+                setTimeout(initI18n, 50);
+            }
         }
+        initI18n();
     </script>
     <style>
         /* Search styling */
