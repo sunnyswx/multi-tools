@@ -25,6 +25,7 @@
     
     <link rel="stylesheet" href="css/style.css">
     <script src="lang.js"></script>
+    <script src="js/i18n.js"></script>
     <style>
         /* Search styling */
         .search-container {
@@ -80,7 +81,7 @@
             
             <!-- Language Selector -->
             <div class="language-selector">
-                <select id="langSelect" onchange="changeLanguage(this.value)">
+                <select id="langSelect" onchange="i18n.setLanguage(this.value)">
                     <option value="en">English</option>
                     <option value="zh">中文</option>
                     <option value="ja">日本語</option>
@@ -271,6 +272,10 @@
                 gtag('event', 'language_change', { language: lang });
             }
         }
+    </script>
+    <script>
+        // 初始化多语言管理器
+        i18n.init();
     </script>
 </body>
 </html>
