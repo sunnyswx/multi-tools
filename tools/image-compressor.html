@@ -8,7 +8,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments); }
+      function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-L7GQFYBWB6');
     </script>
@@ -19,86 +19,105 @@
         .tool-container { max-width: 900px; margin: 0 auto; padding: 20px; }
         .tool-header { text-align: center; margin-bottom: 30px; }
         .tool-header h1 { color: #333; font-size: 2rem; margin-bottom: 10px; }
-        .tool-header p { color: #666; font-size: 1.1rem; }
-        .upload-area { border: 2px dashed #ccc; border-radius: 8px; padding: 40px; text-align: center; cursor: pointer; transition: all 0.3s; }
+        .tool-header p { color: #666; }
+        .tool-content { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+        .upload-area { border: 3px dashed #e0e0e0; border-radius: 15px; padding: 50px; text-align: center; cursor: pointer; transition: all 0.3s; }
         .upload-area:hover { border-color: #667eea; background: #f8f9fa; }
+        .upload-area input { display: none; }
+        .preview-container { display: none; margin-top: 20px; }
+        .preview-container img { max-width: 100%; border-radius: 10px; }
         .quality-slider { margin: 20px 0; }
-        .preview-container { margin: 20px 0; text-align: center; }
-        .preview-container img { max-width: 100%; border-radius: 8px; }
-        .result-info { margin: 20px 0; padding: 15px; background: #f8f9fa; border-radius: 8px; }
-        .btn-group { margin-top: 20px; }
+        .quality-slider label { display: block; margin-bottom: 10px; font-weight: 600; }
+        input[type="range"] { width: 100%; }
+        .result-info { display: none; margin-top: 20px; padding: 20px; background: #f8f9fa; border-radius: 10px; }
+        .result-info p { margin: 10px 0; }
+        .btn-group { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+        .btn { padding: 12px 30px; border: none; border-radius: 25px; font-size: 16px; cursor: pointer; transition: all 0.3s; }
+        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
+        .btn-secondary { background: #f0f0f0; color: #333; }
         .language-selector { margin-top: 30px; text-align: center; }
-        select { padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+        .language-selector select { padding: 10px 20px; font-size: 16px; border: none; border-radius: 25px; background: #667eea; color: white; cursor: pointer; }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <nav>
-                <a href="../" class="logo">🛠️ Multi Tools</a>
-                <div class="language-selector">
-                    <select id="langSelect" onchange="i18n.setLanguage(this.value)">
-                        <option value="en">English</option>
-                        <option value="zh">中文</option>
-                        <option value="ja">日本語</option>
-                        <option value="ko">한국어</option>
-                        <option value="es">Español</option>
-                        <option value="fr">Français</option>
-                        <option value="de">Deutsch</option>
-                        <option value="ru">Русский</option>
-                        <option value="ar">العربية</option>
-                    </select>
-                </div>
-            </nav>
-        </header>
-        
-        <main>
+        <a href="../" class="back-btn">← Back to Home</a>
+        <div class="tool-container">
             <div class="tool-header">
                 <h1 data-i18n="tools.image-compressor.name">🗜️ Image Compressor</h1>
                 <p data-i18n="tools.image-compressor.desc">Compress images online for free</p>
             </div>
-            <div class="tool-container">
-                <div class="tool-content">
-                    <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
-                        <div style="font-size: 3rem; margin-bottom: 15px;">📁</div>
-                        <h3>Click to upload image</h3>
-                        <p>or drag and drop</p>
-                        <input type="file" id="fileInput" accept="image/*" onchange="handleFile(event)">
-                    </div>
-                    <div class="quality-slider" id="qualityControl" style="display: none;">
-                        <label>Compression Quality: <span id="qualityValue">80</span>%</label>
-                        <input type="range" id="quality" min="10" max="100" value="80" oninput="updateQuality()">
-                    </div>
-                    <div class="preview-container" id="previewContainer">
-                        <img id="preview" src="" alt="Preview">
-                    </div>
-                    <div class="result-info" id="resultInfo">
-                        <p><strong>Original Size:</strong> <span id="originalSize">-</span></p>
-                        <p><strong>Compressed Size:</strong> <span id="compressedSize">-</span></p>
-                        <p><strong>Reduction:</strong> <span id="reduction">-</span></p>
-                    </div>
-                    <div class="btn-group">
-                        <button class="btn btn-primary" id="compressBtn" style="display: none;" onclick="compress()">Compress</button>
-                        <button class="btn btn-secondary" id="downloadBtn" style="display: none;" onclick="download()">Download</button>
-                    </div>
+            <div class="tool-content">
+                <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">📁</div>
+                    <h3>Click to upload image</h3>
+                    <p>or drag and drop</p>
+                    <input type="file" id="fileInput" accept="image/*" onchange="handleFile(event)">
+                </div>
+                <div class="quality-slider" id="qualityControl" style="display: none;">
+                    <label>Compression Quality: <span id="qualityValue">80</span>%</label>
+                    <input type="range" id="quality" min="10" max="100" value="80" oninput="updateQuality()">
+                </div>
+                <div class="preview-container" id="previewContainer">
+                    <img id="preview" src="" alt="Preview">
+                </div>
+                <div class="result-info" id="resultInfo">
+                    <p><strong>Original Size:</strong> <span id="originalSize">-</span></p>
+                    <p><strong>Compressed Size:</strong> <span id="compressedSize">-</span></p>
+                    <p><strong>Reduction:</strong> <span id="reduction">-</span></p>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" id="compressBtn" style="display: none;" onclick="compress()">Compress</button>
+                    <button class="btn btn-secondary" id="downloadBtn" style="display: none;" onclick="download()">Download</button>
                 </div>
             </div>
-        </main>
+            <div class="language-selector">
+                <select id="langSelect" onchange="i18n.setLanguage(this.value)" data-i18n="lang_select">
+                    <option value="en">English</option>
+                    <option value="zh">中文</option>
+                    <option value="ja">日本語</option>
+                    <option value="ko">한국어</option>
+                    <option value="es">Español</option>
+                    <option value="fr">Français</option>
+                    <option value="de">Deutsch</option>
+                    <option value="ru">Русский</option>
+                    <option value="ar">العربية</option>
+                </select>
+            </div>
+        </div>
     </div>
     <script>
-        // 初始化多语言
-        i18n.init();
-        
-        // 调试日志
-        console.log('[DEBUG] Language initialized:', i18n.getLanguage());
-        console.log('[DEBUG] translations available:', typeof translations !== 'undefined');
-        console.log('[DEBUG] image-compressor translation:', translations[i18n.getLanguage()]?.tools?.['image-compressor']);
-        
-        // 工具功能代码
         let originalFile = null;
         let compressedBlob = null;
         
+        // Simple language initialization
+        const lang = getLanguage();
+        applyLanguage(lang);
+        console.log('Language initialized:', lang);
+        
         document.addEventListener('DOMContentLoaded', function() {
+            initLanguage();
+            
+            // Also listen for language changes
+            const langSelect = document.getElementById('langSelect');
+            if (langSelect) {
+                langSelect.addEventListener('change', function() {
+                    const lang = this.value;
+                    applyLanguage(lang);
+                    
+                    // Directly update title and description
+                    const h1 = document.querySelector('h1[data-i18n="tools.image-compressor.name"]');
+                    const p = document.querySelector('p[data-i18n="tools.image-compressor.desc"]');
+                    if (h1 && translations[lang]?.['image-compressor-name']) {
+                        h1.textContent = '🗜️ ' + translations[lang]['image-compressor-name'].name;
+                    }
+                    if (p && translations[lang]?.['image-compressor-desc']) {
+                        p.textContent = translations[lang]['image-compressor-desc'].desc;
+                    }
+                });
+            }
+            
             const uploadArea = document.getElementById('uploadArea');
             uploadArea.addEventListener('dragover', (e) => {
                 e.preventDefault();
@@ -141,9 +160,9 @@
         function compress() {
             const quality = parseInt(document.getElementById('quality').value) / 100;
             const img = document.getElementById('preview');
+            
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
-            
             canvas.width = img.naturalWidth;
             canvas.height = img.naturalHeight;
             ctx.drawImage(img, 0, 0);
@@ -151,21 +170,21 @@
             canvas.toBlob(function(blob) {
                 compressedBlob = blob;
                 document.getElementById('compressedSize').textContent = formatBytes(blob.size);
-                document.getElementById('reduction').textContent = Math.round((1 - blob.size / originalFile.size) * 100) + '%';
-                document.getElementById('downloadBtn').style.display = 'inline-block';
+                
+                const reduction = ((1 - blob.size / originalFile.size) * 100).toFixed(1);
+                document.getElementById('reduction').textContent = reduction + '%';
+                document.getElementById('resultInfo').style.display = 'block';
+                document.getElementById('downloadBtn').style.display = 'block';
             }, 'image/jpeg', quality);
         }
         
         function download() {
             if (!compressedBlob) return;
-            const url = URL.createObjectURL(compressedBlob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'compressed-image.jpg';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
+            
+            const link = document.createElement('a');
+            link.download = 'compressed-' + originalFile.name;
+            link.href = URL.createObjectURL(compressedBlob);
+            link.click();
         }
         
         function formatBytes(bytes) {
@@ -175,6 +194,11 @@
             const i = Math.floor(Math.log(bytes) / Math.log(k));
             return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
         }
+        
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'tool_open', { tool: 'image-compressor' });
+        }
     </script>
+    <script>i18n.init();</script>
 </body>
 </html>
