@@ -135,17 +135,21 @@ class I18nManager {
     
     elements.forEach(el => {
       const key = el.getAttribute('data-i18n');
-      console.log('[I18n] Processing element:', key);
+      console.log('[I18n] Processing element:', key, 'tag:', el.tagName);
       const translatedText = this.translate(key);
       console.log('[I18n]', key, '=>', translatedText);
       
       // 根据元素类型决定如何设置内容
       if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
         el.placeholder = translatedText;
+        console.log('[I18n] Set placeholder:', el.placeholder);
       } else {
         el.textContent = translatedText;
+        console.log('[I18n] Set textContent:', el.textContent);
       }
     });
+    
+    console.log('[I18n] applyLanguage completed');
   }
 
   /**
