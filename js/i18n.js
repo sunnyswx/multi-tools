@@ -70,6 +70,9 @@ class I18nManager {
 
     // 4. 应用翻译到页面
     this.applyLanguage();
+    
+    // 5. 触发事件通知其他组件
+    window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang: lang } }));
   }
 
   /**

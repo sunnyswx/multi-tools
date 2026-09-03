@@ -26,6 +26,16 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="lang.js"></script>
     <script src="js/i18n.js"></script>
+    <script>
+        // 确保 i18n 对象已加载后初始化
+        if (typeof i18n !== 'undefined') {
+            i18n.init();
+        } else {
+            window.addEventListener('load', function() {
+                i18n.init();
+            });
+        }
+    </script>
     <style>
         /* Search styling */
         .search-container {

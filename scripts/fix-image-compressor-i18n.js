@@ -4,25 +4,15 @@ const path = 'C:/Users/s/Documents/functional-website/multi-tools/tools/image-co
 
 let content = fs.readFileSync(path, 'utf8');
 
-// Fix: Add data-i18n attributes to h1 and p, and fix the language loading
+// 修复 data-i18n 属性格式
 content = content.replace(
-  `<h1 data-i18n="tools.image-compressor.name">🗜️ Image Compressor</h1>
-                <p data-i18n="tools.image-compressor.desc">Compress images online for free</p>`,
-  `<h1 data-i18n="image-compressor-name">🗜️ Image Compressor</h1>
-                <p data-i18n="image-compressor-desc">Compress images online for free</p>`
+  'data-i18n="image-compressor-name"',
+  'data-i18n="tools.image-compressor.name"'
 );
-
 content = content.replace(
-  `        document.addEventListener('DOMContentLoaded', function() {
-            // Ensure lang.js is loaded before applying language
-            if (typeof getLanguage === 'function' && typeof applyLanguage === 'function') {
-                const lang = getLanguage();
-                applyLanguage(lang);
-            }`,
-  `        document.addEventListener('DOMContentLoaded', function() {
-            const lang = getLanguage();
-            applyLanguage(lang);`
+  'data-i18n="image-compressor-desc"',
+  'data-i18n="tools.image-compressor.desc"'
 );
 
 fs.writeFileSync(path, content);
-console.log('Fixed image-compressor data-i18n attributes');
+console.log('修复 image-compressor.html data-i18n 属性');
