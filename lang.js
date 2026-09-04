@@ -18,10 +18,12 @@ const translations = {
     'compress': 'Compress',
     'download': 'Download',
     'select_file': 'Select File'
+    },    converter: {
+      'format_label': 'Convert to:',
+      'convert': 'Convert',
+      'download': 'Download'
     },
     // Image converter UI
-    'converter.format_label': 'Convert to:',
-    'converter.convert': 'Convert',
     'converter.download': 'Download',
     site_subtitle: '46+ Free Online Tools for Everyone',
     search_placeholder: 'Search tools...',
@@ -114,14 +116,17 @@ const translations = {
     'compress': '压缩',
     'download': '下载',
     'select_file': '选择文件'
+    },    converter: {
+      'format_label': 'Convertir a:',
+      'convert': 'Convertir',
+      'download': 'Descargar'
+    },    converter: {
+      'format_label': '转换为：',
+      'convert': '转换',
+      'download': '下载'
     },
     // Image converter UI
-    'converter.format_label': 'Convertir a:',
-    'converter.convert': 'Convertir',
-    'converter.download': 'Descargar',
     // Image converter UI
-    'converter.format_label': '转换为：',
-    'converter.convert': '转换',
     'converter.download': '下载',
     site_subtitle: '46+ 免费在线工具',
     search_placeholder: '搜索工具...',
@@ -214,10 +219,12 @@ const translations = {
     'compress': '圧縮',
     'download': 'ダウンロード',
     'select_file': 'ファイルを選択'
+    },    converter: {
+      'format_label': '変換先：',
+      'convert': '変換',
+      'download': 'ダウンロード'
     },
     // Image converter UI
-    'converter.format_label': '変換先：',
-    'converter.convert': '変換',
     'converter.download': 'ダウンロード',
     site_subtitle: '46+ 無料オンラインツール',
     search_placeholder: 'ツールを検索...',
@@ -277,10 +284,12 @@ const translations = {
     'compress': '압축',
     'download': '다운로드',
     'select_file': '파일 선택'
+    },    converter: {
+      'format_label': '변환:',
+      'convert': '변환',
+      'download': '다운로드'
     },
     // Image converter UI
-    'converter.format_label': '변환:',
-    'converter.convert': '변환',
     'converter.download': '다운로드',
     site_subtitle: '46+ 무료 온라인 도구',
     search_placeholder: '도구 검색...',
@@ -395,10 +404,12 @@ const translations = {
     'compress': 'Compresser',
     'download': 'Télécharger',
     'select_file': 'Sélectionner un fichier'
+    },    converter: {
+      'format_label': 'Convertir en :',
+      'convert': 'Convertir',
+      'download': 'Télécharger'
     },
     // Image converter UI
-    'converter.format_label': 'Convertir en :',
-    'converter.convert': 'Convertir',
     'converter.download': 'Télécharger',
     site_subtitle: '46+ Outils en Ligne Gratuits',
     search_placeholder: 'Rechercher des outils...',
@@ -455,10 +466,12 @@ const translations = {
     'compress': 'Komprimieren',
     'download': 'Herunterladen',
     'select_file': 'Datei auswählen'
+    },    converter: {
+      'format_label': 'Konvertieren zu:',
+      'convert': 'Konvertieren',
+      'download': 'Herunterladen'
     },
     // Image converter UI
-    'converter.format_label': 'Konvertieren zu:',
-    'converter.convert': 'Konvertieren',
     'converter.download': 'Herunterladen',
     site_subtitle: '43+ Kostenlose Online-Tools',
     search_placeholder: 'Tools suchen...',
@@ -516,10 +529,12 @@ const translations = {
     'compress': 'Сжать',
     'download': 'Скачать',
     'select_file': 'Выбрать файл'
+    },    converter: {
+      'format_label': 'Конвертировать в:',
+      'convert': 'Конвертировать',
+      'download': 'Скачать'
     },
     // Image converter UI
-    'converter.format_label': 'Конвертировать в:',
-    'converter.convert': 'Конвертировать',
     'converter.download': 'Скачать',
     site_subtitle: '46+ Бесплатных Онлайн-Инструментов',
     search_placeholder: 'Поиск инструментов...',
@@ -576,10 +591,12 @@ const translations = {
     'compress': 'ضغط',
     'download': 'تحميل',
     'select_file': 'اختيار ملف'
+    },    converter: {
+      'format_label': 'تحويل إلى:',
+      'convert': 'تحويل',
+      'download': 'تحميل'
     },
     // Image converter UI
-    'converter.format_label': 'تحويل إلى:',
-    'converter.convert': 'تحويل',
     'converter.download': 'تحميل',
     site_subtitle: '46+ أداة عبر الإنترنت مجانية',
     search_placeholder: 'البحث عن أدوات...',
