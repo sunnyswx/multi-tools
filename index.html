@@ -48,7 +48,6 @@
         // 等待 translations 和 i18n 都加载后初始化
         function initI18n() {
             if (typeof translations !== 'undefined' && typeof i18n !== 'undefined') {
-                i18n.init();
             } else {
                 setTimeout(initI18n, 50);
             }
@@ -291,7 +290,6 @@
     </script>
     <script>
         // 初始化多语言管理器
-        i18n.init();
     </script>
 </body>
 </html>
