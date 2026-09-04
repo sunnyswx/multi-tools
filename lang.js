@@ -506,7 +506,7 @@ function applyLanguage(lang) {
   }
   
   console.log('[ApplyLang] Completed for lang:', lang);
-}unction applyLanguage(lang) {
+function applyLanguage(lang) {
   const t = translations[lang] || translations.en;
   
   // Update HTML lang attribute
