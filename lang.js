@@ -2,6 +2,14 @@
 const translations = {
   en: {
     site_title: '🛠️ Multi Tools',
+    common: {
+    'back_to_home': 'Back to Home',
+    'click_to_upload': 'Click to upload',
+    'or_drag_drop': 'or drag and drop',
+    'compress': 'Compress',
+    'download': 'Download',
+    'select_file': 'Select File'
+    },
     site_subtitle: '46+ Free Online Tools for Everyone',
     search_placeholder: 'Search tools...',
     footer_text: 'Free online tools for developers, designers, and everyone.',
@@ -77,6 +85,14 @@ const translations = {
   
   zh: {
     site_title: '🛠️ Multi Tools',
+    common: {
+    'back_to_home': '返回首页',
+    'click_to_upload': '点击上传',
+    'or_drag_drop': '或拖放文件',
+    'compress': '压缩',
+    'download': '下载',
+    'select_file': '选择文件'
+    },
     site_subtitle: '46+ 免费在线工具',
     search_placeholder: '搜索工具...',
     footer_text: '为开发者、设计师和所有人提供的免费在线工具。',
@@ -152,6 +168,14 @@ const translations = {
   
   ja: {
     site_title: '🛠️ Multi Tools',
+    common: {
+    'back_to_home': 'ホームに戻る',
+    'click_to_upload': 'クリックしてアップロード',
+    'or_drag_drop': 'またはドラッグ＆ドロップ',
+    'compress': '圧縮',
+    'download': 'ダウンロード',
+    'select_file': 'ファイルを選択'
+    },
     site_subtitle: '46+ 無料オンラインツール',
     search_placeholder: 'ツールを検索...',
     footer_text: '開発者、デザイナー、すべての人のための無料オンラインツール。',
@@ -194,6 +218,14 @@ const translations = {
   
   ko: {
     site_title: '🛠️ Multi Tools',
+    common: {
+    'back_to_home': '홈으로 돌아가기',
+    'click_to_upload': '클릭하여 업로드',
+    'or_drag_drop': '또는 드래그 앤 드롭',
+    'compress': '압축',
+    'download': '다운로드',
+    'select_file': '파일 선택'
+    },
     site_subtitle: '46+ 무료 온라인 도구',
     search_placeholder: '도구 검색...',
     footer_text: '개발자, 디자이너 및 모든 사람을 위한 무료 온라인 도구.',
@@ -234,6 +266,14 @@ const translations = {
   
   es: {
     site_title: '🛠️ Multi Tools',
+    common: {
+    'back_to_home': 'Volver al inicio',
+    'click_to_upload': 'Hacer clic para cargar',
+    'or_drag_drop': 'o arrastrar y soltar',
+    'compress': 'Comprimir',
+    'download': 'Descargar',
+    'select_file': 'Seleccionar archivo'
+    },
     site_subtitle: '46+ Herramientas Online Gratis',
     search_placeholder: 'Buscar herramientas...',
     footer_text: 'Herramientas online gratuitas para desarrolladores, diseñadores y todos.',
@@ -274,6 +314,14 @@ const translations = {
   
   fr: {
     site_title: '🛠️ Multi Tools',
+    common: {
+    'back_to_home': 'Retour à l'accueil',
+    'click_to_upload': 'Cliquez pour télécharger',
+    'or_drag_drop': 'ou glissez-déposez',
+    'compress': 'Compresser',
+    'download': 'Télécharger',
+    'select_file': 'Sélectionner un fichier'
+    },
     site_subtitle: '46+ Outils en Ligne Gratuits',
     search_placeholder: 'Rechercher des outils...',
     footer_text: 'Outils en ligne gratuits pour développeurs, designers et tout le monde.',
@@ -313,6 +361,14 @@ const translations = {
   
   de: {
     site_title: '🛠️ Multi Tools',
+    common: {
+    'back_to_home': 'Zurück zur Startseite',
+    'click_to_upload': 'Klicken zum Hochladen',
+    'or_drag_drop': 'oder ziehen und ablegen',
+    'compress': 'Komprimieren',
+    'download': 'Herunterladen',
+    'select_file': 'Datei auswählen'
+    },
     site_subtitle: '43+ Kostenlose Online-Tools',
     search_placeholder: 'Tools suchen...',
     footer_text: 'Kostenlose Online-Tools für Entwickler, Designer und alle.',
@@ -353,6 +409,14 @@ const translations = {
   
   ru: {
     site_title: '🛠️ Multi Tools',
+    common: {
+    'back_to_home': 'На главную',
+    'click_to_upload': 'Нажмите для загрузки',
+    'or_drag_drop': 'или перетащите',
+    'compress': 'Сжать',
+    'download': 'Скачать',
+    'select_file': 'Выбрать файл'
+    },
     site_subtitle: '46+ Бесплатных Онлайн-Инструментов',
     search_placeholder: 'Поиск инструментов...',
     footer_text: 'Бесплатные онлайн-инструменты для разработчиков, дизайнеров и всех.',
@@ -392,6 +456,14 @@ const translations = {
   
   ar: {
     site_title: '🛠️ Multi Tools',
+    common: {
+    'back_to_home': 'العودة إلى المنزل',
+    'click_to_upload': 'انقر للتحميل',
+    'or_drag_drop': 'أو اسحب وأفلت',
+    'compress': 'ضغط',
+    'download': 'تحميل',
+    'select_file': 'اختيار ملف'
+    },
     site_subtitle: '46+ أداة عبر الإنترنت مجانية',
     search_placeholder: 'البحث عن أدوات...',
     footer_text: 'أدوات عبر الإنترنت مجانية للمطورين والمصممين والجميع.',
