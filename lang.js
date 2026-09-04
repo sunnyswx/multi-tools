@@ -361,7 +361,7 @@ const translations = {
     site_title: '🛠️ Multi Tools',
     // Image compressor UI
     'quality_label': 'Qualité de compression',
-    'original_size': 'Taille d'origine',
+    'original_size': 'Taille d\'origine',
     'compressed_size': 'Taille compressée',
     'reduction': 'Réduction',
     'bytes': 'Octets',
