@@ -2,6 +2,15 @@
 const translations = {
   en: {
     site_title: '🛠️ Multi Tools',
+    // Image compressor UI
+    'quality_label': 'Compression Quality',
+    'original_size': 'Original Size',
+    'compressed_size': 'Compressed Size',
+    'reduction': 'Reduction',
+    'bytes': 'Bytes',
+    'kb': 'KB',
+    'mb': 'MB',
+    'gb': 'GB',
     common: {
     'back_to_home': 'Back to Home',
     'click_to_upload': 'Click to upload',
@@ -85,6 +94,15 @@ const translations = {
   
   zh: {
     site_title: '🛠️ Multi Tools',
+    // Image compressor UI
+    'quality_label': '压缩质量',
+    'original_size': '原始大小',
+    'compressed_size': '压缩后大小',
+    'reduction': '压缩率',
+    'bytes': '字节',
+    'kb': 'KB',
+    'mb': 'MB',
+    'gb': 'GB',
     common: {
     'back_to_home': '返回首页',
     'click_to_upload': '点击上传',
@@ -168,6 +186,15 @@ const translations = {
   
   ja: {
     site_title: '🛠️ Multi Tools',
+    // Image compressor UI
+    'quality_label': '圧縮品質',
+    'original_size': '元のサイズ',
+    'compressed_size': '圧縮後サイズ',
+    'reduction': '圧縮率',
+    'bytes': 'バイト',
+    'kb': 'KB',
+    'mb': 'MB',
+    'gb': 'GB',
     common: {
     'back_to_home': 'ホームに戻る',
     'click_to_upload': 'クリックしてアップロード',
@@ -218,6 +245,15 @@ const translations = {
   
   ko: {
     site_title: '🛠️ Multi Tools',
+    // Image compressor UI
+    'quality_label': '압축 품질',
+    'original_size': '원본 크기',
+    'compressed_size': '압축 후 크기',
+    'reduction': '압축률',
+    'bytes': '바이트',
+    'kb': 'KB',
+    'mb': 'MB',
+    'gb': 'GB',
     common: {
     'back_to_home': '홈으로 돌아가기',
     'click_to_upload': '클릭하여 업로드',
@@ -266,6 +302,15 @@ const translations = {
   
   es: {
     site_title: '🛠️ Multi Tools',
+    // Image compressor UI
+    'quality_label': 'Calidad de compresión',
+    'original_size': 'Tamaño original',
+    'compressed_size': 'Tamaño comprimido',
+    'reduction': 'Reducción',
+    'bytes': 'Bytes',
+    'kb': 'KB',
+    'mb': 'MB',
+    'gb': 'GB',
     common: {
     'back_to_home': 'Volver al inicio',
     'click_to_upload': 'Hacer clic para cargar',
@@ -314,6 +359,15 @@ const translations = {
   
   fr: {
     site_title: '🛠️ Multi Tools',
+    // Image compressor UI
+    'quality_label': 'Qualité de compression',
+    'original_size': 'Taille d'origine',
+    'compressed_size': 'Taille compressée',
+    'reduction': 'Réduction',
+    'bytes': 'Octets',
+    'kb': 'Ko',
+    'mb': 'Mo',
+    'gb': 'Go',
     common: {
     'back_to_home': 'Retour à l\'accueil',
     'click_to_upload': 'Cliquez pour télécharger',
@@ -361,6 +415,15 @@ const translations = {
   
   de: {
     site_title: '🛠️ Multi Tools',
+    // Image compressor UI
+    'quality_label': 'Kompressionsqualität',
+    'original_size': 'Originalgröße',
+    'compressed_size': 'Komprimierte Größe',
+    'reduction': 'Reduzierung',
+    'bytes': 'Bytes',
+    'kb': 'KB',
+    'mb': 'MB',
+    'gb': 'GB',
     common: {
     'back_to_home': 'Zurück zur Startseite',
     'click_to_upload': 'Klicken zum Hochladen',
@@ -409,6 +472,15 @@ const translations = {
   
   ru: {
     site_title: '🛠️ Multi Tools',
+    // Image compressor UI
+    'quality_label': 'Качество сжатия',
+    'original_size': 'Исходный размер',
+    'compressed_size': 'Сжатый размер',
+    'reduction': 'Сжатие',
+    'bytes': 'Байт',
+    'kb': 'КБ',
+    'mb': 'МБ',
+    'gb': 'ГБ',
     common: {
     'back_to_home': 'На главную',
     'click_to_upload': 'Нажмите для загрузки',
@@ -456,6 +528,15 @@ const translations = {
   
   ar: {
     site_title: '🛠️ Multi Tools',
+    // Image compressor UI
+    'quality_label': 'جودة الضغط',
+    'original_size': 'الحجم الأصلي',
+    'compressed_size': 'الحجم المضغوط',
+    'reduction': 'التقليل',
+    'bytes': 'بايت',
+    'kb': 'كيلوبايت',
+    'mb': 'ميغابايت',
+    'gb': 'غيغابايت',
     common: {
     'back_to_home': 'العودة إلى المنزل',
     'click_to_upload': 'انقر للتحميل',
