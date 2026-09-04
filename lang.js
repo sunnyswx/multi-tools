@@ -19,6 +19,10 @@ const translations = {
     'download': 'Download',
     'select_file': 'Select File'
     },
+    // Image converter UI
+    'converter.format_label': 'Convert to:',
+    'converter.convert': 'Convert',
+    'converter.download': 'Download',
     site_subtitle: '46+ Free Online Tools for Everyone',
     search_placeholder: 'Search tools...',
     footer_text: 'Free online tools for developers, designers, and everyone.',
@@ -111,6 +115,14 @@ const translations = {
     'download': '下载',
     'select_file': '选择文件'
     },
+    // Image converter UI
+    'converter.format_label': 'Convertir a:',
+    'converter.convert': 'Convertir',
+    'converter.download': 'Descargar',
+    // Image converter UI
+    'converter.format_label': '转换为：',
+    'converter.convert': '转换',
+    'converter.download': '下载',
     site_subtitle: '46+ 免费在线工具',
     search_placeholder: '搜索工具...',
     footer_text: '为开发者、设计师和所有人提供的免费在线工具。',
@@ -203,6 +215,10 @@ const translations = {
     'download': 'ダウンロード',
     'select_file': 'ファイルを選択'
     },
+    // Image converter UI
+    'converter.format_label': '変換先：',
+    'converter.convert': '変換',
+    'converter.download': 'ダウンロード',
     site_subtitle: '46+ 無料オンラインツール',
     search_placeholder: 'ツールを検索...',
     footer_text: '開発者、デザイナー、すべての人のための無料オンラインツール。',
@@ -262,6 +278,10 @@ const translations = {
     'download': '다운로드',
     'select_file': '파일 선택'
     },
+    // Image converter UI
+    'converter.format_label': '변환:',
+    'converter.convert': '변환',
+    'converter.download': '다운로드',
     site_subtitle: '46+ 무료 온라인 도구',
     search_placeholder: '도구 검색...',
     footer_text: '개발자, 디자이너 및 모든 사람을 위한 무료 온라인 도구.',
@@ -376,6 +396,10 @@ const translations = {
     'download': 'Télécharger',
     'select_file': 'Sélectionner un fichier'
     },
+    // Image converter UI
+    'converter.format_label': 'Convertir en :',
+    'converter.convert': 'Convertir',
+    'converter.download': 'Télécharger',
     site_subtitle: '46+ Outils en Ligne Gratuits',
     search_placeholder: 'Rechercher des outils...',
     footer_text: 'Outils en ligne gratuits pour développeurs, designers et tout le monde.',
@@ -432,6 +456,10 @@ const translations = {
     'download': 'Herunterladen',
     'select_file': 'Datei auswählen'
     },
+    // Image converter UI
+    'converter.format_label': 'Konvertieren zu:',
+    'converter.convert': 'Konvertieren',
+    'converter.download': 'Herunterladen',
     site_subtitle: '43+ Kostenlose Online-Tools',
     search_placeholder: 'Tools suchen...',
     footer_text: 'Kostenlose Online-Tools für Entwickler, Designer und alle.',
@@ -489,6 +517,10 @@ const translations = {
     'download': 'Скачать',
     'select_file': 'Выбрать файл'
     },
+    // Image converter UI
+    'converter.format_label': 'Конвертировать в:',
+    'converter.convert': 'Конвертировать',
+    'converter.download': 'Скачать',
     site_subtitle: '46+ Бесплатных Онлайн-Инструментов',
     search_placeholder: 'Поиск инструментов...',
     footer_text: 'Бесплатные онлайн-инструменты для разработчиков, дизайнеров и всех.',
@@ -545,6 +577,10 @@ const translations = {
     'download': 'تحميل',
     'select_file': 'اختيار ملف'
     },
+    // Image converter UI
+    'converter.format_label': 'تحويل إلى:',
+    'converter.convert': 'تحويل',
+    'converter.download': 'تحميل',
     site_subtitle: '46+ أداة عبر الإنترنت مجانية',
     search_placeholder: 'البحث عن أدوات...',
     footer_text: 'أدوات عبر الإنترنت مجانية للمطورين والمصممين والجميع.',

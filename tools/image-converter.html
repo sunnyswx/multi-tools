@@ -65,8 +65,8 @@
         <a href="../" class="back-btn" data-i18n="common.back_to_home">← Back to Home</a>
         <div class="tool-container">
             <div class="tool-header">
-                <h1>🖼️ Image Converter</h1>
-                <p>Convert images between formats</p>
+                <h1 data-i18n="tools.image-converter.name">🖼️ Image Converter</h1>
+                <p data-i18n="tools.image-converter.desc">Convert images between formats</p>
             </div>
             <div class="tool-content">
                 <div class="upload-area" onclick="document.getElementById('fileInput').click()">
@@ -75,7 +75,7 @@
                     <input type="file" id="fileInput" accept="image/*" onchange="handleFile(event)">
                 </div>
                 <div class="format-select" id="formatControl" style="display: none;">
-                    <label>Convert to:</label>
+                    <label data-i18n="converter.format_label">Convert to:</label>
                     <select id="format">
                         <option value="image/png">PNG</option>
                         <option value="image/jpeg">JPEG</option>
@@ -84,8 +84,8 @@
                     </select>
                 </div>
                 <div class="btn-group" id="btnGroup" style="display: none;">
-                    <button class="btn btn-primary" onclick="convert()">Convert</button>
-                    <button class="btn btn-primary" onclick="download()">Download</button>
+                    <button class="btn btn-primary" id="convertBtn" data-i18n="converter.convert">Convert</button>
+                    <button class="btn btn-primary" id="downloadBtn" data-i18n="converter.download">Download</button>
                 </div>
                 <div class="preview" id="preview"></div>
             </div>
@@ -139,6 +139,10 @@
         function download() {
             convert();
         }
+        
+        // 绑定按钮点击事件
+        document.getElementById('convertBtn').addEventListener('click', convert);
+        document.getElementById('downloadBtn').addEventListener('click', download);
         
         if (typeof gtag !== 'undefined') {
             gtag('event', 'tool_open', { tool: 'image-converter' });
