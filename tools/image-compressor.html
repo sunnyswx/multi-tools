@@ -68,7 +68,7 @@
 </head>
 <body>
     <div class="container">
-        <a href="../" class="back-btn">← Back to Home</a>
+        <a href="../" class="back-btn" data-i18n="common.back_to_home">← Back to Home/a>
         <div class="tool-container">
             <div class="tool-header">
                 <h1 data-i18n="tools.image-compressor.name">🗜️ Image Compressor</h1>
@@ -77,8 +77,8 @@
             <div class="tool-content">
                 <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
                     <div style="font-size: 3rem; margin-bottom: 15px;">📁</div>
-                    <h3>Click to upload image</h3>
-                    <p>or drag and drop</p>
+                    <h3 data-i18n="common.click_to_upload">Click to upload image</h3>
+                    <p data-i18n="common.or_drag_drop">or drag and drop</p>
                     <input type="file" id="fileInput" accept="image/*" onchange="handleFile(event)">
                 </div>
                 <div class="quality-slider" id="qualityControl" style="display: none;">
@@ -94,8 +94,8 @@
                     <p><strong>Reduction:</strong> <span id="reduction">-</span></p>
                 </div>
                 <div class="btn-group">
-                    <button class="btn btn-primary" id="compressBtn" style="display: none;" onclick="compress()">Compress</button>
-                    <button class="btn btn-secondary" id="downloadBtn" style="display: none;" onclick="download()">Download</button>
+                    <button class="btn btn-primary" id="compressBtn" data-i18n="common.compress">Compress/button>
+                    <button class="btn btn-secondary" id="downloadBtn" data-i18n="common.download">Download/button>
                 </div>
             </div>
         </div>
