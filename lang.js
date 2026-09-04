@@ -35,7 +35,7 @@ const translations = {
       'image-compressor-unit-kb': 'KB',
       'image-compressor-unit-mb': 'MB',
       'image-compressor-unit-gb': 'GB',
-    }
+    },
       'image-compressor-page': { name: 'Image Compressor', desc: 'Compress images online for free' },
       'image-converter': { name: 'Image Converter', desc: 'Convert images between JPG, PNG, WebP formats online.' },
       'image-resizer': { name: 'Image Resizer', desc: 'Resize images to custom dimensions online.' },
