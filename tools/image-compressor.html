@@ -101,83 +101,9 @@
         </div>
     </div>
     <script>
-            <script>
-        // 语言初始化会在 DOMContentLoaded 中统一处理
-        console.log('[ImageCompressor] Script loaded');
-            debugTranslations();
-        });
-    </script>
-    
-    <style>
-        .tool-container { max-width: 900px; margin: 0 auto; padding: 20px; }
-        .tool-header { text-align: center; margin-bottom: 30px; }
-        .tool-header h1 { color: #333; font-size: 2rem; margin-bottom: 10px; }
-        .tool-header p { color: #666; }
-        .tool-content { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
-        .upload-area { border: 3px dashed #e0e0e0; border-radius: 15px; padding: 50px; text-align: center; cursor: pointer; transition: all 0.3s; }
-        .upload-area:hover { border-color: #667eea; background: #f8f9fa; }
-        .upload-area input { display: none; }
-        .preview-container { display: none; margin-top: 20px; }
-        .preview-container img { max-width: 100%; border-radius: 10px; }
-        .quality-slider { margin: 20px 0; }
-        .quality-slider label { display: block; margin-bottom: 10px; font-weight: 600; }
-        input[type="range"] { width: 100%; }
-        .result-info { display: none; margin-top: 20px; padding: 20px; background: #f8f9fa; border-radius: 10px; }
-        .result-info p { margin: 10px 0; }
-        .btn-group { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
-        .btn { padding: 12px 30px; border: none; border-radius: 25px; font-size: 16px; cursor: pointer; transition: all 0.3s; }
-        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
-        .btn-secondary { background: #f0f0f0; color: #333; }
-        .language-selector { margin-top: 30px; text-align: center; }
-        .language-selector select { padding: 10px 20px; font-size: 16px; border: none; border-radius: 25px; background: #667eea; color: white; cursor: pointer; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <a href="../" class="back-btn">← Back to Home</a>
-        <div class="tool-container">
-            <div class="tool-header">
-                <h1 data-i18n="tools.image-compressor.name">🗜️ Image Compressor</h1>
-                <p data-i18n="tools.image-compressor.desc">Compress images online for free</p>
-            </div>
-            <div class="tool-content">
-                <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
-                    <div style="font-size: 3rem; margin-bottom: 15px;">📁</div>
-                    <h3>Click to upload image</h3>
-                    <p>or drag and drop</p>
-                    <input type="file" id="fileInput" accept="image/*" onchange="handleFile(event)">
-                </div>
-                <div class="quality-slider" id="qualityControl" style="display: none;">
-                    <label>Compression Quality: <span id="qualityValue">80</span>%</label>
-                    <input type="range" id="quality" min="10" max="100" value="80" oninput="updateQuality()">
-                </div>
-                <div class="preview-container" id="previewContainer">
-                    <img id="preview" src="" alt="Preview">
-                </div>
-                <div class="result-info" id="resultInfo">
-                    <p><strong>Original Size:</strong> <span id="originalSize">-</span></p>
-                    <p><strong>Compressed Size:</strong> <span id="compressedSize">-</span></p>
-                    <p><strong>Reduction:</strong> <span id="reduction">-</span></p>
-                </div>
-                <div class="btn-group">
-                    <button class="btn btn-primary" id="compressBtn" style="display: none;" onclick="compress()">Compress</button>
-                    <button class="btn btn-secondary" id="downloadBtn" style="display: none;" onclick="download()">Download</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script>
         let originalFile = null;
         let compressedBlob = null;
         
-        // Simple language initialization
-        const lang = getLanguage();
-        applyLanguage(lang);
-        console.log('Language initialized:', lang);
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            initLanguage();
             
             // Also listen for language changes
             const langSelect = document.getElementById('langSelect');
