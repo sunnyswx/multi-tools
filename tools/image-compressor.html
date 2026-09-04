@@ -213,6 +213,11 @@
         if (typeof gtag !== 'undefined') {
             gtag('event', 'tool_open', { tool: 'image-compressor' });
         }
+
+        // 绑定按钮点击事件
+        document.getElementById('compressBtn').addEventListener('click', compress);
+        document.getElementById('downloadBtn').addEventListener('click', download);
+
     </script>
 </body>
 </html>

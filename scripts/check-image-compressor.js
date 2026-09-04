@@ -4,18 +4,36 @@ const path = 'C:/Users/s/Documents/functional-website/multi-tools/tools/image-co
 
 let content = fs.readFileSync(path, 'utf8');
 
-// 检查当前数据-i18n属性
-console.log('检查 image-compressor.html 中的 data-i18n 属性...\n');
+// 检查所有函数定义
+const functions = ['handleFile', 'updateQuality', 'compress', 'download', 'formatBytes', 'getUnit'];
+console.log('=== 检查函数定义 ===');
+functions.forEach(fn => {
+  const hasFunction = content.includes(`function ${fn}`);
+  console.log(`${hasFunction ? '✅' : '❌'} ${fn}(): ${hasFunction ? '已定义' : '未定义'}`);
+});
 
-const matches = content.matchAll(/data-i18n="([^"]+)"/g);
-for (const match of matches) {
-  console.log(`找到: ${match[1]}`);
+// 检查事件绑定
+console.log('\n=== 检查事件绑定 ===');
+const events = [
+  ['onclick', 'fileInput'],
+  ['oninput', 'quality'],
+  ['onclick', 'compressBtn'],
+  ['onclick', 'downloadBtn']
+];
+
+events.forEach(([event, id]) => {
+  const hasEvent = content.includes(`${event}="${id}"`) || content.includes(`id="${id}"`) && content.includes(event);
+  console.log(`${hasEvent ? '✅' : '❌'} ${event} on #${id}`);
+});
+
+// 检查按钮绑定
+console.log('\n=== 检查按钮绑定 ===');
+if (content.includes('id="compressBtn"')) {
+  const hasClickHandler = content.includes('compressBtn') && (content.includes('click') || content.includes('onclick'));
+  console.log(`${hasClickHandler ? '✅' : '❌'} compressBtn 有点击处理`);
 }
 
-// 检查 JavaScript 代码
-console.log('\n检查 JavaScript 代码...\n');
-const jsMatches = content.match(/translations\[lang\]\['([^']+)'\]/g);
-if (jsMatches) {
-  console.log('JavaScript 中使用的翻译键:');
-  jsMatches.forEach(m => console.log(`  ${m}`));
+if (content.includes('id="downloadBtn"')) {
+  const hasClickHandler = content.includes('downloadBtn') && (content.includes('click') || content.includes('onclick'));
+  console.log(`${hasClickHandler ? '✅' : '❌'} downloadBtn 有点击处理`);
 }
