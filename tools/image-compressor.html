@@ -32,6 +32,13 @@
             console.log('[AutoLang] Browser language:', browserLang, '=> Using:', lang);
         })();
     </script>
+    <script>
+        // 立即初始化语言
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('[Init] DOM loaded, calling initLanguage');
+            initLanguage();
+        });
+    </script>
     
     <style>
         .tool-container { max-width: 900px; margin: 0 auto; padding: 20px; }
