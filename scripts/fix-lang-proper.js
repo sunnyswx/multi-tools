@@ -4,108 +4,76 @@ const path = 'C:/Users/s/Documents/functional-website/multi-tools/lang.js';
 
 let content = fs.readFileSync(path, 'utf8');
 
-// 找到 applyLanguage 函数的位置
-const funcStart = content.indexOf('function applyLanguage(lang) {');
-const funcEndMarker = content.indexOf('// Update direction for RTL languages', funcStart);
+// 问题：ui 对象被错误地插入到 tools 对象内部
+// 正确结构：tools 对象应该先关闭，然后才是 ui 对象
 
-if (funcStart === -1 || funcEndMarker === -1) {
-  console.log('未找到函数');
-  process.exit(1);
+// 修复方案：将 ui 对象移动到 tools 对象之后
+
+// 查找第一个语言（en）的完整结构
+const enMatch = content.match(/en: \{[\s\S]*?seo: 'SEO Tools'\s*\},\s*tools: \{/);
+if (enMatch) {
+  console.log('找到 en 语言的 tools 开始位置');
 }
 
-// 找到函数结束的大括号
-let braceCount = 0;
-let funcEnd = funcStart;
-for (let i = funcStart; i < content.length; i++) {
-  if (content[i] === '{') braceCount++;
-  if (content[i] === '}') braceCount--;
-  if (braceCount === 0) {
-    funcEnd = i + 1;
-    break;
+// 查找并修复所有语言的 ui 对象位置问题
+const lines = content.split('\n');
+const newLines = [];
+let skipUntilToolsEnd = false;
+let toolsDepth = 0;
+let uiBlock = [];
+let uiStarted = false;
+
+for (let i = 0; i < lines.length; i++) {
+  const line = lines[i];
+  
+  // 检测 tools: {
+  if (line.includes('tools: {')) {
+    toolsDepth = 1;
+    skipUntilToolsEnd = true;
+    newLines.push(line);
+    continue;
   }
+  
+  // 在 tools 对象内部
+  if (skipUntilToolsEnd) {
+    // 检测 ui: {
+    if (line.includes('ui: {')) {
+      uiStarted = true;
+      uiBlock = [line];
+      continue;
+    }
+    
+    // 收集 ui 块的行
+    if (uiStarted) {
+      uiBlock.push(line);
+      // 检测 ui 块结束
+      if (line.trim() === '},') {
+        uiStarted = false;
+        // 不添加到 newLines，稍后在 tools 对象后添加
+        continue;
+      }
+      continue;
+    }
+    
+    // 检测 tools 对象结束
+    if (line.trim() === '}' && toolsDepth === 1) {
+      // 添加 tools 结束
+      newLines.push(line);
+      // 添加 ui 块
+      newLines.push(...uiBlock);
+      uiBlock = [];
+      skipUntilToolsEnd = false;
+      toolsDepth = 0;
+      continue;
+    }
+    
+    toolsDepth += line.includes('{') ? 1 : 0;
+    toolsDepth -= line.includes('}') ? 1 : 0;
+  }
+  
+  newLines.push(line);
 }
 
-console.log('函数开始位置:', funcStart);
-console.log('函数结束位置:', funcEnd);
-console.log('函数长度:', funcEnd - funcStart);
-
-// 新的 applyLanguage 函数（支持嵌套键）
-const newFunction = `function applyLanguage(lang) {
-  console.log('[ApplyLang] Starting applyLanguage for:', lang);
-  
-  const t = translations[lang] || translations.en;
-  console.log('[ApplyLang] translations[', lang, ']:', t ? 'found' : 'not found');
-  
-  // Update HTML lang attribute
-  document.documentElement.lang = lang;
-  
-  // Update all elements with data-i18n
-  const elements = document.querySelectorAll('[data-i18n]');
-  console.log('[ApplyLang] Found', elements.length, 'elements with data-i18n');
-  
-  elements.forEach((el, index) => {
-    const key = el.getAttribute('data-i18n');
-    console.log('[ApplyLang] Processing element', index + 1, ':', key);
-    
-    // 支持嵌套键访问 (tools.image-compressor.name)
-    const keys = key.split('.');
-    let value = t;
-    let found = true;
-    
-    for (const k of keys) {
-      if (value && value[k] !== undefined) {
-        value = value[k];
-      } else {
-        found = false;
-        console.log('[ApplyLang] Key not found:', k);
-        console.log('[ApplyLang] Available keys:', value ? Object.keys(value).slice(0, 5).join(', ') : 'none');
-        break;
-      }
-    }
-    
-    if (found && value) {
-      if (typeof value === 'object') {
-        el.textContent = value.name || value.desc || '';
-      } else {
-        el.textContent = value;
-      }
-      console.log('[ApplyLang] Updated:', el.tagName, '->', el.textContent.substring(0, 30));
-    }
-  });
-  
-  // Update all elements with data-i18n-placeholder
-  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-    const key = el.getAttribute('data-i18n-placeholder');
-    // 支持嵌套键
-    const keys = key.split('.');
-    let value = t;
-    for (const k of keys) {
-      if (value && value[k]) value = value[k];
-      else return;
-    }
-    if (value) el.placeholder = value;
-  });
-  
-  // Update language selector
-  const langSelect = document.getElementById('langSelect');
-  if (langSelect) {
-    langSelect.value = lang;
-  }
-  
-  // Update direction for RTL languages
-  if (lang === 'ar') {
-    document.documentElement.dir = 'rtl';
-  } else {
-    document.documentElement.dir = 'ltr';
-  }
-  
-  console.log('[ApplyLang] Completed for lang:', lang);
-}`;
-
-console.log('新函数长度:', newFunction.length);
-
-// 替换函数
-content = content.substring(0, funcStart) + newFunction + content.substring(funcEnd);
-
+content = newLines.join('\n');
 fs.writeFileSync(path, content);
-console.log('已替换 applyLanguage 函数');
+console.log('✅ lang.js 已重新组织结构');
