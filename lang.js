@@ -138,7 +138,7 @@ const translations = {
       'image-compressor-unit-kb': 'KB',
       'image-compressor-unit-mb': 'MB',
       'image-compressor-unit-gb': 'GB',
-    }
+    },
       'image-compressor-page': { name: '图片压缩工具', desc: '免费在线压缩图片' },
       'image-converter': { name: '图片格式转换', desc: '在线转换图片格式为JPG、PNG、WebP' },
       'image-resizer': { name: '图片尺寸调整', desc: '自定义尺寸调整图片大小' },
@@ -231,7 +231,7 @@ const translations = {
       'image-compressor-unit-kb': 'KB',
       'image-compressor-unit-mb': 'MB',
       'image-compressor-unit-gb': 'GB',
-    }
+    },
       'image-compressor-page': { name: '画像圧縮ツール', desc: 'オンラインで画像を無料で圧縮' },
       'image-converter': { name: '画像変換ツール', desc: '画像形式をJPG、PNG、WebPに変換' },
       'image-resizer': { name: '画像リサイズツール', desc: 'カスタムサイズで画像をリサイズ' },
@@ -291,7 +291,7 @@ const translations = {
       'image-compressor-unit-kb': 'KB',
       'image-compressor-unit-mb': 'MB',
       'image-compressor-unit-gb': 'GB',
-    }
+    },
       'image-compressor-page': { name: '이미지 압축기', desc: '온라인으로 이미지를 무료로 압축' },
       'color-picker': { name: '색상 선택기', desc: '색상을 선택하고 HEX, RGB, HSL 값을 얻으세요' },
       'json-formatter': { name: 'JSON 포매터', desc: 'JSON 데이터를 즉시 포맷팅' },
@@ -397,7 +397,7 @@ const translations = {
       'image-compressor-unit-kb': 'Ko',
       'image-compressor-unit-mb': 'Mo',
       'image-compressor-unit-gb': 'Go',
-    }
+    },
       'image-compressor-page': { name: 'Compresseur d\'Images', desc: 'Compressez des images en ligne gratuitement' },
       'color-picker': { name: "Sélecteur de Couleurs", desc: 'Sélectionnez des couleurs et obtenez les valeurs HEX, RGB, HSL' },
       'json-formatter': { name: 'Formateur JSON', desc: 'Formatez des données JSON instantanément' },
@@ -454,7 +454,7 @@ const translations = {
       'image-compressor-unit-kb': 'KB',
       'image-compressor-unit-mb': 'MB',
       'image-compressor-unit-gb': 'GB',
-    }
+    },
       'image-compressor-page': { name: 'Bild-Kompressor', desc: 'Komprimieren Sie Bilder online kostenlos' },
       'color-picker': { name: 'Farbauswahl', desc: 'Wählen Sie Farben und erhalten Sie HEX, RGB, HSL Werte' },
       'json-formatter': { name: 'JSON-Formatter', desc: 'Formatieren Sie JSON-Daten sofort' },
@@ -512,7 +512,7 @@ const translations = {
       'image-compressor-unit-kb': 'КБ',
       'image-compressor-unit-mb': 'МБ',
       'image-compressor-unit-gb': 'ГБ',
-    }
+    },
       'image-compressor-page': { name: 'Компрессор Изображений', desc: 'Бесплатно сжимайте изображения онлайн' },
       'color-picker': { name: 'Селектор Цвета', desc: 'Выбирайте цвета и получайте значения HEX, RGB, HSL' },
       'json-formatter': { name: 'JSON Форматировщик', desc: 'Мгновенно форматируйте JSON данные' },
@@ -569,7 +569,7 @@ const translations = {
       'image-compressor-unit-kb': 'كيلوبايت',
       'image-compressor-unit-mb': 'ميغابايت',
       'image-compressor-unit-gb': 'غيغابايت',
-    }
+    },
       'image-compressor-page': { name: 'ضاغط الصور', desc: 'اضغط الصور عبر الإنترنت مجانا' },
       'color-picker': { name: 'منتقي الألوان', desc: 'اختر الألوان واحصل على قيم HEX و RGB و HSL' },
       'json-formatter': { name: 'منسق JSON', desc: 'نسق بيانات JSON فورا' },
