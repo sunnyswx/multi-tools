@@ -81,16 +81,6 @@ const translations = {
       'image-compressor-name': { name: 'Image Compressor', desc: 'Compress images online for free' },
       'image-compressor-desc': { desc: 'Compress images online for free' }
     }
-    ui: {
-      'image-compressor-quality_label': 'Compression Quality',
-      'image-compressor-original_size': 'Original Size',
-      'image-compressor-compressed_size': 'Compressed Size',
-      'image-compressor-reduction': 'Reduction',
-      'image-compressor-unit-bytes': 'Bytes',
-      'image-compressor-unit-kb': 'KB',
-      'image-compressor-unit-mb': 'MB',
-      'image-compressor-unit-gb': 'GB',
-    },
   },
   
   zh: {
@@ -174,16 +164,6 @@ const translations = {
       'image-compressor-name': { name: '图片压缩工具', desc: '免费在线压缩图片' },
       'image-compressor-desc': { desc: '免费在线压缩图片' }
     }
-    ui: {
-      'image-compressor-quality_label': '压缩质量',
-      'image-compressor-original_size': '原始大小',
-      'image-compressor-compressed_size': '压缩后大小',
-      'image-compressor-reduction': '压缩率',
-      'image-compressor-unit-bytes': '字节',
-      'image-compressor-unit-kb': 'KB',
-      'image-compressor-unit-mb': 'MB',
-      'image-compressor-unit-gb': 'GB',
-    },
   },
   
   ja: {
@@ -234,16 +214,6 @@ const translations = {
       'image-compressor-name': { name: '画像圧縮ツール', desc: 'オンラインで画像を圧縮' },
       'image-compressor-desc': { desc: 'オンラインで画像を圧縮' }
     }
-    ui: {
-      'image-compressor-quality_label': '圧縮品質',
-      'image-compressor-original_size': '元のサイズ',
-      'image-compressor-compressed_size': '圧縮後サイズ',
-      'image-compressor-reduction': '圧縮率',
-      'image-compressor-unit-bytes': 'バイト',
-      'image-compressor-unit-kb': 'KB',
-      'image-compressor-unit-mb': 'MB',
-      'image-compressor-unit-gb': 'GB',
-    },
   },
   
   ko: {
@@ -292,16 +262,6 @@ const translations = {
       'image-compressor-name': { name: '이미지 압축기', desc: '온라인으로 이미지 압축' },
       'image-compressor-desc': { desc: '온라인으로 이미지 압축' }
     }
-    ui: {
-      'image-compressor-quality_label': '압축 품질',
-      'image-compressor-original_size': '원본 크기',
-      'image-compressor-compressed_size': '압축 후 크기',
-      'image-compressor-reduction': '압축률',
-      'image-compressor-unit-bytes': '바이트',
-      'image-compressor-unit-kb': 'KB',
-      'image-compressor-unit-mb': 'MB',
-      'image-compressor-unit-gb': 'GB',
-    },
   },
   
   es: {
@@ -397,16 +357,6 @@ const translations = {
       'image-compressor-name': { name: 'Compresseur d\'Images', desc: 'Compressez des images en ligne' },
       'image-compressor-desc': { desc: 'Compressez des images en ligne' }
     }
-    ui: {
-      'image-compressor-quality_label': 'Qualité de compression',
-      'image-compressor-original_size': 'Taille d'origine',
-      'image-compressor-compressed_size': 'Taille compressée',
-      'image-compressor-reduction': 'Réduction',
-      'image-compressor-unit-bytes': 'Octets',
-      'image-compressor-unit-kb': 'Ko',
-      'image-compressor-unit-mb': 'Mo',
-      'image-compressor-unit-gb': 'Go',
-    },
   },
   
   de: {
@@ -455,16 +405,6 @@ const translations = {
       'image-compressor-name': { name: 'Bild-Kompressor', desc: 'Komprimieren Sie Bilder online' },
       'image-compressor-desc': { desc: 'Komprimieren Sie Bilder online' }
     }
-    ui: {
-      'image-compressor-quality_label': 'Kompressionsqualität',
-      'image-compressor-original_size': 'Originalgröße',
-      'image-compressor-compressed_size': 'Komprimierte Größe',
-      'image-compressor-reduction': 'Reduzierung',
-      'image-compressor-unit-bytes': 'Bytes',
-      'image-compressor-unit-kb': 'KB',
-      'image-compressor-unit-mb': 'MB',
-      'image-compressor-unit-gb': 'GB',
-    },
   },
   
   ru: {
@@ -512,16 +452,6 @@ const translations = {
       'image-compressor-name': { name: 'Компрессор Изображений', desc: 'Сжимайте изображения онлайн' },
       'image-compressor-desc': { desc: 'Сжимайте изображения онлайн' }
     }
-    ui: {
-      'image-compressor-quality_label': 'Качество сжатия',
-      'image-compressor-original_size': 'Исходный размер',
-      'image-compressor-compressed_size': 'Сжатый размер',
-      'image-compressor-reduction': 'Сжатие',
-      'image-compressor-unit-bytes': 'Байт',
-      'image-compressor-unit-kb': 'КБ',
-      'image-compressor-unit-mb': 'МБ',
-      'image-compressor-unit-gb': 'ГБ',
-    },
   },
   
   ar: {
@@ -569,16 +499,6 @@ const translations = {
       'image-compressor-name': { name: 'ضاغط الصور', desc: 'اضغط الصور عبر الإنترنت' },
       'image-compressor-desc': { desc: 'اضغط الصور عبر الإنترنت' }
     }
-    ui: {
-      'image-compressor-quality_label': 'جودة الضغط',
-      'image-compressor-original_size': 'الحجم الأصلي',
-      'image-compressor-compressed_size': 'الحجم المضغوط',
-      'image-compressor-reduction': 'التقليل',
-      'image-compressor-unit-bytes': 'بايت',
-      'image-compressor-unit-kb': 'كيلوبايت',
-      'image-compressor-unit-mb': 'ميغابايت',
-      'image-compressor-unit-gb': 'غيغابايت',
-    },
   }
 };
 
