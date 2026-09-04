@@ -1,27 +1,50 @@
 # 📊 语法错误修复报告
 
 **修复时间**: 2026-09-02
-**问题**: lang.js 第 509 行语法错误
+**问题**: image-compressor.html 第144行语法错误
 
 ---
 
 ## ✅ 问题根源
 
-```
-❌ 第 509 行: }unction applyLanguage(lang) {
-❌ 缺少字母 "f"，应该是 "function"
+### 语法错误
+```javascript
+// 第137-144行
+uploadArea.addEventListener('drop', (e) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files[0];
+    if (file && file.type.startsWith('image/')) {
+        handleFile({ target: { files: [file] } });
+    }
+});
+        });  // ❌ 多余的闭合括号！
+
+function handleFile(event) {
 ```
 
-**原因**: 之前的脚本在替换函数时出错，导致 "function" 变成 "}unction"
+### 错误原因
+```
+❌ DOMContentLoaded 事件监听器多了一个 });
+❌ 导致 JavaScript 语法错误: Unexpected token '}'
+```
 
 ---
 
 ## ✅ 已修复
 
-### 修复代码
+### 修复后
 ```javascript
-// 修复语法错误: }unction -> function
-content = content.replace(/}unction applyLanguage/g, 'function applyLanguage');
+// 第137-143行
+uploadArea.addEventListener('drop', (e) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files[0];
+    if (file && file.type.startsWith('image/')) {
+        handleFile({ target: { files: [file] } });
+    }
+});
+        // ✅ 删除了多余的 });
+
+function handleFile(event) {
 ```
 
 ---
@@ -31,21 +54,46 @@ content = content.replace(/}unction applyLanguage/g, 'function applyLanguage');
 ### 测试步骤
 ```
 1. 打开 https://zh8888.dpdns.org/tools/image-compressor.html
-2. 按 F12 打开开发者工具
-3. 切换到 Console 标签
-4. 按 Ctrl+Shift+R 强制刷新
+2. 按 Ctrl+Shift+R 强制刷新
+3. 按 F12 打开开发者工具
+4. 切换到 Console 标签
 5. 查看控制台输出
 ```
 
 ### 期望看到
 ```
-✅ 没有语法错误
 ✅ [AutoLang] Browser language: zh => Using: zh
-✅ [Lang] localStorage: zh
+✅ [Init] DOM loaded, calling initLanguage
 ✅ [ApplyLang] Starting applyLanguage for: zh
-✅ [ApplyLang] Updated: H1 -> 图片压缩工具
+✅ [ApplyLang] Found 7 elements
+✅ [ApplyLang] Processing: common.back_to_home
+✅ [ApplyLang] Updated: A -> 返回首页
+✅ [ApplyLang] Processing: common.click_to_upload
+✅ [ApplyLang] Updated: H3 -> 点击上传
+✅ [ApplyLang] Processing: common.or_drag_drop
+✅ [ApplyLang] Updated: P -> 或拖放文件
+✅ [ApplyLang] Processing: common.compress
+✅ [ApplyLang] Updated: BUTTON -> 压缩
+✅ [ApplyLang] Processing: common.download
+✅ [ApplyLang] Updated: BUTTON -> 下载
+✅ [ApplyLang] Completed for lang: zh
 ```
 
 ---
 
-**雄哥，请测试并告诉我结果！** 🚀
+## 🎯 预期效果
+
+```
+✅ 页面布局正常（不重复）
+✅ 左上角: ← 返回首页
+✅ 标题: 图片压缩工具
+✅ 描述: 免费在线压缩PNG、JPG、WebP图片
+✅ 上传区域: 点击上传
+✅ 提示文字: 或拖放文件
+✅ 按钮: 压缩、下载
+✅ 控制台无语法错误
+```
+
+---
+
+**雄哥，请强制刷新测试并告诉我控制台输出！** 🚀
