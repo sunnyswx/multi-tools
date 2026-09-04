@@ -315,7 +315,7 @@ const translations = {
   fr: {
     site_title: '🛠️ Multi Tools',
     common: {
-    'back_to_home': 'Retour à l'accueil',
+    'back_to_home': 'Retour à l\'accueil',
     'click_to_upload': 'Cliquez pour télécharger',
     'or_drag_drop': 'ou glissez-déposez',
     'compress': 'Compresser',
