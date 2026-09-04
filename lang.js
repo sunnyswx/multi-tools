@@ -437,37 +437,77 @@ function getLanguage() {
 
 // Apply language to page
 function applyLanguage(lang) {
+  console.log('[ApplyLang] Starting applyLanguage for:', lang);
+  
   const t = translations[lang] || translations.en;
+  console.log('[ApplyLang] translations[', lang, ']:', t ? 'found' : 'not found');
+  
+  if (!t) {
+    console.log('[ApplyLang] No translations found for:', lang);
+    console.log('[ApplyLang] Available languages:', Object.keys(translations));
+    return;
+  }
   
   // Update HTML lang attribute
   document.documentElement.lang = lang;
   
   // Update all elements with data-i18n
-  document.querySelectorAll('[data-i18n]').forEach(el => {
+  const elements = document.querySelectorAll('[data-i18n]');
+  console.log('[ApplyLang] Found', elements.length, 'elements with data-i18n');
+  
+  elements.forEach((el, index) => {
     const key = el.getAttribute('data-i18n');
-    if (t[key]) {
-      el.textContent = t[key];
+    console.log('[ApplyLang] Processing element', index + 1, ':', key);
+    
+    // 支持嵌套键访问 (tools.image-compressor.name)
+    const keys = key.split('.');
+    let value = t;
+    let found = true;
+    
+    for (const k of keys) {
+      if (value && value[k] !== undefined) {
+        value = value[k];
+      } else {
+        found = false;
+        console.log('[ApplyLang] Key not found:', k);
+        console.log('[ApplyLang] Available keys:', value ? Object.keys(value).slice(0, 10).join(', ') : 'none');
+        break;
+      }
+    }
+    
+    if (found && value) {
+      if (typeof value === 'object') {
+        el.textContent = value.name || value.desc || '';
+      } else {
+        el.textContent = value;
+      }
+      console.log('[ApplyLang] Updated:', el.tagName, '->', el.textContent.substring(0, 30));
+    } else {
+      console.log('[ApplyLang] Value not found for key:', key);
     }
   });
   
   // Update all elements with data-i18n-placeholder
   document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
     const key = el.getAttribute('data-i18n-placeholder');
-    if (t[key]) {
-      el.placeholder = t[key];
+    const keys = key.split('.');
+    let value = t;
+    for (const k of keys) {
+      if (value && value[k]) value = value[k];
+      else return;
     }
+    if (value) el.placeholder = value;
   });
   
-  // Update language selector
-  const langSelect = document.getElementById('langSelect');
-  if (langSelect) {
-    langSelect.value = lang;
+  // Update direction for RTL languages
+  if (lang === 'ar') {
+    document.documentElement.dir = 'rtl';
+  } else {
+    document.documentElement.dir = 'ltr';
   }
   
-  // Update direction for RTL languages
-  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  console.log('[ApplyLang] Completed for lang:', lang);
 }
-
 // Change language
 function changeLanguage(lang) {
   localStorage.setItem('multi-tools-lang', lang);
