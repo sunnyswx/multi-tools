@@ -26,6 +26,16 @@ const translations = {
     },
     tools: {
       'image-compressor': { name: 'Image Compressor', desc: 'Compress images online for free. Reduce file size while maintaining quality.' },
+    ui: {
+      'image-compressor-quality_label': 'Compression Quality',
+      'image-compressor-original_size': 'Original Size',
+      'image-compressor-compressed_size': 'Compressed Size',
+      'image-compressor-reduction': 'Reduction',
+      'image-compressor-unit-bytes': 'Bytes',
+      'image-compressor-unit-kb': 'KB',
+      'image-compressor-unit-mb': 'MB',
+      'image-compressor-unit-gb': 'GB',
+    }
       'image-compressor-page': { name: 'Image Compressor', desc: 'Compress images online for free' },
       'image-converter': { name: 'Image Converter', desc: 'Convert images between JPG, PNG, WebP formats online.' },
       'image-resizer': { name: 'Image Resizer', desc: 'Resize images to custom dimensions online.' },
@@ -109,6 +119,26 @@ const translations = {
     },
     tools: {
       'image-compressor': { name: '图片压缩工具', desc: '免费在线压缩PNG、JPG、WebP图片，本地处理保护隐私' },
+    ui: {
+      'image-compressor-quality_label': 'Calidad de compresión',
+      'image-compressor-original_size': 'Tamaño original',
+      'image-compressor-compressed_size': 'Tamaño comprimido',
+      'image-compressor-reduction': 'Reducción',
+      'image-compressor-unit-bytes': 'Bytes',
+      'image-compressor-unit-kb': 'KB',
+      'image-compressor-unit-mb': 'MB',
+      'image-compressor-unit-gb': 'GB',
+    }
+    ui: {
+      'image-compressor-quality_label': '压缩质量',
+      'image-compressor-original_size': '原始大小',
+      'image-compressor-compressed_size': '压缩后大小',
+      'image-compressor-reduction': '压缩率',
+      'image-compressor-unit-bytes': '字节',
+      'image-compressor-unit-kb': 'KB',
+      'image-compressor-unit-mb': 'MB',
+      'image-compressor-unit-gb': 'GB',
+    }
       'image-compressor-page': { name: '图片压缩工具', desc: '免费在线压缩图片' },
       'image-converter': { name: '图片格式转换', desc: '在线转换图片格式为JPG、PNG、WebP' },
       'image-resizer': { name: '图片尺寸调整', desc: '自定义尺寸调整图片大小' },
@@ -192,6 +222,16 @@ const translations = {
     },
     tools: {
       'image-compressor': { name: '画像圧縮ツール', desc: 'PNG、JPG、WebP画像を無料で圧縮' },
+    ui: {
+      'image-compressor-quality_label': '圧縮品質',
+      'image-compressor-original_size': '元のサイズ',
+      'image-compressor-compressed_size': '圧縮後サイズ',
+      'image-compressor-reduction': '圧縮率',
+      'image-compressor-unit-bytes': 'バイト',
+      'image-compressor-unit-kb': 'KB',
+      'image-compressor-unit-mb': 'MB',
+      'image-compressor-unit-gb': 'GB',
+    }
       'image-compressor-page': { name: '画像圧縮ツール', desc: 'オンラインで画像を無料で圧縮' },
       'image-converter': { name: '画像変換ツール', desc: '画像形式をJPG、PNG、WebPに変換' },
       'image-resizer': { name: '画像リサイズツール', desc: 'カスタムサイズで画像をリサイズ' },
@@ -242,6 +282,16 @@ const translations = {
     },
     tools: {
       'image-compressor': { name: '이미지 압축기', desc: 'PNG, JPG, WebP 이미지를 무료로 압축' },
+    ui: {
+      'image-compressor-quality_label': '압축 품질',
+      'image-compressor-original_size': '원본 크기',
+      'image-compressor-compressed_size': '압축 후 크기',
+      'image-compressor-reduction': '압축률',
+      'image-compressor-unit-bytes': '바이트',
+      'image-compressor-unit-kb': 'KB',
+      'image-compressor-unit-mb': 'MB',
+      'image-compressor-unit-gb': 'GB',
+    }
       'image-compressor-page': { name: '이미지 압축기', desc: '온라인으로 이미지를 무료로 압축' },
       'color-picker': { name: '색상 선택기', desc: '색상을 선택하고 HEX, RGB, HSL 값을 얻으세요' },
       'json-formatter': { name: 'JSON 포매터', desc: 'JSON 데이터를 즉시 포맷팅' },
@@ -338,6 +388,16 @@ const translations = {
     },
     tools: {
       'image-compressor': { name: "Compresseur d'Images", desc: 'Compressez des images PNG, JPG, WebP gratuitement' },
+    ui: {
+      'image-compressor-quality_label': 'Qualité de compression',
+      'image-compressor-original_size': 'Taille d'origine',
+      'image-compressor-compressed_size': 'Taille compressée',
+      'image-compressor-reduction': 'Réduction',
+      'image-compressor-unit-bytes': 'Octets',
+      'image-compressor-unit-kb': 'Ko',
+      'image-compressor-unit-mb': 'Mo',
+      'image-compressor-unit-gb': 'Go',
+    }
       'image-compressor-page': { name: 'Compresseur d\'Images', desc: 'Compressez des images en ligne gratuitement' },
       'color-picker': { name: "Sélecteur de Couleurs", desc: 'Sélectionnez des couleurs et obtenez les valeurs HEX, RGB, HSL' },
       'json-formatter': { name: 'Formateur JSON', desc: 'Formatez des données JSON instantanément' },
@@ -385,6 +445,16 @@ const translations = {
     },
     tools: {
       'image-compressor': { name: 'Bild-Kompressor', desc: 'Komprimieren Sie PNG, JPG, WebP Bilder kostenlos' },
+    ui: {
+      'image-compressor-quality_label': 'Kompressionsqualität',
+      'image-compressor-original_size': 'Originalgröße',
+      'image-compressor-compressed_size': 'Komprimierte Größe',
+      'image-compressor-reduction': 'Reduzierung',
+      'image-compressor-unit-bytes': 'Bytes',
+      'image-compressor-unit-kb': 'KB',
+      'image-compressor-unit-mb': 'MB',
+      'image-compressor-unit-gb': 'GB',
+    }
       'image-compressor-page': { name: 'Bild-Kompressor', desc: 'Komprimieren Sie Bilder online kostenlos' },
       'color-picker': { name: 'Farbauswahl', desc: 'Wählen Sie Farben und erhalten Sie HEX, RGB, HSL Werte' },
       'json-formatter': { name: 'JSON-Formatter', desc: 'Formatieren Sie JSON-Daten sofort' },
@@ -433,6 +503,16 @@ const translations = {
     },
     tools: {
       'image-compressor': { name: 'Компрессор Изображений', desc: 'Бесплатно сжимайте PNG, JPG, WebP изображения' },
+    ui: {
+      'image-compressor-quality_label': 'Качество сжатия',
+      'image-compressor-original_size': 'Исходный размер',
+      'image-compressor-compressed_size': 'Сжатый размер',
+      'image-compressor-reduction': 'Сжатие',
+      'image-compressor-unit-bytes': 'Байт',
+      'image-compressor-unit-kb': 'КБ',
+      'image-compressor-unit-mb': 'МБ',
+      'image-compressor-unit-gb': 'ГБ',
+    }
       'image-compressor-page': { name: 'Компрессор Изображений', desc: 'Бесплатно сжимайте изображения онлайн' },
       'color-picker': { name: 'Селектор Цвета', desc: 'Выбирайте цвета и получайте значения HEX, RGB, HSL' },
       'json-formatter': { name: 'JSON Форматировщик', desc: 'Мгновенно форматируйте JSON данные' },
@@ -480,6 +560,16 @@ const translations = {
     },
     tools: {
       'image-compressor': { name: 'ضاغط الصور', desc: 'اضغط الصور PNG, JPG, WebP مجانا' },
+    ui: {
+      'image-compressor-quality_label': 'جودة الضغط',
+      'image-compressor-original_size': 'الحجم الأصلي',
+      'image-compressor-compressed_size': 'الحجم المضغوط',
+      'image-compressor-reduction': 'التقليل',
+      'image-compressor-unit-bytes': 'بايت',
+      'image-compressor-unit-kb': 'كيلوبايت',
+      'image-compressor-unit-mb': 'ميغابايت',
+      'image-compressor-unit-gb': 'غيغابايت',
+    }
       'image-compressor-page': { name: 'ضاغط الصور', desc: 'اضغط الصور عبر الإنترنت مجانا' },
       'color-picker': { name: 'منتقي الألوان', desc: 'اختر الألوان واحصل على قيم HEX و RGB و HSL' },
       'json-formatter': { name: 'منسق JSON', desc: 'نسق بيانات JSON فورا' },
