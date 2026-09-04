@@ -437,75 +437,7 @@ function getLanguage() {
 
 // Apply language to page
 function applyLanguage(lang) {
-  console.log('[ApplyLang] Starting applyLanguage for:', lang);
-  
   const t = translations[lang] || translations.en;
-  console.log('[ApplyLang] translations[', lang, ']:', t ? 'found' : 'not found');
-  
-  // Update HTML lang attribute
-  document.documentElement.lang = lang;
-  
-  // Update all elements with data-i18n
-  const elements = document.querySelectorAll('[data-i18n]');
-  console.log('[ApplyLang] Found', elements.length, 'elements with data-i18n');
-  
-  elements.forEach((el, index) => {
-    const key = el.getAttribute('data-i18n');
-    console.log('[ApplyLang] Processing element', index + 1, ':', key);
-    
-    // 支持嵌套键访问 (tools.image-compressor.name)
-    const keys = key.split('.');
-    let value = t;
-    let found = true;
-    
-    for (const k of keys) {
-      if (value && value[k] !== undefined) {
-        value = value[k];
-      } else {
-        found = false;
-        console.log('[ApplyLang] Key not found:', k);
-        console.log('[ApplyLang] Available keys:', value ? Object.keys(value).slice(0, 5).join(', ') : 'none');
-        break;
-      }
-    }
-    
-    if (found && value) {
-      if (typeof value === 'object') {
-        el.textContent = value.name || value.desc || '';
-      } else {
-        el.textContent = value;
-      }
-      console.log('[ApplyLang] Updated:', el.tagName, '->', el.textContent.substring(0, 30));
-    }
-  });
-  
-  // Update all elements with data-i18n-placeholder
-  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-    const key = el.getAttribute('data-i18n-placeholder');
-    // 支持嵌套键
-    const keys = key.split('.');
-    let value = t;
-    for (const k of keys) {
-      if (value && value[k]) value = value[k];
-      else return;
-    }
-    if (value) el.placeholder = value;
-  });
-  
-  // Update language selector
-  const langSelect = document.getElementById('langSelect');
-  if (langSelect) {
-    langSelect.value = lang;
-  }
-  
-  // Update direction for RTL languages
-  if (lang === 'ar') {
-    document.documentElement.dir = 'rtl';
-  } else {
-    document.documentElement.dir = 'ltr';
-  }
-  
-  console.log('[ApplyLang] Completed for lang:', lang);
   
   // Update HTML lang attribute
   document.documentElement.lang = lang;
