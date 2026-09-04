@@ -2,7 +2,60 @@
 const translations = {
   en: {
     site_title: '🛠️ Multi Tools',
-    site_subtitle: '46+ Free Online Tools for Everyone',
+    site_subtitle: '46+ Free Online Tools function applyLanguage(lang) {
+  console.log('[ApplyLang] Starting applyLanguage for:', lang);
+  
+  // 检查 translations 对象
+  console.log('[ApplyLang] translations object:', typeof translations);
+  console.log('[ApplyLang] translations keys:', Object.keys(translations).join(', '));
+  
+  const t = translations[lang];
+  console.log('[ApplyLang] translations[', lang, ']:', t ? 'found' : 'not found');
+  
+  if (!t) {
+    console.log('[ApplyLang] No translations found for:', lang);
+    console.log('[ApplyLang] Available languages:', Object.keys(translations));
+    return;
+  }
+  
+  // 更新所有带 data-i18n 属性的元素
+  const elements = document.querySelectorAll('[data-i18n]');
+  console.log('[ApplyLang] Found', elements.length, 'elements with data-i18n');
+  
+  elements.forEach((el, index) => {
+    const key = el.getAttribute('data-i18n');
+    console.log('[ApplyLang] Processing element', index + 1, ':', key);
+    
+    // 支持嵌套键访问
+    const keys = key.split('.');
+    let value = t;
+    let found = true;
+    
+    for (const k of keys) {
+      if (value && value[k] !== undefined) {
+        value = value[k];
+      } else {
+        found = false;
+        console.log('[ApplyLang] Key not found:', k, 'in', typeof value);
+        console.log('[ApplyLang] Available keys:', value ? Object.keys(value).slice(0, 10).join(', ') : 'none');
+        break;
+      }
+    }
+    
+    if (found && value) {
+      if (typeof value === 'object') {
+        el.textContent = value.name || value.desc || '';
+      } else {
+        el.textContent = value;
+      }
+      console.log('[ApplyLang] Updated:', el.tagName, '->', el.textContent.substring(0, 30));
+    } else {
+      console.log('[ApplyLang] Value not found for key:', key);
+    }
+  });
+  
+  console.log('[ApplyLang] Completed for lang:', lang);
+}or Everyone',
     search_placeholder: 'Search tools...',
     footer_text: 'Free online tools for developers, designers, and everyone.',
     categories: {
