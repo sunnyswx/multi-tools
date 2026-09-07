@@ -20,13 +20,11 @@
             const browserLang = navigator.language.split('-')[0];
             const supportedLangs = ['en', 'zh', 'ja', 'ko', 'es', 'fr', 'de', 'ru', 'ar'];
             
-            // 检查浏览器语言是否在支持列表中
-            let lang = 'en'; // 默认英文
+            let lang = 'en';
             if (supportedLangs.includes(browserLang)) {
                 lang = browserLang;
             }
             
-            // 保存到 localStorage
             localStorage.setItem('multi-tools-lang', lang);
             
             console.log('[AutoLang] Browser language:', browserLang, '=> Using:', lang);
@@ -47,23 +45,71 @@
         .tool-header h1 { color: #333; font-size: 2rem; margin-bottom: 10px; }
         .tool-header p { color: #666; }
         .tool-content { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
-        .upload-area { border: 3px dashed #e0e0e0; border-radius: 15px; padding: 50px; text-align: center; cursor: pointer; transition: all 0.3s; }
+        
+        /* 上传区域样式 */
+        .upload-area { 
+            border: 3px dashed #e0e0e0; 
+            border-radius: 15px; 
+            padding: 50px; 
+            text-align: center; 
+            cursor: pointer; 
+            transition: all 0.3s;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
         .upload-area:hover { border-color: #667eea; background: #f8f9fa; }
+        .upload-area.has-image { padding: 20px; border-style: solid; border-color: #667eea; }
         .upload-area input { display: none; }
-        .preview-container { display: none; margin-top: 20px; }
-        .preview-container img { max-width: 100%; border-radius: 10px; }
+        .upload-placeholder { pointer-events: none; }
+        .upload-preview { display: none; width: 100%; }
+        .upload-preview img { max-width: 100%; max-height: 400px; border-radius: 10px; }
+        .file-info { margin-top: 10px; color: #666; font-size: 14px; }
+        
+        /* 质量滑块 */
         .quality-slider { margin: 20px 0; }
         .quality-slider label { display: block; margin-bottom: 10px; font-weight: 600; }
         input[type="range"] { width: 100%; }
-        .result-info { display: none; margin-top: 20px; padding: 20px; background: #f8f9fa; border-radius: 10px; }
+        
+        /* 结果区域 */
+        .result-section { display: none; margin-top: 20px; padding-top: 20px; border-top: 2px solid #e0e0e0; }
+        .result-info { padding: 20px; background: #f8f9fa; border-radius: 10px; margin-bottom: 20px; }
         .result-info p { margin: 10px 0; }
+        .result-info .highlight { color: #667eea; font-weight: 600; }
+        
+        /* 压缩后图片预览 */
+        .compressed-preview { margin-top: 20px; text-align: center; }
+        .compressed-preview img { max-width: 100%; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .compressed-preview p { color: #666; margin-top: 10px; font-size: 14px; }
+        
+        /* 按钮组 */
         .btn-group { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
         .btn { padding: 12px 30px; border: none; border-radius: 25px; font-size: 16px; cursor: pointer; transition: all 0.3s; }
         .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
+        .btn-primary:disabled { background: #ccc; cursor: not-allowed; transform: none; box-shadow: none; }
         .btn-secondary { background: #f0f0f0; color: #333; }
+        .btn-secondary:hover { background: #e0e0e0; }
+        .btn-secondary:disabled { background: #f0f0f0; color: #ccc; cursor: not-allowed; }
+        
         .language-selector { margin-top: 30px; text-align: center; }
         .language-selector select { padding: 10px 20px; font-size: 16px; border: none; border-radius: 25px; background: #667eea; color: white; cursor: pointer; }
+        
+        /* 加载动画 */
+        .loading { display: none; margin: 20px 0; text-align: center; }
+        .loading-spinner { 
+            width: 40px; 
+            height: 40px; 
+            border: 4px solid #f3f3f3; 
+            border-top: 4px solid #667eea; 
+            border-radius: 50%; 
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
@@ -75,27 +121,49 @@
                 <p data-i18n="tools.image-compressor.desc">Compress images online for free</p>
             </div>
             <div class="tool-content">
+                <!-- 上传区域 -->
                 <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
-                    <div style="font-size: 3rem; margin-bottom: 15px;">📁</div>
-                    <h3 data-i18n="common.click_to_upload">Click to upload image</h3>
-                    <p data-i18n="common.or_drag_drop">or drag and drop</p>
+                    <div class="upload-placeholder" id="uploadPlaceholder">
+                        <div style="font-size: 3rem; margin-bottom: 15px;">📁</div>
+                        <h3 data-i18n="common.click_to_upload">Click to upload image</h3>
+                        <p data-i18n="common.or_drag_drop">or drag and drop</p>
+                    </div>
+                    <div class="upload-preview" id="uploadPreview">
+                        <img id="previewImg" src="" alt="Preview">
+                        <div class="file-info" id="fileInfo"></div>
+                    </div>
                     <input type="file" id="fileInput" accept="image/*" onchange="handleFile(event)">
                 </div>
+                
+                <!-- 质量滑块 -->
                 <div class="quality-slider" id="qualityControl" style="display: none;">
                     <label><span data-i18n="quality_label">Compression Quality</span>: <span id="qualityValue">80</span>%</label>
                     <input type="range" id="quality" min="10" max="100" value="80" oninput="updateQuality()">
                 </div>
-                <div class="preview-container" id="previewContainer">
-                    <img id="preview" src="" alt="Preview">
-                </div>
-                <div class="result-info" id="resultInfo">
-                    <p><strong data-i18n="original_size">Original Size</strong>: <span id="originalSize">-</span></p>
-                    <p><strong data-i18n="compressed_size">Compressed Size</strong>: <span id="compressedSize">-</span></p>
-                    <p><strong data-i18n="reduction">Reduction</strong>: <span id="reduction">-</span></p>
-                </div>
+                
+                <!-- 压缩按钮 -->
                 <div class="btn-group">
-                    <button class="btn btn-primary" id="compressBtn" data-i18n="common.compress">Compress</button>
-                    <button class="btn btn-secondary" id="downloadBtn" data-i18n="common.download">Download</button>
+                    <button class="btn btn-primary" id="compressBtn" data-i18n="common.compress" disabled>Compress</button>
+                    <button class="btn btn-secondary" id="downloadBtn" data-i18n="common.download" disabled>Download</button>
+                </div>
+                
+                <!-- 加载动画 -->
+                <div class="loading" id="loading">
+                    <div class="loading-spinner"></div>
+                    <p data-i18n="common.compressing">Compressing...</p>
+                </div>
+                
+                <!-- 结果区域（在按钮下方） -->
+                <div class="result-section" id="resultSection">
+                    <div class="result-info" id="resultInfo">
+                        <p><strong data-i18n="original_size">Original Size</strong>: <span id="originalSize" class="highlight">-</span></p>
+                        <p><strong data-i18n="compressed_size">Compressed Size</strong>: <span id="compressedSize" class="highlight">-</span></p>
+                        <p><strong data-i18n="reduction">Reduction</strong>: <span id="reduction" class="highlight">-</span></p>
+                    </div>
+                    <div class="compressed-preview" id="compressedPreview">
+                        <img id="compressedImg" src="" alt="Compressed">
+                        <p data-i18n="compressed_preview_label">Compressed image preview</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -104,44 +172,42 @@
         let originalFile = null;
         let compressedBlob = null;
         
-            
-            // Also listen for language changes
-            const langSelect = document.getElementById('langSelect');
-            if (langSelect) {
-                langSelect.addEventListener('change', function() {
-                    const lang = this.value;
-                    applyLanguage(lang);
-                    
-                    // Directly update title and description
-                    const h1 = document.querySelector('h1[data-i18n="tools.image-compressor.name"]');
-                    const p = document.querySelector('p[data-i18n="tools.image-compressor.desc"]');
-                    if (h1 && translations[lang]?.['image-compressor-name']) {
-                        h1.textContent = '🗜️ ' + translations[lang]['image-compressor-name'].name;
-                    }
-                    if (p && translations[lang]?.['image-compressor-desc']) {
-                        p.textContent = translations[lang]['image-compressor-desc'].desc;
-                    }
-                });
-            }
-            
-            const uploadArea = document.getElementById('uploadArea');
-            uploadArea.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                uploadArea.style.borderColor = '#667eea';
-                uploadArea.style.background = '#f8f9fa';
-            });
-            uploadArea.addEventListener('dragleave', () => {
-                uploadArea.style.borderColor = '#e0e0e0';
-                uploadArea.style.background = 'transparent';
-            });
-            uploadArea.addEventListener('drop', (e) => {
-                e.preventDefault();
-                const file = e.dataTransfer.files[0];
-                if (file && file.type.startsWith('image/')) {
-                    handleFile({ target: { files: [file] } });
+        // 监听语言变化
+        const langSelect = document.getElementById('langSelect');
+        if (langSelect) {
+            langSelect.addEventListener('change', function() {
+                const lang = this.value;
+                applyLanguage(lang);
+                
+                const h1 = document.querySelector('h1[data-i18n="tools.image-compressor.name"]');
+                const p = document.querySelector('p[data-i18n="tools.image-compressor.desc"]');
+                if (h1 && translations[lang]?.['image-compressor-name']) {
+                    h1.textContent = '🗜️ ' + translations[lang]['image-compressor-name'].name;
+                }
+                if (p && translations[lang]?.['image-compressor-desc']) {
+                    p.textContent = translations[lang]['image-compressor-desc'].desc;
                 }
             });
+        }
         
+        const uploadArea = document.getElementById('uploadArea');
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#667eea';
+            uploadArea.style.background = '#f8f9fa';
+        });
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.style.borderColor = '#e0e0e0';
+            uploadArea.style.background = 'transparent';
+        });
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            const file = e.dataTransfer.files[0];
+            if (file && file.type.startsWith('image/')) {
+                handleFile({ target: { files: [file] } });
+            }
+        });
+    
         function handleFile(event) {
             const file = event.target.files[0];
             if (!file) return;
@@ -149,11 +215,26 @@
             originalFile = file;
             const reader = new FileReader();
             reader.onload = function(e) {
-                document.getElementById('preview').src = e.target.result;
-                document.getElementById('previewContainer').style.display = 'block';
+                const previewImg = document.getElementById('previewImg');
+                previewImg.src = e.target.result;
+                
+                // 显示预览，隐藏占位符
+                document.getElementById('uploadPreview').style.display = 'block';
+                document.getElementById('uploadPlaceholder').style.display = 'none';
+                
+                // 更新上传区域样式
+                uploadArea.classList.add('has-image');
+                
+                // 显示文件信息
+                document.getElementById('fileInfo').textContent = `${file.name} (${formatBytes(file.size)})`;
+                
+                // 显示质量滑块和压缩按钮
                 document.getElementById('qualityControl').style.display = 'block';
-                document.getElementById('compressBtn').style.display = 'block';
-                document.getElementById('originalSize').textContent = formatBytes(file.size);
+                document.getElementById('compressBtn').disabled = false;
+                
+                // 重置结果区域
+                document.getElementById('resultSection').style.display = 'none';
+                document.getElementById('downloadBtn').disabled = true;
             };
             reader.readAsDataURL(file);
         }
@@ -163,8 +244,15 @@
         }
         
         function compress() {
+            if (!originalFile) return;
+            
             const quality = parseInt(document.getElementById('quality').value) / 100;
-            const img = document.getElementById('preview');
+            const img = document.getElementById('previewImg');
+            
+            // 显示加载动画
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('resultSection').style.display = 'none';
+            document.getElementById('compressBtn').disabled = true;
             
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
@@ -174,12 +262,28 @@
             
             canvas.toBlob(function(blob) {
                 compressedBlob = blob;
+                
+                // 隐藏加载动画
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('compressBtn').disabled = false;
+                
+                // 更新压缩信息
+                document.getElementById('originalSize').textContent = formatBytes(originalFile.size);
                 document.getElementById('compressedSize').textContent = formatBytes(blob.size);
                 
                 const reduction = ((1 - blob.size / originalFile.size) * 100).toFixed(1);
                 document.getElementById('reduction').textContent = reduction + '%';
-                document.getElementById('resultInfo').style.display = 'block';
-                document.getElementById('downloadBtn').style.display = 'block';
+                
+                // 显示压缩后图片
+                const compressedImg = document.getElementById('compressedImg');
+                compressedImg.src = URL.createObjectURL(blob);
+                
+                // 显示结果区域
+                document.getElementById('resultSection').style.display = 'block';
+                document.getElementById('downloadBtn').disabled = false;
+                
+                // 滚动到结果区域
+                document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }, 'image/jpeg', quality);
         }
         
@@ -193,21 +297,11 @@
         }
         
         function formatBytes(bytes) {
-            if (bytes === 0) return '0 ' + getUnit('bytes');
+            if (bytes === 0) return '0 Bytes';
             const k = 1024;
             const sizes = ['Bytes', 'KB', 'MB', 'GB'];
             const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + getUnit(sizes[i].toLowerCase());
-        }
-        
-        function getUnit(unit) {
-            const units = {
-                'bytes': translations[getLanguage()]?.['image-compressor']?.['units']?.['bytes'] || 'Bytes',
-                'kb': translations[getLanguage()]?.['image-compressor']?.['units']?.['kb'] || 'KB',
-                'mb': translations[getLanguage()]?.['image-compressor']?.['units']?.['mb'] || 'MB',
-                'gb': translations[getLanguage()]?.['image-compressor']?.['units']?.['gb'] || 'GB'
-            };
-            return units[unit] || unit;
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
         }
         
         if (typeof gtag !== 'undefined') {
