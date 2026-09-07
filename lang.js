@@ -359,7 +359,8 @@ const translations = {
     'or_drag_drop': 'o arrastrar y soltar',
     'compress': 'Comprimir',
     'download': 'Descargar',
-    'select_file': 'Seleccionar archivo'
+    'select_file': 'Seleccionar archivo',
+    'clear': 'Limpiar'
     },
     site_subtitle: '46+ Herramientas Online Gratis',
     search_placeholder: 'Buscar herramientas...',
