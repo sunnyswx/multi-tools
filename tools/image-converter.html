@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Converter - Multi Tools</title>
-    <meta name="description" content="Convert images between formats.">
+    <meta name="description" content="Convert images between formats online for free. 免费在线转换PNG、JPG、WebP、BMP图片格式">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -20,44 +20,96 @@
             const browserLang = navigator.language.split('-')[0];
             const supportedLangs = ['en', 'zh', 'ja', 'ko', 'es', 'fr', 'de', 'ru', 'ar'];
             
-            // 检查浏览器语言是否在支持列表中
-            let lang = 'en'; // 默认英文
+            let lang = 'en';
             if (supportedLangs.includes(browserLang)) {
                 lang = browserLang;
             }
             
-            // 保存到 localStorage
             localStorage.setItem('multi-tools-lang', lang);
             
             console.log('[AutoLang] Browser language:', browserLang, '=> Using:', lang);
         })();
     </script>
     <script>
-        // 初始化语言
+        // 立即初始化语言
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('[Init] DOM loaded, calling initLanguage');
             initLanguage();
             debugTranslations();
         });
     </script>
+    
     <style>
         .tool-container { max-width: 900px; margin: 0 auto; padding: 20px; }
         .tool-header { text-align: center; margin-bottom: 30px; }
         .tool-header h1 { color: #333; font-size: 2rem; margin-bottom: 10px; }
         .tool-header p { color: #666; }
         .tool-content { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
-        .upload-area { border: 3px dashed #e0e0e0; border-radius: 15px; padding: 50px; text-align: center; cursor: pointer; }
-        .upload-area:hover { border-color: #667eea; }
+        
+        /* 上传区域样式 */
+        .upload-area { 
+            border: 3px dashed #e0e0e0; 
+            border-radius: 15px; 
+            padding: 50px; 
+            text-align: center; 
+            cursor: pointer; 
+            transition: all 0.3s;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .upload-area:hover { border-color: #667eea; background: #f8f9fa; }
+        .upload-area.has-image { padding: 20px; border-style: solid; border-color: #667eea; }
         .upload-area input { display: none; }
+        .upload-placeholder { pointer-events: none; }
+        .upload-preview { display: none; width: 100%; }
+        .upload-preview img { max-width: 100%; max-height: 400px; border-radius: 10px; }
+        .file-info { margin-top: 10px; color: #666; font-size: 14px; }
+        
+        /* 格式选择 */
         .format-select { margin: 20px 0; }
-        .format-select label { display: block; margin-bottom: 8px; font-weight: 600; }
+        .format-select label { display: block; margin-bottom: 10px; font-weight: 600; }
         select { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; }
-        .btn-group { display: flex; gap: 10px; margin-top: 20px; }
-        .btn { padding: 12px 30px; border: none; border-radius: 25px; font-size: 16px; cursor: pointer; }
+        
+        /* 结果区域 */
+        .result-section { display: none; margin-top: 20px; padding-top: 20px; border-top: 2px solid #e0e0e0; }
+        .result-info { padding: 20px; background: #f8f9fa; border-radius: 10px; margin-bottom: 20px; }
+        .result-info p { margin: 10px 0; }
+        .result-info .highlight { color: #667eea; font-weight: 600; }
+        
+        /* 转换后图片预览 */
+        .converted-preview { margin-top: 20px; text-align: center; }
+        .converted-preview img { max-width: 100%; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .converted-preview p { color: #666; margin-top: 10px; font-size: 14px; }
+        
+        /* 按钮组 */
+        .btn-group { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+        .btn { padding: 12px 30px; border: none; border-radius: 25px; font-size: 16px; cursor: pointer; transition: all 0.3s; }
         .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
-        .preview { margin-top: 20px; text-align: center; }
-        .preview img { max-width: 100%; border-radius: 10px; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
+        .btn-primary:disabled { background: #ccc; cursor: not-allowed; transform: none; box-shadow: none; }
+        .btn-secondary { background: #f0f0f0; color: #333; }
+        .btn-secondary:hover { background: #e0e0e0; }
+        .btn-secondary:disabled { background: #f0f0f0; color: #ccc; cursor: not-allowed; }
+        
         .language-selector { margin-top: 30px; text-align: center; }
         .language-selector select { padding: 10px 20px; font-size: 16px; border: none; border-radius: 25px; background: #667eea; color: white; cursor: pointer; }
+        
+        /* 加载动画 */
+        .loading { display: none; margin: 20px 0; text-align: center; }
+        .loading-spinner { 
+            width: 40px; 
+            height: 40px; 
+            border: 4px solid #f3f3f3; 
+            border-top: 4px solid #667eea; 
+            border-radius: 50%; 
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
@@ -66,16 +118,26 @@
         <div class="tool-container">
             <div class="tool-header">
                 <h1 data-i18n="tools.image-converter.name">🖼️ Image Converter</h1>
-                <p data-i18n="tools.image-converter.desc">Convert images between formats</p>
+                <p data-i18n="tools.image-converter.desc">Convert images between formats online for free</p>
             </div>
             <div class="tool-content">
-                <div class="upload-area" onclick="document.getElementById('fileInput').click()">
-                    <div style="font-size: 3rem;">📁</div>
-                    <h3 data-i18n="common.click_to_upload">Click to upload image</h3>
+                <!-- 上传区域 -->
+                <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
+                    <div class="upload-placeholder" id="uploadPlaceholder">
+                        <div style="font-size: 3rem; margin-bottom: 15px;">📁</div>
+                        <h3 data-i18n="common.click_to_upload">Click to upload image</h3>
+                        <p data-i18n="common.or_drag_drop">or drag and drop</p>
+                    </div>
+                    <div class="upload-preview" id="uploadPreview">
+                        <img id="previewImg" src="" alt="Preview">
+                        <div class="file-info" id="fileInfo"></div>
+                    </div>
                     <input type="file" id="fileInput" accept="image/*" onchange="handleFile(event)">
                 </div>
+                
+                <!-- 格式选择 -->
                 <div class="format-select" id="formatControl" style="display: none;">
-                    <label data-i18n="converter.format_label">Convert to:</label>
+                    <label><span data-i18n="converter.format_label">Convert to:</span></label>
                     <select id="format">
                         <option value="image/png">PNG</option>
                         <option value="image/jpeg">JPEG</option>
@@ -83,70 +145,200 @@
                         <option value="image/bmp">BMP</option>
                     </select>
                 </div>
-                <div class="btn-group" id="btnGroup" style="display: none;">
-                    <button class="btn btn-primary" id="convertBtn" data-i18n="converter.convert">Convert</button>
-                    <button class="btn btn-primary" id="downloadBtn" data-i18n="converter.download">Download</button>
+                
+                <!-- 操作按钮 -->
+                <div class="btn-group">
+                    <button class="btn btn-primary" id="convertBtn" data-i18n="converter.convert" disabled>Convert</button>
+                    <button class="btn btn-secondary" id="downloadBtn" data-i18n="converter.download" disabled>Download</button>
+                    <button class="btn btn-secondary" id="clearBtn" data-i18n="common.clear">Clear</button>
                 </div>
-                <div class="preview" id="preview"></div>
+                
+                <!-- 加载动画 -->
+                <div class="loading" id="loading">
+                    <div class="loading-spinner"></div>
+                    <p data-i18n="common.converting">Converting...</p>
+                </div>
+                
+                <!-- 结果区域（在按钮下方） -->
+                <div class="result-section" id="resultSection">
+                    <div class="result-info" id="resultInfo">
+                        <p><strong data-i18n="original_size">Original Size</strong>: <span id="originalSize" class="highlight">-</span></p>
+                        <p><strong data-i18n="converted_size">Converted Size</strong>: <span id="convertedSize" class="highlight">-</span></p>
+                        <p><strong data-i18n="converted_format">Converted Format</strong>: <span id="convertedFormat" class="highlight">-</span></p>
+                    </div>
+                    <div class="converted-preview" id="convertedPreview">
+                        <img id="convertedImg" src="" alt="Converted">
+                        <p data-i18n="converted_preview_label">Converted image preview</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <script>
         let originalFile = null;
+        let convertedBlob = null;
         
-        document.addEventListener('DOMContentLoaded', function() {
-            const lang = getLanguage();
-            applyLanguage(lang);
+        // 监听语言变化
+        const langSelect = document.getElementById('langSelect');
+        if (langSelect) {
+            langSelect.addEventListener('change', function() {
+                const lang = this.value;
+                applyLanguage(lang);
+                
+                const h1 = document.querySelector('h1[data-i18n="tools.image-converter.name"]');
+                const p = document.querySelector('p[data-i18n="tools.image-converter.desc"]');
+                if (h1 && translations[lang]?.['image-converter-name']) {
+                    h1.textContent = '🖼️ ' + translations[lang]['image-converter-name'].name;
+                }
+                if (p && translations[lang]?.['image-converter-desc']) {
+                    p.textContent = translations[lang]['image-converter-desc'].desc;
+                }
+            });
+        }
+        
+        const uploadArea = document.getElementById('uploadArea');
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#667eea';
+            uploadArea.style.background = '#f8f9fa';
         });
-        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.style.borderColor = '#e0e0e0';
+            uploadArea.style.background = 'transparent';
+        });
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            const file = e.dataTransfer.files[0];
+            if (file && file.type.startsWith('image/')) {
+                handleFile({ target: { files: [file] } });
+            }
+        });
+    
         function handleFile(event) {
-            originalFile = event.target.files[0];
-            if (!originalFile) return;
+            const file = event.target.files[0];
+            if (!file) return;
             
+            originalFile = file;
             const reader = new FileReader();
             reader.onload = function(e) {
-                document.getElementById('preview').innerHTML = '<img src="' + e.target.result + '" alt="Preview">';
+                const previewImg = document.getElementById('previewImg');
+                previewImg.src = e.target.result;
+                
+                // 显示预览，隐藏占位符
+                document.getElementById('uploadPreview').style.display = 'block';
+                document.getElementById('uploadPlaceholder').style.display = 'none';
+                
+                // 更新上传区域样式
+                uploadArea.classList.add('has-image');
+                
+                // 显示文件信息
+                document.getElementById('fileInfo').textContent = `${file.name} (${formatBytes(file.size)})`;
+                
+                // 显示格式选择和转换按钮
                 document.getElementById('formatControl').style.display = 'block';
-                document.getElementById('btnGroup').style.display = 'flex';
+                document.getElementById('convertBtn').disabled = false;
+                
+                // 重置结果区域
+                document.getElementById('resultSection').style.display = 'none';
+                document.getElementById('downloadBtn').disabled = true;
             };
-            reader.readAsDataURL(originalFile);
+            reader.readAsDataURL(file);
         }
         
         function convert() {
             if (!originalFile) return;
             
             const format = document.getElementById('format').value;
-            const img = new Image();
+            const img = document.getElementById('previewImg');
+            
+            // 显示加载动画
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('resultSection').style.display = 'none';
+            document.getElementById('convertBtn').disabled = true;
+            
             img.onload = function() {
                 const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
                 canvas.width = img.naturalWidth;
                 canvas.height = img.naturalHeight;
-                const ctx = canvas.getContext('2d');
                 ctx.drawImage(img, 0, 0);
                 
                 canvas.toBlob(function(blob) {
-                    const url = URL.createObjectURL(blob);
-                    const ext = format.split('/')[1];
-                    const link = document.createElement('a');
-                    link.download = 'converted.' + ext;
-                    link.href = url;
-                    link.click();
+                    convertedBlob = blob;
+                    
+                    // 隐藏加载动画
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('convertBtn').disabled = false;
+                    
+                    // 更新转换信息
+                    document.getElementById('originalSize').textContent = formatBytes(originalFile.size);
+                    document.getElementById('convertedSize').textContent = formatBytes(blob.size);
+                    document.getElementById('convertedFormat').textContent = format.split('/')[1].toUpperCase();
+                    
+                    // 显示转换后图片
+                    const convertedImg = document.getElementById('convertedImg');
+                    convertedImg.src = URL.createObjectURL(blob);
+                    
+                    // 显示结果区域
+                    document.getElementById('resultSection').style.display = 'block';
+                    document.getElementById('downloadBtn').disabled = false;
+                    
+                    // 滚动到结果区域
+                    document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }, format);
             };
             img.src = URL.createObjectURL(originalFile);
         }
         
         function download() {
-            convert();
+            if (!convertedBlob) return;
+            
+            const ext = document.getElementById('format').value.split('/')[1];
+            const link = document.createElement('a');
+            link.download = 'converted.' + ext;
+            link.href = URL.createObjectURL(convertedBlob);
+            link.click();
         }
         
-        // 绑定按钮点击事件
-        document.getElementById('convertBtn').addEventListener('click', convert);
-        document.getElementById('downloadBtn').addEventListener('click', download);
+        function clearAll() {
+            originalFile = null;
+            convertedBlob = null;
+            
+            // 重置上传区域
+            document.getElementById('previewImg').src = '';
+            document.getElementById('uploadPreview').style.display = 'none';
+            document.getElementById('uploadPlaceholder').style.display = 'block';
+            uploadArea.classList.remove('has-image');
+            document.getElementById('fileInput').value = '';
+            
+            // 隐藏格式选择和按钮
+            document.getElementById('formatControl').style.display = 'none';
+            document.getElementById('convertBtn').disabled = true;
+            document.getElementById('downloadBtn').disabled = true;
+            
+            // 隐藏结果区域
+            document.getElementById('resultSection').style.display = 'none';
+            
+            console.log('[Clear] All data cleared successfully');
+        }
+        
+        function formatBytes(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
         
         if (typeof gtag !== 'undefined') {
             gtag('event', 'tool_open', { tool: 'image-converter' });
         }
+
+        // 绑定按钮点击事件
+        document.getElementById('convertBtn').addEventListener('click', convert);
+        document.getElementById('downloadBtn').addEventListener('click', download);
+        document.getElementById('clearBtn').addEventListener('click', clearAll);
+
     </script>
 </body>
 </html>
