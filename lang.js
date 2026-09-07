@@ -28,9 +28,6 @@ const translations = {
       'download': 'Download'
     },
     // Image converter UI
-    'converted_size': 'Converted Size',
-    'converted_format': 'Converted Format',
-    'converted_preview_label': 'Converted image preview',
     'converter.download': 'Download',
     'converted_size': 'Converted Size',
     'converted_format': 'Converted Format',
