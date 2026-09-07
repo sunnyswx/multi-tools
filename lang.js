@@ -32,6 +32,9 @@ const translations = {
     'converted_format': 'Converted Format',
     'converted_preview_label': 'Converted image preview',
     'converter.download': 'Download',
+    'converted_size': 'Converted Size',
+    'converted_format': 'Converted Format',
+    'converted_preview_label': 'Converted image preview',
     site_subtitle: '46+ Free Online Tools for Everyone',
     search_placeholder: 'Search tools...',
     footer_text: 'Free online tools for developers, designers, and everyone.',
@@ -138,6 +141,9 @@ const translations = {
     // Image converter UI
     // Image converter UI
     'converter.download': '下载',
+    'converted_size': '转换后大小',
+    'converted_format': '转换格式',
+    'converted_preview_label': '转换后图片预览',
     site_subtitle: '46+ 免费在线工具',
     search_placeholder: '搜索工具...',
     footer_text: '为开发者、设计师和所有人提供的免费在线工具。',
@@ -240,6 +246,9 @@ const translations = {
     },
     // Image converter UI
     'converter.download': 'ダウンロード',
+    'converted_size': '変換後サイズ',
+    'converted_format': '変換フォーマット',
+    'converted_preview_label': '変換後画像プレビュー',
     site_subtitle: '46+ 無料オンラインツール',
     search_placeholder: 'ツールを検索...',
     footer_text: '開発者、デザイナー、すべての人のための無料オンラインツール。',
@@ -309,6 +318,9 @@ const translations = {
     },
     // Image converter UI
     'converter.download': '다운로드',
+    'converted_size': '변환 후 크기',
+    'converted_format': '변환 형식',
+    'converted_preview_label': '변환 후 이미지 미리보기',
     site_subtitle: '46+ 무료 온라인 도구',
     search_placeholder: '도구 검색...',
     footer_text: '개발자, 디자이너 및 모든 사람을 위한 무료 온라인 도구.',
@@ -370,6 +382,9 @@ const translations = {
     'clear': 'Limpiar',
     'converting': 'Convirtiendo...'
     },
+    'converted_size': 'Tamaño convertido',
+    'converted_format': 'Formato convertido',
+    'converted_preview_label': 'Vista previa de imagen convertida',
     site_subtitle: '46+ Herramientas Online Gratis',
     search_placeholder: 'Buscar herramientas...',
     footer_text: 'Herramientas online gratuitas para desarrolladores, diseñadores y todos.',
@@ -437,6 +452,9 @@ const translations = {
     },
     // Image converter UI
     'converter.download': 'Télécharger',
+    'converted_size': 'Taille convertie',
+    'converted_format': 'Format converti',
+    'converted_preview_label': 'Aperçu de l'image convertie',
     site_subtitle: '46+ Outils en Ligne Gratuits',
     search_placeholder: 'Rechercher des outils...',
     footer_text: 'Outils en ligne gratuits pour développeurs, designers et tout le monde.',
@@ -503,6 +521,9 @@ const translations = {
     },
     // Image converter UI
     'converter.download': 'Herunterladen',
+    'converted_size': 'Konvertierte Größe',
+    'converted_format': 'Konvertiertes Format',
+    'converted_preview_label': 'Vorschau des konvertierten Bildes',
     site_subtitle: '43+ Kostenlose Online-Tools',
     search_placeholder: 'Tools suchen...',
     footer_text: 'Kostenlose Online-Tools für Entwickler, Designer und alle.',
@@ -570,6 +591,9 @@ const translations = {
     },
     // Image converter UI
     'converter.download': 'Скачать',
+    'converted_size': 'Размер после конвертации',
+    'converted_format': 'Формат после конвертации',
+    'converted_preview_label': 'Предпросмотр конвертированного изображения',
     site_subtitle: '46+ Бесплатных Онлайн-Инструментов',
     search_placeholder: 'Поиск инструментов...',
     footer_text: 'Бесплатные онлайн-инструменты для разработчиков, дизайнеров и всех.',
@@ -636,6 +660,9 @@ const translations = {
     },
     // Image converter UI
     'converter.download': 'تحميل',
+    'converted_size': 'الحجم المحول',
+    'converted_format': 'الصيغة المحولة',
+    'converted_preview_label': 'معاينة الصورة المحولة',
     site_subtitle: '46+ أداة عبر الإنترنت مجانية',
     search_placeholder: 'البحث عن أدوات...',
     footer_text: 'أدوات عبر الإنترنت مجانية للمطورين والمصممين والجميع.',
