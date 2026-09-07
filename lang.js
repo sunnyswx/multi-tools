@@ -451,7 +451,7 @@ const translations = {
     'converter.download': 'Télécharger',
     'converted_size': 'Taille convertie',
     'converted_format': 'Format converti',
-    'converted_preview_label': 'Aperçu de l'image convertie',
+    'converted_preview_label': 'Aperçu de l\'image convertie',
     site_subtitle: '46+ Outils en Ligne Gratuits',
     search_placeholder: 'Rechercher des outils...',
     footer_text: 'Outils en ligne gratuits pour développeurs, designers et tout le monde.',
