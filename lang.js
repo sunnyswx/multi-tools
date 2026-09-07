@@ -27,6 +27,9 @@ const translations = {
       'download': 'Download'
     },
     // Image converter UI
+    'converted_size': 'Converted Size',
+    'converted_format': 'Converted Format',
+    'converted_preview_label': 'Converted image preview',
     'converter.download': 'Download',
     site_subtitle: '46+ Free Online Tools for Everyone',
     search_placeholder: 'Search tools...',
@@ -360,7 +363,8 @@ const translations = {
     'compress': 'Comprimir',
     'download': 'Descargar',
     'select_file': 'Seleccionar archivo',
-    'clear': 'Limpiar'
+    'clear': 'Limpiar',
+    'converting': 'Convirtiendo...'
     },
     site_subtitle: '46+ Herramientas Online Gratis',
     search_placeholder: 'Buscar herramientas...',
