@@ -200,11 +200,10 @@ const translations = {
       'text-to-speech': { name: '文本转语音', desc: '使用Web Speech API将文本转换为语音' },
       'image-compressor-desc': { name: '图片压缩工具', desc: '免费在线压缩图片' },
       'image-compressor-name': { name: '图片压缩工具', desc: '免费在线压缩图片' },
-      'image-compressor-desc': { desc: '免费在线压缩图片' },
-      'compressed_preview_label': '压缩后图片预览'
+      'image-compressor-desc': { desc: '免费在线压缩图片' }
     }
   },
-  
+
   ja: {
     site_title: '🛠️ Multi Tools',
     // Image compressor UI
@@ -268,11 +267,10 @@ const translations = {
       'text-to-speech': { name: 'テキスト読み上げ', desc: 'Web Speech APIを使用してテキストを音声に変換' },
       'image-compressor-desc': { name: '画像圧縮ツール', desc: 'オンラインで画像を圧縮' },
       'image-compressor-name': { name: '画像圧縮ツール', desc: 'オンラインで画像を圧縮' },
-      'image-compressor-desc': { desc: 'オンラインで画像を圧縮' },
-      'compressed_preview_label': '圧縮後画像プレビュー'
+      'image-compressor-desc': { desc: 'オンラインで画像を圧縮' }
     }
   },
-  
+
   ko: {
     site_title: '🛠️ Multi Tools',
     // Image compressor UI
@@ -334,11 +332,10 @@ const translations = {
       'text-to-speech': { name: '텍스트 음성 변환', desc: 'Web Speech API를 사용하여 텍스트를 음성으로 변환' },
       'image-compressor-desc': { name: '이미지 압축기', desc: '온라인으로 이미지 압축' },
       'image-compressor-name': { name: '이미지 압축기', desc: '온라인으로 이미지 압축' },
-      'image-compressor-desc': { desc: '온라인으로 이미지 압축' },
-      'compressed_preview_label': '압축 후 이미지 미리보기'
+      'image-compressor-desc': { desc: '온라인으로 이미지 압축' }
     }
   },
-  
+
   es: {
     site_title: '🛠️ Multi Tools',
     // Image compressor UI
