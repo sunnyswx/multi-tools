@@ -94,6 +94,9 @@
         .btn-secondary { background: #f0f0f0; color: #333; }
         .btn-secondary:hover { background: #e0e0e0; }
         .btn-secondary:disabled { background: #f0f0f0; color: #ccc; cursor: not-allowed; }
+        .btn-danger { background: #e74c3c; color: white; }
+        .btn-danger:hover { background: #c0392b; transform: translateY(-2px); box-shadow: 0 5px 20px rgba(231, 76, 60, 0.4); }
+        .btn-danger:disabled { background: #ccc; cursor: not-allowed; transform: none; box-shadow: none; }
         
         .language-selector { margin-top: 30px; text-align: center; }
         .language-selector select { padding: 10px 20px; font-size: 16px; border: none; border-radius: 25px; background: #667eea; color: white; cursor: pointer; }
@@ -145,6 +148,7 @@
                 <div class="btn-group">
                     <button class="btn btn-primary" id="compressBtn" data-i18n="common.compress" disabled>Compress</button>
                     <button class="btn btn-secondary" id="downloadBtn" data-i18n="common.download" disabled>Download</button>
+                    <button class="btn btn-secondary" id="clearBtn" data-i18n="common.clear">Clear</button>
                 </div>
                 
                 <!-- 加载动画 -->
@@ -311,6 +315,34 @@
         // 绑定按钮点击事件
         document.getElementById('compressBtn').addEventListener('click', compress);
         document.getElementById('downloadBtn').addEventListener('click', download);
+        document.getElementById('clearBtn').addEventListener('click', clearAll);
+
+        // 清除所有数据
+        function clearAll() {
+            originalFile = null;
+            compressedBlob = null;
+            
+            // 重置上传区域
+            document.getElementById('previewImg').src = '';
+            document.getElementById('uploadPreview').style.display = 'none';
+            document.getElementById('uploadPlaceholder').style.display = 'block';
+            uploadArea.classList.remove('has-image');
+            document.getElementById('fileInput').value = '';
+            
+            // 隐藏质量滑块和按钮
+            document.getElementById('qualityControl').style.display = 'none';
+            document.getElementById('compressBtn').disabled = true;
+            document.getElementById('downloadBtn').disabled = true;
+            
+            // 隐藏结果区域
+            document.getElementById('resultSection').style.display = 'none';
+            
+            // 重置压缩质量
+            document.getElementById('quality').value = 80;
+            document.getElementById('qualityValue').textContent = '80';
+            
+            console.log('[Clear] All data cleared successfully');
+        }
 
     </script>
 </body>

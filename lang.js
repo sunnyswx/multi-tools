@@ -19,7 +19,8 @@ const translations = {
     'or_drag_drop': 'or drag and drop',
     'compress': 'Compress',
     'download': 'Download',
-    'select_file': 'Select File'
+    'select_file': 'Select File',
+    'clear': 'Clear'
     },    converter: {
       'format_label': 'Convert to:',
       'convert': 'Convert',
@@ -118,7 +119,8 @@ const translations = {
     'or_drag_drop': '或拖放文件',
     'compress': '压缩',
     'download': '下载',
-    'select_file': '选择文件'
+    'select_file': '选择文件',
+    'clear': '清除'
     },    converter: {
       'format_label': 'Convertir a:',
       'convert': 'Convertir',
@@ -223,7 +225,8 @@ const translations = {
     'or_drag_drop': 'またはドラッグ＆ドロップ',
     'compress': '圧縮',
     'download': 'ダウンロード',
-    'select_file': 'ファイルを選択'
+    'select_file': 'ファイルを選択',
+    'clear': 'クリア'
     },    converter: {
       'format_label': '変換先：',
       'convert': '変換',
@@ -290,7 +293,8 @@ const translations = {
     'or_drag_drop': '또는 드래그 앤 드롭',
     'compress': '압축',
     'download': '다운로드',
-    'select_file': '파일 선택'
+    'select_file': '파일 선택',
+    'clear': '지우기'
     },    converter: {
       'format_label': '변환:',
       'convert': '변환',
@@ -414,7 +418,8 @@ const translations = {
     'or_drag_drop': 'ou glissez-déposez',
     'compress': 'Compresser',
     'download': 'Télécharger',
-    'select_file': 'Sélectionner un fichier'
+    'select_file': 'Sélectionner un fichier',
+    'clear': 'Effacer'
     },    converter: {
       'format_label': 'Convertir en :',
       'convert': 'Convertir',
@@ -478,7 +483,8 @@ const translations = {
     'or_drag_drop': 'oder ziehen und ablegen',
     'compress': 'Komprimieren',
     'download': 'Herunterladen',
-    'select_file': 'Datei auswählen'
+    'select_file': 'Datei auswählen',
+    'clear': 'Löschen'
     },    converter: {
       'format_label': 'Konvertieren zu:',
       'convert': 'Konvertieren',
@@ -543,7 +549,8 @@ const translations = {
     'or_drag_drop': 'или перетащите',
     'compress': 'Сжать',
     'download': 'Скачать',
-    'select_file': 'Выбрать файл'
+    'select_file': 'Выбрать файл',
+    'clear': 'Очистить'
     },    converter: {
       'format_label': 'Конвертировать в:',
       'convert': 'Конвертировать',
@@ -607,7 +614,8 @@ const translations = {
     'or_drag_drop': 'أو اسحب وأفلت',
     'compress': 'ضغط',
     'download': 'تحميل',
-    'select_file': 'اختيار ملف'
+    'select_file': 'اختيار ملف',
+    'clear': 'مسح'
     },    converter: {
       'format_label': 'تحويل إلى:',
       'convert': 'تحويل',
