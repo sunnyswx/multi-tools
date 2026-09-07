@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Resizer - Multi Tools</title>
-    <meta name="description" content="Resize images online.">
+    <title data-i18n="resizer.name">Image Resizer</title>
+    <meta name="description" content="Resize images online for free. Maintain aspect ratio.">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -15,25 +15,16 @@
     <link rel="stylesheet" href="../css/style.css">
     <script src="../lang.js"></script>
     <script>
-        // 自动检测浏览器语言
         (function() {
             const browserLang = navigator.language.split('-')[0];
             const supportedLangs = ['en', 'zh', 'ja', 'ko', 'es', 'fr', 'de', 'ru', 'ar'];
-            
-            // 检查浏览器语言是否在支持列表中
-            let lang = 'en'; // 默认英文
+            let lang = 'en';
             if (supportedLangs.includes(browserLang)) {
                 lang = browserLang;
             }
-            
-            // 保存到 localStorage
             localStorage.setItem('multi-tools-lang', lang);
-            
             console.log('[AutoLang] Browser language:', browserLang, '=> Using:', lang);
         })();
-    </script>
-    <script>
-        // 初始化语言
         document.addEventListener('DOMContentLoaded', function() {
             initLanguage();
             debugTranslations();
@@ -45,20 +36,51 @@
         .tool-header h1 { color: #333; font-size: 2rem; margin-bottom: 10px; }
         .tool-header p { color: #666; }
         .tool-content { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
-        .upload-area { border: 3px dashed #e0e0e0; border-radius: 15px; padding: 50px; text-align: center; cursor: pointer; margin-bottom: 20px; }
+        .upload-area { 
+            border: 3px dashed #e0e0e0; 
+            border-radius: 15px; 
+            padding: 50px; 
+            text-align: center; 
+            cursor: pointer; 
+            margin-bottom: 20px; 
+            transition: all 0.3s ease;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
         .upload-area:hover { border-color: #667eea; }
+        .upload-area.has-image { border-style: solid; border-color: #667eea; padding: 20px; }
         .upload-area input { display: none; }
+        .upload-placeholder { pointer-events: none; }
+        .upload-placeholder .icon { font-size: 3rem; margin-bottom: 15px; }
+        .upload-preview { max-width: 100%; max-height: 300px; border-radius: 10px; display: none; }
         .size-inputs { display: flex; gap: 15px; margin-bottom: 20px; }
         .size-input { flex: 1; }
         .size-input label { display: block; margin-bottom: 8px; font-weight: 600; }
         .size-input input { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; box-sizing: border-box; }
         .checkbox { margin-bottom: 20px; }
         .checkbox label { cursor: pointer; }
-        .btn-group { display: flex; gap: 10px; }
-        .btn { padding: 12px 30px; border: none; border-radius: 25px; font-size: 16px; cursor: pointer; }
+        .btn-group { display: flex; gap: 10px; margin-bottom: 20px; }
+        .btn { padding: 12px 30px; border: none; border-radius: 25px; font-size: 16px; cursor: pointer; transition: all 0.3s ease; }
         .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
-        .preview { margin-top: 20px; text-align: center; }
-        .preview img { max-width: 100%; border-radius: 10px; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
+        .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+        .btn-secondary { background: #f0f0f0; color: #333; }
+        .btn-secondary:hover { background: #e0e0e0; }
+        .btn-danger { background: #ff6b6b; color: white; }
+        .btn-danger:hover { background: #ff5252; }
+        .result-section { margin-top: 20px; padding: 20px; background: #f8f9fa; border-radius: 10px; display: none; }
+        .result-info { display: flex; gap: 20px; margin-bottom: 15px; flex-wrap: wrap; }
+        .result-info-item { flex: 1; min-width: 120px; }
+        .result-info-item label { font-size: 14px; color: #666; display: block; margin-bottom: 5px; }
+        .result-info-item span { font-size: 18px; font-weight: 600; color: #333; }
+        .result-preview { text-align: center; }
+        .result-preview img { max-width: 100%; max-height: 400px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .loading-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.9); display: none; justify-content: center; align-items: center; z-index: 9999; }
+        .loading-spinner { width: 50px; height: 50px; border: 4px solid #f3f3f3; border-top: 4px solid #667eea; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         .language-selector { margin-top: 30px; text-align: center; }
         .language-selector select { padding: 10px 20px; font-size: 16px; border: none; border-radius: 25px; background: #667eea; color: white; cursor: pointer; }
     </style>
@@ -68,45 +90,88 @@
         <a href="../" class="back-btn" data-i18n="common.back_to_home">← Back to Home</a>
         <div class="tool-container">
             <div class="tool-header">
-                <h1>📐 Image Resizer</h1>
-                <p>Resize images online</p>
+                <h1>📐 <span data-i18n="resizer.name">Image Resizer</span></h1>
+                <p data-i18n="resizer.desc">Resize images online for free. Maintain aspect ratio.</p>
             </div>
             <div class="tool-content">
-                <div class="upload-area" onclick="document.getElementById('fileInput').click()">
-                    <div style="font-size: 3rem;">📁</div>
-                    <h3 data-i18n="common.click_to_upload">Click to upload image</h3>
+                <!-- Upload Area with Preview -->
+                <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
+                    <div class="upload-placeholder" id="uploadPlaceholder">
+                        <div class="icon">📁</div>
+                        <h3 data-i18n="common.click_to_upload">Click to upload</h3>
+                        <p data-i18n="common.or_drag_drop">or drag and drop</p>
+                    </div>
+                    <img id="uploadPreview" class="upload-preview" alt="">
                     <input type="file" id="fileInput" accept="image/*" onchange="handleFile(event)">
                 </div>
+
+                <!-- Size Controls -->
                 <div class="size-inputs" id="sizeControl" style="display: none;">
                     <div class="size-input">
-                        <label>Width (px):</label>
-                        <input type="number" id="width" placeholder="Width">
+                        <label><span data-i18n="resizer.width">Width</span> (px):</label>
+                        <input type="number" id="width" placeholder="0" onchange="updateHeight()">
                     </div>
                     <div class="size-input">
-                        <label>Height (px):</label>
-                        <input type="number" id="height" placeholder="Height">
+                        <label><span data-i18n="resizer.height">Height</span> (px):</label>
+                        <input type="number" id="height" placeholder="0" onchange="updateWidth()">
                     </div>
                 </div>
+
+                <!-- Aspect Ratio Checkbox -->
                 <div class="checkbox" id="aspectControl" style="display: none;">
-                    <label><input type="checkbox" id="keepAspect" checked> Maintain aspect ratio</label>
+                    <label>
+                        <input type="checkbox" id="keepAspect" checked>
+                        <span data-i18n="resizer.keep_ratio">Maintain aspect ratio</span>
+                    </label>
                 </div>
+
+                <!-- Button Group -->
                 <div class="btn-group" id="btnGroup" style="display: none;">
-                    <button class="btn btn-primary" onclick="resize()">Resize</button>
-                    <button class="btn btn-primary" onclick="download()">Download</button>
+                    <button class="btn btn-primary" id="resizeBtn" onclick="resize()" data-i18n="resizer.resize">Resize</button>
+                    <button class="btn btn-secondary" id="clearBtn" onclick="handleClear()" data-i18n="common.clear">Clear</button>
                 </div>
-                <div class="preview" id="preview"></div>
+
+                <!-- Result Section -->
+                <div class="result-section" id="resultSection">
+                    <div class="result-info">
+                        <div class="result-info-item">
+                            <label data-i18n="resizer.original_size">Original Size</label>
+                            <span id="originalSize">-</span>
+                        </div>
+                        <div class="result-info-item">
+                            <label data-i18n="resizer.new_size">New Size</label>
+                            <span id="newSize">-</span>
+                        </div>
+                        <div class="result-info-item">
+                            <label data-i18n="resizer.ratio">Ratio</label>
+                            <span id="ratio">-</span>
+                        </div>
+                    </div>
+                    <div class="result-preview">
+                        <p style="color: #666; margin-bottom: 10px;" data-i18n="resizer.preview_label">Resized image preview</p>
+                        <img id="resultPreview" alt="">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
     <script>
         let originalFile = null;
         let originalWidth = 0;
         let originalHeight = 0;
-        
+        let resultBlob = null;
+
         document.addEventListener('DOMContentLoaded', function() {
             const lang = getLanguage();
             applyLanguage(lang);
             
+            // Width/Height change handlers
             document.getElementById('width').addEventListener('input', function() {
                 if (document.getElementById('keepAspect').checked && originalWidth) {
                     document.getElementById('height').value = Math.round(this.value * originalHeight / originalWidth);
@@ -118,7 +183,7 @@
                 }
             });
         });
-        
+
         function handleFile(event) {
             originalFile = event.target.files[0];
             if (!originalFile) return;
@@ -129,22 +194,44 @@
                 img.onload = function() {
                     originalWidth = img.naturalWidth;
                     originalHeight = img.naturalHeight;
+                    
+                    // Update inputs
                     document.getElementById('width').value = originalWidth;
                     document.getElementById('height').value = originalHeight;
+                    
+                    // Show upload preview
+                    document.getElementById('uploadPreview').src = e.target.result;
+                    document.getElementById('uploadPreview').style.display = 'block';
+                    document.getElementById('uploadPlaceholder').style.display = 'none';
+                    document.getElementById('uploadArea').classList.add('has-image');
+                    
+                    // Show controls
                     document.getElementById('sizeControl').style.display = 'flex';
                     document.getElementById('aspectControl').style.display = 'block';
                     document.getElementById('btnGroup').style.display = 'flex';
+                    
+                    // Hide previous results
+                    document.getElementById('resultSection').style.display = 'none';
                 };
                 img.src = e.target.result;
             };
             reader.readAsDataURL(originalFile);
         }
-        
+
         function resize() {
             if (!originalFile) return;
             
             const targetWidth = parseInt(document.getElementById('width').value);
             const targetHeight = parseInt(document.getElementById('height').value);
+            
+            if (!targetWidth || !targetHeight) {
+                alert('Please enter valid dimensions');
+                return;
+            }
+            
+            // Show loading
+            document.getElementById('loadingOverlay').style.display = 'flex';
+            document.getElementById('resizeBtn').disabled = true;
             
             const img = new Image();
             img.onload = function() {
@@ -155,20 +242,77 @@
                 ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
                 
                 canvas.toBlob(function(blob) {
+                    resultBlob = blob;
                     const url = URL.createObjectURL(blob);
-                    const link = document.createElement('a');
-                    link.download = 'resized-' + originalFile.name;
-                    link.href = url;
-                    link.click();
-                });
+                    
+                    // Hide loading
+                    document.getElementById('loadingOverlay').style.display = 'none';
+                    document.getElementById('resizeBtn').disabled = false;
+                    
+                    // Update result section
+                    document.getElementById('originalSize').textContent = originalWidth + ' × ' + originalHeight;
+                    document.getElementById('newSize').textContent = targetWidth + ' × ' + targetHeight;
+                    
+                    // Calculate ratio
+                    const ratio = ((1 - (targetWidth * targetHeight) / (originalWidth * originalHeight)) * 100).toFixed(1);
+                    document.getElementById('ratio').textContent = ratio + '%';
+                    
+                    // Show preview
+                    document.getElementById('resultPreview').src = url;
+                    document.getElementById('resultSection').style.display = 'block';
+                    
+                    // Scroll to result
+                    document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, originalFile.type);
             };
             img.src = URL.createObjectURL(originalFile);
         }
-        
-        function download() {
-            resize();
+
+        function handleClear() {
+            // Reset file input
+            document.getElementById('fileInput').value = '';
+            originalFile = null;
+            originalWidth = 0;
+            originalHeight = 0;
+            resultBlob = null;
+            
+            // Hide preview in upload area
+            document.getElementById('uploadPreview').style.display = 'none';
+            document.getElementById('uploadPreview').src = '';
+            document.getElementById('uploadPlaceholder').style.display = 'block';
+            document.getElementById('uploadArea').classList.remove('has-image');
+            
+            // Hide controls
+            document.getElementById('sizeControl').style.display = 'none';
+            document.getElementById('aspectControl').style.display = 'none';
+            document.getElementById('btnGroup').style.display = 'none';
+            
+            // Hide result
+            document.getElementById('resultSection').style.display = 'none';
+            document.getElementById('resultPreview').src = '';
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-        
+
+        function updateWidth() {
+            if (document.getElementById('keepAspect').checked && originalHeight) {
+                const w = parseInt(document.getElementById('width').value);
+                if (w && originalWidth) {
+                    document.getElementById('height').value = Math.round(w * originalHeight / originalWidth);
+                }
+            }
+        }
+
+        function updateHeight() {
+            if (document.getElementById('keepAspect').checked && originalWidth) {
+                const h = parseInt(document.getElementById('height').value);
+                if (h && originalHeight) {
+                    document.getElementById('width').value = Math.round(h * originalWidth / originalHeight);
+                }
+            }
+        }
+
         if (typeof gtag !== 'undefined') {
             gtag('event', 'tool_open', { tool: 'image-resizer' });
         }
