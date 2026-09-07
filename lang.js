@@ -94,7 +94,8 @@ const translations = {
       'text-to-speech': { name: 'Text to Speech', desc: 'Convert text to speech using Web Speech API.' },
       'image-compressor-desc': { name: 'Image Compressor', desc: 'Compress images online for free' },
       'image-compressor-name': { name: 'Image Compressor', desc: 'Compress images online for free' },
-      'image-compressor-desc': { desc: 'Compress images online for free' }
+      'image-compressor-desc': { desc: 'Compress images online for free' },
+      'compressed_preview_label': 'Compressed image preview'
     }
   },
   
@@ -197,7 +198,8 @@ const translations = {
       'text-to-speech': { name: '文本转语音', desc: '使用Web Speech API将文本转换为语音' },
       'image-compressor-desc': { name: '图片压缩工具', desc: '免费在线压缩图片' },
       'image-compressor-name': { name: '图片压缩工具', desc: '免费在线压缩图片' },
-      'image-compressor-desc': { desc: '免费在线压缩图片' }
+      'image-compressor-desc': { desc: '免费在线压缩图片' },
+      'compressed_preview_label': '压缩后图片预览'
     }
   },
   
@@ -262,7 +264,8 @@ const translations = {
       'text-to-speech': { name: 'テキスト読み上げ', desc: 'Web Speech APIを使用してテキストを音声に変換' },
       'image-compressor-desc': { name: '画像圧縮ツール', desc: 'オンラインで画像を圧縮' },
       'image-compressor-name': { name: '画像圧縮ツール', desc: 'オンラインで画像を圧縮' },
-      'image-compressor-desc': { desc: 'オンラインで画像を圧縮' }
+      'image-compressor-desc': { desc: 'オンラインで画像を圧縮' },
+      'compressed_preview_label': '圧縮後画像プレビュー'
     }
   },
   
@@ -325,7 +328,8 @@ const translations = {
       'text-to-speech': { name: '텍스트 음성 변환', desc: 'Web Speech API를 사용하여 텍스트를 음성으로 변환' },
       'image-compressor-desc': { name: '이미지 압축기', desc: '온라인으로 이미지 압축' },
       'image-compressor-name': { name: '이미지 압축기', desc: '온라인으로 이미지 압축' },
-      'image-compressor-desc': { desc: '온라인으로 이미지 압축' }
+      'image-compressor-desc': { desc: '온라인으로 이미지 압축' },
+      'compressed_preview_label': '압축 후 이미지 미리보기'
     }
   },
   
@@ -382,7 +386,8 @@ const translations = {
       'text-to-speech': { name: 'Texto a Voz', desc: 'Convierte texto a voz usando Web Speech API' },
       'image-compressor-desc': { name: 'Compresor de Imágenes', desc: 'Comprime imágenes en línea' },
       'image-compressor-name': { name: 'Compresor de Imágenes', desc: 'Comprime imágenes en línea' },
-      'image-compressor-desc': { desc: 'Comprime imágenes en línea' }
+      'image-compressor-desc': { desc: 'Comprime imágenes en línea' },
+      'compressed_preview_label': 'Vista previa de imagen comprimida'
     }
   },
   
@@ -444,7 +449,8 @@ const translations = {
       'text-to-speech': { name: 'Texte vers Parole', desc: "Convertissez du texte en parole utilisant l'API Web Speech" },
       'image-compressor-desc': { name: 'Compresseur d\'Images', desc: 'Compressez des images en ligne' },
       'image-compressor-name': { name: 'Compresseur d\'Images', desc: 'Compressez des images en ligne' },
-      'image-compressor-desc': { desc: 'Compressez des images en ligne' }
+      'image-compressor-desc': { desc: 'Compressez des images en ligne' },
+      'compressed_preview_label': 'Aperçu de l\'image compressée'
     }
   },
   
@@ -507,7 +513,8 @@ const translations = {
       'text-to-speech': { name: 'Text-zu-Sprache', desc: 'Konvertieren Sie Text mit Web Speech API in Sprache' },
       'image-compressor-desc': { name: 'Bild-Kompressor', desc: 'Komprimieren Sie Bilder online' },
       'image-compressor-name': { name: 'Bild-Kompressor', desc: 'Komprimieren Sie Bilder online' },
-      'image-compressor-desc': { desc: 'Komprimieren Sie Bilder online' }
+      'image-compressor-desc': { desc: 'Komprimieren Sie Bilder online' },
+      'compressed_preview_label': 'Vorschau des komprimierten Bildes'
     }
   },
   
@@ -569,7 +576,8 @@ const translations = {
       'text-to-speech': { name: 'Текст в Речь', desc: 'Преобразуйте текст в речь с помощью Web Speech API' },
       'image-compressor-desc': { name: 'Компрессор Изображений', desc: 'Сжимайте изображения онлайн' },
       'image-compressor-name': { name: 'Компрессор Изображений', desc: 'Сжимайте изображения онлайн' },
-      'image-compressor-desc': { desc: 'Сжимайте изображения онлайн' }
+      'image-compressor-desc': { desc: 'Сжимайте изображения онлайн' },
+      'compressed_preview_label': 'Просмотр сжатого изображения'
     }
   },
   
@@ -631,7 +639,8 @@ const translations = {
       'text-to-speech': { name: 'النص إلى كلام', desc: 'حوّل النص إلى كلام باستخدام Web Speech API' },
       'image-compressor-desc': { name: 'ضاغط الصور', desc: 'اضغط الصور عبر الإنترنت' },
       'image-compressor-name': { name: 'ضاغط الصور', desc: 'اضغط الصور عبر الإنترنت' },
-      'image-compressor-desc': { desc: 'اضغط الصور عبر الإنترنت' }
+      'image-compressor-desc': { desc: 'اضغط الصور عبر الإنترنت' },
+      'compressed_preview_label': 'معاينة الصورة المضغوطة'
     }
   }
 };
