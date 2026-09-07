@@ -21,8 +21,16 @@ const translations = {
     'download': 'Download',
     'select_file': 'Select File',
     'clear': 'Clear',
-    'converting': 'Converting...'
-    },    converter: {
+    'converting': 'Converting...',
+    'resizer.width': 'Width',
+    'resizer.height': 'Height',
+    'resizer.keep_ratio': 'Maintain aspect ratio',
+    'resizer.resize': 'Resize',
+    'resizer.original_size': 'Original Size',
+    'resizer.new_size': 'New Size',
+    'resizer.ratio': 'Ratio',
+    'resizer.preview_label': 'Resized image preview'
+    }    converter: {
       'format_label': 'Convert to:',
       'convert': 'Convert',
       'download': 'Download'
@@ -51,14 +59,6 @@ const translations = {
       'image-compressor-page': { name: 'Image Compressor', desc: 'Compress images online for free' },
       'image-converter': { name: 'Image Converter', desc: 'Convert images between JPG, PNG, WebP formats online.' },
       'image-resizer': { name: 'Image Resizer', desc: 'Resize images to custom dimensions online.' },
-      'resizer.width': 'Width',
-      'resizer.height': 'Height',
-      'resizer.keep_ratio': 'Maintain aspect ratio',
-      'resizer.resize': 'Resize',
-      'resizer.original_size': 'Original Size',
-      'resizer.new_size': 'New Size',
-      'resizer.ratio': 'Ratio',
-      'resizer.preview_label': 'Resized image preview',
       'color-picker': { name: 'Color Picker', desc: 'Pick colors and get HEX, RGB, HSL values.' },
       'gradient-generator': { name: 'Gradient Generator', desc: 'Create beautiful CSS gradients online.' },
       'shadow-generator': { name: 'Shadow Generator', desc: 'Create box-shadow and text-shadow CSS code.' },
@@ -133,8 +133,16 @@ const translations = {
     'download': '下载',
     'select_file': '选择文件',
     'clear': '清除',
-    'converting': '转换中...'
-    },    converter: {
+    'converting': '转换中...',
+    'resizer.width': '宽度',
+    'resizer.height': '高度',
+    'resizer.keep_ratio': '保持宽高比',
+    'resizer.resize': '调整大小',
+    'resizer.original_size': '原始尺寸',
+    'resizer.new_size': '新尺寸',
+    'resizer.ratio': '比例',
+    'resizer.preview_label': '调整后的图片预览'
+    }    converter: {
       'format_label': 'Convertir a:',
       'convert': 'Convertir',
       'download': 'Descargar'
@@ -168,14 +176,6 @@ const translations = {
       'image-compressor-page': { name: '图片压缩工具', desc: '免费在线压缩图片' },
       'image-converter': { name: '图片格式转换', desc: '在线转换图片格式为JPG、PNG、WebP' },
       'image-resizer': { name: '图片尺寸调整', desc: '自定义尺寸调整图片大小' },
-      'resizer.width': '宽度',
-      'resizer.height': '高度',
-      'resizer.keep_ratio': '保持宽高比',
-      'resizer.resize': '调整大小',
-      'resizer.original_size': '原始尺寸',
-      'resizer.new_size': '新尺寸',
-      'resizer.ratio': '比例',
-      'resizer.preview_label': '调整后的图片预览',
       'color-picker': { name: '颜色选择器', desc: '选择颜色并获取HEX、RGB、HSL值' },
       'gradient-generator': { name: '渐变生成器', desc: '在线创建美丽的CSS渐变' },
       'shadow-generator': { name: '阴影生成器', desc: '创建box-shadow和text-shadow CSS代码' },
@@ -251,8 +251,16 @@ const translations = {
     'download': 'ダウンロード',
     'select_file': 'ファイルを選択',
     'clear': 'クリア',
-    'converting': '変換中...'
-    },    converter: {
+    'converting': '変換中...',
+    'resizer.width': '幅',
+    'resizer.height': '高さ',
+    'resizer.keep_ratio': '縦横比を維持',
+    'resizer.resize': 'リサイズ',
+    'resizer.original_size': '元のサイズ',
+    'resizer.new_size': '新しいサイズ',
+    'resizer.ratio': '比率',
+    'resizer.preview_label': 'リサイズ後の画像プレビュー'
+    }    converter: {
       'format_label': '変換先：',
       'convert': '変換',
       'download': 'ダウンロード'
@@ -281,14 +289,6 @@ const translations = {
       'image-compressor-page': { name: '画像圧縮ツール', desc: 'オンラインで画像を無料で圧縮' },
       'image-converter': { name: '画像変換ツール', desc: '画像形式をJPG、PNG、WebPに変換' },
       'image-resizer': { name: '画像リサイズツール', desc: 'カスタムサイズで画像をリサイズ' },
-      'resizer.width': '幅',
-      'resizer.height': '高さ',
-      'resizer.keep_ratio': '縦横比を維持',
-      'resizer.resize': 'リサイズ',
-      'resizer.original_size': '元のサイズ',
-      'resizer.new_size': '新しいサイズ',
-      'resizer.ratio': '比率',
-      'resizer.preview_label': 'リサイズ後の画像プレビュー',
       'color-picker': { name: 'カラーピッカー', desc: '色を選択してHEX、RGB、HSL値を取得' },
       'json-formatter': { name: 'JSONフォーマッター', desc: 'JSONデータをすぐにフォーマット' },
       'word-counter': { name: 'ワードカウンター', desc: '単語数、文字数、段落数をリアルタイムでカウント' },
@@ -331,8 +331,16 @@ const translations = {
     'download': '다운로드',
     'select_file': '파일 선택',
     'clear': '지우기',
-    'converting': '변환 중...'
-    },    converter: {
+    'converting': '변환 중...',
+    'resizer.width': '너비',
+    'resizer.height': '높이',
+    'resizer.keep_ratio': '종횡비 유지',
+    'resizer.resize': '크기조정',
+    'resizer.original_size': '원본 크기',
+    'resizer.new_size': '새 크기',
+    'resizer.ratio': '비율',
+    'resizer.preview_label': '크기조정 후 이미지 미리보기'
+    }    converter: {
       'format_label': '변환:',
       'convert': '변환',
       'download': '다운로드'
@@ -374,14 +382,6 @@ const translations = {
       'url-encoder-decoder': { name: 'URL 인코더/디코더', desc: 'URL 구성 요소를 온라인으로 인코딩 및 디코딩' },
       'timestamp-converter': { name: '타임스탬프 변환기', desc: 'Unix 타임스탬프를 사람이 읽을 수 있는 날짜로 변환' },
       'image-resizer': { name: '이미지 크기조정 도구', desc: '무료로 이미지 크기를 조정하세요.' },
-      'resizer.width': '너비',
-      'resizer.height': '높이',
-      'resizer.keep_ratio': '종횡비 유지',
-      'resizer.resize': '크기조정',
-      'resizer.original_size': '원본 크기',
-      'resizer.new_size': '새 크기',
-      'resizer.ratio': '비율',
-      'resizer.preview_label': '크기조정 후 이미지 미리보기',
       'text-to-speech': { name: '텍스트 음성 변환', desc: 'Web Speech API를 사용하여 텍스트를 음성으로 변환' },
       'image-compressor-desc': { name: '이미지 압축기', desc: '온라인으로 이미지 압축' },
       'image-compressor-name': { name: '이미지 압축기', desc: '온라인으로 이미지 압축' },
@@ -410,8 +410,16 @@ const translations = {
     'download': 'Descargar',
     'select_file': 'Seleccionar archivo',
     'clear': 'Limpiar',
-    'converting': 'Convirtiendo...'
-    },
+    'converting': 'Convirtiendo...',
+    'resizer.width': 'Ancho',
+    'resizer.height': 'Alto',
+    'resizer.keep_ratio': 'Mantener proporción',
+    'resizer.resize': 'Redimensionar',
+    'resizer.original_size': 'Tamaño original',
+    'resizer.new_size': 'Nuevo tamaño',
+    'resizer.ratio': 'Relación',
+    'resizer.preview_label': 'Vista previa de imagen redimensionada'
+    }
     'converted_size': 'Tamaño convertido',
     'converted_format': 'Formato convertido',
     'converted_preview_label': 'Vista previa de imagen convertida',
@@ -447,14 +455,6 @@ const translations = {
       'url-encoder-decoder': { name: 'Codificador/Decodificador de URL', desc: 'Codifica y decodifica componentes de URL en línea' },
       'timestamp-converter': { name: 'Conversor de Marca de Tiempo', desc: 'Convierte marcas de tiempo Unix a fechas legibles' },
       'image-resizer': { name: 'Redimensionar Imagen', desc: 'Redimensiona imágenes en línea gratis.' },
-      'resizer.width': 'Ancho',
-      'resizer.height': 'Alto',
-      'resizer.keep_ratio': 'Mantener proporción',
-      'resizer.resize': 'Redimensionar',
-      'resizer.original_size': 'Tamaño original',
-      'resizer.new_size': 'Nuevo tamaño',
-      'resizer.ratio': 'Relación',
-      'resizer.preview_label': 'Vista previa de imagen redimensionada',
       'text-to-speech': { name: 'Texto a Voz', desc: 'Convierte texto a voz usando Web Speech API' },
       'image-compressor-desc': { name: 'Compresor de Imágenes', desc: 'Comprime imágenes en línea' },
       'image-compressor-name': { name: 'Compresor de Imágenes', desc: 'Comprime imágenes en línea' },
@@ -483,8 +483,16 @@ const translations = {
     'download': 'Télécharger',
     'select_file': 'Sélectionner un fichier',
     'clear': 'Effacer',
-    'converting': 'Conversion...'
-    },    converter: {
+    'converting': 'Conversion...',
+    'resizer.width': 'Largeur',
+    'resizer.height': 'Hauteur',
+    'resizer.keep_ratio': 'Conserver les proportions',
+    'resizer.resize': 'Redimensionner',
+    'resizer.original_size': 'Taille originale',
+    'resizer.new_size': 'Nouvelle taille',
+    'resizer.ratio': 'Rapport',
+    'resizer.preview_label': 'Aperçu de l\'image redimensionnée'
+    }    converter: {
       'format_label': 'Convertir en :',
       'convert': 'Convertir',
       'download': 'Télécharger'
@@ -525,14 +533,6 @@ const translations = {
       'url-encoder-decoder': { name: 'Encodeur/Décodeur URL', desc: 'Encodez et décodez les composants URL en ligne' },
       'timestamp-converter': { name: 'Convertisseur de Timestamp', desc: 'Convertissez les horodatages Unix en dates lisibles' },
       'image-resizer': { name: 'Redimensionner Image', desc: 'Redimensionnez des images en ligne gratuitement.' },
-      'resizer.width': 'Largeur',
-      'resizer.height': 'Hauteur',
-      'resizer.keep_ratio': 'Conserver les proportions',
-      'resizer.resize': 'Redimensionner',
-      'resizer.original_size': 'Taille originale',
-      'resizer.new_size': 'Nouvelle taille',
-      'resizer.ratio': 'Rapport',
-      'resizer.preview_label': 'Aperçu de l\'image redimensionnée',
       'text-to-speech': { name: 'Texte vers Parole', desc: "Convertissez du texte en parole utilisant l'API Web Speech" },
       'image-compressor-desc': { name: 'Compresseur d\'Images', desc: 'Compressez des images en ligne' },
       'image-compressor-name': { name: 'Compresseur d\'Images', desc: 'Compressez des images en ligne' },
@@ -561,8 +561,16 @@ const translations = {
     'download': 'Herunterladen',
     'select_file': 'Datei auswählen',
     'clear': 'Löschen',
-    'converting': 'Konvertieren...'
-    },    converter: {
+    'converting': 'Konvertieren...',
+    'resizer.width': 'Breite',
+    'resizer.height': 'Höhe',
+    'resizer.keep_ratio': 'Seitenverhältnis beibehalten',
+    'resizer.resize': 'Skalieren',
+    'resizer.original_size': 'Originalgröße',
+    'resizer.new_size': 'Neue Größe',
+    'resizer.ratio': 'Verhältnis',
+    'resizer.preview_label': 'Vorschau des skalierten Bildes'
+    }    converter: {
       'format_label': 'Konvertieren zu:',
       'convert': 'Konvertieren',
       'download': 'Herunterladen'
@@ -604,14 +612,6 @@ const translations = {
       'url-encoder-decoder': { name: 'URL-Codierer/Decodierer', desc: 'Codieren und Decodieren Sie URL-Komponenten online' },
       'timestamp-converter': { name: 'Zeitstempel-Konverter', desc: 'Konvertieren Sie Unix-Zeitstempel in lesbare Daten' },
       'image-resizer': { name: 'Bild Skalieren', desc: 'Skalieren Sie Bilder online kostenlos.' },
-      'resizer.width': 'Breite',
-      'resizer.height': 'Höhe',
-      'resizer.keep_ratio': 'Seitenverhältnis beibehalten',
-      'resizer.resize': 'Skalieren',
-      'resizer.original_size': 'Originalgröße',
-      'resizer.new_size': 'Neue Größe',
-      'resizer.ratio': 'Verhältnis',
-      'resizer.preview_label': 'Vorschau des skalierten Bildes',
       'text-to-speech': { name: 'Text-zu-Sprache', desc: 'Konvertieren Sie Text mit Web Speech API in Sprache' },
       'image-compressor-desc': { name: 'Bild-Kompressor', desc: 'Komprimieren Sie Bilder online' },
       'image-compressor-name': { name: 'Bild-Kompressor', desc: 'Komprimieren Sie Bilder online' },
@@ -640,8 +640,16 @@ const translations = {
     'download': 'Скачать',
     'select_file': 'Выбрать файл',
     'clear': 'Очистить',
-    'converting': 'Конвертирование...'
-    },    converter: {
+    'converting': 'Конвертирование...',
+    'resizer.width': 'Ширина',
+    'resizer.height': 'Высота',
+    'resizer.keep_ratio': 'Сохранять пропорции',
+    'resizer.resize': 'Изменить размер',
+    'resizer.original_size': 'Исходный размер',
+    'resizer.new_size': 'Новый размер',
+    'resizer.ratio': 'Соотношение',
+    'resizer.preview_label': 'Предпросмотр измененного изображения'
+    }    converter: {
       'format_label': 'Конвертировать в:',
       'convert': 'Конвертировать',
       'download': 'Скачать'
@@ -682,14 +690,6 @@ const translations = {
       'url-encoder-decoder': { name: 'Кодировщик/Декодировщик URL', desc: 'Кодируйте и декодируйте компоненты URL онлайн' },
       'timestamp-converter': { name: 'Конвертер Времени', desc: 'Преобразуйте Unix-временные метки в читаемые даты' },
       'image-resizer': { name: 'Изменить Размер Изображения', desc: 'Бесплатное изменение размера изображений онлайн.' },
-      'resizer.width': 'Ширина',
-      'resizer.height': 'Высота',
-      'resizer.keep_ratio': 'Сохранять пропорции',
-      'resizer.resize': 'Изменить размер',
-      'resizer.original_size': 'Исходный размер',
-      'resizer.new_size': 'Новый размер',
-      'resizer.ratio': 'Соотношение',
-      'resizer.preview_label': 'Предпросмотр измененного изображения',
       'text-to-speech': { name: 'Текст в Речь', desc: 'Преобразуйте текст в речь с помощью Web Speech API' },
       'image-compressor-desc': { name: 'Компрессор Изображений', desc: 'Сжимайте изображения онлайн' },
       'image-compressor-name': { name: 'Компрессор Изображений', desc: 'Сжимайте изображения онлайн' },
@@ -718,8 +718,16 @@ const translations = {
     'download': 'تحميل',
     'select_file': 'اختيار ملف',
     'clear': 'مسح',
-    'converting': 'جارٍ التحويل...'
-    },    converter: {
+    'converting': 'جارٍ التحويل...',
+    'resizer.width': 'العرض',
+    'resizer.height': 'الارتفاع',
+    'resizer.keep_ratio': 'الحفاظ على النسبة',
+    'resizer.resize': 'تغيير الحجم',
+    'resizer.original_size': 'الحجم الأصلي',
+    'resizer.new_size': 'الحجم الجديد',
+    'resizer.ratio': 'النسبة',
+    'resizer.preview_label': 'معاينة الصورة بعد تغيير الحجم'
+    }    converter: {
       'format_label': 'تحويل إلى:',
       'convert': 'تحويل',
       'download': 'تحميل'
@@ -760,14 +768,6 @@ const translations = {
       'url-encoder-decoder': { name: 'مشفّر/نافك تشفير URL', desc: 'شفّر وفك تشفير مكونات URL عبر الإنترنت' },
       'timestamp-converter': { name: 'محوّل الطابع الزمني', desc: 'حوّل طوابع الوقت من Unix إلى تواريخ مقروءة' },
       'image-resizer': { name: 'تغيير حجم الصورة', desc: 'قم بتغيير حجم الصور عبر الإنترنت مجانًا.' },
-      'resizer.width': 'العرض',
-      'resizer.height': 'الارتفاع',
-      'resizer.keep_ratio': 'الحفاظ على النسبة',
-      'resizer.resize': 'تغيير الحجم',
-      'resizer.original_size': 'الحجم الأصلي',
-      'resizer.new_size': 'الحجم الجديد',
-      'resizer.ratio': 'النسبة',
-      'resizer.preview_label': 'معاينة الصورة بعد تغيير الحجم',
       'text-to-speech': { name: 'النص إلى كلام', desc: 'حوّل النص إلى كلام باستخدام Web Speech API' },
       'image-compressor-desc': { name: 'ضاغط الصور', desc: 'اضغط الصور عبر الإنترنت' },
       'image-compressor-name': { name: 'ضاغط الصور', desc: 'اضغط الصور عبر الإنترنت' },
