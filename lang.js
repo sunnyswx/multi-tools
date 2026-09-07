@@ -7,6 +7,8 @@ const translations = {
     'original_size': 'Original Size',
     'compressed_size': 'Compressed Size',
     'reduction': 'Reduction',
+    'compressed_preview_label': 'Compressed image preview',
+    'compressing': 'Compressing...',
     'bytes': 'Bytes',
     'kb': 'KB',
     'mb': 'MB',
@@ -93,12 +95,10 @@ const translations = {
       'timestamp-converter': { name: 'Timestamp Converter', desc: 'Convert Unix timestamps to human-readable dates.' },
       'text-to-speech': { name: 'Text to Speech', desc: 'Convert text to speech using Web Speech API.' },
       'image-compressor-desc': { name: 'Image Compressor', desc: 'Compress images online for free' },
-      'image-compressor-name': { name: 'Image Compressor', desc: 'Compress images online for free' },
-      'image-compressor-desc': { desc: 'Compress images online for free' },
-      'compressed_preview_label': 'Compressed image preview'
+      'image-compressor-page': { name: 'Image Compressor', desc: 'Compress images online for free' }
     }
   },
-  
+
   zh: {
     site_title: '🛠️ Multi Tools',
     // Image compressor UI
@@ -106,6 +106,8 @@ const translations = {
     'original_size': '原始大小',
     'compressed_size': '压缩后大小',
     'reduction': '压缩率',
+    'compressed_preview_label': '压缩后图片预览',
+    'compressing': '压缩中...',
     'bytes': '字节',
     'kb': 'KB',
     'mb': 'MB',
@@ -210,6 +212,8 @@ const translations = {
     'original_size': '元のサイズ',
     'compressed_size': '圧縮後サイズ',
     'reduction': '圧縮率',
+    'compressed_preview_label': '圧縮後画像プレビュー',
+    'compressing': '圧縮中...',
     'bytes': 'バイト',
     'kb': 'KB',
     'mb': 'MB',
@@ -276,6 +280,8 @@ const translations = {
     'original_size': '원본 크기',
     'compressed_size': '압축 후 크기',
     'reduction': '압축률',
+    'compressed_preview_label': '압축 후 이미지 미리보기',
+    'compressing': '압축 중...',
     'bytes': '바이트',
     'kb': 'KB',
     'mb': 'MB',
@@ -340,6 +346,8 @@ const translations = {
     'original_size': 'Tamaño original',
     'compressed_size': 'Tamaño comprimido',
     'reduction': 'Reducción',
+    'compressed_preview_label': 'Vista previa de imagen comprimida',
+    'compressing': 'Comprimiendo...',
     'bytes': 'Bytes',
     'kb': 'KB',
     'mb': 'MB',
@@ -386,11 +394,10 @@ const translations = {
       'text-to-speech': { name: 'Texto a Voz', desc: 'Convierte texto a voz usando Web Speech API' },
       'image-compressor-desc': { name: 'Compresor de Imágenes', desc: 'Comprime imágenes en línea' },
       'image-compressor-name': { name: 'Compresor de Imágenes', desc: 'Comprime imágenes en línea' },
-      'image-compressor-desc': { desc: 'Comprime imágenes en línea' },
-      'compressed_preview_label': 'Vista previa de imagen comprimida'
+      'image-compressor-desc': { desc: 'Comprime imágenes en línea' }
     }
   },
-  
+
   fr: {
     site_title: '🛠️ Multi Tools',
     // Image compressor UI
@@ -398,6 +405,8 @@ const translations = {
     'original_size': 'Taille d\'origine',
     'compressed_size': 'Taille compressée',
     'reduction': 'Réduction',
+    'compressed_preview_label': 'Aperçu de l\'image compressée',
+    'compressing': 'Compression...',
     'bytes': 'Octets',
     'kb': 'Ko',
     'mb': 'Mo',
@@ -449,11 +458,10 @@ const translations = {
       'text-to-speech': { name: 'Texte vers Parole', desc: "Convertissez du texte en parole utilisant l'API Web Speech" },
       'image-compressor-desc': { name: 'Compresseur d\'Images', desc: 'Compressez des images en ligne' },
       'image-compressor-name': { name: 'Compresseur d\'Images', desc: 'Compressez des images en ligne' },
-      'image-compressor-desc': { desc: 'Compressez des images en ligne' },
-      'compressed_preview_label': 'Aperçu de l\'image compressée'
+      'image-compressor-desc': { desc: 'Compressez des images en ligne' }
     }
   },
-  
+
   de: {
     site_title: '🛠️ Multi Tools',
     // Image compressor UI
@@ -461,6 +469,8 @@ const translations = {
     'original_size': 'Originalgröße',
     'compressed_size': 'Komprimierte Größe',
     'reduction': 'Reduzierung',
+    'compressed_preview_label': 'Vorschau des komprimierten Bildes',
+    'compressing': 'Komprimieren...',
     'bytes': 'Bytes',
     'kb': 'KB',
     'mb': 'MB',
@@ -513,11 +523,10 @@ const translations = {
       'text-to-speech': { name: 'Text-zu-Sprache', desc: 'Konvertieren Sie Text mit Web Speech API in Sprache' },
       'image-compressor-desc': { name: 'Bild-Kompressor', desc: 'Komprimieren Sie Bilder online' },
       'image-compressor-name': { name: 'Bild-Kompressor', desc: 'Komprimieren Sie Bilder online' },
-      'image-compressor-desc': { desc: 'Komprimieren Sie Bilder online' },
-      'compressed_preview_label': 'Vorschau des komprimierten Bildes'
+      'image-compressor-desc': { desc: 'Komprimieren Sie Bilder online' }
     }
   },
-  
+
   ru: {
     site_title: '🛠️ Multi Tools',
     // Image compressor UI
@@ -525,6 +534,8 @@ const translations = {
     'original_size': 'Исходный размер',
     'compressed_size': 'Сжатый размер',
     'reduction': 'Сжатие',
+    'compressed_preview_label': 'Просмотр сжатого изображения',
+    'compressing': 'Сжатие...',
     'bytes': 'Байт',
     'kb': 'КБ',
     'mb': 'МБ',
@@ -576,11 +587,10 @@ const translations = {
       'text-to-speech': { name: 'Текст в Речь', desc: 'Преобразуйте текст в речь с помощью Web Speech API' },
       'image-compressor-desc': { name: 'Компрессор Изображений', desc: 'Сжимайте изображения онлайн' },
       'image-compressor-name': { name: 'Компрессор Изображений', desc: 'Сжимайте изображения онлайн' },
-      'image-compressor-desc': { desc: 'Сжимайте изображения онлайн' },
-      'compressed_preview_label': 'Просмотр сжатого изображения'
+      'image-compressor-desc': { desc: 'Сжимайте изображения онлайн' }
     }
   },
-  
+
   ar: {
     site_title: '🛠️ Multi Tools',
     // Image compressor UI
@@ -588,6 +598,8 @@ const translations = {
     'original_size': 'الحجم الأصلي',
     'compressed_size': 'الحجم المضغوط',
     'reduction': 'التقليل',
+    'compressed_preview_label': 'معاينة الصورة المضغوطة',
+    'compressing': 'جارٍ الضغط...',
     'bytes': 'بايت',
     'kb': 'كيلوبايت',
     'mb': 'ميغابايت',
@@ -639,8 +651,7 @@ const translations = {
       'text-to-speech': { name: 'النص إلى كلام', desc: 'حوّل النص إلى كلام باستخدام Web Speech API' },
       'image-compressor-desc': { name: 'ضاغط الصور', desc: 'اضغط الصور عبر الإنترنت' },
       'image-compressor-name': { name: 'ضاغط الصور', desc: 'اضغط الصور عبر الإنترنت' },
-      'image-compressor-desc': { desc: 'اضغط الصور عبر الإنترنت' },
-      'compressed_preview_label': 'معاينة الصورة المضغوطة'
+      'image-compressor-desc': { desc: 'اضغط الصور عبر الإنترنت' }
     }
   }
 };
