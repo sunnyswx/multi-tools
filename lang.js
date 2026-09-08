@@ -711,7 +711,7 @@ const translations = {
     'shadow.horizontal_offset': 'Décalage Horizontal',
     'shadow.vertical_offset': 'Décalage Vertical',
     'shadow.blur_radius': 'Rayon de Flou',
-    'shadow.spread_radius': 'Rayon d\\'Étalement',
+    'shadow.spread_radius': 'Rayon d\'Étalement',
     'shadow.color': 'Couleur',
     'shadow.inset': 'Incrusté (Ombre Interne)',
     'shadow.reset': 'Réinitialiser',
