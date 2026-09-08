@@ -48,7 +48,7 @@ const translations = {
     'original_size': 'Original Size',
     'format': 'Format',
     'copy': 'Copy'
-    },,
+    },
     'converting': 'Converting...',
     'convert': 'Convert',
     'copied': 'Copied!'
@@ -191,7 +191,7 @@ const translations = {
     'original_size': '原始大小',
     'format': '格式',
     'copy': '复制'
-    },,
+    },
     'converting': '转换中...',
     'convert': '转换',
     'copied': '已复制！'
@@ -335,7 +335,7 @@ const translations = {
     'original_size': '元のサイズ',
     'format': 'フォーマット',
     'copy': 'コピー'
-    },,
+    },
     'converting': '変換中...',
     'convert': '変換',
     'copied': 'コピーしました！'
@@ -446,7 +446,7 @@ const translations = {
     'original_size': '원본 크기',
     'format': '형식',
     'copy': '복사'
-    },,
+    },
     'converting': '변환 중...',
     'convert': '변환',
     'copied': '복사됨!'
@@ -556,7 +556,7 @@ const translations = {
     'original_size': 'Tamaño original',
     'format': 'Formato',
     'copy': 'Copiar'
-    },,
+    },
     'converting': 'Convirtiendo...',
     'convert': 'Convertir',
     'copied': '¡Copiado!',
@@ -659,7 +659,7 @@ const translations = {
     'original_size': 'Taille originale',
     'format': 'Format',
     'copy': 'Copier'
-    },,
+    },
     'converting': 'Conversion...',
     'convert': 'Convertir',
     'copied': 'Copié!',
@@ -768,7 +768,7 @@ const translations = {
     'original_size': 'Originalgröße',
     'format': 'Format',
     'copy': 'Kopieren'
-    },,
+    },
     'converting': 'Konvertieren...',
     'convert': 'Konvertieren',
     'copied': 'Kopiert!',
@@ -878,7 +878,7 @@ const translations = {
     'original_size': 'Исходный размер',
     'format': 'Формат',
     'copy': 'Копировать'
-    },,
+    },
     'converting': 'Конвертирование...',
     'convert': 'Конвертировать',
     'copied': 'Скопировано!',
@@ -987,7 +987,7 @@ const translations = {
     'original_size': 'الحجم الأصلي',
     'format': 'الصيغة',
     'copy': 'نسخ'
-    },,
+    },
     'converting': 'جارٍ التحويل...',
     'convert': 'تحويل',
     'copied': 'تم النسخ!',
