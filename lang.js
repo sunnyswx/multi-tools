@@ -21,7 +21,8 @@ const translations = {
     'download': 'Download',
     'select_file': 'Select File',
     'clear': 'Clear',
-    'converting': 'Converting...',
+    'converting': 'Converting...'
+    },
     'resizer.width': 'Width',
     'resizer.height': 'Height',
     'resizer.keep_ratio': 'Maintain aspect ratio',
@@ -29,8 +30,8 @@ const translations = {
     'resizer.original_size': 'Original Size',
     'resizer.new_size': 'New Size',
     'resizer.ratio': 'Ratio',
-    'resizer.preview_label': 'Resized image preview'
-    }    converter: {
+    'resizer.preview_label': 'Resized image preview',
+    converter: {
       'format_label': 'Convert to:',
       'convert': 'Convert',
       'download': 'Download'
@@ -133,7 +134,8 @@ const translations = {
     'download': '下载',
     'select_file': '选择文件',
     'clear': '清除',
-    'converting': '转换中...',
+    'converting': '转换中...'
+    },
     'resizer.width': '宽度',
     'resizer.height': '高度',
     'resizer.keep_ratio': '保持宽高比',
@@ -141,8 +143,8 @@ const translations = {
     'resizer.original_size': '原始尺寸',
     'resizer.new_size': '新尺寸',
     'resizer.ratio': '比例',
-    'resizer.preview_label': '调整后的图片预览'
-    }    converter: {
+    'resizer.preview_label': '调整后的图片预览',
+    converter: {
       'format_label': 'Convertir a:',
       'convert': 'Convertir',
       'download': 'Descargar'
@@ -251,7 +253,8 @@ const translations = {
     'download': 'ダウンロード',
     'select_file': 'ファイルを選択',
     'clear': 'クリア',
-    'converting': '変換中...',
+    'converting': '変換中...'
+    },
     'resizer.width': '幅',
     'resizer.height': '高さ',
     'resizer.keep_ratio': '縦横比を維持',
@@ -259,8 +262,8 @@ const translations = {
     'resizer.original_size': '元のサイズ',
     'resizer.new_size': '新しいサイズ',
     'resizer.ratio': '比率',
-    'resizer.preview_label': 'リサイズ後の画像プレビュー'
-    }    converter: {
+    'resizer.preview_label': 'リサイズ後の画像プレビュー',
+    converter: {
       'format_label': '変換先：',
       'convert': '変換',
       'download': 'ダウンロード'
@@ -331,7 +334,8 @@ const translations = {
     'download': '다운로드',
     'select_file': '파일 선택',
     'clear': '지우기',
-    'converting': '변환 중...',
+    'converting': '변환 중...'
+    },
     'resizer.width': '너비',
     'resizer.height': '높이',
     'resizer.keep_ratio': '종횡비 유지',
@@ -339,8 +343,8 @@ const translations = {
     'resizer.original_size': '원본 크기',
     'resizer.new_size': '새 크기',
     'resizer.ratio': '비율',
-    'resizer.preview_label': '크기조정 후 이미지 미리보기'
-    }    converter: {
+    'resizer.preview_label': '크기조정 후 이미지 미리보기',
+    converter: {
       'format_label': '변환:',
       'convert': '변환',
       'download': '다운로드'
@@ -418,8 +422,8 @@ const translations = {
     'resizer.original_size': 'Tamaño original',
     'resizer.new_size': 'Nuevo tamaño',
     'resizer.ratio': 'Relación',
-    'resizer.preview_label': 'Vista previa de imagen redimensionada'
-    }
+    'resizer.preview_label': 'Vista previa de imagen redimensionada',
+    },
     'converted_size': 'Tamaño convertido',
     'converted_format': 'Formato convertido',
     'converted_preview_label': 'Vista previa de imagen convertida',
@@ -491,8 +495,9 @@ const translations = {
     'resizer.original_size': 'Taille originale',
     'resizer.new_size': 'Nouvelle taille',
     'resizer.ratio': 'Rapport',
-    'resizer.preview_label': 'Aperçu de l\'image redimensionnée'
-    }    converter: {
+    'resizer.preview_label': 'Aperçu de l\'image redimensionnée',
+    },
+    converter: {
       'format_label': 'Convertir en :',
       'convert': 'Convertir',
       'download': 'Télécharger'
@@ -569,8 +574,17 @@ const translations = {
     'resizer.original_size': 'Originalgröße',
     'resizer.new_size': 'Neue Größe',
     'resizer.ratio': 'Verhältnis',
-    'resizer.preview_label': 'Vorschau des skalierten Bildes'
-    }    converter: {
+    'resizer.preview_label': 'Vorschau des skalierten Bildes',
+    },
+    'resizer.width': 'Breite',
+    'resizer.height': 'Höhe',
+    'resizer.keep_ratio': 'Seitenverhältnis beibehalten',
+    'resizer.resize': 'Skalieren',
+    'resizer.original_size': 'Originalgröße',
+    'resizer.new_size': 'Neue Größe',
+    'resizer.ratio': 'Verhältnis',
+    'resizer.preview_label': 'Vorschau des skalierten Bildes',
+    converter: {
       'format_label': 'Konvertieren zu:',
       'convert': 'Konvertieren',
       'download': 'Herunterladen'
@@ -648,8 +662,17 @@ const translations = {
     'resizer.original_size': 'Исходный размер',
     'resizer.new_size': 'Новый размер',
     'resizer.ratio': 'Соотношение',
-    'resizer.preview_label': 'Предпросмотр измененного изображения'
-    }    converter: {
+    'resizer.preview_label': 'Предпросмотр измененного изображения',
+    },
+    'resizer.width': 'Ширина',
+    'resizer.height': 'Высота',
+    'resizer.keep_ratio': 'Сохранять пропорции',
+    'resizer.resize': 'Изменить размер',
+    'resizer.original_size': 'Исходный размер',
+    'resizer.new_size': 'Новый размер',
+    'resizer.ratio': 'Соотношение',
+    'resizer.preview_label': 'Предпросмотр измененного изображения',
+    converter: {
       'format_label': 'Конвертировать в:',
       'convert': 'Конвертировать',
       'download': 'Скачать'
@@ -726,8 +749,17 @@ const translations = {
     'resizer.original_size': 'الحجم الأصلي',
     'resizer.new_size': 'الحجم الجديد',
     'resizer.ratio': 'النسبة',
-    'resizer.preview_label': 'معاينة الصورة بعد تغيير الحجم'
-    }    converter: {
+    'resizer.preview_label': 'معاينة الصورة بعد تغيير الحجم',
+    },
+    'resizer.width': 'العرض',
+    'resizer.height': 'الارتفاع',
+    'resizer.keep_ratio': 'الحفاظ على النسبة',
+    'resizer.resize': 'تغيير الحجم',
+    'resizer.original_size': 'الحجم الأصلي',
+    'resizer.new_size': 'الحجم الجديد',
+    'resizer.ratio': 'النسبة',
+    'resizer.preview_label': 'معاينة الصورة بعد تغيير الحجم',
+    converter: {
       'format_label': 'تحويل إلى:',
       'convert': 'تحويل',
       'download': 'تحميل'
