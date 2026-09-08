@@ -246,8 +246,11 @@
             document.getElementById('uploadArea').innerHTML =
                 '<div class="icon">📁</div>' +
                 '<h3 data-i18n="common.click_to_upload">Click to upload image</h3>' +
-                '<p style="color: #999; margin-top: 10px;" data-i18n="common.or_drag_drop">or drag and drop</p>';
-            document.getElementById('uploadArea').classList.remove('has-image');
+                '<p style="color: #999; margin-top: 10px;" data-i18n="common.or_drag_drop">or drag and drop</p>';\n            document.getElementById('uploadArea').classList.remove('has-image');
+
+            // Re-apply language to reset elements
+            const lang = getLanguage();
+            applyLanguage(lang);
 
             // Hide elements
             document.getElementById('infoBox').style.display = 'none';
