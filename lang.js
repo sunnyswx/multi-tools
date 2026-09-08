@@ -810,22 +810,26 @@ function applyLanguage(lang) {
   elements.forEach((el) => {
     const key = el.getAttribute('data-i18n');
     console.log('[ApplyLang] Processing:', key);
+
+    // 先尝试直接查找顶层key
+    let value = t[key];
     
-    // 分割键并逐级访问
-    const parts = key.split('.');
-    let value = t;
-    
-    for (const part of parts) {
-      if (value && value[part] !== undefined) {
-        value = value[part];
-      } else {
-        console.log('[ApplyLang] Key not found:', part);
-        value = null;
-        break;
+    // 如果找不到，尝试逐级访问（处理嵌套key如 tools.image-resizer.name）
+    if (value === undefined && key.includes('.')) {
+      const parts = key.split('.');
+      value = t;
+      for (const part of parts) {
+        if (value && value[part] !== undefined) {
+          value = value[part];
+        } else {
+          console.log('[ApplyLang] Key not found:', part);
+          value = undefined;
+          break;
+        }
       }
     }
     
-    if (value) {
+    if (value !== undefined && value !== null) {
       if (typeof value === 'object' && value.name) {
         el.textContent = value.name;
       } else if (typeof value === 'object' && value.desc) {
@@ -834,6 +838,8 @@ function applyLanguage(lang) {
         el.textContent = value;
       }
       console.log('[ApplyLang] Updated to:', el.textContent.substring(0, 30));
+    } else {
+      console.log('[ApplyLang] Value not found for key:', key);
     }
   });
   
