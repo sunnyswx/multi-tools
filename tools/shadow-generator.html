@@ -3,37 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shadow Generator - Multi Tools</title>
-    <meta name="description" content="Create CSS box shadows.">
+    <title data-i18n="tools.shadow-generator.name">Shadow Generator - Multi Tools</title>
+    <meta name="description" content="Create CSS box shadows and text shadows online.">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      function gtag(){dataLayer.push(arguments);}\n      gtag('js', new Date());
       gtag('config', 'G-L7GQFYBWB6');
     </script>
     <link rel="stylesheet" href="../css/style.css">
     <script src="../lang.js"></script>
     <script>
-        // 自动检测浏览器语言
         (function() {
             const browserLang = navigator.language.split('-')[0];
             const supportedLangs = ['en', 'zh', 'ja', 'ko', 'es', 'fr', 'de', 'ru', 'ar'];
-            
-            // 检查浏览器语言是否在支持列表中
-            let lang = 'en'; // 默认英文
+            let lang = 'en';
             if (supportedLangs.includes(browserLang)) {
                 lang = browserLang;
             }
-            
-            // 保存到 localStorage
             localStorage.setItem('multi-tools-lang', lang);
-            
             console.log('[AutoLang] Browser language:', browserLang, '=> Using:', lang);
         })();
-    </script>
-    <script>
-        // 初始化语言
         document.addEventListener('DOMContentLoaded', function() {
             initLanguage();
             debugTranslations();
@@ -45,17 +35,229 @@
         .tool-header h1 { color: #333; font-size: 2rem; margin-bottom: 10px; }
         .tool-header p { color: #666; }
         .tool-content { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
-        .preview-box { height: 200px; display: flex; align-items: center; justify-content: center; margin-bottom: 30px; background: #f8f9fa; border-radius: 10px; }
-        .box { width: 150px; height: 150px; background: #667eea; border-radius: 10px; }
-        .control-group { margin-bottom: 20px; }
-        .control-group label { display: block; margin-bottom: 8px; font-weight: 600; }
-        .control-group input[type="range"] { width: 100%; }
-        .control-group input[type="color"] { width: 60px; height: 40px; border: none; cursor: pointer; }
-        .value-display { float: right; color: #666; }
-        .css-output { width: 100%; padding: 15px; background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 10px; font-family: monospace; margin-top: 20px; }
-        .btn { padding: 12px 30px; border: none; border-radius: 25px; font-size: 16px; cursor: pointer; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
-        .language-selector { margin-top: 30px; text-align: center; }
-        .language-selector select { padding: 10px 20px; font-size: 16px; border: none; border-radius: 25px; background: #667eea; color: white; cursor: pointer; }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        .tab-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #f0f0f0;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .tab-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .tab-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .preview-box { 
+            height: 200px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            margin-bottom: 30px; 
+            background: #f8f9fa; 
+            border-radius: 10px; 
+        }
+        .box { 
+            width: 150px; 
+            height: 150px; 
+            background: #667eea; 
+            border-radius: 10px; 
+        }
+        .text-preview {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        .control-group { 
+            margin-bottom: 0;
+        }
+        .control-group label { 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px; 
+            font-weight: 600;
+            color: #333;
+        }
+        .control-group input[type="range"] { 
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #e0e0e0;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        .control-group input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .control-group input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+        .value-display { 
+            color: #667eea;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        
+        .color-input {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .color-input input[type="color"] { 
+            width: 50px; 
+            height: 40px; 
+            border: none; 
+            cursor: pointer;
+            border-radius: 8px;
+            padding: 3px;
+        }
+        .color-input input[type="text"] {
+            flex: 1;
+            padding: 10px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .color-input input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .options {
+            margin-bottom: 25px;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        .checkbox-group label {
+            font-weight: 600;
+            color: #333;
+            cursor: pointer;
+        }
+        
+        .btn-group { 
+            display: flex; 
+            gap: 10px; 
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .btn { 
+            padding: 12px 24px; 
+            border: none; 
+            border-radius: 25px; 
+            font-size: 14px;
+            cursor: pointer; 
+            transition: all 0.3s;
+        }
+        .btn:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .btn-primary { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            color: white; 
+        }
+        .btn-secondary { 
+            background: #f0f0f0; 
+            color: #333; 
+        }
+        
+        .css-output { 
+            position: relative;
+        }
+        .css-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        .code-output { 
+            width: 100%; 
+            padding: 15px; 
+            background: #f8f9fa; 
+            border: 1px solid #e0e0e0; 
+            border-radius: 10px; 
+            font-family: monospace; 
+            font-size: 14px;
+            box-sizing: border-box;
+            min-height: 80px;
+        }
+        .copy-btn {
+            position: absolute;
+            right: 10px;
+            top: 35px;
+            padding: 8px 16px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+        .copy-btn:hover {
+            background: #5a6fd6;
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        .toast.show { opacity: 1; }
+        
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
@@ -63,44 +265,146 @@
         <a href="../" class="back-btn" data-i18n="common.back_to_home">← Back to Home</a>
         <div class="tool-container">
             <div class="tool-header">
-                <h1>🌑 Shadow Generator</h1>
-                <p>Create CSS box shadows</p>
+                <h1>🌑 <span data-i18n="tools.shadow-generator.name">Shadow Generator</span></h1>
+                <p data-i18n="tools.shadow-generator.desc">Create CSS box shadows and text shadows online</p>
             </div>
             <div class="tool-content">
-                <div class="preview-box">
-                    <div class="box" id="previewBox"></div>
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="switchTab('box')" data-i18n="shadow.box_shadow">Box Shadow</button>
+                    <button class="tab-btn" onclick="switchTab('text')" data-i18n="shadow.text_shadow">Text Shadow</button>
                 </div>
-                <div class="control-group">
-                    <label>Horizontal Offset <span class="value-display" id="hValue">5px</span></label>
-                    <input type="range" id="hOffset" min="-50" max="50" value="5" oninput="updateShadow()">
+                
+                <div id="boxShadowTab">
+                    <div class="preview-box">
+                        <div class="box" id="previewBox"></div>
+                    </div>
+                    
+                    <div class="controls">
+                        <div class="control-group">
+                            <label>
+                                <span data-i18n="shadow.horizontal_offset">Horizontal Offset</span>
+                                <span class="value-display" id="hValue">5px</span>
+                            </label>
+                            <input type="range" id="hOffset" min="-50" max="50" value="5" oninput="updateShadow()">
+                        </div>
+                        <div class="control-group">
+                            <label>
+                                <span data-i18n="shadow.vertical_offset">Vertical Offset</span>
+                                <span class="value-display" id="vValue">5px</span>
+                            </label>
+                            <input type="range" id="vOffset" min="-50" max="50" value="5" oninput="updateShadow()">
+                        </div>
+                        <div class="control-group">
+                            <label>
+                                <span data-i18n="shadow.blur_radius">Blur Radius</span>
+                                <span class="value-display" id="blurValue">10px</span>
+                            </label>
+                            <input type="range" id="blur" min="0" max="100" value="10" oninput="updateShadow()">
+                        </div>
+                        <div class="control-group">
+                            <label>
+                                <span data-i18n="shadow.spread_radius">Spread Radius</span>
+                                <span class="value-display" id="spreadValue">0px</span>
+                            </label>
+                            <input type="range" id="spread" min="-50" max="50" value="0" oninput="updateShadow()">
+                        </div>
+                    </div>
+                    
+                    <div class="control-group" style="margin-bottom: 25px;">
+                        <label data-i18n="shadow.color">Color</label>
+                        <div class="color-input">
+                            <input type="color" id="color" value="#000000" oninput="updateShadow()">
+                            <input type="text" id="colorHex" value="#000000" maxlength="7" oninput="syncColor(this.value)">
+                        </div>
+                    </div>
+                    
+                    <div class="options">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="inset" onchange="updateShadow()">
+                            <label for="inset" data-i18n="shadow.inset">Inset (Inner Shadow)</label>
+                        </div>
+                    </div>
                 </div>
-                <div class="control-group">
-                    <label>Vertical Offset <span class="value-display" id="vValue">5px</span></label>
-                    <input type="range" id="vOffset" min="-50" max="50" value="5" oninput="updateShadow()">
+                
+                <div id="textShadowTab" style="display: none;">
+                    <div class="preview-box">
+                        <span class="text-preview" id="textPreview">Sample Text</span>
+                    </div>
+                    
+                    <div class="controls">
+                        <div class="control-group">
+                            <label>
+                                <span data-i18n="shadow.horizontal_offset">Horizontal Offset</span>
+                                <span class="value-display" id="thValue">2px</span>
+                            </label>
+                            <input type="range" id="thOffset" min="-20" max="20" value="2" oninput="updateTextShadow()">
+                        </div>
+                        <div class="control-group">
+                            <label>
+                                <span data-i18n="shadow.vertical_offset">Vertical Offset</span>
+                                <span class="value-display" id="tvValue">2px</span>
+                            </label>
+                            <input type="range" id="tvOffset" min="-20" max="20" value="2" oninput="updateTextShadow()">
+                        </div>
+                        <div class="control-group">
+                            <label>
+                                <span data-i18n="shadow.blur_radius">Blur Radius</span>
+                                <span class="value-display" id="tblurValue">3px</span>
+                            </label>
+                            <input type="range" id="tblur" min="0" max="30" value="3" oninput="updateTextShadow()">
+                        </div>
+                        <div class="control-group">
+                            <label>
+                                <span data-i18n="shadow.color">Color</span>
+                            </label>
+                            <div class="color-input">
+                                <input type="color" id="tcolor" value="#000000" oninput="updateTextShadow()">
+                                <input type="text" id="tcolorHex" value="#000000" maxlength="7" oninput="syncTextColor(this.value)">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="control-group">
-                    <label>Blur Radius <span class="value-display" id="blurValue">10px</span></label>
-                    <input type="range" id="blur" min="0" max="100" value="10" oninput="updateShadow()">
+                
+                <div class="btn-group">
+                    <button class="btn btn-secondary" onclick="resetDefaults()" data-i18n="shadow.reset">Reset</button>
+                    <button class="btn btn-primary" onclick="randomize()" data-i18n="shadow.random">Random</button>
+                    <button class="btn btn-primary" onclick="copyCSS()" data-i18n="shadow.copy_css">Copy CSS</button>
                 </div>
-                <div class="control-group">
-                    <label>Spread Radius <span class="value-display" id="spreadValue">0px</span></label>
-                    <input type="range" id="spread" min="-50" max="50" value="0" oninput="updateShadow()">
+                
+                <div class="css-output">
+                    <label class="css-label" data-i18n="shadow.css_output">CSS Code:</label>
+                    <textarea class="code-output" id="cssOutput" readonly></textarea>
+                    <button class="copy-btn" onclick="copyCSS()" data-i18n="shadow.copy">Copy</button>
                 </div>
-                <div class="control-group">
-                    <label>Color</label>
-                    <input type="color" id="color" value="#000000" oninput="updateShadow()">
-                </div>
-                <textarea class="css-output" id="cssOutput" readonly></textarea>
-                <button class="btn" onclick="copyCSS()" style="margin-top: 10px;">Copy CSS</button>
             </div>
         </div>
     </div>
+    
+    <div class="toast" id="toast"></div>
+    
     <script>
+        let currentTab = 'box';
+        
         document.addEventListener('DOMContentLoaded', function() {
             const lang = getLanguage();
             applyLanguage(lang);
             updateShadow();
         });
+        
+        function switchTab(tab) {
+            currentTab = tab;
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            document.getElementById('boxShadowTab').style.display = tab === 'box' ? 'block' : 'none';
+            document.getElementById('textShadowTab').style.display = tab === 'text' ? 'block' : 'none';
+            
+            if (tab === 'box') {
+                updateShadow();
+            } else {
+                updateTextShadow();
+            }
+        }
         
         function updateShadow() {
             const h = document.getElementById('hOffset').value;
@@ -108,6 +412,7 @@
             const blur = document.getElementById('blur').value;
             const spread = document.getElementById('spread').value;
             const color = document.getElementById('color').value;
+            const inset = document.getElementById('inset').checked;
             
             document.getElementById('hValue').textContent = h + 'px';
             document.getElementById('vValue').textContent = v + 'px';
@@ -115,15 +420,107 @@
             document.getElementById('spreadValue').textContent = spread + 'px';
             
             const shadow = h + 'px ' + v + 'px ' + blur + 'px ' + spread + 'px ' + color;
-            document.getElementById('previewBox').style.boxShadow = shadow;
-            document.getElementById('cssOutput').value = 'box-shadow: ' + shadow + ';';
+            document.getElementById('previewBox').style.boxShadow = inset ? 'inset ' + shadow : shadow;
+            document.getElementById('cssOutput').value = 'box-shadow: ' + (inset ? 'inset ' : '') + shadow + ';';
+        }
+        
+        function updateTextShadow() {
+            const h = document.getElementById('thOffset').value;
+            const v = document.getElementById('tvOffset').value;
+            const blur = document.getElementById('tblur').value;
+            const color = document.getElementById('tcolor').value;
+            
+            document.getElementById('thValue').textContent = h + 'px';
+            document.getElementById('tvValue').textContent = v + 'px';
+            document.getElementById('tblurValue').textContent = blur + 'px';
+            
+            const shadow = h + 'px ' + v + 'px ' + blur + 'px ' + color;
+            document.getElementById('textPreview').style.textShadow = shadow;
+            document.getElementById('cssOutput').value = 'text-shadow: ' + shadow + ';';
+        }
+        
+        function syncColor(hex) {
+            if (/^#[0-9A-Fa-f]{6}$/.test(hex)) {
+                document.getElementById('color').value = hex;
+                updateShadow();
+            }
+        }
+        
+        function syncTextColor(hex) {
+            if (/^#[0-9A-Fa-f]{6}$/.test(hex)) {
+                document.getElementById('tcolor').value = hex;
+                updateTextShadow();
+            }
         }
         
         function copyCSS() {
             const output = document.getElementById('cssOutput');
-            output.select();
-            navigator.clipboard.writeText(output.value);
-            alert('Copied!');
+            navigator.clipboard.writeText(output.value).then(() => {
+                showToast('CSS copied!');
+            }).catch(() => {
+                output.select();
+                document.execCommand('copy');
+                showToast('CSS copied!');
+            });
+        }
+        
+        function resetDefaults() {
+            if (currentTab === 'box') {
+                document.getElementById('hOffset').value = 5;
+                document.getElementById('vOffset').value = 5;
+                document.getElementById('blur').value = 10;
+                document.getElementById('spread').value = 0;
+                document.getElementById('color').value = '#000000';
+                document.getElementById('colorHex').value = '#000000';
+                document.getElementById('inset').checked = false;
+                updateShadow();
+            } else {
+                document.getElementById('thOffset').value = 2;
+                document.getElementById('tvOffset').value = 2;
+                document.getElementById('tblur').value = 3;
+                document.getElementById('tcolor').value = '#000000';
+                document.getElementById('tcolorHex').value = '#000000';
+                updateTextShadow();
+            }
+        }
+        
+        function randomize() {
+            const randomColor = () => '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
+            
+            if (currentTab === 'box') {
+                const h = Math.floor(Math.random() * 20) - 10;
+                const v = Math.floor(Math.random() * 20) - 10;
+                const blur = Math.floor(Math.random() * 30);
+                const spread = Math.floor(Math.random() * 10) - 5;
+                
+                document.getElementById('hOffset').value = h;
+                document.getElementById('vOffset').value = v;
+                document.getElementById('blur').value = blur;
+                document.getElementById('spread').value = spread;
+                document.getElementById('color').value = randomColor();
+                document.getElementById('colorHex').value = document.getElementById('color').value;
+                updateShadow();
+            } else {
+                const h = Math.floor(Math.random() * 10) - 5;
+                const v = Math.floor(Math.random() * 10) - 5;
+                const blur = Math.floor(Math.random() * 10);
+                
+                document.getElementById('thOffset').value = h;
+                document.getElementById('tvOffset').value = v;
+                document.getElementById('tblur').value = blur;
+                document.getElementById('tcolor').value = randomColor();
+                document.getElementById('tcolorHex').value = document.getElementById('tcolor').value;
+                updateTextShadow();
+            }
+        }
+        
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
         }
         
         if (typeof gtag !== 'undefined') {
