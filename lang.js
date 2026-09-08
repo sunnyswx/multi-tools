@@ -796,12 +796,13 @@ function applyLanguage(lang) {
   // 直接访问 translations[lang].tools['image-compressor'].name
   const t = translations[lang];
   console.log('[ApplyLang] translations[' + lang + ']:', t ? 'found' : 'not found');
-  
-  if (!t || !t.tools) {
-    console.log('[ApplyLang] No tools translations found');
+
+  // 至少需要 translations 对象存在
+  if (!t) {
+    console.log('[ApplyLang] No translations found for language:', lang);
     return;
   }
-  
+
   // Update all elements with data-i18n
   const elements = document.querySelectorAll('[data-i18n]');
   console.log('[ApplyLang] Found', elements.length, 'elements');
