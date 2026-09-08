@@ -235,17 +235,20 @@
         function handleClear() {
             originalFile = null;
             resultBase64 = '';
-            
+
+            // Reset file input FIRST (before innerHTML replacement removes it)
+            const fileInput = document.getElementById('fileInput');
+            if (fileInput) {
+                fileInput.value = '';
+            }
+
             // Reset upload area
-            document.getElementById('uploadArea').innerHTML = 
+            document.getElementById('uploadArea').innerHTML =
                 '<div class="icon">📁</div>' +
                 '<h3 data-i18n="common.click_to_upload">Click to upload image</h3>' +
                 '<p style="color: #999; margin-top: 10px;" data-i18n="common.or_drag_drop">or drag and drop</p>';
             document.getElementById('uploadArea').classList.remove('has-image');
-            
-            // Reset file input
-            document.getElementById('fileInput').value = '';
-            
+
             // Hide elements
             document.getElementById('infoBox').style.display = 'none';
             document.getElementById('btnGroup').style.display = 'none';
