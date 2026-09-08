@@ -45,16 +45,31 @@
         .tool-header h1 { color: #333; font-size: 2rem; margin-bottom: 10px; }
         .tool-header p { color: #666; }
         .tool-content { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
-        .upload-area { border: 3px dashed #e0e0e0; border-radius: 15px; padding: 50px; text-align: center; cursor: pointer; margin-bottom: 20px; }
-        .upload-area:hover { border-color: #667eea; }
+        .upload-area { border: 3px dashed #e0e0e0; border-radius: 15px; padding: 50px; text-align: center; cursor: pointer; margin-bottom: 20px; transition: all 0.3s; }
+        .upload-area:hover { border-color: #667eea; background: #f8f9ff; }
         .upload-area input { display: none; }
-        textarea { width: 100%; height: 150px; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 12px; resize: vertical; box-sizing: border-box; }
+        .upload-area .icon { font-size: 3rem; margin-bottom: 15px; }
+        .upload-area.has-image { border-style: solid; border-color: #667eea; background: #f8f9ff; }
+        .upload-area .preview-img { max-width: 100%; max-height: 300px; border-radius: 10px; }
+        textarea { width: 100%; height: 200px; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 12px; resize: vertical; box-sizing: border-box; font-family: monospace; }
         textarea:focus { outline: none; border-color: #667eea; }
-        .btn { padding: 12px 30px; border: none; border-radius: 25px; font-size: 16px; cursor: pointer; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
-        .preview { margin: 20px 0; text-align: center; }
-        .preview img { max-width: 100%; max-height: 300px; border-radius: 10px; }
+        .btn { padding: 12px 30px; border: none; border-radius: 25px; font-size: 16px; cursor: pointer; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; transition: all 0.3s; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
+        .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+        .btn-secondary { background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%); }
+        .btn-secondary:hover { box-shadow: 0 5px 20px rgba(149, 165, 166, 0.4); }
+        .btn-success { background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); }
+        .btn-success:hover { box-shadow: 0 5px 20px rgba(39, 174, 96, 0.4); }
+        .btn-danger { background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); }
+        .btn-danger:hover { box-shadow: 0 5px 20px rgba(231, 76, 60, 0.4); }
+        .info-box { background: #f8f9fa; border-radius: 10px; padding: 15px; margin: 15px 0; }
+        .info-box p { margin: 5px 0; color: #666; font-size: 14px; }
+        .info-box strong { color: #333; }
         .language-selector { margin-top: 30px; text-align: center; }
         .language-selector select { padding: 10px 20px; font-size: 16px; border: none; border-radius: 25px; background: #667eea; color: white; cursor: pointer; }
+        .loading-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.9); display: none; justify-content: center; align-items: center; z-index: 9999; }
+        .loading-spinner { width: 50px; height: 50px; border: 4px solid #f3f3f3; border-top: 4px solid #667eea; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
@@ -62,43 +77,191 @@
         <a href="../" class="back-btn" data-i18n="common.back_to_home">← Back to Home</a>
         <div class="tool-container">
             <div class="tool-header">
-                <h1>🖼️ Base64 Image Converter</h1>
-                <p>Convert images to Base64</p>
+                <h1 data-i18n="tools.base64-image-converter.name">🖼️ Base64 Image Converter</h1>
+                <p data-i18n="tools.base64-image-converter.desc">Convert images to Base64</p>
             </div>
             <div class="tool-content">
-                <div class="upload-area" onclick="document.getElementById('fileInput').click()">
-                    <div style="font-size: 3rem;">📁</div>
+                <!-- Upload Area -->
+                <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
+                    <div class="icon">📁</div>
                     <h3 data-i18n="common.click_to_upload">Click to upload image</h3>
+                    <p style="color: #999; margin-top: 10px;" data-i18n="common.or_drag_drop">or drag and drop</p>
                     <input type="file" id="fileInput" accept="image/*" onchange="handleFile(event)">
                 </div>
-                <div class="preview" id="preview"></div>
-                <button class="btn" onclick="convertToBase64()">Convert to Base64</button>
-                <textarea id="output" placeholder="Base64 output..." readonly></textarea>
+                
+                <!-- Info Box -->
+                <div class="info-box" id="infoBox" style="display: none;">
+                    <p><strong data-i18n="common.original_size">Original Size:</strong> <span id="originalSize">-</span></p>
+                    <p><strong data-i18n="common.format">Format:</strong> <span id="fileFormat">-</span></p>
+                </div>
+                
+                <!-- Button Group -->
+                <div class="btn-group" id="btnGroup" style="display: none; justify-content: center; margin: 20px 0;">
+                    <button class="btn btn-primary" id="convertBtn" onclick="convertToBase64()" data-i18n="common.convert">Convert</button>
+                    <button class="btn btn-success" id="copyBtn" onclick="copyToClipboard()" data-i18n="common.copy">Copy</button>
+                    <button class="btn btn-danger" id="clearBtn" onclick="handleClear()" data-i18n="common.clear">Clear</button>
+                </div>
+                
+                <!-- Output Area -->
+                <textarea id="output" placeholder="Base64 output..." readonly style="display: none;"></textarea>
             </div>
         </div>
     </div>
+    
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
     <script>
+        let originalFile = null;
+        let resultBase64 = '';
+        
         document.addEventListener('DOMContentLoaded', function() {
             const lang = getLanguage();
             applyLanguage(lang);
+            
+            // Drag and drop support
+            const uploadArea = document.getElementById('uploadArea');
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.style.borderColor = '#667eea';
+                uploadArea.style.background = '#f0f4ff';
+            });
+            uploadArea.addEventListener('dragleave', (e) => {
+                e.preventDefault();
+                uploadArea.style.borderColor = '#e0e0e0';
+                uploadArea.style.background = '';
+            });
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.style.borderColor = '#e0e0e0';
+                uploadArea.style.background = '';
+                const file = e.dataTransfer.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    processFile(file);
+                }
+            });
         });
         
         function handleFile(event) {
             const file = event.target.files[0];
-            if (!file) return;
+            if (file) {
+                processFile(file);
+            }
+        }
+        
+        function processFile(file) {
+            originalFile = file;
             
+            // Show file info
+            document.getElementById('originalSize').textContent = formatFileSize(file.size);
+            document.getElementById('fileFormat').textContent = file.type.split('/')[1].toUpperCase();
+            document.getElementById('infoBox').style.display = 'block';
+            
+            // Show upload area with preview
             const reader = new FileReader();
             reader.onload = function(e) {
-                document.getElementById('preview').innerHTML = '<img src="' + e.target.result + '" alt="Preview">';
-                window.currentBase64 = e.target.result;
+                document.getElementById('uploadArea').innerHTML = 
+                    '<img src="' + e.target.result + '" class="preview-img" alt="Preview">' +
+                    '<p style="margin-top: 10px; color: #667eea;">' + file.name + '</p>';
+                document.getElementById('uploadArea').classList.add('has-image');
             };
             reader.readAsDataURL(file);
+            
+            // Show buttons
+            document.getElementById('btnGroup').style.display = 'flex';
+            document.getElementById('output').style.display = 'none';
+            
+            // Reset output
+            resultBase64 = '';
+            document.getElementById('output').value = '';
         }
         
         function convertToBase64() {
-            if (window.currentBase64) {
-                document.getElementById('output').value = window.currentBase64;
-            }
+            if (!originalFile) return;
+            
+            // Show loading
+            document.getElementById('loadingOverlay').style.display = 'flex';
+            document.getElementById('convertBtn').disabled = true;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                resultBase64 = e.target.result;
+                document.getElementById('output').value = resultBase64;
+                document.getElementById('output').style.display = 'block';
+                document.getElementById('loadingOverlay').style.display = 'none';
+                document.getElementById('convertBtn').disabled = false;
+                
+                // Scroll to output
+                document.getElementById('output').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            };
+            reader.onerror = function() {
+                alert('Error reading file');
+                document.getElementById('loadingOverlay').style.display = 'none';
+                document.getElementById('convertBtn').disabled = false;
+            };
+            reader.readAsDataURL(originalFile);
+        }
+        
+        function copyToClipboard() {
+            if (!resultBase64) return;
+            
+            navigator.clipboard.writeText(resultBase64).then(() => {
+                const copyBtn = document.getElementById('copyBtn');
+                const originalText = copyBtn.textContent;
+                copyBtn.textContent = '✓ Copied!';
+                setTimeout(() => {
+                    copyBtn.textContent = originalText;
+                }, 2000);
+            }).catch(err => {
+                // Fallback for older browsers
+                const textarea = document.createElement('textarea');
+                textarea.value = resultBase64;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                
+                const copyBtn = document.getElementById('copyBtn');
+                const originalText = copyBtn.textContent;
+                copyBtn.textContent = '✓ Copied!';
+                setTimeout(() => {
+                    copyBtn.textContent = originalText;
+                }, 2000);
+            });
+        }
+        
+        function handleClear() {
+            originalFile = null;
+            resultBase64 = '';
+            
+            // Reset upload area
+            document.getElementById('uploadArea').innerHTML = 
+                '<div class="icon">📁</div>' +
+                '<h3 data-i18n="common.click_to_upload">Click to upload image</h3>' +
+                '<p style="color: #999; margin-top: 10px;" data-i18n="common.or_drag_drop">or drag and drop</p>';
+            document.getElementById('uploadArea').classList.remove('has-image');
+            
+            // Reset file input
+            document.getElementById('fileInput').value = '';
+            
+            // Hide elements
+            document.getElementById('infoBox').style.display = 'none';
+            document.getElementById('btnGroup').style.display = 'none';
+            document.getElementById('output').style.display = 'none';
+            document.getElementById('output').value = '';
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
         }
         
         if (typeof gtag !== 'undefined') {

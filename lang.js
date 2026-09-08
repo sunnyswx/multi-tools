@@ -21,7 +21,9 @@ const translations = {
     'download': 'Download',
     'select_file': 'Select File',
     'clear': 'Clear',
-    'converting': 'Converting...'
+    'converting': 'Converting...',
+    'convert': 'Convert',
+    'copied': 'Copied!'
     },
     'resizer.width': 'Width',
     'resizer.height': 'Height',
@@ -134,7 +136,9 @@ const translations = {
     'download': '下载',
     'select_file': '选择文件',
     'clear': '清除',
-    'converting': '转换中...'
+    'converting': '转换中...',
+    'convert': '转换',
+    'copied': '已复制！'
     },
     'resizer.width': '宽度',
     'resizer.height': '高度',
@@ -253,7 +257,9 @@ const translations = {
     'download': 'ダウンロード',
     'select_file': 'ファイルを選択',
     'clear': 'クリア',
-    'converting': '変換中...'
+    'converting': '変換中...',
+    'convert': '変換',
+    'copied': 'コピーしました！'
     },
     'resizer.width': '幅',
     'resizer.height': '高さ',
@@ -334,7 +340,9 @@ const translations = {
     'download': '다운로드',
     'select_file': '파일 선택',
     'clear': '지우기',
-    'converting': '변환 중...'
+    'converting': '변환 중...',
+    'convert': '변환',
+    'copied': '복사됨!'
     },
     'resizer.width': '너비',
     'resizer.height': '높이',
@@ -415,6 +423,8 @@ const translations = {
     'select_file': 'Seleccionar archivo',
     'clear': 'Limpiar',
     'converting': 'Convirtiendo...',
+    'convert': 'Convertir',
+    'copied': '¡Copiado!',
     },
     'resizer.width': 'Ancho',
     'resizer.height': 'Alto',
@@ -488,6 +498,8 @@ const translations = {
     'select_file': 'Sélectionner un fichier',
     'clear': 'Effacer',
     'converting': 'Conversion...',
+    'convert': 'Convertir',
+    'copied': 'Copié!',
     },
     'resizer.width': 'Largeur',
     'resizer.height': 'Hauteur',
@@ -567,6 +579,8 @@ const translations = {
     'select_file': 'Datei auswählen',
     'clear': 'Löschen',
     'converting': 'Konvertieren...',
+    'convert': 'Konvertieren',
+    'copied': 'Kopiert!',
     },
     'resizer.width': 'Breite',
     'resizer.height': 'Höhe',
@@ -647,6 +661,8 @@ const translations = {
     'select_file': 'Выбрать файл',
     'clear': 'Очистить',
     'converting': 'Конвертирование...',
+    'convert': 'Конвертировать',
+    'copied': 'Скопировано!',
     },
     'resizer.width': 'Ширина',
     'resizer.height': 'Высота',
@@ -726,6 +742,8 @@ const translations = {
     'select_file': 'اختيار ملف',
     'clear': 'مسح',
     'converting': 'جارٍ التحويل...',
+    'convert': 'تحويل',
+    'copied': 'تم النسخ!',
     },
     'resizer.width': 'العرض',
     'resizer.height': 'الارتفاع',
