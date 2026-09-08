@@ -251,14 +251,14 @@
                 
                 <div class="color-inputs">
                     <div class="color-group">
-                        <label data-i18n="gradient.color1">Color 1:</label>
+                        <label data-i18n="common.color1">Color 1:</label>
                         <div class="color-wrapper">
                             <input type="color" id="color1" value="#667eea">
                             <input type="text" id="color1Hex" value="#667eea" maxlength="7">
                         </div>
                     </div>
                     <div class="color-group">
-                        <label data-i18n="gradient.color2">Color 2:</label>
+                        <label data-i18n="common.color2">Color 2:</label>
                         <div class="color-wrapper">
                             <input type="color" id="color2" value="#764ba2">
                             <input type="text" id="color2Hex" value="#764ba2" maxlength="7">
@@ -267,29 +267,29 @@
                 </div>
                 
                 <div class="direction-section">
-                    <label data-i18n="gradient.direction">Direction:</label>
+                    <label data-i18n="common.direction">Direction:</label>
                     <div class="direction-selector">
-                        <div class="direction-btn active" onclick="setDirection(0)" data-i18n="gradient.to_top">To Top</div>
-                        <div class="direction-btn" onclick="setDirection(45)" data-i18n="gradient.to_bottom_right">To Bottom Right</div>
-                        <div class="direction-btn" onclick="setDirection(90)" data-i18n="gradient.to_bottom">To Bottom</div>
-                        <div class="direction-btn" onclick="setDirection(135)" data-i18n="gradient.to_bottom_left">To Bottom Left</div>
+                        <div class="direction-btn active" onclick="setDirection(0)" data-i18n="common.to_top">To Top</div>
+                        <div class="direction-btn" onclick="setDirection(45)" data-i18n="common.to_bottom_right">To Bottom Right</div>
+                        <div class="direction-btn" onclick="setDirection(90)" data-i18n="common.to_bottom">To Bottom</div>
+                        <div class="direction-btn" onclick="setDirection(135)" data-i18n="common.to_bottom_left">To Bottom Left</div>
                     </div>
                     <div class="angle-input">
-                        <label data-i18n="gradient.angle">Angle:</label>
+                        <label data-i18n="common.angle">Angle:</label>
                         <input type="range" id="angleSlider" min="0" max="360" value="0" oninput="setDirection(this.value)">
                         <div class="angle-value" id="angleValue">0°</div>
                     </div>
                 </div>
                 
                 <div class="btn-group">
-                    <button class="btn btn-secondary" onclick="randomize()" data-i18n="gradient.random">Random</button>
-                    <button class="btn btn-primary" onclick="copyCSS()" data-i18n="gradient.copy_css">Copy CSS</button>
+                    <button class="btn btn-secondary" onclick="randomize()" data-i18n="common.random">Random</button>
+                    <button class="btn btn-primary" onclick="copyCSS()" data-i18n="common.copy_css">Copy CSS</button>
                 </div>
                 
                 <div class="css-output">
-                    <label class="css-label" data-i18n="gradient.css_output">CSS Code:</label>
+                    <label class="css-label" data-i18n="common.css_output">CSS Code:</label>
                     <textarea class="code-output" id="cssOutput" readonly></textarea>
-                    <button class="copy-btn" onclick="copyCSS()" data-i18n="gradient.copy_css">Copy</button>
+                    <button class="copy-btn" onclick="copyCSS()" data-i18n="common.copy_css">Copy</button>
                 </div>
             </div>
         </div>
