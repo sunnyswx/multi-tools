@@ -151,6 +151,9 @@
                         <p style="color: #666; margin-bottom: 10px;" data-i18n="resizer.preview_label">Resized image preview</p>
                         <img id="resultPreview" alt="">
                     </div>
+                    <div class="btn-group" style="margin-top: 15px; justify-content: center;">
+                        <button class="btn btn-primary" id="downloadBtn" onclick="downloadResult()" data-i18n="common.download" style="display: none;">Download</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -260,7 +263,8 @@
                     // Show preview
                     document.getElementById('resultPreview').src = url;
                     document.getElementById('resultSection').style.display = 'block';
-                    
+                    document.getElementById('downloadBtn').style.display = 'inline-block';
+
                     // Scroll to result
                     document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }, originalFile.type);
@@ -290,9 +294,19 @@
             // Hide result
             document.getElementById('resultSection').style.display = 'none';
             document.getElementById('resultPreview').src = '';
-            
+            document.getElementById('downloadBtn').style.display = 'none';
+
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function downloadResult() {
+            if (!resultBlob) return;
+            const ext = originalFile.name.split('.').pop();
+            const link = document.createElement('a');
+            link.download = 'resized-' + Date.now() + '.' + ext;
+            link.href = URL.createObjectURL(resultBlob);
+            link.click();
         }
 
         function updateWidth() {
