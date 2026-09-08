@@ -46,7 +46,8 @@ const translations = {
     'angle': 'Angle',
     'random': 'Random',
     'copy_css': 'Copy CSS',
-    'css_output': 'CSS Code',
+    'css_output': 'CSS Code'
+    },
     'shadow.box_shadow': 'Box Shadow',
     'shadow.text_shadow': 'Text Shadow',
     'shadow.horizontal_offset': 'Horizontal Offset',
@@ -59,8 +60,7 @@ const translations = {
     'shadow.random': 'Random',
     'shadow.copy_css': 'Copy CSS',
     'shadow.css_output': 'CSS Code',
-    'shadow.copy': 'Copy'
-    },
+    'shadow.copy': 'Copy',
     'resizer.width': 'Width',
     'resizer.height': 'Height',
     'resizer.keep_ratio': 'Maintain aspect ratio',
@@ -197,7 +197,8 @@ const translations = {
     'angle': '角度',
     'random': '随机',
     'copy_css': '复制 CSS',
-    'css_output': 'CSS 代码',
+    'css_output': 'CSS 代码'
+    },
     'shadow.box_shadow': '盒阴影',
     'shadow.text_shadow': '文字阴影',
     'shadow.horizontal_offset': '水平偏移',
@@ -210,8 +211,7 @@ const translations = {
     'shadow.random': '随机',
     'shadow.copy_css': '复制 CSS',
     'shadow.css_output': 'CSS 代码',
-    'shadow.copy': '复制'
-    },
+    'shadow.copy': '复制',
     'resizer.width': '宽度',
     'resizer.height': '高度',
     'resizer.keep_ratio': '保持宽高比',
@@ -354,7 +354,8 @@ const translations = {
     'angle': '角度',
     'random': 'ランダム',
     'copy_css': 'CSSコピー',
-    'css_output': 'CSSコード',
+    'css_output': 'CSSコード'
+    },
     'shadow.box_shadow': 'ボックスシャドウ',
     'shadow.text_shadow': 'テキストシャドウ',
     'shadow.horizontal_offset': '水平オフセット',
@@ -367,8 +368,7 @@ const translations = {
     'shadow.random': 'ランダム',
     'shadow.copy_css': 'CSSコピー',
     'shadow.css_output': 'CSSコード',
-    'shadow.copy': 'コピー'
-    },
+    'shadow.copy': 'コピー',
     'resizer.width': '幅',
     'resizer.height': '高さ',
     'resizer.keep_ratio': '縦横比を維持',
@@ -474,7 +474,8 @@ const translations = {
     'angle': '각도',
     'random': '랜덤',
     'copy_css': 'CSS 복사',
-    'css_output': 'CSS 코드',
+    'css_output': 'CSS 코드'
+    },
     'shadow.box_shadow': '박스 그림자',
     'shadow.text_shadow': '텍스트 그림자',
     'shadow.horizontal_offset': '수평 오프셋',
@@ -487,8 +488,7 @@ const translations = {
     'shadow.random': '랜덤',
     'shadow.copy_css': 'CSS 복사',
     'shadow.css_output': 'CSS 코드',
-    'shadow.copy': '복사'
-    },
+    'shadow.copy': '복사',
     'resizer.width': '너비',
     'resizer.height': '높이',
     'resizer.keep_ratio': '종횡비 유지',
@@ -593,7 +593,8 @@ const translations = {
     'angle': 'Ángulo',
     'random': 'Aleatorio',
     'copy_css': 'Copiar CSS',
-    'css_output': 'Código CSS',
+    'css_output': 'Código CSS'
+    },
     'shadow.box_shadow': 'Sombra de Caja',
     'shadow.text_shadow': 'Sombra de Texto',
     'shadow.horizontal_offset': 'Desplazamiento Horizontal',
@@ -606,8 +607,7 @@ const translations = {
     'shadow.random': 'Aleatorio',
     'shadow.copy_css': 'Copiar CSS',
     'shadow.css_output': 'Código CSS',
-    'shadow.copy': 'Copiar'
-    },
+    'shadow.copy': 'Copiar',
     'resizer.width': 'Ancho',
     'resizer.height': 'Alto',
     'resizer.keep_ratio': 'Mantener proporción',
@@ -705,7 +705,8 @@ const translations = {
     'angle': 'Angle',
     'random': 'Aléatoire',
     'copy_css': 'Copier CSS',
-    'css_output': 'Code CSS',
+    'css_output': 'Code CSS'
+    },
     'shadow.box_shadow': 'Ombre de Boîte',
     'shadow.text_shadow': 'Ombre de Texte',
     'shadow.horizontal_offset': 'Décalage Horizontal',
@@ -718,8 +719,7 @@ const translations = {
     'shadow.random': 'Aléatoire',
     'shadow.copy_css': 'Copier CSS',
     'shadow.css_output': 'Code CSS',
-    'shadow.copy': 'Copier'
-    },
+    'shadow.copy': 'Copier',
     'resizer.width': 'Largeur',
     'resizer.height': 'Hauteur',
     'resizer.keep_ratio': 'Conserver les proportions',
@@ -823,7 +823,8 @@ const translations = {
     'angle': 'Winkel',
     'random': 'Zufällig',
     'copy_css': 'CSS kopieren',
-    'css_output': 'CSS-Code',
+    'css_output': 'CSS-Code'
+    },
     'shadow.box_shadow': 'Box-Schatten',
     'shadow.text_shadow': 'Text-Schatten',
     'shadow.horizontal_offset': 'Horizontale Verschiebung',
@@ -836,8 +837,7 @@ const translations = {
     'shadow.random': 'Zufällig',
     'shadow.copy_css': 'CSS kopieren',
     'shadow.css_output': 'CSS-Code',
-    'shadow.copy': 'Kopieren'
-    },
+    'shadow.copy': 'Kopieren',
     'resizer.width': 'Breite',
     'resizer.height': 'Höhe',
     'resizer.keep_ratio': 'Seitenverhältnis beibehalten',
@@ -942,7 +942,8 @@ const translations = {
     'angle': 'Угол',
     'random': 'Случайный',
     'copy_css': 'Копировать CSS',
-    'css_output': 'CSS код',
+    'css_output': 'CSS код'
+    },
     'shadow.box_shadow': 'Тень Блока',
     'shadow.text_shadow': 'Тень Текста',
     'shadow.horizontal_offset': 'Горизонтальный Сдвиг',
@@ -955,8 +956,7 @@ const translations = {
     'shadow.random': 'Случайный',
     'shadow.copy_css': 'Копировать CSS',
     'shadow.css_output': 'CSS код',
-    'shadow.copy': 'Копировать'
-    },
+    'shadow.copy': 'Копировать',
     'resizer.width': 'Ширина',
     'resizer.height': 'Высота',
     'resizer.keep_ratio': 'Сохранять пропорции',
@@ -1060,7 +1060,8 @@ const translations = {
     'angle': 'الزاوية',
     'random': 'عشوائي',
     'copy_css': 'نسخ CSS',
-    'css_output': 'كود CSS',
+    'css_output': 'كود CSS'
+    },
     'shadow.box_shadow': 'ظل الصندوق',
     'shadow.text_shadow': 'ظل النص',
     'shadow.horizontal_offset': 'الإزاحة الأفقية',
@@ -1073,8 +1074,7 @@ const translations = {
     'shadow.random': 'عشوائي',
     'shadow.copy_css': 'نسخ CSS',
     'shadow.css_output': 'كود CSS',
-    'shadow.copy': 'نسخ'
-    },
+    'shadow.copy': 'نسخ',
     'resizer.width': 'العرض',
     'resizer.height': 'الارتفاع',
     'resizer.keep_ratio': 'الحفاظ على النسبة',
