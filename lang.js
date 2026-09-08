@@ -149,15 +149,10 @@ const translations = {
     'resizer.ratio': '比例',
     'resizer.preview_label': '调整后的图片预览',
     converter: {
-      'format_label': 'Convertir a:',
-      'convert': 'Convertir',
-      'download': 'Descargar'
-    },    converter: {
       'format_label': '转换为：',
       'convert': '转换',
       'download': '下载'
     },
-    // Image converter UI
     // Image converter UI
     'converter.download': '下载',
     'converted_size': '转换后大小',
