@@ -146,27 +146,27 @@
                 <div class="color-preview" id="colorPreview" style="background: #667eea;" onclick="document.getElementById('colorPicker').click()"></div>
                 
                 <div class="input-group">
-                    <label data-i18n="picker.select_color">Select Color:</label>
+                    <label data-i18n="common.select_color">Select Color:</label>
                     <input type="color" id="colorPicker" value="#667eea">
                 </div>
                 
                 <div class="value-display">
                     <div class="value-item" onclick="copyValue('hex')">
-                        <span class="value-label" data-i18n="picker.hex_label">HEX:</span>
+                        <span class="value-label" data-i18n="common.hex_label">HEX:</span>
                         <span>
                             <span class="value-text" id="hexValue">#667eea</span>
                             <span class="copy-hint" data-i18n="picker.click_to_copy">Click to copy</span>
                         </span>
                     </div>
                     <div class="value-item" onclick="copyValue('rgb')">
-                        <span class="value-label" data-i18n="picker.rgb_label">RGB:</span>
+                        <span class="value-label" data-i18n="common.rgb_label">RGB:</span>
                         <span>
                             <span class="value-text" id="rgbValue">102, 126, 234</span>
                             <span class="copy-hint" data-i18n="picker.click_to_copy">Click to copy</span>
                         </span>
                     </div>
                     <div class="value-item" onclick="copyValue('hsl')">
-                        <span class="value-label" data-i18n="picker.hsl_label">HSL:</span>
+                        <span class="value-label" data-i18n="common.hsl_label">HSL:</span>
                         <span>
                             <span class="value-text" id="hslValue">231, 71%, 66%</span>
                             <span class="copy-hint" data-i18n="picker.click_to_copy">Click to copy</span>
@@ -175,8 +175,8 @@
                 </div>
                 
                 <div class="btn-group">
-                    <button class="btn btn-secondary" onclick="randomColor()" data-i18n="picker.random_color">Random Color</button>
-                    <button class="btn btn-success" onclick="copyValue('hex')" data-i18n="picker.copy_hex">Copy HEX</button>
+                    <button class="btn btn-secondary" onclick="randomColor()" data-i18n="common.random_color">Random Color</button>
+                    <button class="btn btn-success" onclick="copyValue('hex')" data-i18n="common.copy_hex">Copy HEX</button>
                 </div>
             </div>
         </div>
