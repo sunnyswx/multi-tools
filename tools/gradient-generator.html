@@ -3,37 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gradient Generator - Multi Tools</title>
-    <meta name="description" content="Create beautiful CSS gradients.">
+    <title data-i18n="tools.gradient-generator.name">Gradient Generator - Multi Tools</title>
+    <meta name="description" content="Create beautiful CSS gradients online.">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7GQFYBWB6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      function gtag(){dataLayer.push(arguments);}\n      gtag('js', new Date());
       gtag('config', 'G-L7GQFYBWB6');
     </script>
     <link rel="stylesheet" href="../css/style.css">
     <script src="../lang.js"></script>
     <script>
-        // 自动检测浏览器语言
         (function() {
             const browserLang = navigator.language.split('-')[0];
             const supportedLangs = ['en', 'zh', 'ja', 'ko', 'es', 'fr', 'de', 'ru', 'ar'];
-            
-            // 检查浏览器语言是否在支持列表中
-            let lang = 'en'; // 默认英文
+            let lang = 'en';
             if (supportedLangs.includes(browserLang)) {
                 lang = browserLang;
             }
-            
-            // 保存到 localStorage
             localStorage.setItem('multi-tools-lang', lang);
-            
             console.log('[AutoLang] Browser language:', browserLang, '=> Using:', lang);
         })();
-    </script>
-    <script>
-        // 初始化语言
         document.addEventListener('DOMContentLoaded', function() {
             initLanguage();
             debugTranslations();
@@ -45,20 +35,207 @@
         .tool-header h1 { color: #333; font-size: 2rem; margin-bottom: 10px; }
         .tool-header p { color: #666; }
         .tool-content { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
-        .preview { height: 200px; border-radius: 10px; margin-bottom: 20px; border: 2px solid #e0e0e0; }
-        .input-group { margin-bottom: 20px; }
-        .input-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; }
-        input[type="color"] { width: 60px; height: 40px; border: none; cursor: pointer; }
-        .direction-selector { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
-        .direction-btn { padding: 10px 20px; border: 2px solid #e0e0e0; border-radius: 25px; cursor: pointer; transition: all 0.3s; background: white; }
-        .direction-btn.active { border-color: #667eea; background: #667eea; color: white; }
-        .btn-group { display: flex; gap: 10px; flex-wrap: wrap; }
-        .btn { padding: 12px 30px; border: none; border-radius: 25px; font-size: 16px; cursor: pointer; transition: all 0.3s; }
-        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
-        .btn-secondary { background: #f0f0f0; color: #333; }
-        .code-output { width: 100%; padding: 15px; background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 10px; font-family: monospace; font-size: 14px; margin-top: 20px; }
-        .language-selector { margin-top: 30px; text-align: center; }
-        .language-selector select { padding: 10px 20px; font-size: 16px; border: none; border-radius: 25px; background: #667eea; color: white; cursor: pointer; }
+        
+        .preview { 
+            height: 200px; 
+            border-radius: 10px; 
+            margin-bottom: 25px; 
+            border: 2px solid #e0e0e0; 
+            transition: all 0.3s;
+        }
+        .preview:hover { border-color: #667eea; }
+        
+        .color-inputs { 
+            display: flex; 
+            gap: 20px; 
+            margin-bottom: 25px; 
+            flex-wrap: wrap;
+        }
+        .color-group { 
+            flex: 1; 
+            min-width: 140px;
+        }
+        .color-group label { 
+            display: block; 
+            margin-bottom: 8px; 
+            font-weight: 600; 
+            color: #333; 
+        }
+        .color-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        input[type="color"] { 
+            width: 50px; 
+            height: 50px; 
+            border: none; 
+            cursor: pointer;
+            border-radius: 8px;
+            padding: 3px;
+        }
+        input[type="text"] { 
+            flex: 1;
+            padding: 10px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        input[type="text"]:focus { 
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .direction-section {
+            margin-bottom: 25px;
+        }
+        .direction-section label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #333;
+        }
+        .direction-selector { 
+            display: flex; 
+            gap: 10px; 
+            flex-wrap: wrap;
+        }
+        .direction-btn { 
+            padding: 10px 18px; 
+            border: 2px solid #e0e0e0; 
+            border-radius: 25px; 
+            cursor: pointer; 
+            transition: all 0.3s;
+            background: white;
+            font-size: 14px;
+        }
+        .direction-btn:hover { 
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+        .direction-btn.active { 
+            border-color: #667eea; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            color: white; 
+        }
+        
+        .angle-input {
+            margin-top: 15px;
+        }
+        .angle-input label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        .angle-input input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #e0e0e0;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        .angle-input input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            cursor: pointer;
+        }
+        .angle-value {
+            text-align: center;
+            margin-top: 8px;
+            font-weight: 600;
+            color: #667eea;
+        }
+        
+        .btn-group { 
+            display: flex; 
+            gap: 10px; 
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .btn { 
+            padding: 12px 24px; 
+            border: none; 
+            border-radius: 25px; 
+            font-size: 14px;
+            cursor: pointer; 
+            transition: all 0.3s;
+        }
+        .btn:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .btn-primary { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            color: white; 
+        }
+        .btn-secondary { 
+            background: #f0f0f0; 
+            color: #333; 
+        }
+        .btn-success { 
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); 
+            color: white; 
+        }
+        
+        .css-output { 
+            position: relative;
+        }
+        .css-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        .code-output { 
+            width: 100%; 
+            padding: 15px; 
+            background: #f8f9fa; 
+            border: 1px solid #e0e0e0; 
+            border-radius: 10px; 
+            font-family: monospace; 
+            font-size: 14px; 
+            box-sizing: border-box;
+        }
+        .copy-btn {
+            position: absolute;
+            right: 10px;
+            top: 35px;
+            padding: 8px 16px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+        .copy-btn:hover {
+            background: #5a6fd6;
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        .toast.show { opacity: 1; }
     </style>
 </head>
 <body>
@@ -66,36 +243,60 @@
         <a href="../" class="back-btn" data-i18n="common.back_to_home">← Back to Home</a>
         <div class="tool-container">
             <div class="tool-header">
-                <h1>🎨 Gradient Generator</h1>
-                <p>Create beautiful CSS gradients</p>
+                <h1>🎨 <span data-i18n="tools.gradient-generator.name">Gradient Generator</span></h1>
+                <p data-i18n="tools.gradient-generator.desc">Create beautiful CSS gradients online</p>
             </div>
             <div class="tool-content">
                 <div class="preview" id="preview"></div>
-                <div class="input-group">
-                    <label>Color 1:</label>
-                    <input type="color" id="color1" value="#667eea" oninput="updateGradient()">
-                </div>
-                <div class="input-group">
-                    <label>Color 2:</label>
-                    <input type="color" id="color2" value="#764ba2" oninput="updateGradient()">
-                </div>
-                <div class="input-group">
-                    <label>Direction:</label>
-                    <div class="direction-selector">
-                        <div class="direction-btn active" onclick="setDirection(0)">To Top</div>
-                        <div class="direction-btn" onclick="setDirection(45)">To Bottom Right</div>
-                        <div class="direction-btn" onclick="setDirection(90)">To Bottom</div>
-                        <div class="direction-btn" onclick="setDirection(135)">To Bottom Left</div>
+                
+                <div class="color-inputs">
+                    <div class="color-group">
+                        <label data-i18n="gradient.color1">Color 1:</label>
+                        <div class="color-wrapper">
+                            <input type="color" id="color1" value="#667eea">
+                            <input type="text" id="color1Hex" value="#667eea" maxlength="7">
+                        </div>
+                    </div>
+                    <div class="color-group">
+                        <label data-i18n="gradient.color2">Color 2:</label>
+                        <div class="color-wrapper">
+                            <input type="color" id="color2" value="#764ba2">
+                            <input type="text" id="color2Hex" value="#764ba2" maxlength="7">
+                        </div>
                     </div>
                 </div>
-                <div class="btn-group">
-                    <button class="btn btn-primary" onclick="copyCSS()">Copy CSS</button>
-                    <button class="btn btn-secondary" onclick="randomize()">Random</button>
+                
+                <div class="direction-section">
+                    <label data-i18n="gradient.direction">Direction:</label>
+                    <div class="direction-selector">
+                        <div class="direction-btn active" onclick="setDirection(0)" data-i18n="gradient.to_top">To Top</div>
+                        <div class="direction-btn" onclick="setDirection(45)" data-i18n="gradient.to_bottom_right">To Bottom Right</div>
+                        <div class="direction-btn" onclick="setDirection(90)" data-i18n="gradient.to_bottom">To Bottom</div>
+                        <div class="direction-btn" onclick="setDirection(135)" data-i18n="gradient.to_bottom_left">To Bottom Left</div>
+                    </div>
+                    <div class="angle-input">
+                        <label data-i18n="gradient.angle">Angle:</label>
+                        <input type="range" id="angleSlider" min="0" max="360" value="0" oninput="setDirection(this.value)">
+                        <div class="angle-value" id="angleValue">0°</div>
+                    </div>
                 </div>
-                <textarea class="code-output" id="cssOutput" readonly></textarea>
+                
+                <div class="btn-group">
+                    <button class="btn btn-secondary" onclick="randomize()" data-i18n="gradient.random">Random</button>
+                    <button class="btn btn-primary" onclick="copyCSS()" data-i18n="gradient.copy_css">Copy CSS</button>
+                </div>
+                
+                <div class="css-output">
+                    <label class="css-label" data-i18n="gradient.css_output">CSS Code:</label>
+                    <textarea class="code-output" id="cssOutput" readonly></textarea>
+                    <button class="copy-btn" onclick="copyCSS()" data-i18n="gradient.copy_css">Copy</button>
+                </div>
             </div>
         </div>
     </div>
+    
+    <div class="toast" id="toast"></div>
+    
     <script>
         let currentDirection = 0;
         
@@ -103,6 +304,27 @@
             const lang = getLanguage();
             applyLanguage(lang);
             updateGradient();
+            
+            document.getElementById('color1').addEventListener('input', function() {
+                document.getElementById('color1Hex').value = this.value;
+                updateGradient();
+            });
+            document.getElementById('color2').addEventListener('input', function() {
+                document.getElementById('color2Hex').value = this.value;
+                updateGradient();
+            });
+            document.getElementById('color1Hex').addEventListener('input', function() {
+                if (/^#[0-9A-Fa-f]{6}$/.test(this.value)) {
+                    document.getElementById('color1').value = this.value;
+                    updateGradient();
+                }
+            });
+            document.getElementById('color2Hex').addEventListener('input', function() {
+                if (/^#[0-9A-Fa-f]{6}$/.test(this.value)) {
+                    document.getElementById('color2').value = this.value;
+                    updateGradient();
+                }
+            });
         });
         
         function updateGradient() {
@@ -115,24 +337,47 @@
         }
         
         function setDirection(deg) {
-            currentDirection = deg;
+            currentDirection = parseInt(deg);
+            document.getElementById('angleSlider').value = currentDirection;
+            document.getElementById('angleValue').textContent = currentDirection + '°';
+            
             document.querySelectorAll('.direction-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            const btns = document.querySelectorAll('.direction-btn');
+            btns.forEach(btn => {
+                if (btn.getAttribute('onclick') === 'setDirection(' + currentDirection + ')') {
+                    btn.classList.add('active');
+                }
+            });
             updateGradient();
         }
         
         function copyCSS() {
             const output = document.getElementById('cssOutput');
-            output.select();
-            navigator.clipboard.writeText(output.value);
-            alert('CSS copied!');
+            navigator.clipboard.writeText(output.value).then(() => {
+                showToast('CSS copied!');
+            }).catch(() => {
+                output.select();
+                document.execCommand('copy');
+                showToast('CSS copied!');
+            });
         }
         
         function randomize() {
             const randomColor = () => '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
             document.getElementById('color1').value = randomColor();
+            document.getElementById('color1Hex').value = randomColor();
             document.getElementById('color2').value = randomColor();
+            document.getElementById('color2Hex').value = randomColor();
             updateGradient();
+        }
+        
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
         }
         
         if (typeof gtag !== 'undefined') {
